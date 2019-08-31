@@ -18,6 +18,11 @@
 		C5001ABC231A8D8B00E511BD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ABB231A8D8B00E511BD /* UIView+Extensions.swift */; };
 		C5001ABE231A8DB200E511BD /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ABD231A8DB200E511BD /* UIViewController.swift */; };
 		C5001AC0231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ABF231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift */; };
+		C5001AC6231AD1CE00E511BD /* SeoulNamsanEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = C5001AC4231AD19500E511BD /* SeoulNamsanEB.otf */; };
+		C5001AC7231AD1D300E511BD /* SeoulNamsanL.otf in Resources */ = {isa = PBXBuildFile; fileRef = C5001AC2231AD19500E511BD /* SeoulNamsanL.otf */; };
+		C5001AC8231AD2FE00E511BD /* SeoulNamsanB.otf in Resources */ = {isa = PBXBuildFile; fileRef = C5001AC3231AD19500E511BD /* SeoulNamsanB.otf */; };
+		C5001AC9231AD30200E511BD /* SeoulNamsanM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C5001AC5231AD19500E511BD /* SeoulNamsanM.otf */; };
+		C5001ACB231ADA0200E511BD /* Posting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001ACA231ADA0200E511BD /* Posting.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,11 @@
 		C5001ABB231A8D8B00E511BD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		C5001ABD231A8DB200E511BD /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		C5001ABF231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
+		C5001AC2231AD19500E511BD /* SeoulNamsanL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SeoulNamsanL.otf; path = ../../../../../../Library/Fonts/SeoulNamsanL.otf; sourceTree = "<group>"; };
+		C5001AC3231AD19500E511BD /* SeoulNamsanB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SeoulNamsanB.otf; path = ../../../../../../Library/Fonts/SeoulNamsanB.otf; sourceTree = "<group>"; };
+		C5001AC4231AD19500E511BD /* SeoulNamsanEB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SeoulNamsanEB.otf; path = ../../../../../../Library/Fonts/SeoulNamsanEB.otf; sourceTree = "<group>"; };
+		C5001AC5231AD19500E511BD /* SeoulNamsanM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SeoulNamsanM.otf; path = ../../../../../../Library/Fonts/SeoulNamsanM.otf; sourceTree = "<group>"; };
+		C5001ACA231ADA0200E511BD /* Posting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Posting.storyboard; sourceTree = "<group>"; };
 		C60F0A93007A0F1379A0344A /* Pods-BabyClosetIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyClosetIOS.debug.xcconfig"; path = "Target Support Files/Pods-BabyClosetIOS/Pods-BabyClosetIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E3E8143B349FE936CF6BD9B8 /* Pods-BabyClosetIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyClosetIOS.release.xcconfig"; path = "Target Support Files/Pods-BabyClosetIOS/Pods-BabyClosetIOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +157,7 @@
 				C5001AA2231A7EDD00E511BD /* Main.storyboard */,
 				C5001AA7231A7EDE00E511BD /* LaunchScreen.storyboard */,
 				C5001AB7231A8BCB00E511BD /* Login.storyboard */,
+				C5001ACA231ADA0200E511BD /* Posting.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -154,6 +165,10 @@
 		C5001AB6231A85C600E511BD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C5001AC3231AD19500E511BD /* SeoulNamsanB.otf */,
+				C5001AC4231AD19500E511BD /* SeoulNamsanEB.otf */,
+				C5001AC2231AD19500E511BD /* SeoulNamsanL.otf */,
+				C5001AC5231AD19500E511BD /* SeoulNamsanM.otf */,
 				C5001AA5231A7EDE00E511BD /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -221,8 +236,13 @@
 			files = (
 				C5001AB8231A8BCB00E511BD /* Login.storyboard in Resources */,
 				C5001AA9231A7EDE00E511BD /* LaunchScreen.storyboard in Resources */,
+				C5001AC9231AD30200E511BD /* SeoulNamsanM.otf in Resources */,
+				C5001AC8231AD2FE00E511BD /* SeoulNamsanB.otf in Resources */,
 				C5001AA6231A7EDE00E511BD /* Assets.xcassets in Resources */,
 				C5001AA4231A7EDD00E511BD /* Main.storyboard in Resources */,
+				C5001AC6231AD1CE00E511BD /* SeoulNamsanEB.otf in Resources */,
+				C5001ACB231ADA0200E511BD /* Posting.storyboard in Resources */,
+				C5001AC7231AD1D300E511BD /* SeoulNamsanL.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
