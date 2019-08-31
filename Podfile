@@ -10,4 +10,5 @@ target 'BabyClosetIOS' do
   pod 'AlamofireObjectMapper', '~> 5.2.0'
   pod 'Kingfisher' ,'~> 4.10.1'
   pod 'ObjectMapper', '~> 3.4.2'
+  pod 'SwiftyJSON'
 end
