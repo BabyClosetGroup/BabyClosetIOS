@@ -10,6 +10,7 @@ import UIKit
 
 class MyPageVC: UIViewController {
     
+    @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var infoLabel: UILabel!
     let nickname = "정미"
     let star = 4
@@ -20,9 +21,11 @@ class MyPageVC: UIViewController {
         super.viewDidLoad()
         
         fillStar()
-        
         self.navigationController?.navigationBar.tintColor = UIColor.gray38
         navigationController?.navigationBar.barTintColor = UIColor.white
+        
+        let height = profileImg.frame.height / 2
+        profileImg.roundCorners(corners: [.allCorners], radius: height)
         
         let attributedString = NSMutableAttributedString()
             .normal(nickname, font: UIFont.B16)
@@ -31,8 +34,10 @@ class MyPageVC: UIViewController {
         infoLabel.attributedText = attributedString
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.shouldRemoveShadow(false)
         self.navigationItem.title = "마이페이지"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
     }

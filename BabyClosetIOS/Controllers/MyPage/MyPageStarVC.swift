@@ -57,7 +57,6 @@ class MyPageStarVC: UIViewController {
     
     @IBAction func ratingAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        
         // 대충 서버에게 별점 몇 개 줬는지 알려주는 기능
     }
     

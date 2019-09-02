@@ -76,6 +76,9 @@
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="profileImg" destination="A04-qz-6Dx" id="6Zu-95-Jow"/>
+            </connections>
             <point key="canvasLocation" x="138.40579710144928" y="117.52232142857142"/>
         </tableViewCell>
     </objects>

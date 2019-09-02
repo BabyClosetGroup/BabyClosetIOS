@@ -27,6 +27,7 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
         self.navigationItem.title = "나눈 상품"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
+        pageCollectionView.allowsSelection = false
         setupMyPageMenuBar()
         setupPageCollectionView()
     }

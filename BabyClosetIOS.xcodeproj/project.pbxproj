@@ -37,6 +37,7 @@
 		C55B7AB2231D326A00CCE4BD /* CompleteTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B7AB0231D326A00CCE4BD /* CompleteTVC.swift */; };
 		C55B7AB3231D326A00CCE4BD /* CompleteTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C55B7AB1231D326A00CCE4BD /* CompleteTVC.xib */; };
 		C55B7AB6231D488300CCE4BD /* MyPageStarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B7AB5231D488300CCE4BD /* MyPageStarVC.swift */; };
+		C55B7AB9231D744B00CCE4BD /* MyPageSharingInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B7AB8231D744B00CCE4BD /* MyPageSharingInfoVC.swift */; };
 		C55BBD97231C142E00C7AD9E /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C55BBD96231C142E00C7AD9E /* MyPage.storyboard */; };
 		C55BBD9A231C159700C7AD9E /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BBD99231C159700C7AD9E /* MyPageVC.swift */; };
 		C55BBD9C231C1C3000C7AD9E /* MyPageUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BBD9B231C1C3000C7AD9E /* MyPageUserInfoVC.swift */; };
@@ -80,6 +81,7 @@
 		C55B7AB0231D326A00CCE4BD /* CompleteTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTVC.swift; sourceTree = "<group>"; };
 		C55B7AB1231D326A00CCE4BD /* CompleteTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompleteTVC.xib; sourceTree = "<group>"; };
 		C55B7AB5231D488300CCE4BD /* MyPageStarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageStarVC.swift; sourceTree = "<group>"; };
+		C55B7AB8231D744B00CCE4BD /* MyPageSharingInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSharingInfoVC.swift; sourceTree = "<group>"; };
 		C55BBD96231C142E00C7AD9E /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		C55BBD99231C159700C7AD9E /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
 		C55BBD9B231C1C3000C7AD9E /* MyPageUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageUserInfoVC.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		C5001AB0231A856A00E511BD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C55B7AB7231D742A00CCE4BD /* Alert */,
 				C55BBD98231C157A00C7AD9E /* MyPage */,
 				C5001ACC231BA25100E511BD /* Login */,
 			);
@@ -250,6 +253,14 @@
 				C55B7AB1231D326A00CCE4BD /* CompleteTVC.xib */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		C55B7AB7231D742A00CCE4BD /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				C55B7AB8231D744B00CCE4BD /* MyPageSharingInfoVC.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		C55BBD98231C157A00C7AD9E /* MyPage */ = {
@@ -398,6 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C55B7AB9231D744B00CCE4BD /* MyPageSharingInfoVC.swift in Sources */,
 				C5001AD0231BA62700E511BD /* SignUpVC.swift in Sources */,
 				C55BBD9A231C159700C7AD9E /* MyPageVC.swift in Sources */,
 				C55B7AB2231D326A00CCE4BD /* CompleteTVC.swift in Sources */,
