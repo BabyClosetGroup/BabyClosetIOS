@@ -17,11 +17,18 @@ extension NSMutableAttributedString {
         return self
     }
     
-    func normal(_ text: String, fontSize: CGFloat) -> NSMutableAttributedString {
-        let attrs: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: fontSize)]
+//    func normal(_ text: String, fontSize: CGFloat) -> NSMutableAttributedString {
+//        let attrs: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: fontSize)]
+//        self.append(NSMutableAttributedString(string: text, attributes: attrs))
+//        return self
+//    }
+    
+    func normal(_ text: String, font: UIFont) -> NSMutableAttributedString {
+        let attrs: [NSAttributedString.Key: Any] = [.font: font]
         self.append(NSMutableAttributedString(string: text, attributes: attrs))
         return self
     }
+    
     
     func color(_ text: String, color: UIColor, fontSize: CGFloat) -> NSMutableAttributedString {
         var attrs: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: fontSize)]

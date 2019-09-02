@@ -9,22 +9,49 @@
 /* Begin PBXBuildFile section */
 		965030E50FF8214EC5366895 /* Pods_BabyClosetIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFFB1F5E45F9693A85A98F7 /* Pods_BabyClosetIOS.framework */; };
 		C5001A9F231A7EDD00E511BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001A9E231A7EDD00E511BD /* AppDelegate.swift */; };
-		C5001AA1231A7EDD00E511BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AA0231A7EDD00E511BD /* ViewController.swift */; };
 		C5001AA4231A7EDD00E511BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001AA2231A7EDD00E511BD /* Main.storyboard */; };
 		C5001AA6231A7EDE00E511BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5001AA5231A7EDE00E511BD /* Assets.xcassets */; };
 		C5001AA9231A7EDE00E511BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001AA7231A7EDE00E511BD /* LaunchScreen.storyboard */; };
 		C5001AB8231A8BCB00E511BD /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001AB7231A8BCB00E511BD /* Login.storyboard */; };
 		C5001ABA231A8D5400E511BD /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AB9231A8D5400E511BD /* UIImageView+Extensions.swift */; };
 		C5001ABC231A8D8B00E511BD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ABB231A8D8B00E511BD /* UIView+Extensions.swift */; };
-		C5001ABE231A8DB200E511BD /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ABD231A8DB200E511BD /* UIViewController.swift */; };
+		C5001ABE231A8DB200E511BD /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ABD231A8DB200E511BD /* UIViewController+Extensions.swift */; };
 		C5001AC0231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ABF231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift */; };
+		C5001AC6231AD1CE00E511BD /* SeoulNamsanEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = C5001AC4231AD19500E511BD /* SeoulNamsanEB.otf */; };
+		C5001AC7231AD1D300E511BD /* SeoulNamsanL.otf in Resources */ = {isa = PBXBuildFile; fileRef = C5001AC2231AD19500E511BD /* SeoulNamsanL.otf */; };
+		C5001AC8231AD2FE00E511BD /* SeoulNamsanB.otf in Resources */ = {isa = PBXBuildFile; fileRef = C5001AC3231AD19500E511BD /* SeoulNamsanB.otf */; };
+		C5001AC9231AD30200E511BD /* SeoulNamsanM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C5001AC5231AD19500E511BD /* SeoulNamsanM.otf */; };
+		C5001ACB231ADA0200E511BD /* Posting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001ACA231ADA0200E511BD /* Posting.storyboard */; };
+		C5001ACE231BA28800E511BD /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ACD231BA28800E511BD /* LoginVC.swift */; };
+		C5001AD0231BA62700E511BD /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ACF231BA62700E511BD /* SignUpVC.swift */; };
+		C5001AD2231BA84700E511BD /* SignUpTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AD1231BA84700E511BD /* SignUpTermsVC.swift */; };
+		C5001AD4231BA8E000E511BD /* SignUpEndVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AD3231BA8E000E511BD /* SignUpEndVC.swift */; };
+		C5001AD6231BADBD00E511BD /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AD5231BADBD00E511BD /* UIColor+Extensions.swift */; };
+		C55B7AA3231D0CFD00CCE4BD /* MyPageMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B7AA2231D0CFD00CCE4BD /* MyPageMenuBar.swift */; };
+		C55B7AA5231D0EB000CCE4BD /* PageItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C55B7AA4231D0EB000CCE4BD /* PageItemCell.xib */; };
+		C55B7AA8231D26F000CCE4BD /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B7AA6231D26F000CCE4BD /* PageCell.swift */; };
+		C55B7AA9231D26F000CCE4BD /* PageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C55B7AA7231D26F000CCE4BD /* PageCell.xib */; };
+		C55B7AAB231D288600CCE4BD /* UINavigationBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B7AAA231D288600CCE4BD /* UINavigationBar+Extensions.swift */; };
+		C55B7AAE231D325000CCE4BD /* IncompleteTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B7AAC231D325000CCE4BD /* IncompleteTVC.swift */; };
+		C55B7AAF231D325000CCE4BD /* IncompleteTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C55B7AAD231D325000CCE4BD /* IncompleteTVC.xib */; };
+		C55B7AB2231D326A00CCE4BD /* CompleteTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B7AB0231D326A00CCE4BD /* CompleteTVC.swift */; };
+		C55B7AB3231D326A00CCE4BD /* CompleteTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C55B7AB1231D326A00CCE4BD /* CompleteTVC.xib */; };
+		C55B7AB6231D488300CCE4BD /* MyPageStarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B7AB5231D488300CCE4BD /* MyPageStarVC.swift */; };
+		C55B7AB9231D744B00CCE4BD /* MyPageSharingInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B7AB8231D744B00CCE4BD /* MyPageSharingInfoVC.swift */; };
+		C55BBD97231C142E00C7AD9E /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C55BBD96231C142E00C7AD9E /* MyPage.storyboard */; };
+		C55BBD9A231C159700C7AD9E /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BBD99231C159700C7AD9E /* MyPageVC.swift */; };
+		C55BBD9C231C1C3000C7AD9E /* MyPageUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BBD9B231C1C3000C7AD9E /* MyPageUserInfoVC.swift */; };
+		C55BBD9E231C242300C7AD9E /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BBD9D231C242300C7AD9E /* UITextField+Extensions.swift */; };
+		C55BBDA0231C301A00C7AD9E /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BBD9F231C301A00C7AD9E /* UIFont+Extensions.swift */; };
+		C5929F7A231CEFFC00B1C4F6 /* MyPageShareVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5929F79231CEFFC00B1C4F6 /* MyPageShareVC.swift */; };
+		C5929F7C231CF04700B1C4F6 /* MyPageReceiveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5929F7B231CF04700B1C4F6 /* MyPageReceiveVC.swift */; };
+		C5929F84231CFCC000B1C4F6 /* PageItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5929F82231CFCC000B1C4F6 /* PageItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0CFFB1F5E45F9693A85A98F7 /* Pods_BabyClosetIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BabyClosetIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5001A9B231A7EDD00E511BD /* BabyClosetIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyClosetIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5001A9E231A7EDD00E511BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C5001AA0231A7EDD00E511BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C5001AA3231A7EDD00E511BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C5001AA5231A7EDE00E511BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5001AA8231A7EDE00E511BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,8 +59,37 @@
 		C5001AB7231A8BCB00E511BD /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		C5001AB9231A8D5400E511BD /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		C5001ABB231A8D8B00E511BD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		C5001ABD231A8DB200E511BD /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		C5001ABD231A8DB200E511BD /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		C5001ABF231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
+		C5001AC2231AD19500E511BD /* SeoulNamsanL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SeoulNamsanL.otf; path = ../../../../../../Library/Fonts/SeoulNamsanL.otf; sourceTree = "<group>"; };
+		C5001AC3231AD19500E511BD /* SeoulNamsanB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SeoulNamsanB.otf; path = ../../../../../../Library/Fonts/SeoulNamsanB.otf; sourceTree = "<group>"; };
+		C5001AC4231AD19500E511BD /* SeoulNamsanEB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SeoulNamsanEB.otf; path = ../../../../../../Library/Fonts/SeoulNamsanEB.otf; sourceTree = "<group>"; };
+		C5001AC5231AD19500E511BD /* SeoulNamsanM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SeoulNamsanM.otf; path = ../../../../../../Library/Fonts/SeoulNamsanM.otf; sourceTree = "<group>"; };
+		C5001ACA231ADA0200E511BD /* Posting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Posting.storyboard; sourceTree = "<group>"; };
+		C5001ACD231BA28800E511BD /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		C5001ACF231BA62700E511BD /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		C5001AD1231BA84700E511BD /* SignUpTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTermsVC.swift; sourceTree = "<group>"; };
+		C5001AD3231BA8E000E511BD /* SignUpEndVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndVC.swift; sourceTree = "<group>"; };
+		C5001AD5231BADBD00E511BD /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		C55B7AA2231D0CFD00CCE4BD /* MyPageMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMenuBar.swift; sourceTree = "<group>"; };
+		C55B7AA4231D0EB000CCE4BD /* PageItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageItemCell.xib; sourceTree = "<group>"; };
+		C55B7AA6231D26F000CCE4BD /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
+		C55B7AA7231D26F000CCE4BD /* PageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageCell.xib; sourceTree = "<group>"; };
+		C55B7AAA231D288600CCE4BD /* UINavigationBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extensions.swift"; sourceTree = "<group>"; };
+		C55B7AAC231D325000CCE4BD /* IncompleteTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncompleteTVC.swift; sourceTree = "<group>"; };
+		C55B7AAD231D325000CCE4BD /* IncompleteTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncompleteTVC.xib; sourceTree = "<group>"; };
+		C55B7AB0231D326A00CCE4BD /* CompleteTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTVC.swift; sourceTree = "<group>"; };
+		C55B7AB1231D326A00CCE4BD /* CompleteTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompleteTVC.xib; sourceTree = "<group>"; };
+		C55B7AB5231D488300CCE4BD /* MyPageStarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageStarVC.swift; sourceTree = "<group>"; };
+		C55B7AB8231D744B00CCE4BD /* MyPageSharingInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSharingInfoVC.swift; sourceTree = "<group>"; };
+		C55BBD96231C142E00C7AD9E /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
+		C55BBD99231C159700C7AD9E /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
+		C55BBD9B231C1C3000C7AD9E /* MyPageUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageUserInfoVC.swift; sourceTree = "<group>"; };
+		C55BBD9D231C242300C7AD9E /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		C55BBD9F231C301A00C7AD9E /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		C5929F79231CEFFC00B1C4F6 /* MyPageShareVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageShareVC.swift; sourceTree = "<group>"; };
+		C5929F7B231CF04700B1C4F6 /* MyPageReceiveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReceiveVC.swift; sourceTree = "<group>"; };
+		C5929F82231CFCC000B1C4F6 /* PageItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageItemCell.swift; sourceTree = "<group>"; };
 		C60F0A93007A0F1379A0344A /* Pods-BabyClosetIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyClosetIOS.debug.xcconfig"; path = "Target Support Files/Pods-BabyClosetIOS/Pods-BabyClosetIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E3E8143B349FE936CF6BD9B8 /* Pods-BabyClosetIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyClosetIOS.release.xcconfig"; path = "Target Support Files/Pods-BabyClosetIOS/Pods-BabyClosetIOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +144,7 @@
 		C5001A9D231A7EDD00E511BD /* BabyClosetIOS */ = {
 			isa = PBXGroup;
 			children = (
+				C5929F7F231CF9DA00B1C4F6 /* Cells */,
 				C5001AB6231A85C600E511BD /* Resources */,
 				C5001AB5231A85BA00E511BD /* Storyboards */,
 				C5001AB4231A85AE00E511BD /* Extensions */,
@@ -104,7 +161,9 @@
 		C5001AB0231A856A00E511BD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C5001AA0231A7EDD00E511BD /* ViewController.swift */,
+				C55B7AB7231D742A00CCE4BD /* Alert */,
+				C55BBD98231C157A00C7AD9E /* MyPage */,
+				C5001ACC231BA25100E511BD /* Login */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -112,6 +171,7 @@
 		C5001AB1231A859100E511BD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C55B7AA2231D0CFD00CCE4BD /* MyPageMenuBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -135,8 +195,12 @@
 			children = (
 				C5001AB9231A8D5400E511BD /* UIImageView+Extensions.swift */,
 				C5001ABB231A8D8B00E511BD /* UIView+Extensions.swift */,
-				C5001ABD231A8DB200E511BD /* UIViewController.swift */,
+				C5001ABD231A8DB200E511BD /* UIViewController+Extensions.swift */,
 				C5001ABF231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift */,
+				C5001AD5231BADBD00E511BD /* UIColor+Extensions.swift */,
+				C55BBD9D231C242300C7AD9E /* UITextField+Extensions.swift */,
+				C55BBD9F231C301A00C7AD9E /* UIFont+Extensions.swift */,
+				C55B7AAA231D288600CCE4BD /* UINavigationBar+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -147,6 +211,8 @@
 				C5001AA2231A7EDD00E511BD /* Main.storyboard */,
 				C5001AA7231A7EDE00E511BD /* LaunchScreen.storyboard */,
 				C5001AB7231A8BCB00E511BD /* Login.storyboard */,
+				C5001ACA231ADA0200E511BD /* Posting.storyboard */,
+				C55BBD96231C142E00C7AD9E /* MyPage.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -154,9 +220,67 @@
 		C5001AB6231A85C600E511BD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C5001AC3231AD19500E511BD /* SeoulNamsanB.otf */,
+				C5001AC4231AD19500E511BD /* SeoulNamsanEB.otf */,
+				C5001AC2231AD19500E511BD /* SeoulNamsanL.otf */,
+				C5001AC5231AD19500E511BD /* SeoulNamsanM.otf */,
 				C5001AA5231A7EDE00E511BD /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C5001ACC231BA25100E511BD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C5001ACD231BA28800E511BD /* LoginVC.swift */,
+				C5001ACF231BA62700E511BD /* SignUpVC.swift */,
+				C5001AD1231BA84700E511BD /* SignUpTermsVC.swift */,
+				C5001AD3231BA8E000E511BD /* SignUpEndVC.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C55B7AB4231D484C00CCE4BD /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				C5929F82231CFCC000B1C4F6 /* PageItemCell.swift */,
+				C55B7AA4231D0EB000CCE4BD /* PageItemCell.xib */,
+				C55B7AA6231D26F000CCE4BD /* PageCell.swift */,
+				C55B7AA7231D26F000CCE4BD /* PageCell.xib */,
+				C55B7AAC231D325000CCE4BD /* IncompleteTVC.swift */,
+				C55B7AAD231D325000CCE4BD /* IncompleteTVC.xib */,
+				C55B7AB0231D326A00CCE4BD /* CompleteTVC.swift */,
+				C55B7AB1231D326A00CCE4BD /* CompleteTVC.xib */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		C55B7AB7231D742A00CCE4BD /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				C55B7AB8231D744B00CCE4BD /* MyPageSharingInfoVC.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		C55BBD98231C157A00C7AD9E /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				C55BBD99231C159700C7AD9E /* MyPageVC.swift */,
+				C55BBD9B231C1C3000C7AD9E /* MyPageUserInfoVC.swift */,
+				C5929F79231CEFFC00B1C4F6 /* MyPageShareVC.swift */,
+				C5929F7B231CF04700B1C4F6 /* MyPageReceiveVC.swift */,
+				C55B7AB5231D488300CCE4BD /* MyPageStarVC.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		C5929F7F231CF9DA00B1C4F6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C55B7AB4231D484C00CCE4BD /* MyPage */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,9 +344,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5001AB8231A8BCB00E511BD /* Login.storyboard in Resources */,
+				C55BBD97231C142E00C7AD9E /* MyPage.storyboard in Resources */,
+				C55B7AAF231D325000CCE4BD /* IncompleteTVC.xib in Resources */,
+				C55B7AA9231D26F000CCE4BD /* PageCell.xib in Resources */,
+				C55B7AB3231D326A00CCE4BD /* CompleteTVC.xib in Resources */,
 				C5001AA9231A7EDE00E511BD /* LaunchScreen.storyboard in Resources */,
+				C5001AC9231AD30200E511BD /* SeoulNamsanM.otf in Resources */,
+				C55B7AA5231D0EB000CCE4BD /* PageItemCell.xib in Resources */,
+				C5001AC8231AD2FE00E511BD /* SeoulNamsanB.otf in Resources */,
 				C5001AA6231A7EDE00E511BD /* Assets.xcassets in Resources */,
 				C5001AA4231A7EDD00E511BD /* Main.storyboard in Resources */,
+				C5001AC6231AD1CE00E511BD /* SeoulNamsanEB.otf in Resources */,
+				C5001ACB231ADA0200E511BD /* Posting.storyboard in Resources */,
+				C5001AC7231AD1D300E511BD /* SeoulNamsanL.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,12 +409,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C55B7AB9231D744B00CCE4BD /* MyPageSharingInfoVC.swift in Sources */,
+				C5001AD0231BA62700E511BD /* SignUpVC.swift in Sources */,
+				C55BBD9A231C159700C7AD9E /* MyPageVC.swift in Sources */,
+				C55B7AB2231D326A00CCE4BD /* CompleteTVC.swift in Sources */,
 				C5001AC0231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift in Sources */,
 				C5001ABA231A8D5400E511BD /* UIImageView+Extensions.swift in Sources */,
-				C5001AA1231A7EDD00E511BD /* ViewController.swift in Sources */,
+				C5929F84231CFCC000B1C4F6 /* PageItemCell.swift in Sources */,
+				C55B7AB6231D488300CCE4BD /* MyPageStarVC.swift in Sources */,
+				C5001AD2231BA84700E511BD /* SignUpTermsVC.swift in Sources */,
+				C55B7AAB231D288600CCE4BD /* UINavigationBar+Extensions.swift in Sources */,
+				C55BBD9C231C1C3000C7AD9E /* MyPageUserInfoVC.swift in Sources */,
+				C5001ACE231BA28800E511BD /* LoginVC.swift in Sources */,
+				C55BBD9E231C242300C7AD9E /* UITextField+Extensions.swift in Sources */,
+				C55B7AAE231D325000CCE4BD /* IncompleteTVC.swift in Sources */,
+				C55B7AA3231D0CFD00CCE4BD /* MyPageMenuBar.swift in Sources */,
+				C55B7AA8231D26F000CCE4BD /* PageCell.swift in Sources */,
 				C5001ABC231A8D8B00E511BD /* UIView+Extensions.swift in Sources */,
 				C5001A9F231A7EDD00E511BD /* AppDelegate.swift in Sources */,
-				C5001ABE231A8DB200E511BD /* UIViewController.swift in Sources */,
+				C5001AD6231BADBD00E511BD /* UIColor+Extensions.swift in Sources */,
+				C5001AD4231BA8E000E511BD /* SignUpEndVC.swift in Sources */,
+				C5929F7A231CEFFC00B1C4F6 /* MyPageShareVC.swift in Sources */,
+				C55BBDA0231C301A00C7AD9E /* UIFont+Extensions.swift in Sources */,
+				C5929F7C231CF04700B1C4F6 /* MyPageReceiveVC.swift in Sources */,
+				C5001ABE231A8DB200E511BD /* UIViewController+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
