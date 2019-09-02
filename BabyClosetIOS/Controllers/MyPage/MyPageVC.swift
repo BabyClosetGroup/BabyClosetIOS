@@ -12,13 +12,8 @@ class MyPageVC: UIViewController {
     
     @IBOutlet weak var infoLabel: UILabel!
     let nickname = "정미"
-    let star = 5
+    let star = 4
     
-    @IBOutlet weak var star1: UIImageView!
-    @IBOutlet weak var star2: UIImageView!
-    @IBOutlet weak var star3: UIImageView!
-    @IBOutlet weak var star4: UIImageView!
-    @IBOutlet weak var star5: UIImageView!
     @IBOutlet var stars: [UIImageView]!
     
     override func viewDidLoad() {
@@ -26,7 +21,7 @@ class MyPageVC: UIViewController {
         
         fillStar()
         
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGray
+        self.navigationController?.navigationBar.tintColor = UIColor.gray38
         navigationController?.navigationBar.barTintColor = UIColor.white
         
         let attributedString = NSMutableAttributedString()
@@ -43,11 +38,12 @@ class MyPageVC: UIViewController {
     }
     
     func fillStar() {
-        for i in 0 ... star-1 {
-            stars[i].image = UIImage(named: "star")
-        }
-        for i in star-1 ... stars.count - 1 {
+        for i in 0 ... stars.count - 1 {
             stars[i].image = UIImage(named: "emptyStar")
         }
-    } 
+        
+        for i in 0 ... star - 1 {
+            stars[i].image = UIImage(named: "star")
+        }
+    }
 }

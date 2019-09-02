@@ -41,9 +41,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="sJt-dQ-YPg">
-                                        <rect key="frame" x="103" y="55" width="235.33333333333334" height="34.666666666666664"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="sJt-dQ-YPg">
+                                        <rect key="frame" x="103.00000000000001" y="55" width="235.33333333333334" height="34.666666666666664"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyStar" translatesAutoresizingMaskIntoConstraints="NO" id="MuC-GD-pIH">
                                                 <rect key="frame" x="0.0" y="0.0" width="36.666666666666664" height="34.666666666666664"/>
@@ -61,6 +60,10 @@
                                                 <rect key="frame" x="198.66666666666666" y="0.0" width="36.666666666666657" height="34.666666666666664"/>
                                             </imageView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34.666666666666664" id="YzB-pJ-pLF"/>
+                                            <constraint firstAttribute="width" constant="235.33333333333334" id="rAO-fB-fy9"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -73,6 +76,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LqO-n2-OID">
                                 <rect key="frame" x="0.0" y="210" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="MXD-6g-usR" kind="push" id="YSd-wa-cPS"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="내가 나눈 상품" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCp-W4-dCl">
                                 <rect key="frame" x="16" y="233" width="171" height="21"/>
@@ -93,6 +99,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4a-QW-sTa">
                                 <rect key="frame" x="0.0" y="277" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="7KA-b5-xvs" kind="push" id="jBg-9o-HVH"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="내가 받은 상품" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ql9-Tz-QGW">
                                 <rect key="frame" x="16" y="300" width="171" height="21"/>
@@ -133,6 +142,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xut-f5-Xwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="943.20000000000005" y="128.57142857142858"/>
+        </scene>
+        <!--My Page ShareVC-->
+        <scene sceneID="bcl-X9-W5t">
+            <objects>
+                <viewController id="MXD-6g-usR" customClass="MyPageShareVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Bz-Tk-jC1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8UK-E1-jGC"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JEK-OM-Bij"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kjn-9V-VW8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2048.8000000000002" y="128.57142857142858"/>
+        </scene>
+        <!--My Page ReceiveVC-->
+        <scene sceneID="Z40-uw-KG0">
+            <objects>
+                <viewController id="7KA-b5-xvs" customClass="MyPageReceiveVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eMd-Is-6e2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="cQI-9m-HUT"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9aJ-NF-Xuq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eST-kX-RRN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2049" y="867"/>
         </scene>
         <!--My Page User InfoVC-->
         <scene sceneID="75k-wG-pTA">
@@ -178,7 +219,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Jj-Zu-opk">
-                                        <rect key="frame" x="157" y="37" width="63" height="63"/>
+                                        <rect key="frame" x="146" y="26" width="84" height="84"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="myPageDefault"/>
                                         <connections>
@@ -256,10 +297,27 @@
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="sadcsdcasdc" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WcK-oS-Mvq">
                                         <rect key="frame" x="0.0" y="10" width="264" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xK7-9I-FGs">
+                                        <rect key="frame" x="172" y="0.0" width="92" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="17"/>
+                                        <state key="normal" title="변경하기">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="changePwAction:" destination="lJ7-lC-4Pv" eventType="touchUpInside" id="eHE-2S-oiL"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -269,8 +327,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="se4-5L-rQy">
                         <barButtonItem key="backBarButtonItem" title="   " id="8At-g3-jtb"/>
+                        <barButtonItem key="rightBarButtonItem" image="btn-checkSetting" id="Vbs-7z-AcG">
+                            <connections>
+                                <action selector="completeAction:" destination="lJ7-lC-4Pv" id="D6r-DB-4dq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="changeButton" destination="xK7-9I-FGs" id="afG-va-5OP"/>
                         <outlet property="idCV" destination="iqn-r4-ain" id="9Dw-oT-BO0"/>
                         <outlet property="idTF" destination="jIs-v7-SFh" id="Z8l-1L-Gbh"/>
                         <outlet property="nameCV" destination="t7h-DI-lFO" id="fz9-qL-kV0"/>
@@ -278,11 +342,12 @@
                         <outlet property="nickNameTF" destination="9SV-fc-XrN" id="Hdk-h6-QOT"/>
                         <outlet property="passwdCV" destination="MzK-jW-Zyz" id="C6b-Te-856"/>
                         <outlet property="passwdTF" destination="WcK-oS-Mvq" id="MBk-QC-Ev2"/>
+                        <outlet property="profileImg" destination="7Jj-Zu-opk" id="HS5-vF-xUT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f0o-rt-1e5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900" y="128.57142857142858"/>
+            <point key="canvasLocation" x="2048.8000000000002" y="-514.28571428571433"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aqq-rJ-c3I">
@@ -304,6 +369,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="btn-checkSetting" width="28" height="28"/>
         <image name="btn-right" width="14.333333015441895" height="14.333333015441895"/>
         <image name="emptyStar" width="36.666667938232422" height="34.666667938232422"/>
         <image name="myPageDefault" width="63" height="63"/>
