@@ -53,6 +53,14 @@ extension UIView {
             self.layer.borderWidth = 1.0
         }
     }
+    
+    func setUnderLine( border: CALayer, color: CGColor){
+        border.borderColor = color
+        border.borderWidth = 1.0
+        border.frame = CGRect(x: 0, y: self.frame.height - 1, width:  self.frame.width, height: self.frame.height)
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+    }
 }
 
 @IBDesignable extension UIView {

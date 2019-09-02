@@ -570,59 +570,115 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TGN-nP-jf5">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGN-nP-jf5">
                                 <rect key="frame" x="16" y="277" width="343" height="264"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SI-Vw-pPA">
-                                        <rect key="frame" x="11" y="99" width="317" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <string key="text">회원가입 감사 포인트 50포인트가 적립 되었어요.
-지금 당장 나눔하러 가 볼까요?</string>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SI-Vw-pPA">
+                                        <rect key="frame" x="10" y="99" width="320" height="19"/>
+                                        <string key="text">회원가입 감사 포인트             가 적립 되었어요.
+</string>
                                         <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="16"/>
+                                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지금 당장 나눔하러 가 볼까요?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMp-bR-GlF">
+                                        <rect key="frame" x="11" y="123" width="317" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="317" id="edo-uM-xau"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="16"/>
+                                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50포인트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egl-v1-sUl">
+                                        <rect key="frame" x="156" y="99" width="61" height="19"/>
+                                        <fontDescription key="fontDescription" name="SeoulNamsanEB" family="SeoulNamsan" pointSize="16"/>
                                         <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="hMp-bR-GlF" firstAttribute="top" secondItem="egl-v1-sUl" secondAttribute="bottom" constant="5" id="2X0-ew-JFu"/>
+                                    <constraint firstItem="hMp-bR-GlF" firstAttribute="top" secondItem="8SI-Vw-pPA" secondAttribute="bottom" constant="5" id="9iX-q5-hst"/>
+                                    <constraint firstItem="hMp-bR-GlF" firstAttribute="leading" secondItem="TGN-nP-jf5" secondAttribute="leading" constant="11" id="HYt-Wa-fMi"/>
+                                    <constraint firstAttribute="bottom" secondItem="hMp-bR-GlF" secondAttribute="bottom" constant="122" id="Ntw-5a-2U3"/>
+                                    <constraint firstItem="8SI-Vw-pPA" firstAttribute="leading" secondItem="TGN-nP-jf5" secondAttribute="leading" constant="10" id="RZc-fr-KqK"/>
+                                    <constraint firstItem="egl-v1-sUl" firstAttribute="leading" secondItem="8SI-Vw-pPA" secondAttribute="trailing" constant="-174" id="URe-LV-GXp"/>
+                                    <constraint firstAttribute="trailing" secondItem="8SI-Vw-pPA" secondAttribute="trailing" constant="13" id="Xrg-41-bdV"/>
+                                    <constraint firstItem="8SI-Vw-pPA" firstAttribute="top" secondItem="TGN-nP-jf5" secondAttribute="top" constant="99" id="gpl-ay-5Mf"/>
+                                    <constraint firstAttribute="height" constant="264" id="jQX-Ju-XkT"/>
+                                    <constraint firstItem="egl-v1-sUl" firstAttribute="top" secondItem="TGN-nP-jf5" secondAttribute="top" constant="99" id="q1l-qT-01q"/>
+                                    <constraint firstAttribute="trailing" secondItem="hMp-bR-GlF" secondAttribute="trailing" constant="15" id="x0P-Xj-jqR"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ssv-lf-bj8">
-                                <rect key="frame" x="16" y="569" width="343" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="아기옷장 둘러보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Glf-5J-pZ0">
-                                        <rect key="frame" x="111" y="8" width="134" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="SeoulNamsanB" family="SeoulNamsan" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="정미님, 환영 합니다!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Lj-Bt-CDA">
-                                <rect key="frame" x="16" y="176" width="182" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정미님, 환영 합니다!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Lj-Bt-CDA">
+                                <rect key="frame" x="16" y="176" width="329" height="27"/>
                                 <fontDescription key="fontDescription" name="SeoulNamsanL" family="SeoulNamsan" pointSize="22"/>
                                 <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="되었어요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihK-GT-VgE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="되었어요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihK-GT-VgE">
                                 <rect key="frame" x="158" y="211" width="83" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SeoulNamsanL" family="SeoulNamsan" pointSize="22"/>
                                 <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="회원가입이 완료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dJ-1S-ExU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="회원가입이 완료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dJ-1S-ExU">
                                 <rect key="frame" x="16" y="211" width="144" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SeoulNamsanEB" family="SeoulNamsan" pointSize="22"/>
                                 <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lxf-xP-abT">
+                                <rect key="frame" x="16" y="569" width="343" height="42"/>
+                                <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="Xbs-pF-D5e"/>
+                                    <constraint firstAttribute="width" constant="343" id="eMJ-dl-1c5"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="goMainAction:" destination="E8y-3a-aqQ" eventType="touchUpInside" id="DrX-FI-07u"/>
+                                    <action selector="loginAction:" destination="zjl-E6-I10" eventType="touchUpInside" id="k8l-fk-mLd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아기옷장 둘러보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Glf-5J-pZ0">
+                                <rect key="frame" x="132" y="577" width="134" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="n52-0K-9dn"/>
+                                    <constraint firstAttribute="width" constant="134" id="yDQ-Vn-MEf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SeoulNamsanB" family="SeoulNamsan" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Glf-5J-pZ0" firstAttribute="top" secondItem="Lxf-xP-abT" secondAttribute="bottom" constant="-34" id="1SF-ud-sz0"/>
+                            <constraint firstItem="ihK-GT-VgE" firstAttribute="leading" secondItem="8dJ-1S-ExU" secondAttribute="trailing" constant="-2" id="6va-pS-FZL"/>
+                            <constraint firstItem="Lxf-xP-abT" firstAttribute="leading" secondItem="YSJ-ta-6oG" secondAttribute="leading" constant="16" id="CMV-q4-7Ry"/>
+                            <constraint firstItem="YSJ-ta-6oG" firstAttribute="trailing" secondItem="2Lj-Bt-CDA" secondAttribute="trailing" constant="30" id="Haq-2A-cxC"/>
+                            <constraint firstItem="TGN-nP-jf5" firstAttribute="top" secondItem="ihK-GT-VgE" secondAttribute="bottom" constant="39" id="I1f-TG-K3D"/>
+                            <constraint firstItem="Glf-5J-pZ0" firstAttribute="leading" secondItem="Lxf-xP-abT" secondAttribute="trailing" constant="-227" id="LXl-Fg-rbG"/>
+                            <constraint firstItem="Lxf-xP-abT" firstAttribute="top" secondItem="TGN-nP-jf5" secondAttribute="bottom" constant="28" id="T3r-0g-YwW"/>
+                            <constraint firstItem="2Lj-Bt-CDA" firstAttribute="leading" secondItem="YSJ-ta-6oG" secondAttribute="leading" constant="16" id="UBX-x1-80N"/>
+                            <constraint firstItem="YSJ-ta-6oG" firstAttribute="bottom" secondItem="Lxf-xP-abT" secondAttribute="bottom" constant="167" id="UxN-z8-fbF"/>
+                            <constraint firstItem="8dJ-1S-ExU" firstAttribute="top" secondItem="2Lj-Bt-CDA" secondAttribute="bottom" constant="8" id="Vt1-6f-iD5"/>
+                            <constraint firstItem="ihK-GT-VgE" firstAttribute="top" secondItem="2Lj-Bt-CDA" secondAttribute="bottom" constant="8" id="YDs-12-0rK"/>
+                            <constraint firstItem="YSJ-ta-6oG" firstAttribute="trailing" secondItem="TGN-nP-jf5" secondAttribute="trailing" constant="16" id="dKn-dS-bNy"/>
+                            <constraint firstItem="2Lj-Bt-CDA" firstAttribute="top" secondItem="YSJ-ta-6oG" secondAttribute="top" constant="132" id="ft3-Bi-N6L"/>
+                            <constraint firstItem="YSJ-ta-6oG" firstAttribute="trailing" secondItem="Lxf-xP-abT" secondAttribute="trailing" constant="16" id="gze-F6-Wee"/>
+                            <constraint firstItem="TGN-nP-jf5" firstAttribute="leading" secondItem="YSJ-ta-6oG" secondAttribute="leading" constant="16" id="hAg-ei-vWE"/>
+                            <constraint firstItem="TGN-nP-jf5" firstAttribute="top" secondItem="8dJ-1S-ExU" secondAttribute="bottom" constant="39" id="j4W-vu-jGZ"/>
+                            <constraint firstItem="8dJ-1S-ExU" firstAttribute="leading" secondItem="YSJ-ta-6oG" secondAttribute="leading" constant="16" id="jsG-wU-3k3"/>
+                            <constraint firstItem="YSJ-ta-6oG" firstAttribute="trailing" secondItem="ihK-GT-VgE" secondAttribute="trailing" constant="134" id="mvg-b2-HVi"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="YSJ-ta-6oG"/>
                     </view>
                     <navigationItem key="navigationItem" id="B4M-XD-lpB"/>

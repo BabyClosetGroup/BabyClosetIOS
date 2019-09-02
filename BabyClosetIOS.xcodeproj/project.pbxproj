@@ -16,7 +16,7 @@
 		C5001AB8231A8BCB00E511BD /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001AB7231A8BCB00E511BD /* Login.storyboard */; };
 		C5001ABA231A8D5400E511BD /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AB9231A8D5400E511BD /* UIImageView+Extensions.swift */; };
 		C5001ABC231A8D8B00E511BD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ABB231A8D8B00E511BD /* UIView+Extensions.swift */; };
-		C5001ABE231A8DB200E511BD /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ABD231A8DB200E511BD /* UIViewController.swift */; };
+		C5001ABE231A8DB200E511BD /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ABD231A8DB200E511BD /* UIViewController+Extensions.swift */; };
 		C5001AC0231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001ABF231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift */; };
 		C5001AC6231AD1CE00E511BD /* SeoulNamsanEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = C5001AC4231AD19500E511BD /* SeoulNamsanEB.otf */; };
 		C5001AC7231AD1D300E511BD /* SeoulNamsanL.otf in Resources */ = {isa = PBXBuildFile; fileRef = C5001AC2231AD19500E511BD /* SeoulNamsanL.otf */; };
@@ -28,6 +28,11 @@
 		C5001AD2231BA84700E511BD /* SignUpTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AD1231BA84700E511BD /* SignUpTermsVC.swift */; };
 		C5001AD4231BA8E000E511BD /* SignUpEndVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AD3231BA8E000E511BD /* SignUpEndVC.swift */; };
 		C5001AD6231BADBD00E511BD /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AD5231BADBD00E511BD /* UIColor+Extensions.swift */; };
+		C55BBD97231C142E00C7AD9E /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C55BBD96231C142E00C7AD9E /* MyPage.storyboard */; };
+		C55BBD9A231C159700C7AD9E /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BBD99231C159700C7AD9E /* MyPageVC.swift */; };
+		C55BBD9C231C1C3000C7AD9E /* MyPageUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BBD9B231C1C3000C7AD9E /* MyPageUserInfoVC.swift */; };
+		C55BBD9E231C242300C7AD9E /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BBD9D231C242300C7AD9E /* UITextField+Extensions.swift */; };
+		C55BBDA0231C301A00C7AD9E /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BBD9F231C301A00C7AD9E /* UIFont+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +47,7 @@
 		C5001AB7231A8BCB00E511BD /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		C5001AB9231A8D5400E511BD /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		C5001ABB231A8D8B00E511BD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		C5001ABD231A8DB200E511BD /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		C5001ABD231A8DB200E511BD /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		C5001ABF231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		C5001AC2231AD19500E511BD /* SeoulNamsanL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SeoulNamsanL.otf; path = ../../../../../../Library/Fonts/SeoulNamsanL.otf; sourceTree = "<group>"; };
 		C5001AC3231AD19500E511BD /* SeoulNamsanB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SeoulNamsanB.otf; path = ../../../../../../Library/Fonts/SeoulNamsanB.otf; sourceTree = "<group>"; };
@@ -54,6 +59,11 @@
 		C5001AD1231BA84700E511BD /* SignUpTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTermsVC.swift; sourceTree = "<group>"; };
 		C5001AD3231BA8E000E511BD /* SignUpEndVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndVC.swift; sourceTree = "<group>"; };
 		C5001AD5231BADBD00E511BD /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		C55BBD96231C142E00C7AD9E /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
+		C55BBD99231C159700C7AD9E /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
+		C55BBD9B231C1C3000C7AD9E /* MyPageUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageUserInfoVC.swift; sourceTree = "<group>"; };
+		C55BBD9D231C242300C7AD9E /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		C55BBD9F231C301A00C7AD9E /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		C60F0A93007A0F1379A0344A /* Pods-BabyClosetIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyClosetIOS.debug.xcconfig"; path = "Target Support Files/Pods-BabyClosetIOS/Pods-BabyClosetIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E3E8143B349FE936CF6BD9B8 /* Pods-BabyClosetIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyClosetIOS.release.xcconfig"; path = "Target Support Files/Pods-BabyClosetIOS/Pods-BabyClosetIOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +134,7 @@
 		C5001AB0231A856A00E511BD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C55BBD98231C157A00C7AD9E /* MyPage */,
 				C5001ACC231BA25100E511BD /* Login */,
 				C5001AA0231A7EDD00E511BD /* ViewController.swift */,
 			);
@@ -156,9 +167,11 @@
 			children = (
 				C5001AB9231A8D5400E511BD /* UIImageView+Extensions.swift */,
 				C5001ABB231A8D8B00E511BD /* UIView+Extensions.swift */,
-				C5001ABD231A8DB200E511BD /* UIViewController.swift */,
+				C5001ABD231A8DB200E511BD /* UIViewController+Extensions.swift */,
 				C5001ABF231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift */,
 				C5001AD5231BADBD00E511BD /* UIColor+Extensions.swift */,
+				C55BBD9D231C242300C7AD9E /* UITextField+Extensions.swift */,
+				C55BBD9F231C301A00C7AD9E /* UIFont+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -170,6 +183,7 @@
 				C5001AA7231A7EDE00E511BD /* LaunchScreen.storyboard */,
 				C5001AB7231A8BCB00E511BD /* Login.storyboard */,
 				C5001ACA231ADA0200E511BD /* Posting.storyboard */,
+				C55BBD96231C142E00C7AD9E /* MyPage.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -195,6 +209,15 @@
 				C5001AD3231BA8E000E511BD /* SignUpEndVC.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		C55BBD98231C157A00C7AD9E /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				C55BBD99231C159700C7AD9E /* MyPageVC.swift */,
+				C55BBD9B231C1C3000C7AD9E /* MyPageUserInfoVC.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5001AB8231A8BCB00E511BD /* Login.storyboard in Resources */,
+				C55BBD97231C142E00C7AD9E /* MyPage.storyboard in Resources */,
 				C5001AA9231A7EDE00E511BD /* LaunchScreen.storyboard in Resources */,
 				C5001AC9231AD30200E511BD /* SeoulNamsanM.otf in Resources */,
 				C5001AC8231AD2FE00E511BD /* SeoulNamsanB.otf in Resources */,
@@ -319,16 +343,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5001AD0231BA62700E511BD /* SignUpVC.swift in Sources */,
+				C55BBD9A231C159700C7AD9E /* MyPageVC.swift in Sources */,
 				C5001AC0231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift in Sources */,
 				C5001ABA231A8D5400E511BD /* UIImageView+Extensions.swift in Sources */,
 				C5001AD2231BA84700E511BD /* SignUpTermsVC.swift in Sources */,
+				C55BBD9C231C1C3000C7AD9E /* MyPageUserInfoVC.swift in Sources */,
 				C5001ACE231BA28800E511BD /* LoginVC.swift in Sources */,
+				C55BBD9E231C242300C7AD9E /* UITextField+Extensions.swift in Sources */,
 				C5001AA1231A7EDD00E511BD /* ViewController.swift in Sources */,
 				C5001ABC231A8D8B00E511BD /* UIView+Extensions.swift in Sources */,
 				C5001A9F231A7EDD00E511BD /* AppDelegate.swift in Sources */,
 				C5001AD6231BADBD00E511BD /* UIColor+Extensions.swift in Sources */,
 				C5001AD4231BA8E000E511BD /* SignUpEndVC.swift in Sources */,
-				C5001ABE231A8DB200E511BD /* UIViewController.swift in Sources */,
+				C55BBDA0231C301A00C7AD9E /* UIFont+Extensions.swift in Sources */,
+				C5001ABE231A8DB200E511BD /* UIViewController+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

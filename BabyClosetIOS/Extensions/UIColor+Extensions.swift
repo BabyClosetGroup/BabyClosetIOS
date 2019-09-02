@@ -10,6 +10,15 @@ import UIKit
 
 extension UIColor {
     
+    
+    @nonobjc class var underLineGray: UIColor {
+        return UIColor(red: 219.0/255.0, green: 219.0/255.0, blue: 219.0/255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var darkGray: UIColor {
+        return UIColor(red: 38.0/255.0, green: 38.0/255.0, blue: 38.0/255.0, alpha: 1.0)
+    }
+    
     @nonobjc class var mainYellow: UIColor {
         return UIColor(red: 255.0/255.0, green: 193.0/255.0, blue: 7.0/255.0, alpha: 1.0)
     }
