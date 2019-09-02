@@ -13,6 +13,10 @@ extension UIFont {
         return UIFont(name: "SeoulNamsanL", size: 12)!
     }
     
+    @nonobjc class var L22: UIFont {
+        return UIFont(name: "SeoulNamsanL", size: 22)!
+    }
+    
     @nonobjc class var M13: UIFont {
         return UIFont(name: "SeoulNamsanM", size: 13)!
     }
@@ -39,6 +43,10 @@ extension UIFont {
     
     @nonobjc class var EB16: UIFont {
         return UIFont(name: "SeoulNamsanEB", size: 16)!
+    }
+    
+    @nonobjc class var EB22: UIFont {
+        return UIFont(name: "SeoulNamsanEB", size: 22)!
     }
     
     @nonobjc class var L16: UIFont {

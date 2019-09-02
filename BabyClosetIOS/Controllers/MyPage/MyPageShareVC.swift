@@ -12,6 +12,7 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
     
     var myPageMenuBar = MyPageMenuBar()
     
+    
     var pageCollectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .horizontal

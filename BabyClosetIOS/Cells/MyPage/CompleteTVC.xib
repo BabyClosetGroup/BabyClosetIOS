@@ -65,6 +65,9 @@
                                 <real key="value" value="8"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="goStarAction:" destination="6fF-HF-XNm" eventType="touchUpInside" id="n5r-DH-cbu"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2019. 08. 02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDS-ex-bOt">
                         <rect key="frame" x="197" y="53" width="80" height="19"/>

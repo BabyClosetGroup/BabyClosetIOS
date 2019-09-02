@@ -13,6 +13,9 @@
         <array key="SeoulNamsanB.otf">
             <string>SeoulNamsanB</string>
         </array>
+        <array key="SeoulNamsanL.otf">
+            <string>SeoulNamsanL</string>
+        </array>
         <array key="SeoulNamsanM.otf">
             <string>SeoulNamsanM</string>
         </array>
@@ -146,7 +149,7 @@
         <!--My Page ShareVC-->
         <scene sceneID="bcl-X9-W5t">
             <objects>
-                <viewController id="MXD-6g-usR" customClass="MyPageShareVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyPageShareVC" id="MXD-6g-usR" customClass="MyPageShareVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Bz-Tk-jC1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -158,6 +161,119 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjn-9V-VW8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2048.8000000000002" y="128.57142857142858"/>
+        </scene>
+        <!--My Page StarVC-->
+        <scene sceneID="FwN-K0-Ryd">
+            <objects>
+                <viewController storyboardIdentifier="MyPageStarVC" id="0BD-x8-emo" customClass="MyPageStarVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="asR-3c-VQA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68r-Dy-9Y7">
+                                <rect key="frame" x="16" y="455" width="343" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SeoulNamsanB" family="SeoulNamsan" pointSize="17"/>
+                                <state key="normal" title="별점주기">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="changePwAction:" destination="lJ7-lC-4Pv" eventType="touchUpInside" id="VLC-Gb-0ve"/>
+                                    <action selector="ratingAction:" destination="0BD-x8-emo" eventType="touchUpInside" id="UU2-5C-keC"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="정미님과의 3개월 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lda-Te-0pG">
+                                <rect key="frame" x="27" y="178" width="316" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="SeoulNamsanL" family="SeoulNamsan" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="17.5" translatesAutoresizingMaskIntoConstraints="NO" id="YCV-nY-ikb">
+                                <rect key="frame" x="32" y="320" width="310.66666666666669" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SjO-Nn-AYF">
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="46"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="WB7-yZ-MRO"/>
+                                            <constraint firstAttribute="width" constant="48" id="t2v-GW-v2j"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="btn-emptyStar"/>
+                                        <connections>
+                                            <action selector="starAction:" destination="0BD-x8-emo" eventType="touchUpInside" id="aj3-vA-wSJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iu1-UD-mln">
+                                        <rect key="frame" x="65.666666666666671" y="0.0" width="48" height="46"/>
+                                        <state key="normal" title="Button" image="btn-emptyStar"/>
+                                        <connections>
+                                            <action selector="starAction:" destination="0BD-x8-emo" eventType="touchUpInside" id="IbC-ND-Ecq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1m-n0-kI8">
+                                        <rect key="frame" x="131.33333333333334" y="0.0" width="48" height="46"/>
+                                        <state key="normal" title="Button" image="btn-emptyStar"/>
+                                        <connections>
+                                            <action selector="starAction:" destination="0BD-x8-emo" eventType="touchUpInside" id="3po-X6-gpI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7S-l9-6gM">
+                                        <rect key="frame" x="197" y="0.0" width="48" height="46"/>
+                                        <state key="normal" title="Button" image="btn-emptyStar"/>
+                                        <connections>
+                                            <action selector="starAction:" destination="0BD-x8-emo" eventType="touchUpInside" id="XIP-O0-OHq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDE-4v-ayz">
+                                        <rect key="frame" x="262.66666666666669" y="0.0" width="48" height="46"/>
+                                        <state key="normal" title="Button" image="btn-emptyStar"/>
+                                        <connections>
+                                            <action selector="starAction:" destination="0BD-x8-emo" eventType="touchUpInside" id="39W-v1-Rbv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="f7S-l9-6gM" firstAttribute="width" secondItem="SjO-Nn-AYF" secondAttribute="width" id="C0x-JA-0i9"/>
+                                    <constraint firstItem="gDE-4v-ayz" firstAttribute="width" secondItem="SjO-Nn-AYF" secondAttribute="width" id="X4G-ZZ-WFM"/>
+                                    <constraint firstItem="o1m-n0-kI8" firstAttribute="height" secondItem="SjO-Nn-AYF" secondAttribute="height" id="dqn-Bk-rPI"/>
+                                    <constraint firstItem="o1m-n0-kI8" firstAttribute="width" secondItem="SjO-Nn-AYF" secondAttribute="width" id="eiU-kq-NQa"/>
+                                    <constraint firstItem="Iu1-UD-mln" firstAttribute="width" secondItem="SjO-Nn-AYF" secondAttribute="width" id="jDE-Vg-3Bf"/>
+                                    <constraint firstItem="f7S-l9-6gM" firstAttribute="height" secondItem="SjO-Nn-AYF" secondAttribute="height" id="tfc-KM-HLc"/>
+                                    <constraint firstItem="gDE-4v-ayz" firstAttribute="height" secondItem="SjO-Nn-AYF" secondAttribute="height" id="v3g-Y5-ndv"/>
+                                    <constraint firstItem="Iu1-UD-mln" firstAttribute="height" secondItem="SjO-Nn-AYF" secondAttribute="height" id="xT6-vv-4hf"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zau-VZ-zPL">
+                                <rect key="frame" x="0.0" y="38" width="53" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="btn-close"/>
+                                <connections>
+                                    <action selector="closeAction:" destination="0BD-x8-emo" eventType="touchUpInside" id="xWA-nd-qds"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="zMe-7V-ikJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="lda-Te-0pG" id="CJL-jG-Vqm"/>
+                        <outletCollection property="stars" destination="SjO-Nn-AYF" collectionClass="NSMutableArray" id="c6G-zs-13w"/>
+                        <outletCollection property="stars" destination="Iu1-UD-mln" collectionClass="NSMutableArray" id="0ps-wF-2SS"/>
+                        <outletCollection property="stars" destination="o1m-n0-kI8" collectionClass="NSMutableArray" id="83l-nP-SCS"/>
+                        <outletCollection property="stars" destination="f7S-l9-6gM" collectionClass="NSMutableArray" id="ThX-Dw-Wmv"/>
+                        <outletCollection property="stars" destination="gDE-4v-ayz" collectionClass="NSMutableArray" id="5LJ-68-9oS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LR7-sh-na7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3309.5999999999999" y="128.57142857142858"/>
         </scene>
         <!--My Page ReceiveVC-->
         <scene sceneID="Z40-uw-KG0">
@@ -352,7 +468,7 @@
         <!--Navigation Controller-->
         <scene sceneID="aqq-rJ-c3I">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SXm-PM-Uu1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RootNavigation" automaticallyAdjustsScrollViewInsets="NO" id="SXm-PM-Uu1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k5e-d1-DPx">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -370,6 +486,8 @@
     </scenes>
     <resources>
         <image name="btn-checkSetting" width="28" height="28"/>
+        <image name="btn-close" width="28" height="28"/>
+        <image name="btn-emptyStar" width="48.333332061767578" height="45.666667938232422"/>
         <image name="btn-right" width="14.333333015441895" height="14.333333015441895"/>
         <image name="emptyStar" width="36.666667938232422" height="34.666667938232422"/>
         <image name="myPageDefault" width="63" height="63"/>

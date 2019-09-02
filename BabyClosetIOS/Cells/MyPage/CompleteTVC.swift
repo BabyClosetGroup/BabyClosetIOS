@@ -20,5 +20,10 @@ class CompleteTVC: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    @IBAction func goStarAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "MyPage", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MyPageStarVC") as! MyPageStarVC
+        self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+    }
     
 }
