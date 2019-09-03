@@ -24,7 +24,7 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
         tableView.estimatedRowHeight = 103.0
         tableView.allowsSelection = false
         
-        applyCountLabel.text = "신청한 사람 ( \(countApply) )"
+        applyCountLabel.text = "신청한 사람 (\(countApply))"
     }
     
     func setNavigationBar(){
