@@ -76,13 +76,13 @@ extension UIView {
     
     @IBInspectable var cornerRadius: CGFloat {
         set {
+            
             layer.cornerRadius = newValue
         }
         get {
             return layer.cornerRadius
         }
     }
-    
     @IBInspectable var borderColor: UIColor? {
         set {
             guard let uiColor = newValue else { return }
@@ -93,4 +93,5 @@ extension UIView {
             return UIColor(cgColor: color)
         }
     }
+    
 }

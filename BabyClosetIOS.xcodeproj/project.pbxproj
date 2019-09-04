@@ -10,7 +10,6 @@
 		965030E50FF8214EC5366895 /* Pods_BabyClosetIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFFB1F5E45F9693A85A98F7 /* Pods_BabyClosetIOS.framework */; };
 		C5001A9F231A7EDD00E511BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001A9E231A7EDD00E511BD /* AppDelegate.swift */; };
 		C5001AA4231A7EDD00E511BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001AA2231A7EDD00E511BD /* Main.storyboard */; };
-		C5001AA6231A7EDE00E511BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5001AA5231A7EDE00E511BD /* Assets.xcassets */; };
 		C5001AA9231A7EDE00E511BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001AA7231A7EDE00E511BD /* LaunchScreen.storyboard */; };
 		C5001AB8231A8BCB00E511BD /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001AB7231A8BCB00E511BD /* Login.storyboard */; };
 		C5001ABA231A8D5400E511BD /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AB9231A8D5400E511BD /* UIImageView+Extensions.swift */; };
@@ -46,6 +45,17 @@
 		C5929F7A231CEFFC00B1C4F6 /* MyPageShareVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5929F79231CEFFC00B1C4F6 /* MyPageShareVC.swift */; };
 		C5929F7C231CF04700B1C4F6 /* MyPageReceiveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5929F7B231CF04700B1C4F6 /* MyPageReceiveVC.swift */; };
 		C5929F84231CFCC000B1C4F6 /* PageItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5929F82231CFCC000B1C4F6 /* PageItemCell.swift */; };
+		C5AA0F66231DF8DC00CEE98A /* MyPageShareDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA0F65231DF8DC00CEE98A /* MyPageShareDetailVC.swift */; };
+		C5BF7B20231E570500790AE4 /* MessageMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B1E231E570500790AE4 /* MessageMainVC.swift */; };
+		C5BF7B21231E570500790AE4 /* MessageDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B1F231E570500790AE4 /* MessageDetailVC.swift */; };
+		C5BF7B23231E5A5000790AE4 /* MessageBubbleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B22231E5A5000790AE4 /* MessageBubbleTVC.swift */; };
+		C5BF7B26231E6F6400790AE4 /* MessageDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B25231E6F6400790AE4 /* MessageDetailModel.swift */; };
+		C5E846FA231F977B0092D0C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5E846F9231F977B0092D0C5 /* Assets.xcassets */; };
+		C5E846FC231FCDAF0092D0C5 /* RoundedCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E846FB231FCDAF0092D0C5 /* RoundedCornerView.swift */; };
+		C5E846FE23200B270092D0C5 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E846FD23200B270092D0C5 /* UITableView+Extensions.swift */; };
+		C5EC1664231E1FE900ECE7DB /* ApplyListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EC1663231E1FE900ECE7DB /* ApplyListTVC.swift */; };
+		C5EC1666231E2F2A00ECE7DB /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EC1665231E2F2A00ECE7DB /* Message.storyboard */; };
+		C5EC166E231E344600ECE7DB /* MessageListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EC166D231E344600ECE7DB /* MessageListTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +63,6 @@
 		C5001A9B231A7EDD00E511BD /* BabyClosetIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyClosetIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5001A9E231A7EDD00E511BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5001AA3231A7EDD00E511BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C5001AA5231A7EDE00E511BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5001AA8231A7EDE00E511BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C5001AAA231A7EDE00E511BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5001AB7231A8BCB00E511BD /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -90,6 +99,17 @@
 		C5929F79231CEFFC00B1C4F6 /* MyPageShareVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageShareVC.swift; sourceTree = "<group>"; };
 		C5929F7B231CF04700B1C4F6 /* MyPageReceiveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReceiveVC.swift; sourceTree = "<group>"; };
 		C5929F82231CFCC000B1C4F6 /* PageItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageItemCell.swift; sourceTree = "<group>"; };
+		C5AA0F65231DF8DC00CEE98A /* MyPageShareDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageShareDetailVC.swift; sourceTree = "<group>"; };
+		C5BF7B1E231E570500790AE4 /* MessageMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageMainVC.swift; sourceTree = "<group>"; };
+		C5BF7B1F231E570500790AE4 /* MessageDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailVC.swift; sourceTree = "<group>"; };
+		C5BF7B22231E5A5000790AE4 /* MessageBubbleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleTVC.swift; sourceTree = "<group>"; };
+		C5BF7B25231E6F6400790AE4 /* MessageDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailModel.swift; sourceTree = "<group>"; };
+		C5E846F9231F977B0092D0C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C5E846FB231FCDAF0092D0C5 /* RoundedCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerView.swift; sourceTree = "<group>"; };
+		C5E846FD23200B270092D0C5 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		C5EC1663231E1FE900ECE7DB /* ApplyListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyListTVC.swift; sourceTree = "<group>"; };
+		C5EC1665231E2F2A00ECE7DB /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
+		C5EC166D231E344600ECE7DB /* MessageListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListTVC.swift; sourceTree = "<group>"; };
 		C60F0A93007A0F1379A0344A /* Pods-BabyClosetIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyClosetIOS.debug.xcconfig"; path = "Target Support Files/Pods-BabyClosetIOS/Pods-BabyClosetIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E3E8143B349FE936CF6BD9B8 /* Pods-BabyClosetIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyClosetIOS.release.xcconfig"; path = "Target Support Files/Pods-BabyClosetIOS/Pods-BabyClosetIOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +181,7 @@
 		C5001AB0231A856A00E511BD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C5BF7B19231E56E300790AE4 /* Message */,
 				C55B7AB7231D742A00CCE4BD /* Alert */,
 				C55BBD98231C157A00C7AD9E /* MyPage */,
 				C5001ACC231BA25100E511BD /* Login */,
@@ -172,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				C55B7AA2231D0CFD00CCE4BD /* MyPageMenuBar.swift */,
+				C5E846FB231FCDAF0092D0C5 /* RoundedCornerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,6 +201,7 @@
 		C5001AB2231A859800E511BD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C5BF7B24231E6F4600790AE4 /* Message */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,6 +224,7 @@
 				C55BBD9D231C242300C7AD9E /* UITextField+Extensions.swift */,
 				C55BBD9F231C301A00C7AD9E /* UIFont+Extensions.swift */,
 				C55B7AAA231D288600CCE4BD /* UINavigationBar+Extensions.swift */,
+				C5E846FD23200B270092D0C5 /* UITableView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,6 +237,7 @@
 				C5001AB7231A8BCB00E511BD /* Login.storyboard */,
 				C5001ACA231ADA0200E511BD /* Posting.storyboard */,
 				C55BBD96231C142E00C7AD9E /* MyPage.storyboard */,
+				C5EC1665231E2F2A00ECE7DB /* Message.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -221,10 +246,10 @@
 			isa = PBXGroup;
 			children = (
 				C5001AC3231AD19500E511BD /* SeoulNamsanB.otf */,
+				C5E846F9231F977B0092D0C5 /* Assets.xcassets */,
 				C5001AC4231AD19500E511BD /* SeoulNamsanEB.otf */,
 				C5001AC2231AD19500E511BD /* SeoulNamsanL.otf */,
 				C5001AC5231AD19500E511BD /* SeoulNamsanM.otf */,
-				C5001AA5231A7EDE00E511BD /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -251,6 +276,7 @@
 				C55B7AAD231D325000CCE4BD /* IncompleteTVC.xib */,
 				C55B7AB0231D326A00CCE4BD /* CompleteTVC.swift */,
 				C55B7AB1231D326A00CCE4BD /* CompleteTVC.xib */,
+				C5EC1663231E1FE900ECE7DB /* ApplyListTVC.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -271,6 +297,7 @@
 				C5929F79231CEFFC00B1C4F6 /* MyPageShareVC.swift */,
 				C5929F7B231CF04700B1C4F6 /* MyPageReceiveVC.swift */,
 				C55B7AB5231D488300CCE4BD /* MyPageStarVC.swift */,
+				C5AA0F65231DF8DC00CEE98A /* MyPageShareDetailVC.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -278,9 +305,36 @@
 		C5929F7F231CF9DA00B1C4F6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				C5EC166C231E342000ECE7DB /* Message */,
 				C55B7AB4231D484C00CCE4BD /* MyPage */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		C5BF7B19231E56E300790AE4 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				C5BF7B1F231E570500790AE4 /* MessageDetailVC.swift */,
+				C5BF7B1E231E570500790AE4 /* MessageMainVC.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		C5BF7B24231E6F4600790AE4 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				C5BF7B25231E6F6400790AE4 /* MessageDetailModel.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		C5EC166C231E342000ECE7DB /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				C5EC166D231E344600ECE7DB /* MessageListTVC.swift */,
+				C5BF7B22231E5A5000790AE4 /* MessageBubbleTVC.swift */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,13 +403,14 @@
 				C55B7AA9231D26F000CCE4BD /* PageCell.xib in Resources */,
 				C55B7AB3231D326A00CCE4BD /* CompleteTVC.xib in Resources */,
 				C5001AA9231A7EDE00E511BD /* LaunchScreen.storyboard in Resources */,
+				C5EC1666231E2F2A00ECE7DB /* Message.storyboard in Resources */,
 				C5001AC9231AD30200E511BD /* SeoulNamsanM.otf in Resources */,
 				C55B7AA5231D0EB000CCE4BD /* PageItemCell.xib in Resources */,
 				C5001AC8231AD2FE00E511BD /* SeoulNamsanB.otf in Resources */,
-				C5001AA6231A7EDE00E511BD /* Assets.xcassets in Resources */,
 				C5001AA4231A7EDD00E511BD /* Main.storyboard in Resources */,
 				C5001AC6231AD1CE00E511BD /* SeoulNamsanEB.otf in Resources */,
 				C5001ACB231ADA0200E511BD /* Posting.storyboard in Resources */,
+				C5E846FA231F977B0092D0C5 /* Assets.xcassets in Resources */,
 				C5001AC7231AD1D300E511BD /* SeoulNamsanL.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,12 +464,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5EC1664231E1FE900ECE7DB /* ApplyListTVC.swift in Sources */,
 				C55B7AB9231D744B00CCE4BD /* MyPageSharingInfoVC.swift in Sources */,
 				C5001AD0231BA62700E511BD /* SignUpVC.swift in Sources */,
 				C55BBD9A231C159700C7AD9E /* MyPageVC.swift in Sources */,
 				C55B7AB2231D326A00CCE4BD /* CompleteTVC.swift in Sources */,
 				C5001AC0231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift in Sources */,
 				C5001ABA231A8D5400E511BD /* UIImageView+Extensions.swift in Sources */,
+				C5E846FC231FCDAF0092D0C5 /* RoundedCornerView.swift in Sources */,
+				C5BF7B26231E6F6400790AE4 /* MessageDetailModel.swift in Sources */,
+				C5BF7B23231E5A5000790AE4 /* MessageBubbleTVC.swift in Sources */,
+				C5BF7B21231E570500790AE4 /* MessageDetailVC.swift in Sources */,
 				C5929F84231CFCC000B1C4F6 /* PageItemCell.swift in Sources */,
 				C55B7AB6231D488300CCE4BD /* MyPageStarVC.swift in Sources */,
 				C5001AD2231BA84700E511BD /* SignUpTermsVC.swift in Sources */,
@@ -422,8 +482,10 @@
 				C55BBD9C231C1C3000C7AD9E /* MyPageUserInfoVC.swift in Sources */,
 				C5001ACE231BA28800E511BD /* LoginVC.swift in Sources */,
 				C55BBD9E231C242300C7AD9E /* UITextField+Extensions.swift in Sources */,
+				C5E846FE23200B270092D0C5 /* UITableView+Extensions.swift in Sources */,
 				C55B7AAE231D325000CCE4BD /* IncompleteTVC.swift in Sources */,
 				C55B7AA3231D0CFD00CCE4BD /* MyPageMenuBar.swift in Sources */,
+				C5AA0F66231DF8DC00CEE98A /* MyPageShareDetailVC.swift in Sources */,
 				C55B7AA8231D26F000CCE4BD /* PageCell.swift in Sources */,
 				C5001ABC231A8D8B00E511BD /* UIView+Extensions.swift in Sources */,
 				C5001A9F231A7EDD00E511BD /* AppDelegate.swift in Sources */,
@@ -432,6 +494,8 @@
 				C5929F7A231CEFFC00B1C4F6 /* MyPageShareVC.swift in Sources */,
 				C55BBDA0231C301A00C7AD9E /* UIFont+Extensions.swift in Sources */,
 				C5929F7C231CF04700B1C4F6 /* MyPageReceiveVC.swift in Sources */,
+				C5BF7B20231E570500790AE4 /* MessageMainVC.swift in Sources */,
+				C5EC166E231E344600ECE7DB /* MessageListTVC.swift in Sources */,
 				C5001ABE231A8DB200E511BD /* UIViewController+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

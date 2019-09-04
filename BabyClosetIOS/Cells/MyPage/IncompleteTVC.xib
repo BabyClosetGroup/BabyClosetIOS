@@ -72,6 +72,9 @@
                                 <real key="value" value="8"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="sharingAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cJb-Sz-rQY"/>
+                        </connections>
                     </button>
                 </subviews>
             </tableViewCellContentView>

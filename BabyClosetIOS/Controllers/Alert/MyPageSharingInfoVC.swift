@@ -42,10 +42,10 @@ class MyPageSharingInfoVC: UIViewController {
     
     func fillStar() {
         for i in 0 ... stars.count - 1 {
-            stars[i].image = UIImage(named: "emptyStar")
+            stars[i].image = UIImage(named: "emptyStar64")
         }
         for i in 0 ... star - 1 {
-            stars[i].image = UIImage(named: "star")
+            stars[i].image = UIImage(named: "star64")
         }
     }
 }
