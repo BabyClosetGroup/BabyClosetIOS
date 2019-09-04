@@ -50,7 +50,9 @@
 		C5BF7B21231E570500790AE4 /* MessageDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B1F231E570500790AE4 /* MessageDetailVC.swift */; };
 		C5BF7B23231E5A5000790AE4 /* MessageBubbleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B22231E5A5000790AE4 /* MessageBubbleTVC.swift */; };
 		C5BF7B26231E6F6400790AE4 /* MessageDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B25231E6F6400790AE4 /* MessageDetailModel.swift */; };
-		C5EC1662231E0C5700ECE7DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5EC1661231E0C5700ECE7DB /* Assets.xcassets */; };
+		C5E846FA231F977B0092D0C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5E846F9231F977B0092D0C5 /* Assets.xcassets */; };
+		C5E846FC231FCDAF0092D0C5 /* RoundedCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E846FB231FCDAF0092D0C5 /* RoundedCornerView.swift */; };
+		C5E846FE23200B270092D0C5 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E846FD23200B270092D0C5 /* UITableView+Extensions.swift */; };
 		C5EC1664231E1FE900ECE7DB /* ApplyListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EC1663231E1FE900ECE7DB /* ApplyListTVC.swift */; };
 		C5EC1666231E2F2A00ECE7DB /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EC1665231E2F2A00ECE7DB /* Message.storyboard */; };
 		C5EC166E231E344600ECE7DB /* MessageListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EC166D231E344600ECE7DB /* MessageListTVC.swift */; };
@@ -102,7 +104,9 @@
 		C5BF7B1F231E570500790AE4 /* MessageDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailVC.swift; sourceTree = "<group>"; };
 		C5BF7B22231E5A5000790AE4 /* MessageBubbleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleTVC.swift; sourceTree = "<group>"; };
 		C5BF7B25231E6F6400790AE4 /* MessageDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailModel.swift; sourceTree = "<group>"; };
-		C5EC1661231E0C5700ECE7DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C5E846F9231F977B0092D0C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C5E846FB231FCDAF0092D0C5 /* RoundedCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerView.swift; sourceTree = "<group>"; };
+		C5E846FD23200B270092D0C5 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		C5EC1663231E1FE900ECE7DB /* ApplyListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyListTVC.swift; sourceTree = "<group>"; };
 		C5EC1665231E2F2A00ECE7DB /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		C5EC166D231E344600ECE7DB /* MessageListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListTVC.swift; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				C55B7AA2231D0CFD00CCE4BD /* MyPageMenuBar.swift */,
+				C5E846FB231FCDAF0092D0C5 /* RoundedCornerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				C55BBD9D231C242300C7AD9E /* UITextField+Extensions.swift */,
 				C55BBD9F231C301A00C7AD9E /* UIFont+Extensions.swift */,
 				C55B7AAA231D288600CCE4BD /* UINavigationBar+Extensions.swift */,
+				C5E846FD23200B270092D0C5 /* UITableView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -240,8 +246,8 @@
 			isa = PBXGroup;
 			children = (
 				C5001AC3231AD19500E511BD /* SeoulNamsanB.otf */,
+				C5E846F9231F977B0092D0C5 /* Assets.xcassets */,
 				C5001AC4231AD19500E511BD /* SeoulNamsanEB.otf */,
-				C5EC1661231E0C5700ECE7DB /* Assets.xcassets */,
 				C5001AC2231AD19500E511BD /* SeoulNamsanL.otf */,
 				C5001AC5231AD19500E511BD /* SeoulNamsanM.otf */,
 			);
@@ -395,7 +401,6 @@
 				C55BBD97231C142E00C7AD9E /* MyPage.storyboard in Resources */,
 				C55B7AAF231D325000CCE4BD /* IncompleteTVC.xib in Resources */,
 				C55B7AA9231D26F000CCE4BD /* PageCell.xib in Resources */,
-				C5EC1662231E0C5700ECE7DB /* Assets.xcassets in Resources */,
 				C55B7AB3231D326A00CCE4BD /* CompleteTVC.xib in Resources */,
 				C5001AA9231A7EDE00E511BD /* LaunchScreen.storyboard in Resources */,
 				C5EC1666231E2F2A00ECE7DB /* Message.storyboard in Resources */,
@@ -405,6 +410,7 @@
 				C5001AA4231A7EDD00E511BD /* Main.storyboard in Resources */,
 				C5001AC6231AD1CE00E511BD /* SeoulNamsanEB.otf in Resources */,
 				C5001ACB231ADA0200E511BD /* Posting.storyboard in Resources */,
+				C5E846FA231F977B0092D0C5 /* Assets.xcassets in Resources */,
 				C5001AC7231AD1D300E511BD /* SeoulNamsanL.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,6 +471,7 @@
 				C55B7AB2231D326A00CCE4BD /* CompleteTVC.swift in Sources */,
 				C5001AC0231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift in Sources */,
 				C5001ABA231A8D5400E511BD /* UIImageView+Extensions.swift in Sources */,
+				C5E846FC231FCDAF0092D0C5 /* RoundedCornerView.swift in Sources */,
 				C5BF7B26231E6F6400790AE4 /* MessageDetailModel.swift in Sources */,
 				C5BF7B23231E5A5000790AE4 /* MessageBubbleTVC.swift in Sources */,
 				C5BF7B21231E570500790AE4 /* MessageDetailVC.swift in Sources */,
@@ -475,6 +482,7 @@
 				C55BBD9C231C1C3000C7AD9E /* MyPageUserInfoVC.swift in Sources */,
 				C5001ACE231BA28800E511BD /* LoginVC.swift in Sources */,
 				C55BBD9E231C242300C7AD9E /* UITextField+Extensions.swift in Sources */,
+				C5E846FE23200B270092D0C5 /* UITableView+Extensions.swift in Sources */,
 				C55B7AAE231D325000CCE4BD /* IncompleteTVC.swift in Sources */,
 				C55B7AA3231D0CFD00CCE4BD /* MyPageMenuBar.swift in Sources */,
 				C5AA0F66231DF8DC00CEE98A /* MyPageShareDetailVC.swift in Sources */,

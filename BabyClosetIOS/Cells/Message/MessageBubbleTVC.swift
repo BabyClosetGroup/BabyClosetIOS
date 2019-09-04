@@ -14,13 +14,16 @@ class MessageBubbleTVC: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
+    var bubbleHeightConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        bubble.backgroundColor = .white
         contentLabel.numberOfLines = 0
-        bubble.borderWidth = 1
+        bubble.layer.masksToBounds = true
+        selectionStyle = .none
+//        bubble.roundCorners(corners: [.topRight, .topLeft, .bottomLeft], radius: 15)
     }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

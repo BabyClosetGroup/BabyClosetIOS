@@ -18,7 +18,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Message MainVC-->
+        <!--쪽지함-->
         <scene sceneID="T5G-9e-a8e">
             <objects>
                 <viewController id="cLt-rw-Y6L" customClass="MessageMainVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -95,7 +95,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="96j-az-ksU"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Fid-sh-B3w"/>
+                    <navigationItem key="navigationItem" title="쪽지함" id="Fid-sh-B3w"/>
                     <connections>
                         <outlet property="tableView" destination="BNF-OV-tdF" id="AhG-iq-92I"/>
                     </connections>
@@ -123,7 +123,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="261"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMw-Kr-US3">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMw-Kr-US3" customClass="RoundedCornerView" customModule="BabyClosetIOS" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="12" width="382" height="239.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="보낸 쪽지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKP-yv-Ynf">
@@ -153,6 +153,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="Yjp-Rp-k21" secondAttribute="trailing" constant="10" id="11x-NH-MPk"/>
                                                         <constraint firstAttribute="width" constant="382" id="9FE-Ll-CXd"/>
@@ -168,9 +169,10 @@
                                                         <constraint firstItem="NzY-pU-zjq" firstAttribute="leading" secondItem="fMw-Kr-US3" secondAttribute="leading" constant="10" id="yJD-Te-ezn"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="8"/>
-                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="topRight" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bottomLeft" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bottomRight" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="topLeft" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -187,6 +189,30 @@
                                             <outlet property="dateLabel" destination="Yjp-Rp-k21" id="p1M-Nu-glo"/>
                                             <outlet property="titleLabel" destination="QKP-yv-Ynf" id="hBe-Tf-g3e"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="718" id="zVC-4T-zRb">
+                                        <rect key="frame" x="0.0" y="289" width="414" height="718"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zVC-4T-zRb" id="B8b-em-ztB">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="718"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현아는베베님께" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmO-NB-BHs">
+                                                    <rect key="frame" x="141" y="330" width="132" height="58"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="58" id="YUb-KV-tsi"/>
+                                                        <constraint firstAttribute="width" constant="132" id="yMF-xd-dDp"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="SeoulNamsanB" family="SeoulNamsan" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="CmO-NB-BHs" firstAttribute="centerX" secondItem="B8b-em-ztB" secondAttribute="centerX" id="8OK-Lp-6IR"/>
+                                                <constraint firstItem="CmO-NB-BHs" firstAttribute="centerY" secondItem="B8b-em-ztB" secondAttribute="centerY" id="LZF-S8-Yxb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -256,6 +282,7 @@
                     <navigationItem key="navigationItem" id="eFB-R5-kKY"/>
                     <connections>
                         <outlet property="messageTF" destination="jpc-Dd-78C" id="W90-rX-MX4"/>
+                        <outlet property="sendContainer" destination="7ga-B1-fph" id="8Le-rJ-UtU"/>
                         <outlet property="tableView" destination="D29-nr-kkc" id="4ff-YZ-PaB"/>
                     </connections>
                 </viewController>

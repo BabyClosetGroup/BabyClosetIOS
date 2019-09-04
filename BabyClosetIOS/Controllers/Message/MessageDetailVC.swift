@@ -9,6 +9,7 @@
 import UIKit
 
 class MessageDetailVC: UIViewController, UITextFieldDelegate {
+    var otherUser = "현아는 베베"
     var messages: [MessageDetailModel] = [
         MessageDetailModel( content: "축하합니다. 여아 투피스 나눔자로 선정 되셨어요!", created: "2019/05/10", title: "보낸 쪽지"),
         MessageDetailModel( content: "우와! 감사합니다:) 지역이 중랑구 이시던데 저와 매우 가깝군요! 혹시 나눔날은 언제가 편하신가요? 저는 지금 육아휴직중이라 언제든지 괜찮아요. 편하신 요일과 시간 정해서 알려 주세요 !", created: "2019/05/11", title: "받은 쪽지"),
@@ -17,8 +18,12 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate {
     ]
     
     @IBOutlet weak var messageTF: UITextField!
-    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var sendContainer: UIView!
+    
+    var keyboardShown:Bool = false // 키보드 상태 확인
+    var originY:CGFloat? // 오브젝트의 기본 위치
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         messageTF.delegate = self
@@ -28,32 +33,98 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate {
         tableView.dataSource = self
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.barTintColor = UIColor.white
-        self.navigationItem.title = "쪽지함"
+        self.navigationItem.title = "\(otherUser)"
         
         messageTF.tintColor = .mainYellow
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
+        tapGesture.cancelsTouchesInView = true
+        tableView.addGestureRecognizer(tapGesture)
     }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        registerForKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        unregisterForKeyboardNotifications()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        sendMessage()
+        return true
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
+            tableView.contentInset.bottom = keyboardHeight
+            tableView.scrollIndicatorInsets.bottom = keyboardHeight
+            tableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
+            tableView.setBottomInset(to: keyboardHeight)
+            
+            sendContainer.frame.origin.y -= (keyboardHeight - 31)
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
+            sendContainer.frame.origin.y += (keyboardHeight - 31)
+        }
+        tableView.setBottomInset(to: 0.0)
+    }
+    
+    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //        self.view.endEditing(true)
+    //    }
+    
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    func unregisterForKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     @IBAction func sendAction(_ sender: Any) {
-        let components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-        var month = ""
-        var day = ""
-        
-        if components.month! < 10 {
-            month = "0\(components.month!)"
+        sendMessage()
+    }
+    
+    func sendMessage(){
+        if messageTF.text == "" {
+//            simpleAlert(title: "메시지를 입력해주세요!", message: "")
+        } else {
+            let components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+            var date = "\(components.year!)"
+            
+            if components.month! < 10 {
+                date.append("/0\(components.month!)")
+            }
+            if components.day! < 10 {
+                date.append("/0\(components.day!)")
+            }
+            
+            let newMessage =  MessageDetailModel( content: messageTF.text!, created: date, title: "보낸 쪽지")
+            messages.append(newMessage)
+            tableView.reloadData()
+            scrollToBottom()
+            //        let indexPath = IndexPath(row: messages.count - 1, section: 0 )
+            //        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            messageTF.text = ""
         }
-        if components.day! < 10 {
-            day = "0\(components.day!)"
+    }
+    
+    func scrollToBottom(){
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
         
-        let date = "\(components.year!)/\(month)/\(day)"
-        
-        
-        let newMessage =  MessageDetailModel( content: messageTF.text!, created: date, title: "보낸 쪽지")
-        messages.append(newMessage)
-        tableView.reloadData()
-        messageTF.text = ""
-//        let lastRowInLastSection = messages.count
-        let indexPath = IndexPath(row: messages.count-1, section: 0 )
-        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
 }
 
@@ -71,19 +142,57 @@ extension MessageDetailVC: UITableViewDelegate, UITableViewDataSource {
         if title == "받은 쪽지" {
             cell.titleLabel.textColor = .mainYellow
             cell.bubble.borderColor = .mainYellow
-            cell.bubble.roundCorners(corners: [.bottomLeft], radius: 0)
-            cell.bubble.clipsToBounds = true
         } else {
             cell.titleLabel.textColor = .gray118
             cell.bubble.borderColor = .gray112
-//            cell.bubble.roundCorners(corners: [.allCorners], radius: 8)
+            //            cell.bubble.roundCorners(corners: [.allCorners], radius: 8)
         }
         return cell
     }
     
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        self.view.endEditing(true)
+    //    }
+    
+    func changeImage(_ imageView: UIImageView, _ name: String) {
+        guard let image = UIImage(named: name) else { return }
+        imageView.image = image
+            .resizableImage(withCapInsets:
+                UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10),
+                            resizingMode: .stretch)
+        //            .withRenderingMode(.alwaysTemplate)
+        
+    }
+    
+    
+    //    func makeBubbleView(bubble: UIView){
+    //        let cardView = UIView()
+    //        bubble.addSubview(cardView)
+    ////        cardView.translatesAutoresizingMaskIntoConstraints = false
+    //        print("bubble.frame.width - 32   ", bubble.frame.width - 32)
+    //        print("bubble.frame.height - 200   ", bubble.frame.height - 200)
+    //        print("bubble.frame.width - 32   ", bubble.frame.width - 32)
+    //        print("bubble.frame.width - 32   ", bubble.frame.width - 32)
+    //        cardView.widthAnchor.constraint(equalToConstant: bubble.frame.width - 32).isActive = true
+    //        cardView.heightAnchor.constraint(equalToConstant: bubble.frame.height - 200).isActive = true
+    //        cardView.centerXAnchor.constraint(equalTo: bubble.centerXAnchor).isActive = true
+    //        cardView.centerYAnchor.constraint(equalTo: bubble.centerYAnchor).isActive = true
+    //        //        cardView.topAnchor.constraint(equalTo: 0).isActive = true
+    //
+    //        cardView.backgroundColor = UIColor.gray219
+    //        cardView.borderColor = UIColor.mainYellow
+    //        cardView.borderWidth = 2
+    //
+    //        //        cardView.roundCorners(corners: [.allCorners], radius: 8)
+    //
+    //    }
+    
+    
     //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     //        return UITableViewAutomaticDimension
     //    }
+    
+    
     
     
 }
