@@ -26,6 +26,9 @@
 		C5001AD2231BA84700E511BD /* SignUpTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AD1231BA84700E511BD /* SignUpTermsVC.swift */; };
 		C5001AD4231BA8E000E511BD /* SignUpEndVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AD3231BA8E000E511BD /* SignUpEndVC.swift */; };
 		C5001AD6231BADBD00E511BD /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AD5231BADBD00E511BD /* UIColor+Extensions.swift */; };
+		C532038E23201F3200EFDDB6 /* PostingMainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532038D23201F3200EFDDB6 /* PostingMainTVC.swift */; };
+		C532039023201F5700EFDDB6 /* PostingCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532038F23201F5700EFDDB6 /* PostingCategoryVC.swift */; };
+		C53203932320224200EFDDB6 /* PostingCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53203922320224200EFDDB6 /* PostingCategoryCell.swift */; };
 		C55B7AA3231D0CFD00CCE4BD /* MyPageMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B7AA2231D0CFD00CCE4BD /* MyPageMenuBar.swift */; };
 		C55B7AA5231D0EB000CCE4BD /* PageItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C55B7AA4231D0EB000CCE4BD /* PageItemCell.xib */; };
 		C55B7AA8231D26F000CCE4BD /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B7AA6231D26F000CCE4BD /* PageCell.swift */; };
@@ -50,6 +53,7 @@
 		C5BF7B21231E570500790AE4 /* MessageDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B1F231E570500790AE4 /* MessageDetailVC.swift */; };
 		C5BF7B23231E5A5000790AE4 /* MessageBubbleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B22231E5A5000790AE4 /* MessageBubbleTVC.swift */; };
 		C5BF7B26231E6F6400790AE4 /* MessageDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B25231E6F6400790AE4 /* MessageDetailModel.swift */; };
+		C5E254AE23262D56006723CF /* PostingCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E254AD23262D56006723CF /* PostingCategoryCell.xib */; };
 		C5E846FA231F977B0092D0C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5E846F9231F977B0092D0C5 /* Assets.xcassets */; };
 		C5E846FC231FCDAF0092D0C5 /* RoundedCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E846FB231FCDAF0092D0C5 /* RoundedCornerView.swift */; };
 		C5E846FE23200B270092D0C5 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E846FD23200B270092D0C5 /* UITableView+Extensions.swift */; };
@@ -80,6 +84,9 @@
 		C5001AD1231BA84700E511BD /* SignUpTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTermsVC.swift; sourceTree = "<group>"; };
 		C5001AD3231BA8E000E511BD /* SignUpEndVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndVC.swift; sourceTree = "<group>"; };
 		C5001AD5231BADBD00E511BD /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		C532038D23201F3200EFDDB6 /* PostingMainTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingMainTVC.swift; sourceTree = "<group>"; };
+		C532038F23201F5700EFDDB6 /* PostingCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingCategoryVC.swift; sourceTree = "<group>"; };
+		C53203922320224200EFDDB6 /* PostingCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingCategoryCell.swift; sourceTree = "<group>"; };
 		C55B7AA2231D0CFD00CCE4BD /* MyPageMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMenuBar.swift; sourceTree = "<group>"; };
 		C55B7AA4231D0EB000CCE4BD /* PageItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageItemCell.xib; sourceTree = "<group>"; };
 		C55B7AA6231D26F000CCE4BD /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
@@ -104,6 +111,7 @@
 		C5BF7B1F231E570500790AE4 /* MessageDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailVC.swift; sourceTree = "<group>"; };
 		C5BF7B22231E5A5000790AE4 /* MessageBubbleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleTVC.swift; sourceTree = "<group>"; };
 		C5BF7B25231E6F6400790AE4 /* MessageDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailModel.swift; sourceTree = "<group>"; };
+		C5E254AD23262D56006723CF /* PostingCategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostingCategoryCell.xib; sourceTree = "<group>"; };
 		C5E846F9231F977B0092D0C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5E846FB231FCDAF0092D0C5 /* RoundedCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerView.swift; sourceTree = "<group>"; };
 		C5E846FD23200B270092D0C5 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
@@ -181,6 +189,7 @@
 		C5001AB0231A856A00E511BD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C532038C23201F0400EFDDB6 /* Posting */,
 				C5BF7B19231E56E300790AE4 /* Message */,
 				C55B7AB7231D742A00CCE4BD /* Alert */,
 				C55BBD98231C157A00C7AD9E /* MyPage */,
@@ -265,6 +274,24 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		C532038C23201F0400EFDDB6 /* Posting */ = {
+			isa = PBXGroup;
+			children = (
+				C532038D23201F3200EFDDB6 /* PostingMainTVC.swift */,
+				C532038F23201F5700EFDDB6 /* PostingCategoryVC.swift */,
+			);
+			path = Posting;
+			sourceTree = "<group>";
+		};
+		C53203912320220400EFDDB6 /* Posting */ = {
+			isa = PBXGroup;
+			children = (
+				C53203922320224200EFDDB6 /* PostingCategoryCell.swift */,
+				C5E254AD23262D56006723CF /* PostingCategoryCell.xib */,
+			);
+			path = Posting;
+			sourceTree = "<group>";
+		};
 		C55B7AB4231D484C00CCE4BD /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +332,7 @@
 		C5929F7F231CF9DA00B1C4F6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				C53203912320220400EFDDB6 /* Posting */,
 				C5EC166C231E342000ECE7DB /* Message */,
 				C55B7AB4231D484C00CCE4BD /* MyPage */,
 			);
@@ -407,6 +435,7 @@
 				C5001AC9231AD30200E511BD /* SeoulNamsanM.otf in Resources */,
 				C55B7AA5231D0EB000CCE4BD /* PageItemCell.xib in Resources */,
 				C5001AC8231AD2FE00E511BD /* SeoulNamsanB.otf in Resources */,
+				C5E254AE23262D56006723CF /* PostingCategoryCell.xib in Resources */,
 				C5001AA4231A7EDD00E511BD /* Main.storyboard in Resources */,
 				C5001AC6231AD1CE00E511BD /* SeoulNamsanEB.otf in Resources */,
 				C5001ACB231ADA0200E511BD /* Posting.storyboard in Resources */,
@@ -477,6 +506,7 @@
 				C5BF7B21231E570500790AE4 /* MessageDetailVC.swift in Sources */,
 				C5929F84231CFCC000B1C4F6 /* PageItemCell.swift in Sources */,
 				C55B7AB6231D488300CCE4BD /* MyPageStarVC.swift in Sources */,
+				C532038E23201F3200EFDDB6 /* PostingMainTVC.swift in Sources */,
 				C5001AD2231BA84700E511BD /* SignUpTermsVC.swift in Sources */,
 				C55B7AAB231D288600CCE4BD /* UINavigationBar+Extensions.swift in Sources */,
 				C55BBD9C231C1C3000C7AD9E /* MyPageUserInfoVC.swift in Sources */,
@@ -489,9 +519,11 @@
 				C55B7AA8231D26F000CCE4BD /* PageCell.swift in Sources */,
 				C5001ABC231A8D8B00E511BD /* UIView+Extensions.swift in Sources */,
 				C5001A9F231A7EDD00E511BD /* AppDelegate.swift in Sources */,
+				C532039023201F5700EFDDB6 /* PostingCategoryVC.swift in Sources */,
 				C5001AD6231BADBD00E511BD /* UIColor+Extensions.swift in Sources */,
 				C5001AD4231BA8E000E511BD /* SignUpEndVC.swift in Sources */,
 				C5929F7A231CEFFC00B1C4F6 /* MyPageShareVC.swift in Sources */,
+				C53203932320224200EFDDB6 /* PostingCategoryCell.swift in Sources */,
 				C55BBDA0231C301A00C7AD9E /* UIFont+Extensions.swift in Sources */,
 				C5929F7C231CF04700B1C4F6 /* MyPageReceiveVC.swift in Sources */,
 				C5BF7B20231E570500790AE4 /* MessageMainVC.swift in Sources */,
