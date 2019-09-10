@@ -6,6 +6,11 @@
 //  Copyright © 2019 박경선. All rights reserved.
 //
 
+
+
+// 비행기모양 누르면 바로 전송되는 것. enter치면 전송되는 것 고려해보기
+// 말풍선.............ㅎr
+
 import UIKit
 
 class MessageDetailVC: UIViewController, UITextFieldDelegate {
