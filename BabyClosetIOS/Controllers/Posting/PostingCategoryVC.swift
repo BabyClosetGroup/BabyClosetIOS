@@ -51,9 +51,8 @@ class PostingCategoryVC: UIViewController,UIViewControllerTransitioningDelegate 
         vc.categoryList.append(contentsOf: selectedLocalList)
         vc.categoryList.append(contentsOf: selectedAgeList)
         vc.categoryList.append(contentsOf: selectedCategoryList)
-
-        print("Bye ~~ ", vc.categoryList)
         self.navigationController?.pushViewController(vc, animated: true)
+//        navigationController?.popToViewController(vc, animated: <#T##Bool#>)(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -83,49 +82,68 @@ extension PostingCategoryVC: UICollectionViewDelegate, UICollectionViewDataSourc
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 10
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    //        return 10
+    //    }
+    //
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    //        return 0
+    //    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         //        let safeFrame = view.safeAreaLayoutGuide.layoutFrame
         //        let width = ( collectionView.frame.width - ( 5 * 3 ) ) / 4
         //        print(width)
         var size: CGSize = CGSize()
-//        if collectionView == categoryCollectionView {
-            //            if indexPath.row == 0 {
-            //                size = CGSize(width: 169, height: 28)
-            //            }
-            //        } else {
-            size = CGSize(width: 82, height: 28)
-//        }
+        //        if collectionView == categoryCollectionView {
+        //            if indexPath.row == 0 {
+        //                size = CGSize(width: 169, height: 28)
+        //            }
+        //        } else {
+        size = CGSize(width: 82, height: 28)
+        //        }
         return size
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            collectionView.allowsSelection = false
-            collectionView.allowsMultipleSelection = true
-            collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredVertically)
-        } else {
-            collectionView.deselectItem(at: IndexPath(item: 0, section: 0), animated: false)
-        }
+        
         if collectionView == localCollectionView {
+            if indexPath.row == 0 {
+                selectFirstTag(collectionView)
+                selectedLocalList.removeAll()
+            } else {
+                collectionView.deselectItem(at: IndexPath(item: 0, section: 0), animated: false)
+            }
             selectedLocalList.append(localList[indexPath.row])
         } else if collectionView == ageCollectionView {
+            if indexPath.row == 0 {
+                selectFirstTag(collectionView)
+                selectedAgeList.removeAll()
+            } else {
+                collectionView.deselectItem(at: IndexPath(item: 0, section: 0), animated: false)
+            }
             selectedAgeList.append(ageList[indexPath.row])
         } else {
+            if indexPath.row == 0 {
+                selectFirstTag(collectionView)
+                selectedCategoryList.removeAll()
+            } else {
+                collectionView.deselectItem(at: IndexPath(item: 0, section: 0), animated: false)
+            }
             selectedCategoryList.append(categoryList[indexPath.row])
         }
         print(indexPath)
     }
     
+    func selectFirstTag(_ cv: UICollectionView){
+        cv.allowsSelection = false
+        cv.allowsMultipleSelection = true
+        cv.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredVertically)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
         if collectionView == localCollectionView {
             if let index = selectedLocalList.index(of: localList[indexPath.row]) {
                 selectedLocalList.remove(at: index)

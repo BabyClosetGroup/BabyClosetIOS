@@ -18,12 +18,15 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     
     @IBOutlet weak var tagCollectionHeightC: NSLayoutConstraint!
     @IBOutlet weak var deadLineHeightC: NSLayoutConstraint!
+    @IBOutlet weak var contentHeightC: NSLayoutConstraint!
+//    @IBOutlet weak var contentTopC: NSLayoutConstraint!
     
     let picker = UIImagePickerController()
     let getImage = UIImage()
     var selectedButton:UIButton = UIButton()
     var categoryList: [String] = []
     var deadLine: String = ""
+    var conHeight = 194
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,23 +43,35 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         
         titleTextField.delegate = self
         contentTextView.delegate = self
+        contentTextView.translatesAutoresizingMaskIntoConstraints = true
+        contentTextView.sizeToFit()
+//        contentTextView.isScrollEnabled = false
+//        contentTextView.text = "내용을 입력해주세요"
+        contentHeightC.constant = contentTextView.contentSize.height
+        self.tableView.rowHeight = UITableView.automaticDimension
         
         deadLineLabel.roundCorners(corners: [.allCorners], radius: 8)
         deadLineHeightC.constant = 0
         
-        
+        tableView.estimatedRowHeight = 421
+        tableView.rowHeight = UITableView.automaticDimension
     }
+    
     override func viewWillAppear(_ animated: Bool) {
+        print("hi : ", categoryList)
         super.viewWillAppear(animated)
         if categoryList.count == 0 {
             tagCollectionHeightC.constant = 0
-            self.view.layoutIfNeeded()
         } else {
             tagCollectionHeightC.constant = 28
         }
+        self.view.layoutIfNeeded()
         tagCollectionView.reloadData()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     func addDeadLine(_ day: Int) {
         deadLineLabel.text = "\(day)일"
@@ -64,18 +79,25 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         self.view.layoutIfNeeded()
     }
     
+    func textViewDidChange(_ textView: UITextView) {
+        contentHeightC.constant = contentTextView.contentSize.height
+        if contentHeightC.constant != CGFloat(conHeight) {
+            contentHeightC.constant += 10
+            tableView.rowHeight += 10
+        }
+        print("height : \(Date())", contentHeightC.constant)
+        contentTextView.sizeToFit()
+        
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 2
+        return 1
     }
 }
-
-
 
 extension PostingMainTVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBAction func editImgAction(_ sender: UIButton) {
@@ -141,12 +163,12 @@ extension PostingMainTVC: UIImagePickerControllerDelegate, UINavigationControlle
         
         present(dead, animated: true, completion: nil)
     }
+    
 }
 
 extension PostingMainTVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categoryList.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -157,7 +179,7 @@ extension PostingMainTVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return -2
+        return -6
     }
     
 }
