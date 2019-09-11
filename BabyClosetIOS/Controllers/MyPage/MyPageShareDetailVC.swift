@@ -55,7 +55,7 @@ extension MyPageShareDetailVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "applyListCell", for: indexPath) as! ApplyListTVC
+        let cell = tableView.dequeueReusableCell(withIdentifier: "applyListCell", for: indexPath) as! ApplyListTVC
         return cell
     }
 }

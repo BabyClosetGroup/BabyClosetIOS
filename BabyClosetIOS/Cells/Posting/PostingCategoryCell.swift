@@ -11,10 +11,12 @@ import UIKit
 class PostingCategoryCell: UICollectionViewCell {
     @IBOutlet weak var tagLabel: UILabel!
     var isSelectCollection = true
+    @IBOutlet weak var tabLabelWidthC: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         tagLabel.roundCorners(corners: [.allCorners], radius: 8)
+        tabLabelWidthC.constant = 82
     }
     
     override var isSelected: Bool {

@@ -27,6 +27,9 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCe-7P-qU8">
                         <rect key="frame" x="0.0" y="0.0" width="82" height="28"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="82" id="Xjt-vc-m16"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="14"/>
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -45,7 +48,6 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="aCe-7P-qU8" firstAttribute="width" secondItem="4PI-sE-bOX" secondAttribute="width" id="6qD-DM-rRi"/>
                 <constraint firstItem="aCe-7P-qU8" firstAttribute="height" secondItem="1FB-4b-F09" secondAttribute="height" id="7DH-Re-woL"/>
                 <constraint firstItem="aCe-7P-qU8" firstAttribute="leading" secondItem="1FB-4b-F09" secondAttribute="leading" id="CqM-SE-v5k"/>
                 <constraint firstItem="aCe-7P-qU8" firstAttribute="top" secondItem="1FB-4b-F09" secondAttribute="top" id="LGR-60-nUn"/>
@@ -53,9 +55,10 @@
             <viewLayoutGuide key="safeArea" id="4PI-sE-bOX"/>
             <size key="customSize" width="123" height="50"/>
             <connections>
+                <outlet property="tabLabelWidthC" destination="Xjt-vc-m16" id="QtN-XW-lY7"/>
                 <outlet property="tagLabel" destination="aCe-7P-qU8" id="ZBl-V7-GNZ"/>
             </connections>
-            <point key="canvasLocation" x="231.15942028985509" y="201.5625"/>
+            <point key="canvasLocation" x="230.43478260869566" y="201.5625"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -13,7 +13,7 @@ class ApplyListTVC: UITableViewCell {
     var nickname = "정미"
     var star = 4
     
-    @IBOutlet weak var profileImg: UIImageView!
+    @IBOutlet var profileImg: UIImageView!
     @IBOutlet weak var starLabel: UILabel!
     @IBOutlet var stars: [UIImageView]!
     

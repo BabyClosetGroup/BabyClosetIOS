@@ -8,18 +8,17 @@
 
 import UIKit
 
-class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
+class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDelegate, SaveDataDelegate {
     
     @IBOutlet var imgButtons: [UIButton]!
     @IBOutlet weak var tagCollectionView: UICollectionView!
     @IBOutlet weak var deadLineLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
+    @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var tagCollectionHeightC: NSLayoutConstraint!
     @IBOutlet weak var deadLineHeightC: NSLayoutConstraint!
-    @IBOutlet weak var contentHeightC: NSLayoutConstraint!
-//    @IBOutlet weak var contentTopC: NSLayoutConstraint!
     
     let picker = UIImagePickerController()
     let getImage = UIImage()
@@ -30,31 +29,32 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBar()
+        
+        picker.delegate = self
+        tagCollectionView.delegate = self
+        tagCollectionView.dataSource = self
+        titleTextField.delegate = self
+        contentTextView.delegate = self
+        
+        deadLineHeightC.constant = 0
+        tagCollectionHeightC.constant = 0
+        contentTextView.isScrollEnabled = false
         tagCollectionView.allowsSelection = false
+//        contentTextView.text = "내용을 입력해주세요"
+        deadLineLabel.roundCorners(corners: [.allCorners], radius: 8)
+        contentTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        
+        tableView.estimatedRowHeight = 421
+        tableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    func setNavigationBar(){
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationItem.title = "나눔하기"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
-        
-        picker.delegate = self
-        tagCollectionView.delegate = self
-        tagCollectionView.dataSource = self
-        
-        titleTextField.delegate = self
-        contentTextView.delegate = self
-        contentTextView.translatesAutoresizingMaskIntoConstraints = true
-        contentTextView.sizeToFit()
-//        contentTextView.isScrollEnabled = false
-//        contentTextView.text = "내용을 입력해주세요"
-        contentHeightC.constant = contentTextView.contentSize.height
-        self.tableView.rowHeight = UITableView.automaticDimension
-        
-        deadLineLabel.roundCorners(corners: [.allCorners], radius: 8)
-        deadLineHeightC.constant = 0
-        
-        tableView.estimatedRowHeight = 421
-        tableView.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,14 +80,16 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        contentHeightC.constant = contentTextView.contentSize.height
-        if contentHeightC.constant != CGFloat(conHeight) {
-            contentHeightC.constant += 10
-            tableView.rowHeight += 10
-        }
-        print("height : \(Date())", contentHeightC.constant)
         contentTextView.sizeToFit()
-        
+        contentView.frame.size.height = contentTextView.contentSize.height
+        tableView.reloadData()
+    }
+    
+    func saveData(data saveData: [String]) {
+        categoryList.removeAll()
+        tagCollectionView.reloadData()
+        categoryList = saveData
+        tagCollectionView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -97,7 +99,14 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! PostingCategoryVC
+        destination.delegate = self
+        destination.selectedList = categoryList
+    }
 }
+
 
 extension PostingMainTVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBAction func editImgAction(_ sender: UIButton) {
@@ -143,7 +152,6 @@ extension PostingMainTVC: UIImagePickerControllerDelegate, UINavigationControlle
             print("originalImage")
             selectedButton.setImage(originalImage, for: .normal)
         }
-        //        button.setImage(image, for: .normal)
         dismiss(animated: true, completion: nil)
     }
     
@@ -163,6 +171,7 @@ extension PostingMainTVC: UIImagePickerControllerDelegate, UINavigationControlle
         
         present(dead, animated: true, completion: nil)
     }
+    
     
 }
 
