@@ -55,7 +55,6 @@
             <viewLayoutGuide key="safeArea" id="4PI-sE-bOX"/>
             <size key="customSize" width="123" height="50"/>
             <connections>
-                <outlet property="tabLabelWidthC" destination="Xjt-vc-m16" id="QtN-XW-lY7"/>
                 <outlet property="tagLabel" destination="aCe-7P-qU8" id="ZBl-V7-GNZ"/>
             </connections>
             <point key="canvasLocation" x="230.43478260869566" y="201.5625"/>

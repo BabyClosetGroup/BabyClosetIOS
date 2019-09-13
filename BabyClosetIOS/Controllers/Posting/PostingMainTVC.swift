@@ -23,14 +23,17 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     let picker = UIImagePickerController()
     let getImage = UIImage()
     var selectedButton:UIButton = UIButton()
+    
+    var localList: [String] = []
+    var ageList: [String] = []
     var categoryList: [String] = []
+    var selectedList: [String:[String]] = [:]
+    
     var deadLine: String = ""
-    var conHeight = 194
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        
         picker.delegate = self
         tagCollectionView.delegate = self
         tagCollectionView.dataSource = self
@@ -41,12 +44,19 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         tagCollectionHeightC.constant = 0
         contentTextView.isScrollEnabled = false
         tagCollectionView.allowsSelection = false
-//        contentTextView.text = "내용을 입력해주세요"
+        //        contentTextView.text = "내용을 입력해주세요"
         deadLineLabel.roundCorners(corners: [.allCorners], radius: 8)
         contentTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        
-        tableView.estimatedRowHeight = 421
-        tableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    func setGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
+        tapGesture.cancelsTouchesInView = true
+        tableView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
     
     func setNavigationBar(){
@@ -58,24 +68,21 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("hi : ", categoryList)
         super.viewWillAppear(animated)
         if categoryList.count == 0 {
             tagCollectionHeightC.constant = 0
         } else {
             tagCollectionHeightC.constant = 28
         }
-        self.view.layoutIfNeeded()
         tagCollectionView.reloadData()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
+        tableView.reloadData()
+        self.view.layoutIfNeeded()
     }
     
     func addDeadLine(_ day: Int) {
         deadLineLabel.text = "\(day)일"
         deadLineHeightC.constant = 28
+        tableView.reloadData()
         self.view.layoutIfNeeded()
     }
     
@@ -85,10 +92,11 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         tableView.reloadData()
     }
     
-    func saveData(data saveData: [String]) {
-        categoryList.removeAll()
-        tagCollectionView.reloadData()
-        categoryList = saveData
+    func saveData(data saveData:[String: [String]]) {
+//        selectedList = saveData
+        localList = saveData["localList"]!
+        ageList = saveData["ageList"]!
+        categoryList = saveData["categoryList"]!
         tagCollectionView.reloadData()
     }
     
@@ -97,13 +105,17 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 4
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! PostingCategoryVC
         destination.delegate = self
-        destination.selectedList = categoryList
+        destination.selectedList = selectedList
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
 
@@ -172,17 +184,23 @@ extension PostingMainTVC: UIImagePickerControllerDelegate, UINavigationControlle
         present(dead, animated: true, completion: nil)
     }
     
-    
 }
 
 extension PostingMainTVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categoryList.count
+        return localList.count + ageList.count + categoryList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = tagCollectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! PostingCategoryCell
-        cell.tagLabel.text = categoryList[indexPath.row]
+        if localList.count > indexPath.row {
+            cell.tagLabel.text = localList[indexPath.row]
+        } else if (localList.count + ageList.count ) > indexPath.row {
+            cell.tagLabel.text = ageList[indexPath.row - localList.count]
+        } else {
+            let row = indexPath.row - ( localList.count + ageList.count )
+            cell.tagLabel.text = categoryList[row]
+        }
         cell.isSelectCollection = false
         return cell
     }

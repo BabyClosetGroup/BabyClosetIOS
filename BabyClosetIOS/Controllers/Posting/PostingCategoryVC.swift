@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SaveDataDelegate:class{
-    func saveData(data saveData:[String])
+    func saveData(data saveData:[String: [String]])
 }
 class PostingCategoryVC: UIViewController,UIViewControllerTransitioningDelegate {
     
@@ -23,7 +23,7 @@ class PostingCategoryVC: UIViewController,UIViewControllerTransitioningDelegate 
     var selectedLocalList: [String] = []
     var selectedAgeList: [String] = []
     var selectedCategoryList: [String] = []
-    var selectedList: [String] = []
+    var selectedList: [String:[String]] = [:]
     
     @IBOutlet weak var localCollectionView: UICollectionView!
     @IBOutlet weak var ageCollectionView: UICollectionView!
@@ -41,23 +41,35 @@ class PostingCategoryVC: UIViewController,UIViewControllerTransitioningDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        for item in selectedList {
-            print("hi im category View ~! ", selectedList)
-            if let index = localList.index(of: item) {
+        if !selectedList.isEmpty {
+            checkSelectItem()
+        }
+        selectCollectionView(localCollectionView, selectedLocalList)
+        selectCollectionView(ageCollectionView, selectedAgeList)
+        selectCollectionView(categoryCollectionView, selectedCategoryList)
+    }
+    
+    func checkSelectItem(){
+        for local in selectedList["localList"]! {
+            if let index = localList.index(of: local) {
                 localCollectionView.selectItem(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: .centeredHorizontally)
                 selectedLocalList.append(localList[index])
-            } else if let index = ageList.index(of: item) {
+            }
+        }
+        
+        for age in selectedList["ageList"]! {
+            if let index = ageList.index(of: age) {
                 ageCollectionView.selectItem(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: .centeredHorizontally)
                 selectedAgeList.append(ageList[index])
-            } else if let index = categoryList.index(of: item) {
+            }
+        }
+        
+        for category in selectedList["categoryList"]! {
+            if let index = categoryList.index(of: category) {
                 categoryCollectionView.selectItem(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: .centeredHorizontally)
                 selectedCategoryList.append(categoryList[index])
             }
         }
-        
-        selectCollectionView(localCollectionView, selectedLocalList)
-        selectCollectionView(ageCollectionView, selectedAgeList)
-        selectCollectionView(categoryCollectionView, selectedCategoryList)
     }
     
     func selectCollectionView(_ collectionView: UICollectionView,_ list: [String]){
@@ -76,17 +88,17 @@ class PostingCategoryVC: UIViewController,UIViewControllerTransitioningDelegate 
     @IBAction func completeAction(_ sender: Any) {
         selectedList.removeAll()
         if selectedLocalList.isEmpty {
-            selectedList.append("서울 전체")
+            selectedLocalList.append("서울 전체")
         }
-        selectedList.append(contentsOf: selectedLocalList)
+        selectedList.updateValue(selectedLocalList, forKey: "localList")
         if selectedAgeList.isEmpty {
-            selectedList.append("나이 전체")
+            selectedAgeList.append("나이 전체")
         }
-        selectedList.append(contentsOf: selectedAgeList)
+        selectedList.updateValue(selectedAgeList, forKey: "ageList")
         if selectedCategoryList.isEmpty {
-            selectedList.append("카테고리 전체")
+            selectedCategoryList.append("카테고리 전체")
         }
-        selectedList.append(contentsOf: selectedCategoryList)
+        selectedList.updateValue(selectedCategoryList, forKey: "categoryList")
         delegate?.saveData(data: selectedList)
         self.navigationController?.popViewController(animated: true)
     }
@@ -114,7 +126,7 @@ extension PostingCategoryVC: UICollectionViewDelegate, UICollectionViewDataSourc
             if indexPath.row == 0 {
 //                cell.tagLabel.frame.size.width = 169
                 cell.contentView.frame.size.width = 169
-                cell.tabLabelWidthC.constant = 169
+//                cell.tabLabelWidthC.constant = 169
             }
         }
         return cell
