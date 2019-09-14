@@ -9,27 +9,35 @@
 import UIKit
 
 class PostingCategoryCell: UICollectionViewCell {
-    @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var tagView: UIView!
     var isSelectCollection = true
-//    @IBOutlet weak var tabLabelWidthC: NSLayoutConstraint!
+    var tagLabel: UILabel = UILabel()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        tagLabel.roundCorners(corners: [.allCorners], radius: 8)
-//        tabLabelWidthC.constant = 82
+        tagLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 82, height: 28))
+        self.tagView.addSubview(tagLabel)
+        tagLabel.font = UIFont(name: "SeoulNamsanM", size: 14)
+        tagLabel.textColor = .gray118
+        tagLabel.textAlignment = .center
+        tagLabel.translatesAutoresizingMaskIntoConstraints = false
+        tagLabel.centerXAnchor.constraint(equalTo:tagView.centerXAnchor).isActive = true
+        tagLabel.centerYAnchor.constraint(equalTo:tagView.centerYAnchor).isActive = true
     }
     
     override var isSelected: Bool {
         didSet{
             if isSelectCollection{
-                self.tagLabel.backgroundColor = isSelected ? .mainYellow : .white
-                self.tagLabel.borderWidth = isSelected ? 0 : 1.5
-                self.tagLabel.borderColor = isSelected ? .mainYellow : .gray118
+                self.tagView.backgroundColor = isSelected ? .mainYellow : .white
+                self.tagView.borderWidth = isSelected ? 0 : 1
+                self.tagView.borderColor = isSelected ? .mainYellow : .gray118
                 self.tagLabel.textColor = isSelected ? .white : .gray118
             } else {
-                self.tagLabel.backgroundColor = .mainYellow
+                self.tagView.backgroundColor = .mainYellow
                 self.tagLabel.textColor = .white
             }
         }
     }
 }
+
+
