@@ -29,6 +29,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginAction(_ sender: Any) {
         // 대충 로그인 체크되는 기능
+        
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let dvc = storyboard.instantiateViewController(withIdentifier: "MainView")
         self.present(dvc, animated: true, completion: nil)

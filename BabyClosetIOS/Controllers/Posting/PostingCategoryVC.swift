@@ -27,7 +27,7 @@ class PostingCategoryVC: UIViewController,UIViewControllerTransitioningDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = ""
-        
+        self.navigationController?.navigationBar.tintColor = UIColor.gray38
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
         setCollectionView(localCollectionView)
         setCollectionView(ageCollectionView)
@@ -61,6 +61,11 @@ class PostingCategoryVC: UIViewController,UIViewControllerTransitioningDelegate 
     }
     
     @IBAction func completeAction(_ sender: Any) {
+        checkEmptyList()
+        delegate?.saveData(data: selectedList)
+        self.navigationController?.popViewController(animated: true)
+    }
+    func checkEmptyList(){
         if selectedList["localList"]!.isEmpty {
             selectedList["localList"]?.append("서울 전체")
         }
@@ -70,8 +75,6 @@ class PostingCategoryVC: UIViewController,UIViewControllerTransitioningDelegate 
         if selectedList["categoryList"]!.isEmpty {
             selectedList["categoryList"]?.append("카테고리 전체")
         }
-        delegate?.saveData(data: selectedList)
-        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -147,9 +150,6 @@ extension PostingCategoryVC: UICollectionViewDelegate, UICollectionViewDataSourc
             if let index = selectedList["localList"]?.index(of: localList[indexPath.row]) {
                 selectedList["localList"]?.remove(at: index)
             }
-//            if selectedList["localList"]?.isEmpty {
-//
-//            }
         } else if collectionView == ageCollectionView {
             if let index = selectedList["ageList"]?.index(of: ageList[indexPath.row]) {
                 selectedList["ageList"]?.remove(at: index)
@@ -159,6 +159,7 @@ extension PostingCategoryVC: UICollectionViewDelegate, UICollectionViewDataSourc
                 selectedList["categoryList"]?.remove(at: index)
             }
         }
+        checkEmptyList()
     }
     
     func selectFirstTag(_ cv: UICollectionView){
