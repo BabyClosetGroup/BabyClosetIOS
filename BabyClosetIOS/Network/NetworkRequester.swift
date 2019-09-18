@@ -18,7 +18,9 @@ struct NetworkRequester {
     
     private var api: APIRouter
     private let manager = Alamofire.SessionManager.default
-    public typealias Completion1<T> = ((T?,[ErrorModel?]?, Error?) -> Void)?
+    public typealias Completion1<T> = ((T?, Error?) -> Void)?
+    public typealias Completion2<T> = ((T?,ErrorModel?, Error?) -> Void)?
+    
     
     init(with router: APIRouter) {
         self.api = router
@@ -32,16 +34,45 @@ struct NetworkRequester {
                 case .success:
                     if let resultStatusCode = response.response?.statusCode {
                         print("- NetworkRequester - Response statusCode : \(resultStatusCode)")
+                        let data = response.data
+                        var jsonString = JSON(data as Any).description
+                        if jsonString ==  "null" {
+                            jsonString = "{}"
+                        }
+                        let jsonData = jsonString.data(using: .utf8) ?? Data()
+                        do {
+                            let result = try JSONDecoder().decode(T.self, from: jsonData)
+                            print("result. : ", result)
+                            completion?(result, nil)
+                        } catch let catchError{
+                            print("캐치에러 \(catchError)")
+                        }
+                    }
+                    
+                case .failure(let failError):
+                    //네트워크 자체가 안 될 경우
+                    completion?(nil, failError)
+                }
+        }
+    }
+    
+    func signInRequest<T: Codable>(completion: Completion2<T>) {
+        manager.request(api.requestUrl, method: api.method, parameters: api.parameters, encoding: JSONEncoding.default, headers: api.headers)
+            .validate(contentType: ["application/json"]).responseData { response in
+                switch response.result {
+                case .success:
+                    if let resultStatusCode = response.response?.statusCode {
+                        print("- NetworkRequester - Response statusCode : \(resultStatusCode)")
                         guard resultStatusCode < 300 else {
                             // 오류 메세지 들어올 경우
                             let data = response.data
                             let jsonString = JSON(data as Any).description
                             let jsonData = jsonString.data(using: .utf8) ?? Data()
                             do {
-                                let result = try JSONDecoder().decode([ErrorModel].self, from: jsonData)
+                                let result = try JSONDecoder().decode(ErrorModel.self, from: jsonData)
                                 completion?(nil, result, nil)
                             } catch {
-
+                                
                             }
                             return
                         }
@@ -59,13 +90,14 @@ struct NetworkRequester {
                         }
                         let jsonData = jsonString.data(using: .utf8) ?? Data()
                         do {
+                            
                             let result = try JSONDecoder().decode(T.self, from: jsonData)
                             completion?(result, nil, nil)
                         } catch let catchError{
                             print("캐치에러 \(catchError)")
                         }
                     }
-
+                    
                 case .failure(let failError):
                     //네트워크 자체가 안 될 경우
                     completion?(nil,nil, failError)

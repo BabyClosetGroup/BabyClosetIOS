@@ -9,10 +9,10 @@
 import Foundation
 
 struct MessageDetailModel : Codable {
-    var idx : Int = 0
-    var content : String
-    var created : String
-    var title: String
+    var idx : Int?
+    var content : String?
+    var created : String?
+    var title: String?
     
     enum CodingKeys: String, CodingKey {
         case idx = "noteIdx"
@@ -23,10 +23,10 @@ struct MessageDetailModel : Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        idx = try values.decodeIfPresent(Int.self, forKey: .idx)!
-        content = try values.decodeIfPresent(String.self, forKey: .content)!
-        created = try values.decodeIfPresent(String.self, forKey: .created)!
-        title = try values.decodeIfPresent(String.self, forKey: .title)!
+        idx = try values.decodeIfPresent(Int.self, forKey: .idx)
+        content = try values.decodeIfPresent(String.self, forKey: .content)
+        created = try values.decodeIfPresent(String.self, forKey: .created)
+        title = try values.decodeIfPresent(String.self, forKey: .title)
     }
     
     init(content: String, created: String, title: String){

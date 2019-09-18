@@ -9,9 +9,12 @@
 import UIKit
 
 class SignUpEndVC: UIViewController {
-
+    var nickname: String = ""
+    @IBOutlet weak var label: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        label.text = "\(nickname)님, 환영 합니다!"
     }
     
     @IBAction func goMainAction(_ sender: Any) {
