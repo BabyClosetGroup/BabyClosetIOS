@@ -20,49 +20,60 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IncompleteTVC" id="KGk-i7-Jjw" customClass="IncompleteTVC" customModule="BabyClosetIOS" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="IncompleteTVC" selectionStyle="default" indentationWidth="10" reuseIdentifier="IncompleteTVC" id="8XX-DF-wqB" customClass="IncompleteTVC" customModule="BabyClosetIOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8XX-DF-wqB" id="Xts-M6-0u5">
                 <rect key="frame" x="0.0" y="0.0" width="375" height="214.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="myPageDefault" translatesAutoresizingMaskIntoConstraints="NO" id="A04-qz-6Dx">
-                        <rect key="frame" x="16" y="22" width="109" height="109"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="상품 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDw-o7-mdF">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상품 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnQ-Cv-bdO">
                         <rect key="frame" x="145" y="30" width="207" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="207" id="OuW-nT-6dl"/>
+                            <constraint firstAttribute="height" constant="19" id="Tlt-as-v1X"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="16"/>
                         <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="동대문구" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQs-zR-FWH">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCq-tf-PiQ">
                         <rect key="frame" x="145" y="53" width="207" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="19" id="2d2-jI-roA"/>
+                            <constraint firstAttribute="width" constant="207" id="s0f-5b-k4G"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="12"/>
-                        <color key="textColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="나눔요청 인원 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLE-Cm-Ld7">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나눔요청 인원 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K5q-zJ-R8s">
                         <rect key="frame" x="145" y="107" width="97" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="19" id="4zK-Oe-sEr"/>
+                            <constraint firstAttribute="width" constant="97" id="y0x-Jb-rfd"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="14"/>
-                        <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="45명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsf-TT-9mX">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIo-D0-OLZ">
                         <rect key="frame" x="242" y="107" width="97" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="97" id="kdv-9m-qmw"/>
+                            <constraint firstAttribute="height" constant="19" id="vMC-H4-Z7H"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SeoulNamsanB" family="SeoulNamsan" pointSize="14"/>
                         <color key="textColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7C-2W-WVV">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0T-iO-aAG">
                         <rect key="frame" x="16" y="150" width="343" height="42"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="343" id="1TO-F0-myD"/>
+                            <constraint firstAttribute="height" constant="42" id="VpB-Eb-waG"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SeoulNamsanB" family="SeoulNamsan" pointSize="17"/>
                         <state key="normal" title="나눔하기">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -73,19 +84,48 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="sharingAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cJb-Sz-rQY"/>
+                            <action selector="sharingAction:" destination="8XX-DF-wqB" eventType="touchUpInside" id="G7v-AA-5IJ"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qdl-AR-qTe">
+                        <rect key="frame" x="16" y="22" width="109" height="109"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="109" id="mMe-Wg-gfP"/>
+                            <constraint firstAttribute="width" constant="109" id="stx-n1-pZA"/>
+                        </constraints>
+                    </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="vnQ-Cv-bdO" firstAttribute="top" secondItem="Xts-M6-0u5" secondAttribute="top" constant="30" id="88O-lh-jgb"/>
+                    <constraint firstAttribute="bottom" secondItem="H0T-iO-aAG" secondAttribute="bottom" constant="22.5" id="DhL-WT-caD"/>
+                    <constraint firstItem="RIo-D0-OLZ" firstAttribute="top" secondItem="ZCq-tf-PiQ" secondAttribute="bottom" constant="35" id="Edy-Nf-xDv"/>
+                    <constraint firstItem="Qdl-AR-qTe" firstAttribute="top" secondItem="Xts-M6-0u5" secondAttribute="top" constant="22" id="GnG-NB-2w8"/>
+                    <constraint firstAttribute="trailing" secondItem="RIo-D0-OLZ" secondAttribute="trailing" constant="36" id="JRL-mG-B4x"/>
+                    <constraint firstItem="H0T-iO-aAG" firstAttribute="top" secondItem="Qdl-AR-qTe" secondAttribute="bottom" constant="19" id="KVA-Wp-7ve"/>
+                    <constraint firstAttribute="trailing" secondItem="ZCq-tf-PiQ" secondAttribute="trailing" constant="23" id="LG1-FK-vYj"/>
+                    <constraint firstItem="ZCq-tf-PiQ" firstAttribute="leading" secondItem="Qdl-AR-qTe" secondAttribute="trailing" constant="20" id="NhU-rA-8pL"/>
+                    <constraint firstItem="ZCq-tf-PiQ" firstAttribute="top" secondItem="vnQ-Cv-bdO" secondAttribute="bottom" constant="4" id="Phf-T7-pHA"/>
+                    <constraint firstItem="H0T-iO-aAG" firstAttribute="top" secondItem="RIo-D0-OLZ" secondAttribute="bottom" constant="24" id="U4C-JK-5nC"/>
+                    <constraint firstItem="RIo-D0-OLZ" firstAttribute="leading" secondItem="K5q-zJ-R8s" secondAttribute="trailing" id="Wha-qB-qjx"/>
+                    <constraint firstItem="Qdl-AR-qTe" firstAttribute="leading" secondItem="Xts-M6-0u5" secondAttribute="leading" constant="16" id="ZGK-d7-Xcq"/>
+                    <constraint firstItem="K5q-zJ-R8s" firstAttribute="leading" secondItem="Qdl-AR-qTe" secondAttribute="trailing" constant="20" id="ZeM-1h-bP9"/>
+                    <constraint firstAttribute="trailing" secondItem="H0T-iO-aAG" secondAttribute="trailing" constant="16" id="grR-7Y-1zM"/>
+                    <constraint firstAttribute="trailing" secondItem="vnQ-Cv-bdO" secondAttribute="trailing" constant="23" id="iIc-ES-qWK"/>
+                    <constraint firstItem="H0T-iO-aAG" firstAttribute="leading" secondItem="Xts-M6-0u5" secondAttribute="leading" constant="16" id="lhr-1y-XBg"/>
+                    <constraint firstItem="H0T-iO-aAG" firstAttribute="top" secondItem="K5q-zJ-R8s" secondAttribute="bottom" constant="24" id="nS8-DQ-k9N"/>
+                    <constraint firstItem="K5q-zJ-R8s" firstAttribute="top" secondItem="ZCq-tf-PiQ" secondAttribute="bottom" constant="35" id="njq-oc-y8d"/>
+                    <constraint firstItem="vnQ-Cv-bdO" firstAttribute="leading" secondItem="Qdl-AR-qTe" secondAttribute="trailing" constant="20" id="tlW-vS-ph3"/>
+                </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <viewLayoutGuide key="safeArea" id="RL2-Fk-Doa"/>
             <connections>
-                <outlet property="profileImg" destination="A04-qz-6Dx" id="6Zu-95-Jow"/>
+                <outlet property="area" destination="ZCq-tf-PiQ" id="adj-bR-pwz"/>
+                <outlet property="mainImage" destination="Qdl-AR-qTe" id="RiJ-y9-4Hu"/>
+                <outlet property="register" destination="RIo-D0-OLZ" id="hmg-Fs-iyj"/>
+                <outlet property="title" destination="vnQ-Cv-bdO" id="jVb-I1-uh9"/>
             </connections>
-            <point key="canvasLocation" x="138.40579710144928" y="117.52232142857142"/>
+            <point key="canvasLocation" x="136.95652173913044" y="290.95982142857139"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="myPageDefault" width="63" height="63"/>
-    </resources>
 </document>

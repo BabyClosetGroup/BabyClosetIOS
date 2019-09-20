@@ -9,22 +9,26 @@
 import UIKit
 
 class IncompleteTVC: UITableViewCell {
-
-    @IBOutlet weak var profileImg: UIImageView!
+    @IBOutlet weak var mainImage: UIView!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var area: UILabel!
+    @IBOutlet weak var register: UILabel!
+    var postIdx: Int?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        let height = profileImg.frame.height / 2
-        profileImg.roundCorners(corners: [.allCorners], radius: height)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
     @IBAction func sharingAction(_ sender: Any) {
         let storyboard = UIStoryboard(name: "MyPage", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MyPageShareDetailVC") as! MyPageShareDetailVC
+        vc.postIdx = postIdx
         self.window?.rootViewController?.present(vc, animated: true)
     }
     
 }
+
+

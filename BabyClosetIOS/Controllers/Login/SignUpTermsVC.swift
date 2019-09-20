@@ -12,21 +12,18 @@ class SignUpTermsVC: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var subContainerView: UIView!
-    @IBOutlet weak var agreeAction: UIButton!
+    @IBOutlet weak var agreeButton: UIButton!
     
-    var agreeToAllTerm: Bool = false
-    var agreeToServiceTerm: Bool = false
-    var agreeToPersonalTerm: Bool = false
-    
-    @IBOutlet weak var allTerm: UIButton!
-    @IBOutlet weak var serviceTerm: UIButton!
-    @IBOutlet weak var personalTerm: UIButton!
+    @IBOutlet weak var allTerm: CheckBoxButton!
+    @IBOutlet weak var serviceTerm: CheckBoxButton!
+    @IBOutlet weak var personalTerm: CheckBoxButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        disableButton()
         containerView.roundCorners(corners: [.allCorners], radius: 8)
         subContainerView.roundCorners(corners: [.topLeft, .topRight], radius: 8)
-        agreeAction.roundCorners(corners: [.allCorners], radius: 8)
+        agreeButton.roundCorners(corners: [.allCorners], radius: 8)
         containerView.backgroundColor = UIColor.white
     }
     
@@ -36,40 +33,41 @@ class SignUpTermsVC: UIViewController {
     }
     @IBAction func termAction(_ sender: UIButton) {
         if sender == allTerm {
-            agreeToAllTerm = !agreeToAllTerm
-            agreeToServiceTerm = agreeToAllTerm
-            agreeToPersonalTerm = agreeToAllTerm
-        }
-        else if sender == serviceTerm {
-            if agreeToAllTerm && agreeToServiceTerm {
-                agreeToAllTerm = !agreeToAllTerm
+            serviceTerm.isChecked = !allTerm.isChecked
+            personalTerm.isChecked = !allTerm.isChecked
+            allTerm.isChecked = !allTerm.isChecked
+        } else if sender == serviceTerm {
+            if allTerm.isChecked && serviceTerm.isChecked {
+                allTerm.isChecked = false
             }
-            agreeToServiceTerm = !agreeToServiceTerm
-        }
-        else if sender == personalTerm {
-            if agreeToAllTerm && agreeToPersonalTerm {
-                agreeToAllTerm = !agreeToAllTerm
+            serviceTerm.isChecked = !serviceTerm.isChecked
+        } else if sender == personalTerm {
+            if allTerm.isChecked && personalTerm.isChecked {
+                allTerm.isChecked = false
             }
-            agreeToPersonalTerm = !agreeToPersonalTerm
+            personalTerm.isChecked = !personalTerm.isChecked
         }
         
-        if agreeToAllTerm {
-            allTerm.setImage(UIImage(named: "btn-checked"), for: .normal)
+        if serviceTerm.isChecked && personalTerm.isChecked {
+            enableButton()
         } else {
-            allTerm.setImage(UIImage(named: "btn-unchecked"), for: .normal)
+            disableButton()
         }
-        
-        if agreeToServiceTerm {
-            serviceTerm.setImage(UIImage(named: "btn-checked"), for: .normal)
-        } else {
-            serviceTerm.setImage(UIImage(named: "btn-unchecked"), for: .normal)
-        }
-        
-        if agreeToPersonalTerm {
-            personalTerm.setImage(UIImage(named: "btn-checked"), for: .normal)
-        } else {
-            personalTerm.setImage(UIImage(named: "btn-unchecked"), for: .normal)
-        }
+    }
+    
+    func enableButton(){
+        agreeButton.isEnabled = true
+        agreeButton.backgroundColor = .mainYellow
+    }
+    
+    func disableButton(){
+        agreeButton.isEnabled = false
+        agreeButton.backgroundColor = .gray118
+    }
+    
+    @IBAction func agreeAction(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
+        self.present(vc, animated: true, completion: nil)
     }
     
 }
