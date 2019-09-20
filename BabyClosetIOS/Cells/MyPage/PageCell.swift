@@ -11,7 +11,11 @@ import UIKit
 class PageCell: UICollectionViewCell {
     var firstView: Bool = true
     var numberOfRows = 0
+    var IncompleteData: [UncompleteShare] = []
+    var CompleteData: [CompleteShare] = []
+    
     @IBOutlet weak var tableView: UITableView!
+    var imageView : UIImageView = UIImageView()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,27 +25,87 @@ class PageCell: UICollectionViewCell {
         tableView.allowsSelection = false
         tableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         tableView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        
         tableView.register(UINib(nibName: "IncompleteTVC", bundle: nil), forCellReuseIdentifier: "IncompleteTVC")
         tableView.register(UINib(nibName: "CompleteTVC", bundle: nil), forCellReuseIdentifier: "CompleteTVC")
-        
     }
-    
 }
 
 extension PageCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfRows
+        if firstView {
+            return IncompleteData.count
+        }
+        else {
+            return CompleteData.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell : UITableViewCell
         if firstView {
-            cell = tableView.dequeueReusableCell(withIdentifier: "IncompleteTVC", for: indexPath) as! IncompleteTVC
+            let cell = tableView.dequeueReusableCell(withIdentifier: "IncompleteTVC", for: indexPath) as! IncompleteTVC
+            let data = IncompleteData[indexPath.row]
+            cell.title.text = data.postTitle
+            
+            if let area = data.areaName, area.count > 1 {
+                let attributedString = NSMutableAttributedString()
+                    .normal(area[0], font: UIFont.M12)
+                    .normal("외 \(area.count - 1)구", font: UIFont.L12)
+                cell.area.attributedText = attributedString
+            } else if let area = data.areaName{
+                let attributedString = NSMutableAttributedString()
+                    .normal(area[0], font: UIFont.M12)
+                cell.area.attributedText = attributedString
+            }
+            cell.postIdx = data.postIdx
+            cell.register.text = data.registerNumber
+            if let img = data.mainImage?.urlToImage() {
+                setImg(img: img, view: cell.mainImage)
+                cell.addSubview(imageView)
+            }
+            return cell
         } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "CompleteTVC", for: indexPath) as! CompleteTVC
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CompleteTVC", for: indexPath) as! CompleteTVC
+            let data = CompleteData[indexPath.row]
+            
+            cell.title.text = data.postName
+            
+            if let area = data.areaName, area.count > 1 {
+                let attributedString = NSMutableAttributedString()
+                    .normal(area[0], font: UIFont.M12)
+                    .normal("외 \(area.count - 1)구", font: UIFont.L12)
+                cell.area.attributedText = attributedString
+            } else if let area = data.areaName{
+                let attributedString = NSMutableAttributedString()
+                    .normal(area[0], font: UIFont.M12)
+                cell.area.attributedText = attributedString
+            }
+            
+            if data.receiverIsRated == 0 {
+                cell.isRated.text = "미부여"
+            } else {
+                cell.isRated.text = "부여"
+            }
+            if let img = data.mainImage?.urlToImage() {
+                setImg(img: img, view: cell.imgView)
+                cell.addSubview(imageView)
+            }
+            if let nickname = data.receiverNickname {
+                cell.shareWho.text = "\(nickname)님과의 나눔"
+            }
+            
+            cell.date.text = data.sharedDate
+            
+            return cell
         }
-        return cell
+    }
+    
+    func setImg( img: UIImage, view: UIView) {
+        imageView = UIImageView(frame: view.frame)
+        imageView.image = img
+        imageView.center = view.center
+        imageView.roundCorners(corners: [.allCorners], radius: 8)
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
     }
     
 }

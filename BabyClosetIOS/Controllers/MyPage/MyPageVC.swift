@@ -12,14 +12,14 @@ class MyPageVC: UIViewController {
     
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var infoLabel: UILabel!
-    let nickname = "정미"
+    var nickname = "nickname"
     let star = 4
     
     @IBOutlet var stars: [UIImageView]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        nickname = gsno(UserDefaults.standard.string(forKey: "nickname"))
         fillStar()
         self.navigationController?.navigationBar.tintColor = UIColor.gray38
         navigationController?.navigationBar.barTintColor = UIColor.white

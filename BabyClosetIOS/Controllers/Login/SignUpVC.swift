@@ -62,6 +62,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         } else if !gsno(nicknameTextField.text).isValid("^(?=[가-힣ㄱ-ㅎㅏ-ㅣ]).{1,8}") {
             self.simpleAlert(title: "닉네임을 조건에 맞게 다시 입력해주세요.", message: "")
         }
+            
         else {
             networkManager.signup(userId: gsno(idTextField.text), name: gsno(nameTextField.text), nickname: gsno(nicknameTextField.text), password: gsno(passwdTextField.text)){ [weak self] (result, error) in
                 if result == nil && error != nil {
@@ -98,12 +99,5 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             self.view.frame.origin.y = 0
             isEdit = false
         }
-    }
-}
-
-extension String {
-    func isValid(_ regex: String) -> Bool{
-        let strTest = NSPredicate(format: "SELF MATCHES %@", regex)
-        return strTest.evaluate(with: self)
     }
 }

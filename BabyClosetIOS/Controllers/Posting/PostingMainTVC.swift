@@ -37,6 +37,7 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
+        setGesture()
         picker.delegate = self
         tagCollectionView.delegate = self
         tagCollectionView.dataSource = self
@@ -111,6 +112,7 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         floatingButton?.addTarget(self, action: #selector(completeAction(_:)), for: .touchUpInside)
         constrainFloatingButtonToWindow()
     }
+    
     
     private func constrainFloatingButtonToWindow() {
         DispatchQueue.main.async {

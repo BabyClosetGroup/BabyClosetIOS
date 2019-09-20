@@ -13,20 +13,12 @@ class ApplyListTVC: UITableViewCell {
     var nickname = "정미"
     var star = 4
     
-    @IBOutlet var profileImg: UIImageView!
+    @IBOutlet var profileImg: UIView!
     @IBOutlet weak var starLabel: UILabel!
     @IBOutlet var stars: [UIImageView]!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        profileImg = UIImageView(image: UIImage(named: "myPageDefault"))
-        
-        let attributedString = NSMutableAttributedString()
-            .normal("\(nickname)님의 별점 ", font: UIFont.L16)
-            .normal("\(star)점", font: UIFont.B16)
-        starLabel.attributedText = attributedString
-        
-        fillStar()
     }
     
     func fillStar(){

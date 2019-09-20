@@ -11,8 +11,9 @@ import UIKit
 class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
     
     var myPageMenuBar = MyPageMenuBar()
-    
-    
+    let networkManager = NetworkManager()
+    var uncompleteShareList: [UncompleteShare] = []
+    var completeShareList: [CompleteShare] = []
     var pageCollectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .horizontal
@@ -30,6 +31,45 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
         pageCollectionView.allowsSelection = false
         setupMyPageMenuBar()
         setupPageCollectionView()
+        getUncompletedNetwork()
+        getCompletedNetwork()
+    }
+    
+    
+    func getUncompletedNetwork(){
+        networkManager.getUncompleteShare { [weak self] (success, fail, error) in
+            if success == nil && fail == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success == nil && fail != nil && error == nil {
+                if let msg = fail?.message {
+                    self?.simpleAlert(title: "", message: msg)
+                }
+            } else if success != nil && fail == nil && error == nil {
+                self?.uncompleteShareList = success?.data?.allPost ?? []
+                print(self?.uncompleteShareList)
+            } else {
+                print("엥")
+            }
+        }
+    }
+    
+    func getCompletedNetwork(){
+        networkManager.getCompleteShare { [weak self] (success, fail, error) in
+            if success == nil && fail == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success == nil && fail != nil && error == nil {
+                if let msg = fail?.message {
+                    self?.simpleAlert(title: "", message: msg)
+                }
+            } else if success != nil && fail == nil && error == nil {
+                self?.completeShareList = success?.data?.allPost ?? []
+                self?.pageCollectionView.reloadData()
+            } else {
+                print("엥")
+            }
+        }
     }
     
     func setupPageCollectionView(){
@@ -69,12 +109,16 @@ extension MyPageShareVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PageCell", for: indexPath) as! PageCell
         if indexPath.row == 0 {
             cell.firstView = true
-            cell.numberOfRows = 3
+            cell.IncompleteData = uncompleteShareList
+            cell.tableView.reloadData()
+            return cell
         } else {
             cell.firstView = false
-            cell.numberOfRows = 6
+            cell.CompleteData = completeShareList
+            cell.tableView.reloadData()
+            return cell
         }
-        return cell
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

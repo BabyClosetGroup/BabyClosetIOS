@@ -1,12 +1,12 @@
 //
-//  ResponseModel.swift
+//  ResponseBody.swift
 //  BabyClosetIOS
 //
 //  Created by 박경선 on 17/09/2019.
 //  Copyright © 2019 박경선. All rights reserved.
 //
 
-struct ResponseArray<T: Codable>: Codable {
+struct ResponseBody<T: Codable>: Codable {
     let status: Int?
     let success: Bool?
     let message: String?
