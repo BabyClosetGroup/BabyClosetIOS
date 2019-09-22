@@ -31,10 +31,12 @@ class CompleteTVC: UITableViewCell {
     @IBAction func showDetail(_ sender: Any) {
         let storyboard = UIStoryboard(name: "MyPage", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MyPageStarVC") as! MyPageStarVC
+        vc.userIdx = userIdx
         self.window?.rootViewController?.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func rating(_ sender: Any) {
+        
         let storyboard = UIStoryboard(name: "MyPage", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MyPageSharingInfoVC") as! MyPageSharingInfoVC
         

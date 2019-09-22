@@ -9,10 +9,12 @@
 import UIKit
 
 class MyPageSharingInfoVC: UIViewController {
-
+    
     var blackView = UIView()
-    let nickname = "정미"
-    let star = 3
+    var CompleteData: CompleteShare?
+    var nickname = ""
+    let networkManager = NetworkManager()
+    var userIdx: Int?
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var profileImg: UIImageView!
@@ -20,27 +22,51 @@ class MyPageSharingInfoVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUserDetailNetwork()
         view.backgroundColor = UIColor(white: 0.2, alpha: 0.4)
         view.isOpaque = false
-        
-        let attributedString = NSMutableAttributedString()
-            .normal("\(nickname)님", font: UIFont.B16)
-            .normal("의 별점", font: UIFont.L16)
-            .normal("\(star)점", font: UIFont.B16)
-        label.attributedText = attributedString
-        
         let height = profileImg.frame.height / 2
         profileImg.roundCorners(corners: [.allCorners], radius: height)
         
-        fillStar()
     }
     
+    func getUserDetailNetwork(){
+        print("\n\n\n dddddddd \n\n\n")
+        guard let userIdx = userIdx else {
+            print("\n\n\n errorerrorerrorerror \n\n\n")
+            return }
+        networkManager.getOtherUserInfo (userIdx: userIdx){ [weak self] (success, error) in
+            print("success  : ", success)
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success != nil && error == nil {
+                guard success?.success ?? false else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
+                }
+                if let nickname = success?.data?.nickname,
+                    let star = success?.data?.rating,
+                    let img = success?.data?.profileImage?.urlToImage() {
+                    let attributedString = NSMutableAttributedString()
+                        .normal("\(nickname)님", font: UIFont.B16)
+                        .normal("의 별점", font: UIFont.L16)
+                        .normal("\(star)점", font: UIFont.B16)
+                    self?.label.attributedText = attributedString
+                    self?.profileImg = UIImageView(image: img)
+                    self?.fillStar(star)
+                }
+            }
+        }
+    }
     
     @IBAction func allowAction(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
     
-    func fillStar() {
+    func fillStar(_ star: Int) {
         for i in 0 ... stars.count - 1 {
             stars[i].image = UIImage(named: "emptyStar64")
         }
@@ -48,4 +74,5 @@ class MyPageSharingInfoVC: UIViewController {
             stars[i].image = UIImage(named: "star64")
         }
     }
+    
 }

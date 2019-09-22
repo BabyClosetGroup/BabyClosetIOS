@@ -59,11 +59,12 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
             cell.postIdx = data.postIdx
             cell.register.text = data.registerNumber
             if let img = data.mainImage?.urlToImage() {
-                setImg(img: img, view: cell.mainImage)
+                imageView = cell.mainImage.setImgView(img: img)
                 cell.addSubview(imageView)
             }
             return cell
         } else {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "CompleteTVC", for: indexPath) as! CompleteTVC
             let data = CompleteData[indexPath.row]
             
@@ -86,7 +87,7 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
                 cell.isRated.text = "부여"
             }
             if let img = data.mainImage?.urlToImage() {
-                setImg(img: img, view: cell.imgView)
+                imageView = cell.imgView.setImgView(img: img)
                 cell.addSubview(imageView)
             }
             if let nickname = data.receiverNickname {
@@ -94,18 +95,7 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
             }
             cell.date.text = data.sharedDate
 //            cell.userIdx = data.
-            
             return cell
         }
     }
-    
-    func setImg( img: UIImage, view: UIView) {
-        imageView = UIImageView(frame: view.frame)
-        imageView.image = img
-        imageView.center = view.center
-        imageView.roundCorners(corners: [.allCorners], radius: 8)
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-    }
-    
 }

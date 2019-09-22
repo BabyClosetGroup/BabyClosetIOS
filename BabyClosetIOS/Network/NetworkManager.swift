@@ -157,8 +157,6 @@ class NetworkManager {
         
         let router = APIRouter(url: "/note", method: .get, parameters: nil, headers: header)
         NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<MessageList>?, error) in
-            print("\n\n  result  : ", result)
-            print("error  : ", error)
             guard error == nil else {
                 completion(nil, error)
                 return
@@ -166,4 +164,34 @@ class NetworkManager {
             completion(result,error)
         }
     }
+    
+    func getOtherUserInfo(userIdx: Int, completion: @escaping ( ResponseBody<OtherDetailInfo>?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        let router = APIRouter(url: "/rating/\(userIdx)", method: .get, parameters: nil, headers: header)
+        NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<OtherDetailInfo>?, error) in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            completion(result,error)
+        }
+    }
+    
+    func getDetailMessageList(userIdx: Int, completion: @escaping ( ResponseBody<MessageDetailModel>?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        
+        let router = APIRouter(url: "/note/\(userIdx)", method: .get, parameters: nil, headers: header)
+        NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<MessageDetailModel>?, error) in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            completion(result,error)
+        }
+    }
+    
 }

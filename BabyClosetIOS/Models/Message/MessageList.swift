@@ -6,13 +6,13 @@
 //  Copyright © 2019 박경선. All rights reserved.
 //
 struct MessageList: Codable {
-    let messages: [Message]?
+    let getNotes: [Message]?
     enum CodingKeys: String, CodingKey {
-        case messages = "messages"
+        case getNotes = "getNotes"
     }
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        messages = try values.decodeIfPresent([Message].self, forKey: .messages)
+        getNotes = try values.decodeIfPresent([Message].self, forKey: .getNotes)
     }
 }
 

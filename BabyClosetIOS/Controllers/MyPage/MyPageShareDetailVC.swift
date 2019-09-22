@@ -22,6 +22,7 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
     
     let networkManager = NetworkManager()
     var postIdx: Int?
+    var selectedUserIdx: Int?
     
     var requestList: [RequestShare] = []
     var selectIdx: IndexPath?
@@ -76,7 +77,6 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
     func getNetwork(){
         if let idx = postIdx {
             networkManager.getRequestShareList(postIdx: idx) { [weak self] (success, error) in
-                print("success  : ", success)
                 if success == nil && error != nil {
                     self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
                 }
@@ -106,6 +106,7 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
                     }
                     self?.requestList = success?.data?.applicants ?? []
                     self?.tableView.reloadData()
+                    
                 } else {
                 }
             }
@@ -119,7 +120,8 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
     @IBAction func selectAndNoteAction(_ sender: Any) {
         tableView.allowsSelection = true
         let storyboard = UIStoryboard(name: "Message", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "MessageRootNavigation") as! UINavigationController
+        let vc = storyboard.instantiateViewController(withIdentifier: "MessageDetailVC") as! MessageDetailVC
+        vc.otherUserIdx = selectedUserIdx ?? 0
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -162,10 +164,11 @@ extension MyPageShareDetailVC: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         activeButton()
         selectIdx = indexPath
+        selectedUserIdx = requestList[indexPath.row].applicantIdx ?? 0
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

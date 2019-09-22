@@ -36,11 +36,11 @@ class MessageMainVC: UIViewController {
                     if let msg = success?.message {
                         self?.simpleAlert(title: "", message: msg)
                     }
-                    self?.messages = success?.data?.messages ?? []
-                    self?.tableView.reloadData()
                     return
                 }
-                
+                self?.messages = success?.data?.getNotes ?? []
+                print("messages : ", self?.messages)
+                self?.tableView.reloadData()
             }
         }
     }
@@ -57,8 +57,12 @@ extension MessageMainVC: UITableViewDataSource, UITableViewDelegate {
         cell.other.text = data.nickname
         cell.date.text = data.createdTime
         cell.shortMsg.text = data.lastContent
-        cell.unreadCount.text = "+\(data.unreadCount)"
+        cell.unreadCount.text = "+\(data.unreadCount ?? 0)"
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageDetailVC") as! MessageDetailVC
+        self.present(vc, animated: true, completion: nil)
+    }
 }

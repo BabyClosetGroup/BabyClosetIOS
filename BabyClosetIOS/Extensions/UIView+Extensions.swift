@@ -61,6 +61,16 @@ extension UIView {
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
     }
+    
+    func setImgView( img: UIImage) -> UIImageView{
+        let imageView = UIImageView(frame: self.frame)
+        imageView.image = img
+        imageView.center = self.center
+        imageView.roundCorners(corners: [.allCorners], radius: 8)
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }
 }
 
 @IBDesignable extension UIView {
