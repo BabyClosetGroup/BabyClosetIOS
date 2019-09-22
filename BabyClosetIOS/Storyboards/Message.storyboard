@@ -26,12 +26,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BNF-OV-tdF">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BNF-OV-tdF">
                                 <rect key="frame" x="0.0" y="112" width="414" height="784"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MessageListTVC" rowHeight="60" id="wa6-9j-laF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MessageListTVC" rowHeight="60" id="wa6-9j-laF" customClass="MessageListTVC" customModule="BabyClosetIOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wa6-9j-laF" id="Omd-yU-8Dj">
@@ -86,6 +85,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="date" destination="BtE-C7-2gc" id="AWi-58-zrJ"/>
+                                            <outlet property="other" destination="jvb-Th-Lq4" id="ben-f3-E9R"/>
+                                            <outlet property="shortMsg" destination="Kfs-VU-nJU" id="clU-YX-Z1H"/>
+                                            <outlet property="unreadCount" destination="7dn-Dh-UVZ" id="mIT-lq-lGM"/>
                                             <segue destination="WRO-xD-YrS" kind="push" id="dYR-Jn-OYi"/>
                                         </connections>
                                     </tableViewCell>
@@ -93,6 +96,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BNF-OV-tdF" firstAttribute="leading" secondItem="96j-az-ksU" secondAttribute="leading" id="5Jz-qy-RK6"/>
+                            <constraint firstItem="BNF-OV-tdF" firstAttribute="top" secondItem="96j-az-ksU" secondAttribute="top" constant="24" id="C5n-EX-iAc"/>
+                            <constraint firstItem="96j-az-ksU" firstAttribute="trailing" secondItem="BNF-OV-tdF" secondAttribute="trailing" id="ThP-jq-B3b"/>
+                            <constraint firstItem="BNF-OV-tdF" firstAttribute="bottom" secondItem="96j-az-ksU" secondAttribute="bottom" constant="34" id="xpe-oG-Pbf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="96j-az-ksU"/>
                     </view>
                     <navigationItem key="navigationItem" title="쪽지함" id="Fid-sh-B3w"/>
@@ -293,7 +302,7 @@
         <!--Navigation Controller-->
         <scene sceneID="sDe-gr-oGB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A1e-7j-t0b" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MessageRootNavigation" automaticallyAdjustsScrollViewInsets="NO" id="A1e-7j-t0b" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YPs-84-lsu">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

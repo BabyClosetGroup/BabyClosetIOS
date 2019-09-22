@@ -51,63 +51,83 @@ class NetworkManager {
         }
     }
     
+    func saveRating(userIdx: Int, rating: Int, postIdx: Int, completion: @escaping ( ErrorModel?, Error?) -> Void) {
+        let header : HTTPHeaders = [
+            "token": jwt
+        ]
+        let parameters = [
+            "userIdx": userIdx,
+            "rating": rating,
+            "postIdx": postIdx
+        ]
+        
+        let router = APIRouter(url:"/rating", method: .post, parameters: parameters, headers: header)
+        NetworkRequester(with: router).signUpRequest { (result: ErrorModel?, error)  in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            completion(result, error)
+        }
+    }
     
-    func getUserInfo( completion: @escaping ( ResponseBody<UserInfo>?, ErrorModel?, Error?) -> Void) {
+    
+    func getUserInfo( completion: @escaping ( ResponseBody<UserInfo>?, Error?) -> Void) {
         let header : HTTPHeaders = [
             "token": jwt
         ]
         let router = APIRouter(url: "/user", method: .get, parameters: nil, headers: header)
-        NetworkRequester(with: router).signInRequest { (userModel: ResponseBody<UserInfo>?, errorModel: ErrorModel? , error)  in
+        NetworkRequester(with: router).signUpRequest { ( result: ResponseBody<UserInfo>?, error) in
             guard error == nil else {
-                completion(nil, nil,error)
+                completion(nil,error)
                 return
             }
-            completion(userModel, errorModel, error)
+            completion(result,error)
         }
     }
     
-    func getUncompleteShare( completion: @escaping ( ResponseBody<UncompleteShareList>?, ErrorModel?, Error?) -> Void) {
+    func getUncompleteShare( completion: @escaping ( ResponseBody<UncompleteShareList>?, Error?) -> Void) {
         let header : HTTPHeaders = [
             "token": jwt
         ]
         
         let router = APIRouter(url: "/share/uncompleted", method: .get, parameters: nil, headers: header)
-        NetworkRequester(with: router).signInRequest { (res: ResponseBody<UncompleteShareList>?, errorModel: ErrorModel? , error)  in
+        NetworkRequester(with: router).signUpRequest { ( result: ResponseBody<UncompleteShareList>?, error) in
             guard error == nil else {
-                completion(nil, nil,error)
+                completion(nil,error)
                 return
             }
-            completion(res, errorModel, error)
+            completion(result,error)
         }
     }
     
     
-    func getCompleteShare( completion: @escaping ( ResponseBody<CompleteShareList>?, ErrorModel?, Error?) -> Void) {
+    func getCompleteShare( completion: @escaping ( ResponseBody<CompleteShareList>?, Error?) -> Void) {
         let header : HTTPHeaders = [
             "token": jwt
         ]
         
         let router = APIRouter(url: "/share/completed", method: .get, parameters: nil, headers: header)
-        NetworkRequester(with: router).signInRequest { (res: ResponseBody<CompleteShareList>?, errorModel: ErrorModel? , error)  in
+        NetworkRequester(with: router).signUpRequest { ( result: ResponseBody<CompleteShareList>?, error) in
             guard error == nil else {
-                completion(nil, nil,error)
+                completion(nil,error)
                 return
             }
-            completion(res, errorModel, error)
+            completion(result,error)
         }
     }
     
-    func getRequestShareList(postIdx: Int, completion: @escaping ( ResponseBody<RequestShareList>?, ErrorModel?, Error?) -> Void) {
+    func getRequestShareList(postIdx: Int, completion: @escaping ( ResponseBody<RequestShareList>?, Error?) -> Void) {
         let header:HTTPHeaders = [
             "token": jwt
         ]
         let router = APIRouter(url: "/share/\(postIdx)", method: .get, parameters: nil, headers: header)
-        NetworkRequester(with: router).signInRequest { (list: ResponseBody<RequestShareList>?, errorModel: ErrorModel? , error)  in
+        NetworkRequester(with: router).signUpRequest { ( result: ResponseBody<RequestShareList>?, error) in
             guard error == nil else {
-                completion(nil, nil,error)
+                completion(nil,error)
                 return
             }
-            completion(list, errorModel, error)
+            completion(result,error)
         }
     }
     
@@ -119,7 +139,7 @@ class NetworkManager {
             "nickname": nickname,
             "password": password
         ]
-
+        
         let router = APIRouter(url: "/user", method: .put, parameters: parameters, headers: header, data: image)
         NetworkRequester(with: router).requestMultipartFormData{ (Img: ResponseBody<UserInfo>?, errorModel :ErrorModel? , error) in
             guard error == nil else {
@@ -127,6 +147,23 @@ class NetworkManager {
                 return
             }
             completion(Img,errorModel,error)
+        }
+    }
+    
+    func getMessageList(completion: @escaping ( ResponseBody<MessageList>?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        
+        let router = APIRouter(url: "/note", method: .get, parameters: nil, headers: header)
+        NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<MessageList>?, error) in
+            print("\n\n  result  : ", result)
+            print("error  : ", error)
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            completion(result,error)
         }
     }
 }

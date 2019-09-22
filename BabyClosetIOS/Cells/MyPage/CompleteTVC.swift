@@ -16,6 +16,8 @@ class CompleteTVC: UITableViewCell {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var shareWho: UILabel!
     @IBOutlet weak var isRated: UILabel!
+    let userIdx: Int? = 0
+    let postIdx: Int? = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,6 +37,7 @@ class CompleteTVC: UITableViewCell {
     @IBAction func rating(_ sender: Any) {
         let storyboard = UIStoryboard(name: "MyPage", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MyPageSharingInfoVC") as! MyPageSharingInfoVC
+        
         vc.modalPresentationStyle = .overCurrentContext
         self.window?.rootViewController?.present(vc, animated: false, completion: nil)
     }

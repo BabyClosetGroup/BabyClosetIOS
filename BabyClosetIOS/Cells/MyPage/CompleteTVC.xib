@@ -119,18 +119,18 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="rating:" destination="gTV-IL-0wX" eventType="touchUpInside" id="n2a-wa-nYL"/>
+                                        <action selector="showDetail:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Xpg-YA-nBX"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tln-lc-JhJ">
-                                    <rect key="frame" x="244" y="85" width="69" height="18"/>
+                                    <rect key="frame" x="244" y="80" width="69" height="28"/>
                                     <color key="backgroundColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="18" id="b8q-v4-Gun"/>
                                         <constraint firstAttribute="width" constant="69" id="cmV-uZ-0Rt"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="SeoulNamsanB" family="SeoulNamsan" pointSize="13"/>
-                                    <state key="normal" title="별점주기">
+                                    <state key="normal" title="정보보기">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
@@ -139,7 +139,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="showDetail:" destination="gTV-IL-0wX" eventType="touchUpInside" id="U9C-bs-99U"/>
+                                        <action selector="rating:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Yf0-KG-NWS"/>
                                     </connections>
                                 </button>
                             </subviews>

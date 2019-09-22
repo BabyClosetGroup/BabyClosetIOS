@@ -27,6 +27,7 @@
 		C5001AD4231BA8E000E511BD /* SignUpEndVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AD3231BA8E000E511BD /* SignUpEndVC.swift */; };
 		C5001AD6231BADBD00E511BD /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001AD5231BADBD00E511BD /* UIColor+Extensions.swift */; };
 		C5071FEB233140BD0099F895 /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5071FEA233140BD0099F895 /* CheckBoxButton.swift */; };
+		C5203ACA23376FC100D378AF /* MessageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5203AC923376FC100D378AF /* MessageList.swift */; };
 		C521CD662331FFF3000D2F6D /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C521CD652331FFF3000D2F6D /* UserInfo.swift */; };
 		C532038E23201F3200EFDDB6 /* PostingMainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532038D23201F3200EFDDB6 /* PostingMainTVC.swift */; };
 		C532039023201F5700EFDDB6 /* PostingCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532038F23201F5700EFDDB6 /* PostingCategoryVC.swift */; };
@@ -100,6 +101,7 @@
 		C5001AD3231BA8E000E511BD /* SignUpEndVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndVC.swift; sourceTree = "<group>"; };
 		C5001AD5231BADBD00E511BD /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		C5071FEA233140BD0099F895 /* CheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
+		C5203AC923376FC100D378AF /* MessageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageList.swift; sourceTree = "<group>"; };
 		C521CD652331FFF3000D2F6D /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		C532038D23201F3200EFDDB6 /* PostingMainTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingMainTVC.swift; sourceTree = "<group>"; };
 		C532038F23201F5700EFDDB6 /* PostingCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingCategoryVC.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				C5BF7B25231E6F6400790AE4 /* MessageDetailModel.swift */,
+				C5203AC923376FC100D378AF /* MessageList.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				C5EC1664231E1FE900ECE7DB /* ApplyListTVC.swift in Sources */,
 				C55B7AB9231D744B00CCE4BD /* MyPageSharingInfoVC.swift in Sources */,
 				C5001AD0231BA62700E511BD /* SignUpVC.swift in Sources */,
+				C5203ACA23376FC100D378AF /* MessageList.swift in Sources */,
 				C55BBD9A231C159700C7AD9E /* MyPageVC.swift in Sources */,
 				C5001AC0231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift in Sources */,
 				C5001ABA231A8D5400E511BD /* UIImageView+Extensions.swift in Sources */,

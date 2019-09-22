@@ -74,7 +74,7 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
                     .normal(area[0], font: UIFont.M12)
                     .normal("외 \(area.count - 1)구", font: UIFont.L12)
                 cell.area.attributedText = attributedString
-            } else if let area = data.areaName{
+            } else if let area = data.areaName {
                 let attributedString = NSMutableAttributedString()
                     .normal(area[0], font: UIFont.M12)
                 cell.area.attributedText = attributedString
@@ -92,8 +92,8 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
             if let nickname = data.receiverNickname {
                 cell.shareWho.text = "\(nickname)님과의 나눔"
             }
-            
             cell.date.text = data.sharedDate
+//            cell.userIdx = data.
             
             return cell
         }

@@ -75,23 +75,23 @@ class MyPageUserInfoVC: UIViewController, UITextFieldDelegate {
     }
     
     func getUserInfoNetwork(){
-        networkManager.getUserInfo { [weak self] (success, fail, error) in
-            if success == nil && fail == nil && error != nil {
+        networkManager.getUserInfo { [weak self] (success, error) in
+            if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
             }
-            else if success == nil && fail != nil && error == nil {
-                if let msg = fail?.message {
-                    self?.simpleAlert(title: "", message: msg)
+            else if success != nil && error == nil {
+                guard let stat = success?.status else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
                 }
-            } else if success != nil && fail == nil && error == nil {
                 self?.nickNameTF.text = success?.data?.nickname
                 self?.nameTF.text = success?.data?.username
                 self?.idTF.text = success?.data?.userId
                 let img = success?.data?.profileImage?.urlToImage()
                 self?.profileImg.setImage(img, for: .normal)
                 self?.passwdTF.text = "비밀번호를입력"
-            } else {
-                print("엥")
             }
             self?.userNickname = (self?.nickNameTF.text)!
         }
@@ -120,14 +120,14 @@ class MyPageUserInfoVC: UIViewController, UITextFieldDelegate {
                 if success == nil && fail == nil && error != nil {
                     self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
                 }
-                else if success == nil && fail != nil && error == nil {
-                    if let msg = fail?.message {
-                        self?.simpleAlert(title: "", message: msg)
+                else if success == nil && error == nil {
+                    guard let stat = success?.status, stat < 300 else {
+                        if let msg = fail?.message {
+                            self?.simpleAlert(title: "", message: msg)
+                        }
+                        return
                     }
-                } else if success != nil && fail == nil && error == nil {
                     self?.simpleAlert(title: "", message: "변경되었습니다.")
-                } else {
-                    print("엥")
                 }
             }
         }

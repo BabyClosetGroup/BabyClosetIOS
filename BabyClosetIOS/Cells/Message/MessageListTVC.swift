@@ -10,6 +10,11 @@ import UIKit
 
 class MessageListTVC: UITableViewCell {
 
+    @IBOutlet weak var other: UILabel!
+    @IBOutlet weak var shortMsg: UILabel!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var unreadCount: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

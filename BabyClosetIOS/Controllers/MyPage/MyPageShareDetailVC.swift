@@ -33,8 +33,9 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 103.0
+        tableView.allowsSelection = true
         inactiveButton()
-        setGesture()
+//        setGesture()
     }
     
     func setGesture() {
@@ -74,16 +75,18 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
     
     func getNetwork(){
         if let idx = postIdx {
-            networkManager.getRequestShareList(postIdx: idx) { [weak self] (success, fail, error) in
+            networkManager.getRequestShareList(postIdx: idx) { [weak self] (success, error) in
                 print("success  : ", success)
-                if success == nil && fail == nil && error != nil {
+                if success == nil && error != nil {
                     self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
                 }
-                else if success == nil && fail != nil && error == nil {
-                    if let msg = fail?.message {
-                        self?.simpleAlert(title: "", message: msg)
+                else if success != nil && error == nil {
+                    guard let stat = success?.status, stat < 300 else {
+                        if let msg = success?.message {
+                            self?.simpleAlert(title: "", message: msg)
+                        }
+                        return
                     }
-                } else if success != nil && fail == nil && error == nil {
                     let postInfo = success?.data?.post
                     self?.productName.text = postInfo?.postTitle
                     
@@ -115,15 +118,17 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
     
     @IBAction func selectAndNoteAction(_ sender: Any) {
         tableView.allowsSelection = true
-        // 대충 쪽지뷰로 넘어간다는 내용
+        let storyboard = UIStoryboard(name: "Message", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MessageRootNavigation") as! UINavigationController
+        self.present(vc, animated: true, completion: nil)
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if let idx = selectIdx {
-//        tableView.deselectRow(at: idx, animated: true)
-//        inactiveButton()
-//        }
-//    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let idx = selectIdx {
+            tableView.deselectRow(at: idx, animated: true)
+            inactiveButton()
+        }
+    }
 }
 
 extension MyPageShareDetailVC: UITableViewDataSource, UITableViewDelegate {
@@ -137,6 +142,7 @@ extension MyPageShareDetailVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if !requestList.isEmpty {
+            tableView.allowsSelection = true
             let cell = tableView.dequeueReusableCell(withIdentifier: "applyListCell", for: indexPath) as! ApplyListTVC
             let data = requestList[indexPath.row]
             if let img = data.profileImage?.urlToImage(){
