@@ -9,10 +9,11 @@
 import UIKit
 
 class MessageMainVC: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     let networkManager = NetworkManager()
     var messages: [Message] = []
+    var selectedIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +64,7 @@ extension MessageMainVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageDetailVC") as! MessageDetailVC
+        vc.otherUserIdx = messages[indexPath.row].userIdx ?? 0
         self.present(vc, animated: true, completion: nil)
     }
 }

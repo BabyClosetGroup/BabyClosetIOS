@@ -14,7 +14,7 @@ class MyPageSharingInfoVC: UIViewController {
     var CompleteData: CompleteShare?
     var nickname = ""
     let networkManager = NetworkManager()
-    var userIdx: Int?
+    var receiveIdx: Int?
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var profileImg: UIImageView!
@@ -31,12 +31,7 @@ class MyPageSharingInfoVC: UIViewController {
     }
     
     func getUserDetailNetwork(){
-        print("\n\n\n dddddddd \n\n\n")
-        guard let userIdx = userIdx else {
-            print("\n\n\n errorerrorerrorerror \n\n\n")
-            return }
-        networkManager.getOtherUserInfo (userIdx: userIdx){ [weak self] (success, error) in
-            print("success  : ", success)
+        networkManager.getOtherUserInfo (userIdx: gino(receiveIdx)){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
             }
@@ -52,11 +47,11 @@ class MyPageSharingInfoVC: UIViewController {
                     let img = success?.data?.profileImage?.urlToImage() {
                     let attributedString = NSMutableAttributedString()
                         .normal("\(nickname)님", font: UIFont.B16)
-                        .normal("의 별점", font: UIFont.L16)
+                        .normal("의 별점 ", font: UIFont.L16)
                         .normal("\(star)점", font: UIFont.B16)
                     self?.label.attributedText = attributedString
                     self?.profileImg = UIImageView(image: img)
-                    self?.fillStar(star)
+                    self?.fillStar(Int(star))
                 }
             }
         }

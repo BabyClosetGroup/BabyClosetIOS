@@ -112,11 +112,8 @@ class MyPageUserInfoVC: UIViewController, UITextFieldDelegate {
         } else {
             userPw = gsno(passwdTF.text)
         }
-        print("userNickname  : ", userNickname)
-        print("userPw  : ", userPw)
         if let image = profileImg.currentImage?.jpegData(compressionQuality: 1.0) {
             networkManager.setUserInfo(nickname: userNickname, password: userPw, image: image){ [weak self] (success, fail, error) in
-                print("setUserInfo, success : ", success)
                 if success == nil && fail == nil && error != nil {
                     self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
                 }

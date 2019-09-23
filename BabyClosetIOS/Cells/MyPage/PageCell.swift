@@ -84,17 +84,21 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
             if data.receiverIsRated == 0 {
                 cell.isRated.text = "미부여"
             } else {
-                cell.isRated.text = "부여"
+                if let rating = data.rating {
+                    cell.isRated.text = "\(rating)점"
+                }
             }
             if let img = data.mainImage?.urlToImage() {
                 imageView = cell.imgView.setImgView(img: img)
                 cell.addSubview(imageView)
             }
+            
             if let nickname = data.receiverNickname {
                 cell.shareWho.text = "\(nickname)님과의 나눔"
             }
             cell.date.text = data.sharedDate
-//            cell.userIdx = data.
+            cell.receiveIdx = data.receiverIdx
+            cell.postIdx = data.postIdx
             return cell
         }
     }

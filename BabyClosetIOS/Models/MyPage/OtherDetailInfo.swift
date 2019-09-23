@@ -9,12 +9,12 @@
 struct OtherDetailInfo: Codable {
     let userIdx: Int?
     let nickname: String?
-    let rating: Int?
+    let rating: Float?
     let profileImage: String?
     
     enum CodingKeys: String, CodingKey {
-        case userIdx = "applicantIdx"
-        case nickname = "applicantNickname"
+        case userIdx = "userIdx"
+        case nickname = "nickname"
         case rating = "rating"
         case profileImage = "profileImage"
     }
@@ -23,7 +23,7 @@ struct OtherDetailInfo: Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         userIdx = try values.decodeIfPresent(Int.self, forKey: .userIdx)
         nickname = try values.decodeIfPresent(String.self, forKey: .nickname)
-        rating = try values.decodeIfPresent(Int.self, forKey: .rating)
+        rating = try values.decodeIfPresent(Float.self, forKey: .rating)
         profileImage = try values.decodeIfPresent(String.self, forKey: .profileImage)
     }
 }

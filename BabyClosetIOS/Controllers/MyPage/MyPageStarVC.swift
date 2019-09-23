@@ -70,6 +70,10 @@ class MyPageStarVC: UIViewController {
         print("\n\n\n abcdefghijklmnop \n\n")
         guard let userIdx = userIdx else { return }
         guard let postIdx = postIdx else { return }
+        
+        print("\n\n\n\n userIdx : ", userIdx)
+        print("\n\n\n\n postIdx : ", postIdx)
+        
         networkManager.saveRating(userIdx: userIdx, rating: rating, postIdx: postIdx){ [weak self] (success, error) in
             print("success  : ", success)
             if success == nil && error != nil {

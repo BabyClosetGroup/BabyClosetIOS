@@ -1,41 +1,42 @@
 //
-//  CompleteShareList.swift
+//  ReceiveShareList.swift
 //  BabyClosetIOS
 //
-//  Created by 박경선 on 19/09/2019.
+//  Created by 박경선 on 23/09/2019.
 //  Copyright © 2019 박경선. All rights reserved.
 //
 
-struct CompleteShareList: Codable {
-    let allPost: [CompleteShare]?
+struct ReceiveShareList: Codable {
+    let allPost: [ReceiveShare]?
     enum CodingKeys: String, CodingKey {
         case allPost = "allPost"
     }
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        allPost = try values.decodeIfPresent([CompleteShare].self, forKey: .allPost)
+        allPost = try values.decodeIfPresent([ReceiveShare].self, forKey: .allPost)
     }
 }
 
-struct CompleteShare: Codable {
+struct ReceiveShare: Codable {
     let postIdx: Int?
-    let receiverIdx: Int?
-    let receiverIsRated: Int?
     let postName: String?
     let mainImage: String?
-    let receiverNickname : String?
+    
+    let senderIdx: Int?
+    let senderNickname: String?
     let sharedDate: String?
-    let rating : Float?
+    let senderIsRated: Int?
+    let rating: Float?
     let areaName: [String]?
     
     enum CodingKeys: String, CodingKey {
         case postIdx = "postIdx"
-        case receiverIdx = "receiverIdx"
-        case receiverIsRated = "receiverIsRated"
         case postName = "postName"
         case mainImage = "mainImage"
-        case receiverNickname = "receiverNickname"
+        case senderIdx = "senderIdx"
+        case senderNickname = "senderNickname"
         case sharedDate = "sharedDate"
+        case senderIsRated = "senderIsRated"
         case rating = "rating"
         case areaName = "areaName"
     }
@@ -43,12 +44,12 @@ struct CompleteShare: Codable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         postIdx = try values.decodeIfPresent(Int.self, forKey: .postIdx)
-        receiverIdx = try values.decodeIfPresent(Int.self, forKey: .receiverIdx)
-        receiverIsRated = try values.decodeIfPresent(Int.self, forKey: .receiverIsRated)
         postName = try values.decodeIfPresent(String.self, forKey: .postName)
         mainImage = try values.decodeIfPresent(String.self, forKey: .mainImage)
-        receiverNickname = try values.decodeIfPresent(String.self, forKey: .receiverNickname)
+        senderIdx = try values.decodeIfPresent(Int.self, forKey: .senderIdx)
+        senderNickname = try values.decodeIfPresent(String.self, forKey: .senderNickname)
         sharedDate = try values.decodeIfPresent(String.self, forKey: .sharedDate)
+        senderIsRated = try values.decodeIfPresent(Int.self, forKey: .senderIsRated)
         rating = try values.decodeIfPresent(Float.self, forKey: .rating)
         areaName = try values.decodeIfPresent([String].self, forKey: .areaName)
     }

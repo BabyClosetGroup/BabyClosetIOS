@@ -29,9 +29,9 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDel
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sendContainer: UIView!
     
-    var keyboardShown:Bool = false // 키보드 상태 확인
-    var originY:CGFloat? // 오브젝트의 기본 위치
-    var otherUserIdx: Int = 0
+    var keyboardShown: Bool = false // 키보드 상태 확인
+    var originY: CGFloat? // 오브젝트의 기본 위치
+    var otherUserIdx: Int?
     let networkManager = NetworkManager()
     
     override func viewDidLoad() {
@@ -63,7 +63,7 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDel
     }
     
     func getMessageNetwork(){
-        networkManager.getDetailMessageList(userIdx: otherUserIdx){ [weak self] (success, error) in
+        networkManager.getDetailMessageList(userIdx: gino(otherUserIdx)){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
             }

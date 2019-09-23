@@ -22,7 +22,6 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
     
     let networkManager = NetworkManager()
     var postIdx: Int?
-    var selectedUserIdx: Int?
     
     var requestList: [RequestShare] = []
     var selectIdx: IndexPath?
@@ -40,12 +39,12 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
     }
     
     func setGesture() {
-        let tapGesture = UITapGestureRecognizer(target: tableView.backgroundView, action: Selector("hideKeyboard"))
+        let tapGesture = UITapGestureRecognizer(target: tableView.backgroundView, action: #selector(hideKeyboard(_:)))
         tapGesture.cancelsTouchesInView = true
         tableView.addGestureRecognizer(tapGesture)
     }
     
-    @objc func hideKeyboard() {
+    @objc func hideKeyboard(_ sender: Any) {
         if let idx = selectIdx {
             tableView.deselectRow(at: idx, animated: true)
             inactiveButton()
@@ -107,7 +106,6 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
                     self?.requestList = success?.data?.applicants ?? []
                     self?.tableView.reloadData()
                     
-                } else {
                 }
             }
         }
@@ -121,7 +119,7 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
         tableView.allowsSelection = true
         let storyboard = UIStoryboard(name: "Message", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MessageDetailVC") as! MessageDetailVC
-        vc.otherUserIdx = selectedUserIdx ?? 0
+        vc.otherUserIdx = gino(requestList[gino(selectIdx?.row)].applicantIdx)
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -168,7 +166,6 @@ extension MyPageShareDetailVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         activeButton()
         selectIdx = indexPath
-        selectedUserIdx = requestList[indexPath.row].applicantIdx ?? 0
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

@@ -86,6 +86,21 @@ class NetworkManager {
         }
     }
     
+    func getReceivedShare( completion: @escaping ( ResponseBody<ReceiveShareList>?, Error?) -> Void) {
+        let header : HTTPHeaders = [
+            "token": jwt
+        ]
+        
+        let router = APIRouter(url: "/share/received", method: .get, parameters: nil, headers: header)
+        NetworkRequester(with: router).signUpRequest { ( result: ResponseBody<ReceiveShareList>?, error) in
+            guard error == nil else {
+                completion(nil,error)
+                return
+            }
+            completion(result,error)
+        }
+    }
+    
     func getUncompleteShare( completion: @escaping ( ResponseBody<UncompleteShareList>?, Error?) -> Void) {
         let header : HTTPHeaders = [
             "token": jwt

@@ -66,6 +66,7 @@
 		C5BF7B21231E570500790AE4 /* MessageDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B1F231E570500790AE4 /* MessageDetailVC.swift */; };
 		C5BF7B23231E5A5000790AE4 /* MessageBubbleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B22231E5A5000790AE4 /* MessageBubbleTVC.swift */; };
 		C5BF7B26231E6F6400790AE4 /* MessageDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF7B25231E6F6400790AE4 /* MessageDetailModel.swift */; };
+		C5CDBC602338A71700AE66CD /* ReceiveShareList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CDBC5F2338A71700AE66CD /* ReceiveShareList.swift */; };
 		C5E254AE23262D56006723CF /* PostingCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E254AD23262D56006723CF /* PostingCategoryCell.xib */; };
 		C5E2EFC3232CF77600B57BA1 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E2EFC2232CF77600B57BA1 /* APIRouter.swift */; };
 		C5E2EFC5232CF90C00B57BA1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E2EFC4232CF90C00B57BA1 /* NetworkManager.swift */; };
@@ -142,6 +143,7 @@
 		C5BF7B1F231E570500790AE4 /* MessageDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailVC.swift; sourceTree = "<group>"; };
 		C5BF7B22231E5A5000790AE4 /* MessageBubbleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleTVC.swift; sourceTree = "<group>"; };
 		C5BF7B25231E6F6400790AE4 /* MessageDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailModel.swift; sourceTree = "<group>"; };
+		C5CDBC5F2338A71700AE66CD /* ReceiveShareList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveShareList.swift; sourceTree = "<group>"; };
 		C5E254AD23262D56006723CF /* PostingCategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostingCategoryCell.xib; sourceTree = "<group>"; };
 		C5E2EFC2232CF77600B57BA1 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		C5E2EFC4232CF90C00B57BA1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				C5743AB7233378F900F4CE85 /* CompleteShareList.swift */,
 				C5852F342334C1AD0036F10D /* RequestShareList.swift */,
 				C5203ACB2337988700D378AF /* OtherDetailInfo.swift */,
+				C5CDBC5F2338A71700AE66CD /* ReceiveShareList.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				C5EC166E231E344600ECE7DB /* MessageListTVC.swift in Sources */,
 				C521CD662331FFF3000D2F6D /* UserInfo.swift in Sources */,
 				C5001ABE231A8DB200E511BD /* UIViewController+Extensions.swift in Sources */,
+				C5CDBC602338A71700AE66CD /* ReceiveShareList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
