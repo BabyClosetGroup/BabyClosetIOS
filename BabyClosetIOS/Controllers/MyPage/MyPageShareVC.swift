@@ -82,7 +82,7 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
         self.view.addSubview(pageCollectionView)
         pageCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         pageCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        pageCollectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        pageCollectionView.heightAnchor.constraint(equalToConstant: self.view.frame.height - 40).isActive = true
         pageCollectionView.topAnchor.constraint(equalTo: self.myPageMenuBar.bottomAnchor).isActive = true
     }
     
@@ -111,11 +111,13 @@ extension MyPageShareVC: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.firstView = true
             cell.IncompleteData = uncompleteShareList
             cell.tableView.reloadData()
+            cell.isLoading = false
             return cell
         } else {
             cell.firstView = false
             cell.CompleteData = completeShareList
             cell.tableView.reloadData()
+            cell.isLoading = false
             return cell
         }
         

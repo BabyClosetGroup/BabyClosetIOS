@@ -12,20 +12,12 @@
 
 import UIKit
 
-class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDelegate {
+class MessageDetailVC: UIViewController, UITextViewDelegate, UINavigationBarDelegate {
     var otherUser = ""
     var messages: [MessageDetailList] = []
     @IBOutlet weak var naviBar: UINavigationBar!
     @IBOutlet weak var backBarButton: UIBarButtonItem!
-    
-    //        = [
-    //        MessageDetailModel( content: "축하합니다. 여아 투피스 나눔자로 선정 되셨어요!", created: "2019/05/10", title: "보낸 쪽지"),
-    //        MessageDetailModel( content: "우와! 감사합니다:) 지역이 중랑구 이시던데 저와 매우 가깝군요! 혹시 나눔날은 언제가 편하신가요? 저는 지금 육아휴직중이라 언제든지 괜찮아요. 편하신 요일과 시간 정해서 알려 주세요 !", created: "2019/05/11", title: "받은 쪽지"),
-    //        MessageDetailModel( content: "우와! 감사합니다:) 지역이 중랑구 이시던데 저와 매우 가깝군요! 혹시 나눔날은 언제가 편하신가요? 저는 지금 육아휴직중이라 언제든지 괜찮아요. 편하신 요일과 시간 정해서 알려 주세요 ", created: "2019/05/12", title: "보낸 쪽지"),
-    //        MessageDetailModel( content: "어머 저는 노원구 살아서 중랑구가 편하긴 한데 혹시 회기쪽이면 친정이 그 근처라서 가능 할 것 같아요.", created: "2019/05/12", title: "받은 쪽지"),
-    //    ]
-    
-    @IBOutlet weak var messageTF: UITextField!
+    @IBOutlet weak var messageTF: UITextView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sendContainer: UIView!
     
@@ -57,9 +49,7 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDel
     }
     
     @objc private func goBack(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageRootNavigation") as! UINavigationController
-        self.present(vc, animated: true, completion: nil)
-        
+        self.dismiss(animated: true, completion: nil)
     }
     
     func getMessageNetwork(){
@@ -107,20 +97,16 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDel
             tableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
             tableView.setBottomInset(to: keyboardHeight)
             
-            sendContainer.frame.origin.y -= (keyboardHeight - 31)
+            sendContainer.frame.origin.y -= (keyboardHeight - 18)
         }
     }
     
     @objc func keyboardWillHide(notification: Notification) {
         if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
-            sendContainer.frame.origin.y += (keyboardHeight - 31)
+            sendContainer.frame.origin.y += (keyboardHeight - 18)
         }
         tableView.setBottomInset(to: 0.0)
     }
-    
-    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //        self.view.endEditing(true)
-    //    }
     
     func registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -149,12 +135,10 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDel
                 date.append("/0\(components.day!)")
             }
             
-            let newMessage =  MessageDetailList( content: messageTF.text!, created: date, title: "보낸 쪽지")
-            messages.append(newMessage)
+//            let newMessage =  MessageDetailList( content: messageTF.text!, created: date, title: "보낸 쪽지")
+//            messages.append(newMessage)
             tableView.reloadData()
             scrollToBottom()
-            //        let indexPath = IndexPath(row: messages.count - 1, section: 0 )
-            //        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
             messageTF.text = ""
         }
     }
@@ -165,6 +149,10 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDel
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
         
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+//        textView.sizeToFit()
     }
 }
 
@@ -183,14 +171,14 @@ extension MessageDetailVC: UITableViewDelegate, UITableViewDataSource {
             let data = messages[indexPath.row]
             cell.contentLabel.text = data.noteContent
             cell.dateLabel.text = data.createdTime
-            cell.titleLabel.text = data.noteType
-            if title == "받은 쪽지" {
-                cell.titleLabel.textColor = .mainYellow
-                cell.bubble.borderColor = .mainYellow
-            } else {
+            if data.noteType == 0 {
+                cell.titleLabel.text = "보낸 쪽지"
                 cell.titleLabel.textColor = .gray118
                 cell.bubble.borderColor = .gray112
-                //            cell.bubble.roundCorners(corners: [.allCorners], radius: 8)
+            } else {
+                cell.titleLabel.text = "받은 쪽지"
+                cell.titleLabel.textColor = .mainYellow
+                cell.bubble.borderColor = .mainYellow
             }
             return cell
         } else {

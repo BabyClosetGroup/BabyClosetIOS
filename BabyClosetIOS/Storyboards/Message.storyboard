@@ -270,13 +270,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ga-B1-fph">
                                         <rect key="frame" x="16" y="7" width="343" height="42"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="메시지를 입력 해 주세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jpc-Dd-78C">
-                                                <rect key="frame" x="10" y="6" width="290" height="30"/>
-                                                <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" red="0.46666666670000001" green="0.46666666670000001" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="12"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WkX-c5-Hvl">
                                                 <rect key="frame" x="308" y="9" width="24" height="24"/>
                                                 <constraints>
@@ -287,16 +280,25 @@
                                                     <action selector="sendAction:" destination="WRO-xD-YrS" eventType="touchUpInside" id="npQ-MH-VzR"/>
                                                 </connections>
                                             </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RPR-xX-PPU">
+                                                <rect key="frame" x="10" y="6" width="290" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="290" id="6lv-fS-pEA"/>
+                                                    <constraint firstAttribute="height" constant="30" id="kuo-wa-TpA"/>
+                                                </constraints>
+                                                <attributedString key="attributedText"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="jpc-Dd-78C" secondAttribute="bottom" constant="6" id="2r6-Ui-sMf"/>
-                                            <constraint firstItem="WkX-c5-Hvl" firstAttribute="leading" secondItem="jpc-Dd-78C" secondAttribute="trailing" constant="8" id="34E-wo-aYM"/>
-                                            <constraint firstItem="jpc-Dd-78C" firstAttribute="top" secondItem="7ga-B1-fph" secondAttribute="top" constant="6" id="4Rw-38-n8c"/>
+                                            <constraint firstItem="RPR-xX-PPU" firstAttribute="top" secondItem="7ga-B1-fph" secondAttribute="top" constant="6" id="GJq-su-9j7"/>
                                             <constraint firstAttribute="trailing" secondItem="WkX-c5-Hvl" secondAttribute="trailing" constant="11" id="UeF-fQ-nGW"/>
-                                            <constraint firstItem="jpc-Dd-78C" firstAttribute="leading" secondItem="7ga-B1-fph" secondAttribute="leading" constant="10" id="njM-pd-zye"/>
+                                            <constraint firstItem="RPR-xX-PPU" firstAttribute="leading" secondItem="7ga-B1-fph" secondAttribute="leading" constant="10" id="kFB-I2-oNQ"/>
                                             <constraint firstAttribute="bottom" secondItem="WkX-c5-Hvl" secondAttribute="bottom" constant="9" id="pfb-GL-HPm"/>
+                                            <constraint firstItem="WkX-c5-Hvl" firstAttribute="leading" secondItem="RPR-xX-PPU" secondAttribute="trailing" constant="8" id="sHe-Vh-Cm6"/>
                                             <constraint firstItem="WkX-c5-Hvl" firstAttribute="top" secondItem="7ga-B1-fph" secondAttribute="top" constant="9" id="vBV-t5-biO"/>
+                                            <constraint firstAttribute="bottom" secondItem="RPR-xX-PPU" secondAttribute="bottom" constant="6" id="zqi-bJ-PVd"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -309,7 +311,6 @@
                                 <constraints>
                                     <constraint firstItem="7ga-B1-fph" firstAttribute="top" secondItem="p0j-bo-Ice" secondAttribute="top" constant="7" id="4HP-aR-9eK"/>
                                     <constraint firstAttribute="bottom" secondItem="7ga-B1-fph" secondAttribute="bottom" constant="41" id="I4e-zp-IPC"/>
-                                    <constraint firstAttribute="height" constant="90" id="cPh-bb-P7J"/>
                                     <constraint firstItem="7ga-B1-fph" firstAttribute="leading" secondItem="p0j-bo-Ice" secondAttribute="leading" constant="16" id="k3m-Fs-Dfh"/>
                                     <constraint firstAttribute="trailing" secondItem="7ga-B1-fph" secondAttribute="trailing" constant="16" id="koo-Bt-TUI"/>
                                 </constraints>
@@ -342,7 +343,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="backBarButton" destination="0vm-gV-qRa" id="C2I-Rm-H1d"/>
-                        <outlet property="messageTF" destination="jpc-Dd-78C" id="W90-rX-MX4"/>
+                        <outlet property="messageTF" destination="RPR-xX-PPU" id="qKr-uK-G4s"/>
                         <outlet property="naviBar" destination="eZY-pF-kYP" id="xxh-ip-vMZ"/>
                         <outlet property="sendContainer" destination="7ga-B1-fph" id="8Le-rJ-UtU"/>
                         <outlet property="tableView" destination="D29-nr-kkc" id="4ff-YZ-PaB"/>
@@ -350,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uw-Vt-VUz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1967" y="128"/>
+            <point key="canvasLocation" x="1965.5999999999999" y="127.83251231527095"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sDe-gr-oGB">
