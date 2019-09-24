@@ -27,6 +27,7 @@ class MainDetailAllVC: UIViewController {
         
         super.viewDidLoad()
         setNavigationBar()
+        self.tabBarController?.tabBar.isHidden = true
         
         let nibNameLast = UINib(nibName: "NewCVC", bundle: nil)
         newAllListCollection.register(nibNameLast, forCellWithReuseIdentifier: "NewCVC")
@@ -108,7 +109,7 @@ extension MainDetailAllVC : UICollectionViewDelegate, UICollectionViewDataSource
             return cell
         } else {
             let cell = categoryCollection.dequeueReusableCell(withReuseIdentifier: "CategoryCVC", for: indexPath) as! CategoryCVC
-            cell.category.text = categorys[indexPath.row]
+            cell.category.setTitle(categorys[indexPath.row], for: .normal)
 //            cell.category.sizeToFit()
             
             return cell

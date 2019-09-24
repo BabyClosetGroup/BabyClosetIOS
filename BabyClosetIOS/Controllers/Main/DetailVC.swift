@@ -22,6 +22,7 @@ class DetailVC: UIViewController {
     @IBOutlet var star3: UIImageView!
     @IBOutlet var star4: UIImageView!
     @IBOutlet var star5: UIImageView!
+    @IBOutlet var apply: UIButton!
     var categorys: [String] = ["서울 전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구"]
     
     
@@ -117,11 +118,13 @@ class DetailVC: UIViewController {
         categoryCollection.dataSource = self
         
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         
         let nibName = UINib(nibName: "CategoryCVC", bundle: nil)
         categoryCollection.register(nibName, forCellWithReuseIdentifier: "CategoryCVC")
 
         setStar(num: 4)
+        apply.layer.zPosition = 100
     }
     
     func setStar(num: Int64) {
@@ -148,8 +151,7 @@ extension DetailVC : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = categoryCollection.dequeueReusableCell(withReuseIdentifier: "CategoryCVC", for: indexPath) as! CategoryCVC
-        cell.category.text = categorys[indexPath.row]
-        cell.category.sizeToFit()
+        cell.category.setTitle(categorys[indexPath.row], for: .normal)
         return cell
     }
     

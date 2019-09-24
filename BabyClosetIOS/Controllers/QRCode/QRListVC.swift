@@ -20,6 +20,7 @@ class QRListVC: UIViewController {
         qrListCollection.dataSource = self
         
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         
         let nibName = UINib(nibName: "QRListCVC", bundle: nil)
         qrListCollection.register(nibName, forCellWithReuseIdentifier: "QRListCVC")

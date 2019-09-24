@@ -10,7 +10,7 @@ import UIKit
 
 class CategoryCVC: UICollectionViewCell {
 
-    @IBOutlet var category: UILabel!
+    @IBOutlet var category: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

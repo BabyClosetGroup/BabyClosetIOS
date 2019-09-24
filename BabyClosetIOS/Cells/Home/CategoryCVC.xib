@@ -24,33 +24,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="82" height="28"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="CategoryCVC" text="서울전체" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOk-oy-bcm">
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uw5-AB-lfb">
                         <rect key="frame" x="0.0" y="0.0" width="82" height="28"/>
-                        <color key="backgroundColor" red="0.96182245020000001" green="0.76669603590000002" blue="0.26649612189999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="82" id="7Of-I3-CZf"/>
-                            <constraint firstAttribute="height" constant="28" id="pgN-fk-CfV"/>
-                        </constraints>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="8"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </label>
+                        <state key="normal" title="Button" backgroundImage="yellow3">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
                 </subviews>
             </view>
-            <constraints>
-                <constraint firstItem="xOk-oy-bcm" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="DDA-Co-Mcf"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="xOk-oy-bcm" secondAttribute="trailing" id="voP-Di-qFR"/>
-                <constraint firstItem="xOk-oy-bcm" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="yZ6-QN-Ust"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
-                <outlet property="category" destination="xOk-oy-bcm" id="WGA-sr-gfM"/>
+                <outlet property="category" destination="uw5-AB-lfb" id="XR8-nu-Vjg"/>
             </connections>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="yellow3" width="82" height="28"/>
+    </resources>
 </document>

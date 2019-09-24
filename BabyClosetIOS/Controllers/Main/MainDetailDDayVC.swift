@@ -27,6 +27,7 @@ class MainDetailDDayVC: UIViewController {
         
         super.viewDidLoad()
         setNavigationBar()
+        self.tabBarController?.tabBar.isHidden = true
         
         if categorys.count == 0 {
             categoryHeight.constant = 0
@@ -108,7 +109,7 @@ extension MainDetailDDayVC : UICollectionViewDelegate, UICollectionViewDataSourc
         } else {
             let cell = categoryCollection.dequeueReusableCell(withReuseIdentifier: "CategoryCVC", for: indexPath) as! CategoryCVC
             
-            cell.category.text = categorys[indexPath.row]
+            cell.category.setTitle(categorys[indexPath.row], for: .normal)
             cell.category.sizeToFit()
             
             return cell
