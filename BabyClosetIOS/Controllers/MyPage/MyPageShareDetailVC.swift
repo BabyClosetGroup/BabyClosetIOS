@@ -34,8 +34,8 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
         tableView.dataSource = self
         tableView.estimatedRowHeight = 103.0
         tableView.allowsSelection = true
+        tableView.register(UINib(nibName: "EmptyApplyCell", bundle: nil), forCellReuseIdentifier: "EmptyApplyCell")
         inactiveButton()
-//        setGesture()
     }
     
     func setGesture() {
@@ -162,7 +162,14 @@ extension MyPageShareDetailVC: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
     }
-
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if !requestList.isEmpty {
+            return 103
+        } else{
+            return 424
+        }
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         activeButton()
         selectIdx = indexPath

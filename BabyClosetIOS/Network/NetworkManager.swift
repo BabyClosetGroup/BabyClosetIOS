@@ -13,9 +13,7 @@ import SwiftyJSON
 class NetworkManager {
     let jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoyLCJuaWNrbmFtZSI6Iuq5gO2YleyyoOq1rO2VmCIsImlhdCI6MTU2ODIxOTA5OSwiZXhwIjoxNTc5MDE5MDk5LCJpc3MiOiJiYWJ5Q2xvc2V0In0.tmEh04olM1zm8oJId_QKdbw1_6cYvFDwfx0KV332PTk"
     //    let jwt = UserDefaults.standard.string(forKey: "token")
-    
-    func signup(userId:String, name:String, nickname:String, password:String, completion: @escaping (ErrorModel?,Error?) -> Void) {
-        
+    func signup(userId: String, name: String, nickname: String, password: String, completion: @escaping (ErrorModel?,Error?) -> Void) {
         let parameters = [
             "userId": userId,
             "name": name,
@@ -146,7 +144,7 @@ class NetworkManager {
         }
     }
     
-    func setUserInfo(nickname: String, password: String, image: Data, completion: @escaping ( ResponseBody<UserInfo>?, ErrorModel?, Error?) -> Void) {
+    func setUserInfo(nickname: String, password: String, image: Data, completion: @escaping ( ResponseBody<UserInfo>?, Error?) -> Void) {
         let header:HTTPHeaders = [
             "token": jwt
         ]
@@ -154,14 +152,13 @@ class NetworkManager {
             "nickname": nickname,
             "password": password
         ]
-        
         let router = APIRouter(url: "/user", method: .put, parameters: parameters, headers: header, data: image)
-        NetworkRequester(with: router).requestMultipartFormData{ (Img: ResponseBody<UserInfo>?, errorModel :ErrorModel? , error) in
+        NetworkRequester(with: router).requestMultipartFormData{ (Img: ResponseBody<UserInfo>?, error) in
             guard error == nil else {
-                completion(nil,errorModel,error)
+                completion(nil,error)
                 return
             }
-            completion(Img,errorModel,error)
+            completion(Img, error)
         }
     }
     
@@ -209,4 +206,27 @@ class NetworkManager {
         }
     }
     
+    func posting( title: String, content: String, deadline: String, areaCategory: String, ageCategory: String, clothCategory: String, images: [Data], completion: @escaping ( ErrorModel?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        let parameters: [String:Any] = [
+            "title": title,
+            "content": content,
+            "deadline": deadline,
+            "areaCategory": areaCategory,
+            "ageCategory": ageCategory,
+            "clothCategory": clothCategory,
+            "postImages": images,
+        ]
+        
+        let router = APIRouter(url: "/post", method: .post, parameters: parameters, headers: header)
+        NetworkRequester(with: router).requestMultipartFormDataList { (Img: ErrorModel?, error) in
+            guard error == nil else {
+                completion(nil,error)
+                return
+            }
+            completion(Img, error)
+        }
+    }
 }

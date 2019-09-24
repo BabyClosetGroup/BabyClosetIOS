@@ -181,6 +181,7 @@
                 <outlet property="date" destination="8ev-Pf-OmC" id="Pcb-QP-hFc"/>
                 <outlet property="imgView" destination="fI7-TB-ISm" id="Wtl-MX-MlF"/>
                 <outlet property="isRated" destination="5m4-QC-zmy" id="Qan-t2-qz9"/>
+                <outlet property="ratingButton" destination="tFa-Pw-kaC" id="awp-0x-u8p"/>
                 <outlet property="shareWho" destination="djs-9p-LTI" id="W3y-MO-1xN"/>
                 <outlet property="title" destination="1CC-zN-rob" id="bVj-7w-Ehg"/>
             </connections>

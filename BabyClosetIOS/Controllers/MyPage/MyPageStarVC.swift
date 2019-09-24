@@ -67,15 +67,7 @@ class MyPageStarVC: UIViewController {
     }
     
     func getNetwork(){
-        print("\n\n\n abcdefghijklmnop \n\n")
-        guard let userIdx = userIdx else { return }
-        guard let postIdx = postIdx else { return }
-        
-        print("\n\n\n\n userIdx : ", userIdx)
-        print("\n\n\n\n postIdx : ", postIdx)
-        
-        networkManager.saveRating(userIdx: userIdx, rating: rating, postIdx: postIdx){ [weak self] (success, error) in
-            print("success  : ", success)
+        networkManager.saveRating(userIdx: gino(userIdx), rating: rating, postIdx: gino(postIdx)){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
             }

@@ -25,6 +25,7 @@ class MyPageReceiveVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.register(UINib(nibName: "EmptyApplyCell", bundle: nil), forCellReuseIdentifier: "EmptyApplyCell")
         tableView.register(UINib(nibName: "CompleteTVC", bundle: nil), forCellReuseIdentifier: "CompleteTVC")
         tableView.allowsSelection = false
     }

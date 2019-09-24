@@ -10,7 +10,6 @@ import UIKit
 
 class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDelegate, SaveDataDelegate {
     
-    @IBOutlet var imgButtons: [UIButton]!
     @IBOutlet weak var tagCollectionView: UICollectionView!
     @IBOutlet weak var deadLineLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
@@ -18,19 +17,20 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var tagCollectionHeightC: NSLayoutConstraint!
     @IBOutlet weak var deadLineHeightC: NSLayoutConstraint!
+    @IBOutlet weak var imgButton1: UIButton!
+    @IBOutlet weak var imgButton2: UIButton!
+    @IBOutlet weak var imgButton3: UIButton!
+    @IBOutlet weak var imgButton4: UIButton!
     
     let picker = UIImagePickerController()
     let getImage = UIImage()
     var selectedButton:UIButton = UIButton()
+    let networkManager = NetworkManager()
     
     var localList: [String] = []
     var ageList: [String] = []
     var categoryList: [String] = []
     var selectedList: [String:[String]] = [:]
-//        ["localList":[], "ageList":[], "categoryList": []]
-    
-    var deadLine: String = ""
-    
     
     private var floatingButton: UIButton?
     
@@ -51,13 +51,22 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         contentTextView.text = "내용을 입력해주세요."
         contentTextView.textColor = .gray219
         deadLineLabel.roundCorners(corners: [.allCorners], radius: 8)
+        let messageButton : UIBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(goMessageView))
+        messageButton.setBackgroundImage(UIImage(named: "btn-Letter"), for: .normal, barMetrics: .default)
+        self.navigationItem.rightBarButtonItem = messageButton
         contentTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         tagCollectionView.register(UINib(nibName: "PostingCategoryCell", bundle: nil), forCellWithReuseIdentifier: "HashTagCell")
-
+    }
+    
+    @objc func goMessageView(){
+        let storyboard = UIStoryboard(name: "Message", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MessageRootNavigation")
+        self.present(vc, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationItem.title = "나눔하기"
         createFloatingButton()
         if categoryList.count == 0 {
             tagCollectionHeightC.constant = 0
@@ -82,23 +91,23 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func setGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
         tapGesture.cancelsTouchesInView = true
         tableView.addGestureRecognizer(tapGesture)
     }
     
-    @objc func hideKeyboard() {
+    @objc func hideKeyboard(_ sender: Any) {
         self.view.endEditing(true)
     }
     
     func setNavigationBar(){
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.barTintColor = UIColor.white
-        self.navigationItem.title = "나눔하기"
+        
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }
@@ -109,7 +118,7 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         floatingButton?.backgroundColor = .mainYellow
         floatingButton?.setTitle("나눔 등록하기", for: .normal)
         floatingButton?.titleLabel?.font = UIFont(name: "SeoulNamsanB", size: 20)
-        floatingButton?.addTarget(self, action: #selector(completeAction(_:)), for: .touchUpInside)
+        floatingButton?.addTarget(self, action: #selector(completeAction), for: .touchUpInside)
         constrainFloatingButtonToWindow()
     }
     
@@ -136,18 +145,77 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         }
     }
     
-    @objc private func completeAction(_ sender: Any) {
-        if selectedList.isEmpty {
+    @objc private func completeAction() {
+        var postImgs: [Data] = []
+        let imgButtons = [imgButton2, imgButton3, imgButton4]
+        if imgButton1.image(for: .normal) != UIImage(named: "mainImg") {
+            if let data = imgButton1.image(for: .normal)?.jpegData(compressionQuality: 0.1 ) {
+                postImgs.append(data)
+            }
+        } else {
+            self.simpleAlert(title: "메인 사진을 입력해주세요!", message: "메인 사진을 입력해야\n글을 작성할 수 있습니다.")
+            return
+        }
+        for btn in imgButtons {
+            let img = btn?.image(for: .normal)
+            if img != UIImage(named: "btn-selectImg") {
+                if let data = img?.jpegData(compressionQuality: 0.1 ) {
+                    postImgs.append(data)
+                }
+            }
+        }
+        var localString: String = ""
+        var categoryString: String = ""
+        var ageString: String = ""
+        
+        if let local = selectedList["localList"] {
+            localString = listToString(list: local)
+        }
+        if let category = selectedList["categoryList"] {
+            categoryString = listToString(list: category)
+        }
+        if let age = selectedList["ageList"] {
+            ageString = listToString(list: age)
+        }
+        
+        if postImgs.isEmpty {
+            self.simpleAlert(title: "사진을 입력해주세요!", message: "사진을 입력해야\n글을 작성할 수 있습니다.")
+        } else if selectedList.isEmpty {
             self.simpleAlert(title: "카테고리를 선택해주세요!", message: "카테고리를 선택해야\n글을 작성할 수 있습니다.")
-        } else if deadLine == "" {
+        } else if deadLineLabel.text == "" {
             self.simpleAlert(title: "마감기한을 선택해주세요!", message: "마감기한을 선택해야\n글을 작성할 수 있습니다.")
         } else if titleTextField.text == "" {
             self.simpleAlert(title: "제목을 입력해주세요!", message: "제목을 입력하셔야\n글을 작성할 수 있습니다.")
         } else if contentTextView.text == "내용을 입력해주세요." {
             self.simpleAlert(title: "내용을 입력해주세요!", message: "내용을 입력하셔야\n글을 작성할 수 있습니다.")
+        } else {
+            networkManager.posting(title: gsno(titleTextField.text), content: gsno(contentTextView.text), deadline: gsno(deadLineLabel.text), areaCategory: localString, ageCategory: ageString, clothCategory: categoryString, images: postImgs) { [weak self] (success, error) in
+                if success == nil && error != nil {
+                    self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+                } else if success != nil && error == nil {
+                    if success?.success == true {
+                        self?.simpleAlert(title: "", message: "변경되었습니다.")
+                    } else {
+                        if success?.message == nil {
+                            self?.simpleAlert(title: "", message: "이미지 파일이 너무 큽니다.")
+                        }
+                    }
+                }
+            }
         }
     }
     
+    func listToString(list: [String])-> String{
+        var listString: String = ""
+        for local in list {
+            if list.count != 1 && local != list[0] {
+                listString.append(", ")
+            }
+            listString.append(local)
+            print("listString  : ", listString)
+        }
+        return listString
+    }
     func addDeadLine(_ day: Int) {
         createFloatingButton()
         deadLineLabel.text = "\(day)일"
@@ -165,6 +233,9 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         localList = saveData["localList"]!
         ageList = saveData["ageList"]!
         categoryList = saveData["categoryList"]!
+        selectedList["localList"] = localList
+        selectedList["ageList"] = ageList
+        selectedList["categoryList"] = categoryList
         tagCollectionView.reloadData()
     }
     
@@ -195,7 +266,7 @@ extension PostingMainTVC: UIImagePickerControllerDelegate, UINavigationControlle
         removeFloatingButton()
         selectedButton = sender
         
-        let alert =  UIAlertController(title: "프로필 사진 편집", message: "프로필 사진을 변경해보세요!", preferredStyle: .actionSheet)
+        let alert =  UIAlertController(title: "", message: "사진을 올려보세요!", preferredStyle: .actionSheet)
         
         let library =  UIAlertAction(title: "사진앨범", style: .default) { (action) in self.openLibrary() }
         let camera =  UIAlertAction(title: "카메라", style: .default) { (action) in self.openCamera() }
@@ -211,7 +282,7 @@ extension PostingMainTVC: UIImagePickerControllerDelegate, UINavigationControlle
     }
     
     func setDefaultImg(_ button: UIButton){
-        if button == imgButtons[0] {
+        if button == imgButton1 {
             selectedButton.setImage(UIImage(named: "mainImg"), for: .normal)
         }
         selectedButton.setImage(UIImage(named: "btn-selectImg"), for: .normal)

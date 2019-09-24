@@ -24,7 +24,7 @@ struct NetworkRequester {
     
     init(with router: APIRouter) {
         self.api = router
-//        manager.session.configuration.timeoutIntervalForRequest = 15
+        manager.session.configuration.timeoutIntervalForRequest = 15
     }
     
     func signUpRequest<T: Codable>(completion: Completion1<T>) {
@@ -121,8 +121,8 @@ struct NetworkRequester {
     }
     
     
-    func requestMultipartFormData<T: Codable>(completion: Completion2<T>) {
-        let parameters : [String:String] = api.parameters as! [String : String]
+    func requestMultipartFormData<T: Codable>(completion: Completion1<T>) {
+        let parameters : [String: String] = api.parameters as! [String : String]
         print(parameters)
         print(self.api.data!)
         manager.upload(multipartFormData: { (multipartFormData) in
@@ -135,7 +135,7 @@ struct NetworkRequester {
             case .success(let upload, _, _):
                 upload.responseData(completionHandler: { response in
                     if let resultStatusCode = response.response?.statusCode {
-                        print("- NetworkRequester - Response statusCode : \(resultStatusCode)\n\(response.description)")
+                        print("- NetworkRequester - Response statusCode : \(resultStatusCode)\n")
                         let data = response.data
                         var jsonString = JSON(data as Any).description
                         if jsonString ==  "null" {
@@ -145,7 +145,7 @@ struct NetworkRequester {
                         do {
                             let result = try JSONDecoder().decode(T.self, from: jsonData)
                             print("result : ", result)
-                            completion?(result, nil, nil)
+                            completion?(result, nil)
                         } catch let catchError{
                             print("캐치에러 \(catchError)")
                         }
@@ -155,9 +155,51 @@ struct NetworkRequester {
                     print("Upload Progress: \(progress.fractionCompleted)")
                 })
             case .failure(let err):
-                completion?(nil,nil, err)
+                completion?(nil, err)
             }
         }
     }
     
+    func requestMultipartFormDataList<T: Codable>(completion: Completion1<T>) {
+        let parameters : [String: Any] = api.parameters as! [String : Any]
+        print(parameters)
+        manager.upload(multipartFormData: { (multipartFormData) in
+            for (key, value) in parameters {
+                if key == "postImages" {
+                    for img in value as! [Data] {
+                        multipartFormData.append( img, withName: key, fileName: "image_name.jpeg", mimeType: "image/jpeg")
+                    }
+                } else {
+                    multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
+                }
+            }
+        }, usingThreshold: UInt64.init(), to: api.requestUrl, method: api.method, headers: api.headers) { result in
+            switch result {
+            case .success(let upload, _, _):
+                upload.responseData(completionHandler: { response in
+                    if let resultStatusCode = response.response?.statusCode {
+                        print("- NetworkRequester - Response statusCode : \(resultStatusCode)\n")
+                        let data = response.data
+                        var jsonString = JSON(data as Any).description
+                        if jsonString ==  "null" {
+                            jsonString = "{}"
+                        }
+                        let jsonData = jsonString.data(using: .utf8) ?? Data()
+                        do {
+                            let result = try JSONDecoder().decode(T.self, from: jsonData)
+                            print("result : ", result)
+                            completion?(result, nil)
+                        } catch let catchError{
+                            print("캐치에러 \(catchError)")
+                        }
+                    }
+                })
+                upload.uploadProgress(closure: { (progress) in
+                    print("Upload Progress: \(progress.fractionCompleted)")
+                })
+            case .failure(let err):
+                completion?(nil, err)
+            }
+        }
+    }
 }

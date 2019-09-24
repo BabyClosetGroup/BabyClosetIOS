@@ -29,8 +29,10 @@ class MyPageUserInfoVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var changeButton: UIButton!
     
     let networkManager = NetworkManager()
-    var userNickname = ""
-    var userPw = ""
+    var userNickname: String = ""
+    var userPw: String = ""
+    var nicknameIsMatch: Bool = true
+    var originY: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,7 @@ class MyPageUserInfoVC: UIViewController, UITextFieldDelegate {
         self.navigationItem.title = "마이페이지"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
         
+        originY = self.view.frame.origin.y
         picker.delegate = self
         initialTextField(nickNameTF)
         initialTextField(passwdTF)
@@ -52,13 +55,41 @@ class MyPageUserInfoVC: UIViewController, UITextFieldDelegate {
         
         let height = profileImg.frame.height / 2
         profileImg.roundCorners(corners: [.allCorners], radius: height)
-        
     }
     
     func initialTextField(_ textField: UITextField ){
         textField.delegate = self
         textField.tintColor = .mainYellow
         textField.addTarget(self, action: #selector( self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        registerForKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        unregisterForKeyboardNotifications()
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+            self.view.frame.origin.y -= 50
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+            self.view.frame.origin.y = originY
+    }
+    
+    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //        self.view.endEditing(true)
+    //    }
+    
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    func unregisterForKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -102,6 +133,18 @@ class MyPageUserInfoVC: UIViewController, UITextFieldDelegate {
         changeButton.isHidden = false
         passwdTF.textColor = .gray219
         
+        
+        let alert =  UIAlertController(title: "", message: "변경된 내용을 저장할까요?", preferredStyle: .alert)
+        let ok =  UIAlertAction(title: "확인", style: .default) { (action) in self.saveNetwork() }
+        let cancle = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alert.addAction(ok)
+        alert.addAction(cancle)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func saveNetwork(){
         if nickNameTF.text == userNickname {
             userNickname = ""
         } else {
@@ -112,19 +155,21 @@ class MyPageUserInfoVC: UIViewController, UITextFieldDelegate {
         } else {
             userPw = gsno(passwdTF.text)
         }
-        if let image = profileImg.currentImage?.jpegData(compressionQuality: 1.0) {
-            networkManager.setUserInfo(nickname: userNickname, password: userPw, image: image){ [weak self] (success, fail, error) in
-                if success == nil && fail == nil && error != nil {
-                    self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
-                }
-                else if success == nil && error == nil {
-                    guard let stat = success?.status, stat < 300 else {
-                        if let msg = fail?.message {
-                            self?.simpleAlert(title: "", message: msg)
+        
+        if nicknameIsMatch {
+            if let image = profileImg.currentImage?.jpegData(compressionQuality: 0.1) {
+                networkManager.setUserInfo(nickname: userNickname, password: userPw, image: image){ [weak self] (success, error) in
+                    if success == nil && error != nil {
+                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+                    } else if success != nil && error == nil {
+                        if success?.success == true {
+                            self?.simpleAlert(title: "", message: "변경되었습니다.")
+                        } else {
+                            if let msg = success?.message {
+                                self?.simpleAlert(title: "이미지 파일이 너무 큽니다.", message: msg)
+                            }
                         }
-                        return
                     }
-                    self?.simpleAlert(title: "", message: "변경되었습니다.")
                 }
             }
         }
@@ -143,32 +188,22 @@ class MyPageUserInfoVC: UIViewController, UITextFieldDelegate {
     
     func diablePasswdTF(){
         if gsno(passwdTF.text) != "비밀번호를입력" {
-            if !gsno(passwdTF.text).isValid("^(?=.*[a-zA-Z])(?=.*[0-9]).{1,}$") {
+            if !gsno(passwdTF.text).hasCharacter(regex: "^[a-zA-Z0-9]{6,}$") {
                 self.simpleAlert(title: "", message: "비밀번호를 형식에 맞게 입력해주세요.")
+            } else {
+                completePwChange()
             }
         } else {
-            changeButton.setTitle("변경하기", for: .normal)
-            changeButton.widthAnchor.constraint(equalToConstant: 92).isActive = true
-            passwdTF.isUserInteractionEnabled = false
-            passwdTF.textColor = .gray219
-            self.view.endEditing(true)
+            completePwChange()
         }
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        let clearImage = UIImage(named: "delete")!
-        textField.clearButtonWithImage(clearImage)
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        let emptyImage = UIImage()
-        textField.clearButtonWithImage(emptyImage)
-        if textField == nickNameTF {
-            
-            if !gsno(nickNameTF.text).isValid("^(?=[가-힣ㄱ-ㅎㅏ-ㅣ]).{1,8}$") {
-                self.simpleAlert(title: "", message: "아이디를 형식에 맞게 입력해주세요.")
-            }
-        }
+    func completePwChange(){
+         self.view.endEditing(true)
+        changeButton.setTitle("변경하기", for: .normal)
+        changeButton.widthAnchor.constraint(equalToConstant: 92).isActive = true
+        passwdTF.isUserInteractionEnabled = false
+        passwdTF.textColor = .gray219
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -181,9 +216,22 @@ class MyPageUserInfoVC: UIViewController, UITextFieldDelegate {
             alert.addAction(ok)
             alert.addAction(no)
             present(alert, animated: true, completion: nil)
+        } else if !gsno(nickNameTF.text).hasCharacter(regex: "^[가-힣]{1,8}$") {
+            self.simpleAlert(title: "", message: "닉네임을 형식에 맞게 입력해주세요.")
+            nicknameIsMatch = false
         } else {
             self.view.endEditing(true)
         }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let clearImage = UIImage(named: "delete")!
+        textField.clearButtonWithImage(clearImage)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let emptyImage = UIImage()
+        textField.clearButtonWithImage(emptyImage)
     }
 }
 

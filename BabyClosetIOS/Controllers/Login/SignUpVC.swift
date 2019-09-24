@@ -51,16 +51,16 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBAction func goNextAction(_ sender: Any) {
         if nameTextField.text == "" || idTextField.text == "" || passwdTextField.text == "" || passwdCheckTextField.text == ""{
             self.simpleAlert(title: "정보를 입력해 주세요!", message: "")
-        } else if !gsno(nameTextField.text).isValid("^(?=[A-Z가-힣a-z]).{1,}$") {
+        } else if !gsno(nameTextField.text).hasCharacter(regex: "^[A-Z가-힣a-z]{1,}$") {
             self.simpleAlert(title: "이름을 조건에 맞게 다시 입력해주세요.", message: "")
-        } else if !gsno(idTextField.text).isValid("^(?=[A-Z0-9a-z]).{1,}$"){
+        } else if !gsno(idTextField.text).hasCharacter(regex: "^[A-Z0-9a-z]{1,}$"){
             self.simpleAlert(title: "아이디를 조건에 맞게 다시 입력해주세요.", message: "")
-        } else if !gsno(passwdTextField.text).isValid("^(?=.*[a-zA-Z])(?=.*[0-9]).{1,}$") {
+        } else if !gsno(passwdTextField.text).hasCharacter(regex: "^[a-zA-Z0-9]{6,}$") {
             self.simpleAlert(title: "비밀번호를 조건에 맞게 다시 입력해주세요.", message: "")
         } else if passwdTextField.text != passwdCheckTextField.text {
             self.simpleAlert(title: "비밀번호가 맞지 않습니다.", message: "")
-        } else if !gsno(nicknameTextField.text).isValid("^(?=[가-힣ㄱ-ㅎㅏ-ㅣ]).{1,8}") {
-            self.simpleAlert(title: "닉네임을 조건에 맞게 다시 입력해주세요.", message: "")
+        } else if !gsno(nicknameTextField.text).hasCharacter(regex: "^[가-힣]{1,8}$") {
+            self.simpleAlert(title: "", message: "닉네임을 형식에 맞게 입력해주세요.")
         }
             
         else {
