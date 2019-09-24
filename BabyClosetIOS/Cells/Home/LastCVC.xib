@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SeoulNamsanM.otf">
+            <string>SeoulNamsanM</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LastCVC" id="gTV-IL-0wX" customClass="LastCVC" customModule="BabyClosetIOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="109" height="183"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="109" height="183"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5" translatesAutoresizingMaskIntoConstraints="NO" id="JpG-Dg-04m">
+                        <rect key="frame" x="0.0" y="10" width="109" height="108"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="109" id="RLQ-3m-HS2"/>
+                            <constraint firstAttribute="height" constant="108" id="cZr-nw-Tjk"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D-1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6r-cV-HQe">
+                        <rect key="frame" x="71" y="14" width="34" height="34"/>
+                        <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="34" id="otB-pO-2SA"/>
+                            <constraint firstAttribute="height" constant="34" id="vaf-mz-RgB"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="17"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="동대문구 외 2곳" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YS-Wm-bGh">
+                        <rect key="frame" x="0.0" y="150" width="109" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="E85-Jl-EGn"/>
+                            <constraint firstAttribute="width" constant="109" id="fnW-SB-9V4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="12"/>
+                        <color key="textColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="핑크색 잠옷 슈.." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tai-f0-ZyX">
+                        <rect key="frame" x="0.0" y="129" width="109" height="20.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20.5" id="XEW-6v-xQn"/>
+                            <constraint firstAttribute="width" constant="109" id="dcc-hm-4eJ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="16"/>
+                        <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="3YS-Wm-bGh" secondAttribute="trailing" id="2ju-KJ-bBA"/>
+                <constraint firstItem="tai-f0-ZyX" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="2vb-7L-95m"/>
+                <constraint firstItem="h6r-cV-HQe" firstAttribute="leading" secondItem="JpG-Dg-04m" secondAttribute="trailing" constant="-38" id="49P-cE-RTY"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="tai-f0-ZyX" secondAttribute="trailing" id="PKg-hB-Wnc"/>
+                <constraint firstItem="tai-f0-ZyX" firstAttribute="top" secondItem="JpG-Dg-04m" secondAttribute="bottom" constant="11" id="Pxx-gi-9Pa"/>
+                <constraint firstItem="JpG-Dg-04m" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="Sy9-mJ-Ivh"/>
+                <constraint firstAttribute="top" secondItem="JpG-Dg-04m" secondAttribute="top" constant="-10" id="cwj-Qx-S5B"/>
+                <constraint firstItem="3YS-Wm-bGh" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="dB4-Qp-O8y"/>
+                <constraint firstItem="JpG-Dg-04m" firstAttribute="top" secondItem="h6r-cV-HQe" secondAttribute="bottom" constant="-38" id="eIZ-Si-pOh"/>
+                <constraint firstItem="3YS-Wm-bGh" firstAttribute="firstBaseline" secondItem="tai-f0-ZyX" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="gcy-bD-BJl"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="JpG-Dg-04m" secondAttribute="trailing" id="lcZ-SF-O84"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="dday" destination="h6r-cV-HQe" id="cwL-Dt-9Za"/>
+                <outlet property="location" destination="3YS-Wm-bGh" id="b8n-Ok-3NS"/>
+                <outlet property="title" destination="tai-f0-ZyX" id="xq1-vy-34U"/>
+                <outlet property="titleImg" destination="JpG-Dg-04m" id="elj-Na-XJI"/>
+            </connections>
+            <point key="canvasLocation" x="81.884057971014499" y="39.84375"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="5" width="109" height="109"/>
+    </resources>
+</document>
