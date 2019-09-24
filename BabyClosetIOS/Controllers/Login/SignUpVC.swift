@@ -22,14 +22,15 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwdTextField: UITextField!
     @IBOutlet weak var passwdCheckTextField: UITextField!
     
-    var keyboardShown: Bool = false
+    var keyboardShown: Bool = true
+    var activeTextField = UITextField()
     var isEdit: Bool = false
     let networkManager = NetworkManager()
+    var originY: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        originY = self.view.frame.origin.y
         nicknameContainerView.roundCorners(corners: [.allCorners], radius: 8)
         nameContainerView.roundCorners(corners: [.allCorners], radius: 8)
         idContainerView.roundCorners(corners: [.allCorners], radius: 8)
@@ -46,6 +47,45 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     func setInitialTextField(_ textField: UITextField){
         textField.delegate = self
         textField.font = UIFont(name: "SeoulNamsanL", size: 12)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        registerForKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        unregisterForKeyboardNotifications()
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        self.activeTextField = textField
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        if activeTextField != nameTextField &&
+            activeTextField != idTextField &&
+            keyboardShown &&
+            self.view.frame.origin.y == originY {
+            self.view.frame.origin.y -= 180
+            isEdit = true
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        self.view.frame.origin.y = originY
+        if( isEdit ){
+            self.view.frame.origin.y = originY
+            isEdit = false
+        }
+    }
+    
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    func unregisterForKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @IBAction func goNextAction(_ sender: Any) {
@@ -85,19 +125,5 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-    }
-    
-    @objc func keyboardWillShow(_ notification: NSNotification) {
-        if(keyboardShown){
-            self.view.frame.origin.y = -150
-            isEdit = true
-        }
-    }
-    
-    @objc func keyboardWillHide(_ notification:NSNotification) {
-        if( isEdit ){
-            self.view.frame.origin.y = 0
-            isEdit = false
-        }
     }
 }
