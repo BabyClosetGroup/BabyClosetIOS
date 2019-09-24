@@ -1,10 +1,11 @@
 PODS:
   - Alamofire (4.8.2)
-  - AlamofireObjectMapper (5.2.0):
+  - AlamofireObjectMapper (5.2.1):
     - Alamofire (~> 4.7)
     - ObjectMapper (~> 3.4)
   - Kingfisher (4.10.1)
   - ObjectMapper (3.4.2)
+  - SwiftIcons (2.3.2)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
@@ -12,23 +13,26 @@ DEPENDENCIES:
   - AlamofireObjectMapper (~> 5.2.0)
   - Kingfisher (~> 4.10.1)
   - ObjectMapper (~> 3.4.2)
+  - SwiftIcons (~> 2.3.2)
   - SwiftyJSON
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - AlamofireObjectMapper
     - Kingfisher
     - ObjectMapper
+    - SwiftIcons
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
+  AlamofireObjectMapper: 1989f690e982b71921b9253f53a4f33a9bc00d88
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  SwiftIcons: e652cfd2676441c462ad57b6e92977faf577e590
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 920b1d9ebaf1886123363236c098049fb02a2415
+PODFILE CHECKSUM: 5030c723352f60d35342dd9171f37ed607e165e3
 
-COCOAPODS: 1.7.4
+COCOAPODS: 1.8.0.beta.2

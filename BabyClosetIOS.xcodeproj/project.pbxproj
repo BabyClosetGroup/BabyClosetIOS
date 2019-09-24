@@ -7,6 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B188ACE232E9A3300F0AE25 /* CustomizedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B188ACD232E9A3300F0AE25 /* CustomizedTabBar.swift */; };
+		4B188AD1232EADFA00F0AE25 /* CustomizedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B188AD0232EADFA00F0AE25 /* CustomizedTabBarController.swift */; };
+		4B188AD3232EBE4600F0AE25 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B188AD2232EBE4600F0AE25 /* Home.storyboard */; };
+		4B188AD9232EC89600F0AE25 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B188AD8232EC89600F0AE25 /* HomeVC.swift */; };
+		4B188ADB232ED87700F0AE25 /* MainDetailAllVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B188ADA232ED87700F0AE25 /* MainDetailAllVC.swift */; };
+		4B188ADD232ED88900F0AE25 /* MainDetailDDayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B188ADC232ED88900F0AE25 /* MainDetailDDayVC.swift */; };
+		4B188AE1232EF33500F0AE25 /* QRCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B188AE0232EF33500F0AE25 /* QRCode.storyboard */; };
+		4B188AE4232EF52600F0AE25 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B188AE3232EF52600F0AE25 /* QRCodeVC.swift */; };
+		4B1991D62336CEFF000081C9 /* NewCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1991D42336CEFF000081C9 /* NewCVC.swift */; };
+		4B1991D72336CEFF000081C9 /* NewCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B1991D52336CEFF000081C9 /* NewCVC.xib */; };
+		4B1991E02336CF82000081C9 /* LastCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1991DE2336CF82000081C9 /* LastCVC.swift */; };
+		4B1991E12336CF82000081C9 /* LastCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B1991DF2336CF82000081C9 /* LastCVC.xib */; };
+		4B1991E42336E364000081C9 /* LastAllCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1991E22336E364000081C9 /* LastAllCVC.swift */; };
+		4B1991E52336E364000081C9 /* LastAllCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B1991E32336E364000081C9 /* LastAllCVC.xib */; };
+		4B1991E82336E7BD000081C9 /* CategoryCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1991E62336E7BD000081C9 /* CategoryCVC.swift */; };
+		4B1991E92336E7BD000081C9 /* CategoryCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B1991E72336E7BD000081C9 /* CategoryCVC.xib */; };
+		4B1991EB2337E944000081C9 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1991EA2337E944000081C9 /* DetailVC.swift */; };
+		4B2732102333EBE400426AF2 /* QRListCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27320E2333EBE400426AF2 /* QRListCVC.swift */; };
+		4B2732112333EBE400426AF2 /* QRListCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B27320F2333EBE400426AF2 /* QRListCVC.xib */; };
+		4B2732142333F33900426AF2 /* QRListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2732132333F33900426AF2 /* QRListVC.swift */; };
+		4B2732162333F36C00426AF2 /* QRShowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2732152333F36C00426AF2 /* QRShowVC.swift */; };
+		4B2732182333F38500426AF2 /* QRScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2732172333F38500426AF2 /* QRScanVC.swift */; };
 		965030E50FF8214EC5366895 /* Pods_BabyClosetIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFFB1F5E45F9693A85A98F7 /* Pods_BabyClosetIOS.framework */; };
 		C5001A9F231A7EDD00E511BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001A9E231A7EDD00E511BD /* AppDelegate.swift */; };
 		C5001AA4231A7EDD00E511BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001AA2231A7EDD00E511BD /* Main.storyboard */; };
@@ -64,6 +86,28 @@
 
 /* Begin PBXFileReference section */
 		0CFFB1F5E45F9693A85A98F7 /* Pods_BabyClosetIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BabyClosetIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B188ACD232E9A3300F0AE25 /* CustomizedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedTabBar.swift; sourceTree = "<group>"; };
+		4B188AD0232EADFA00F0AE25 /* CustomizedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedTabBarController.swift; sourceTree = "<group>"; };
+		4B188AD2232EBE4600F0AE25 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		4B188AD8232EC89600F0AE25 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		4B188ADA232ED87700F0AE25 /* MainDetailAllVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDetailAllVC.swift; sourceTree = "<group>"; };
+		4B188ADC232ED88900F0AE25 /* MainDetailDDayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDetailDDayVC.swift; sourceTree = "<group>"; };
+		4B188AE0232EF33500F0AE25 /* QRCode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QRCode.storyboard; sourceTree = "<group>"; };
+		4B188AE3232EF52600F0AE25 /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
+		4B1991D42336CEFF000081C9 /* NewCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCVC.swift; sourceTree = "<group>"; };
+		4B1991D52336CEFF000081C9 /* NewCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCVC.xib; sourceTree = "<group>"; };
+		4B1991DE2336CF82000081C9 /* LastCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastCVC.swift; sourceTree = "<group>"; };
+		4B1991DF2336CF82000081C9 /* LastCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LastCVC.xib; sourceTree = "<group>"; };
+		4B1991E22336E364000081C9 /* LastAllCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastAllCVC.swift; sourceTree = "<group>"; };
+		4B1991E32336E364000081C9 /* LastAllCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LastAllCVC.xib; sourceTree = "<group>"; };
+		4B1991E62336E7BD000081C9 /* CategoryCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCVC.swift; sourceTree = "<group>"; };
+		4B1991E72336E7BD000081C9 /* CategoryCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCVC.xib; sourceTree = "<group>"; };
+		4B1991EA2337E944000081C9 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		4B27320E2333EBE400426AF2 /* QRListCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRListCVC.swift; sourceTree = "<group>"; };
+		4B27320F2333EBE400426AF2 /* QRListCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRListCVC.xib; sourceTree = "<group>"; };
+		4B2732132333F33900426AF2 /* QRListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRListVC.swift; sourceTree = "<group>"; };
+		4B2732152333F36C00426AF2 /* QRShowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRShowVC.swift; sourceTree = "<group>"; };
+		4B2732172333F38500426AF2 /* QRScanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanVC.swift; sourceTree = "<group>"; };
 		C5001A9B231A7EDD00E511BD /* BabyClosetIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyClosetIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5001A9E231A7EDD00E511BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5001AA3231A7EDD00E511BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -151,6 +195,53 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4B188ACF232EADD700F0AE25 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4B188AD0232EADFA00F0AE25 /* CustomizedTabBarController.swift */,
+				4B188AD8232EC89600F0AE25 /* HomeVC.swift */,
+				4B188ADA232ED87700F0AE25 /* MainDetailAllVC.swift */,
+				4B188ADC232ED88900F0AE25 /* MainDetailDDayVC.swift */,
+				4B1991EA2337E944000081C9 /* DetailVC.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		4B188AE2232EF50C00F0AE25 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				4B188AE3232EF52600F0AE25 /* QRCodeVC.swift */,
+				4B2732132333F33900426AF2 /* QRListVC.swift */,
+				4B2732152333F36C00426AF2 /* QRShowVC.swift */,
+				4B2732172333F38500426AF2 /* QRScanVC.swift */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
+		4B1991CF2336CEAF000081C9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4B1991D42336CEFF000081C9 /* NewCVC.swift */,
+				4B1991DE2336CF82000081C9 /* LastCVC.swift */,
+				4B1991DF2336CF82000081C9 /* LastCVC.xib */,
+				4B1991D52336CEFF000081C9 /* NewCVC.xib */,
+				4B1991E22336E364000081C9 /* LastAllCVC.swift */,
+				4B1991E32336E364000081C9 /* LastAllCVC.xib */,
+				4B1991E62336E7BD000081C9 /* CategoryCVC.swift */,
+				4B1991E72336E7BD000081C9 /* CategoryCVC.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4B2732122333EBFA00426AF2 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				4B27320E2333EBE400426AF2 /* QRListCVC.swift */,
+				4B27320F2333EBE400426AF2 /* QRListCVC.xib */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
 		C5001A92231A7EDD00E511BD = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +280,8 @@
 		C5001AB0231A856A00E511BD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4B188AE2232EF50C00F0AE25 /* QRCode */,
+				4B188ACF232EADD700F0AE25 /* Main */,
 				C532038C23201F0400EFDDB6 /* Posting */,
 				C5BF7B19231E56E300790AE4 /* Message */,
 				C55B7AB7231D742A00CCE4BD /* Alert */,
@@ -203,6 +296,7 @@
 			children = (
 				C55B7AA2231D0CFD00CCE4BD /* MyPageMenuBar.swift */,
 				C5E846FB231FCDAF0092D0C5 /* RoundedCornerView.swift */,
+				4B188ACD232E9A3300F0AE25 /* CustomizedTabBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,9 +338,11 @@
 				C5001AA2231A7EDD00E511BD /* Main.storyboard */,
 				C5001AA7231A7EDE00E511BD /* LaunchScreen.storyboard */,
 				C5001AB7231A8BCB00E511BD /* Login.storyboard */,
+				4B188AE0232EF33500F0AE25 /* QRCode.storyboard */,
 				C5001ACA231ADA0200E511BD /* Posting.storyboard */,
 				C55BBD96231C142E00C7AD9E /* MyPage.storyboard */,
 				C5EC1665231E2F2A00ECE7DB /* Message.storyboard */,
+				4B188AD2232EBE4600F0AE25 /* Home.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -332,6 +428,8 @@
 		C5929F7F231CF9DA00B1C4F6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				4B1991CF2336CEAF000081C9 /* Home */,
+				4B2732122333EBFA00426AF2 /* QRCode */,
 				C53203912320220400EFDDB6 /* Posting */,
 				C5EC166C231E342000ECE7DB /* Message */,
 				C55B7AB4231D484C00CCE4BD /* MyPage */,
@@ -429,16 +527,23 @@
 				C55BBD97231C142E00C7AD9E /* MyPage.storyboard in Resources */,
 				C55B7AAF231D325000CCE4BD /* IncompleteTVC.xib in Resources */,
 				C55B7AA9231D26F000CCE4BD /* PageCell.xib in Resources */,
+				4B1991E92336E7BD000081C9 /* CategoryCVC.xib in Resources */,
+				4B188AD3232EBE4600F0AE25 /* Home.storyboard in Resources */,
 				C55B7AB3231D326A00CCE4BD /* CompleteTVC.xib in Resources */,
 				C5001AA9231A7EDE00E511BD /* LaunchScreen.storyboard in Resources */,
 				C5EC1666231E2F2A00ECE7DB /* Message.storyboard in Resources */,
 				C5001AC9231AD30200E511BD /* SeoulNamsanM.otf in Resources */,
 				C55B7AA5231D0EB000CCE4BD /* PageItemCell.xib in Resources */,
+				4B1991E52336E364000081C9 /* LastAllCVC.xib in Resources */,
+				4B1991E12336CF82000081C9 /* LastCVC.xib in Resources */,
+				4B188AE1232EF33500F0AE25 /* QRCode.storyboard in Resources */,
 				C5001AC8231AD2FE00E511BD /* SeoulNamsanB.otf in Resources */,
 				C5E254AE23262D56006723CF /* PostingCategoryCell.xib in Resources */,
 				C5001AA4231A7EDD00E511BD /* Main.storyboard in Resources */,
+				4B1991D72336CEFF000081C9 /* NewCVC.xib in Resources */,
 				C5001AC6231AD1CE00E511BD /* SeoulNamsanEB.otf in Resources */,
 				C5001ACB231ADA0200E511BD /* Posting.storyboard in Resources */,
+				4B2732112333EBE400426AF2 /* QRListCVC.xib in Resources */,
 				C5E846FA231F977B0092D0C5 /* Assets.xcassets in Resources */,
 				C5001AC7231AD1D300E511BD /* SeoulNamsanL.otf in Resources */,
 			);
@@ -494,7 +599,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5EC1664231E1FE900ECE7DB /* ApplyListTVC.swift in Sources */,
+				4B2732142333F33900426AF2 /* QRListVC.swift in Sources */,
 				C55B7AB9231D744B00CCE4BD /* MyPageSharingInfoVC.swift in Sources */,
+				4B188ACE232E9A3300F0AE25 /* CustomizedTabBar.swift in Sources */,
 				C5001AD0231BA62700E511BD /* SignUpVC.swift in Sources */,
 				C55BBD9A231C159700C7AD9E /* MyPageVC.swift in Sources */,
 				C55B7AB2231D326A00CCE4BD /* CompleteTVC.swift in Sources */,
@@ -505,29 +612,42 @@
 				C5BF7B23231E5A5000790AE4 /* MessageBubbleTVC.swift in Sources */,
 				C5BF7B21231E570500790AE4 /* MessageDetailVC.swift in Sources */,
 				C5929F84231CFCC000B1C4F6 /* PageItemCell.swift in Sources */,
+				4B2732182333F38500426AF2 /* QRScanVC.swift in Sources */,
 				C55B7AB6231D488300CCE4BD /* MyPageStarVC.swift in Sources */,
 				C532038E23201F3200EFDDB6 /* PostingMainTVC.swift in Sources */,
 				C5001AD2231BA84700E511BD /* SignUpTermsVC.swift in Sources */,
 				C55B7AAB231D288600CCE4BD /* UINavigationBar+Extensions.swift in Sources */,
 				C55BBD9C231C1C3000C7AD9E /* MyPageUserInfoVC.swift in Sources */,
+				4B188ADB232ED87700F0AE25 /* MainDetailAllVC.swift in Sources */,
 				C5001ACE231BA28800E511BD /* LoginVC.swift in Sources */,
 				C55BBD9E231C242300C7AD9E /* UITextField+Extensions.swift in Sources */,
+				4B1991E42336E364000081C9 /* LastAllCVC.swift in Sources */,
+				4B188ADD232ED88900F0AE25 /* MainDetailDDayVC.swift in Sources */,
+				4B1991E02336CF82000081C9 /* LastCVC.swift in Sources */,
+				4B188AD1232EADFA00F0AE25 /* CustomizedTabBarController.swift in Sources */,
 				C5E846FE23200B270092D0C5 /* UITableView+Extensions.swift in Sources */,
 				C55B7AAE231D325000CCE4BD /* IncompleteTVC.swift in Sources */,
 				C55B7AA3231D0CFD00CCE4BD /* MyPageMenuBar.swift in Sources */,
+				4B188AE4232EF52600F0AE25 /* QRCodeVC.swift in Sources */,
+				4B1991D62336CEFF000081C9 /* NewCVC.swift in Sources */,
 				C5AA0F66231DF8DC00CEE98A /* MyPageShareDetailVC.swift in Sources */,
 				C55B7AA8231D26F000CCE4BD /* PageCell.swift in Sources */,
 				C5001ABC231A8D8B00E511BD /* UIView+Extensions.swift in Sources */,
 				C5001A9F231A7EDD00E511BD /* AppDelegate.swift in Sources */,
 				C532039023201F5700EFDDB6 /* PostingCategoryVC.swift in Sources */,
 				C5001AD6231BADBD00E511BD /* UIColor+Extensions.swift in Sources */,
+				4B1991EB2337E944000081C9 /* DetailVC.swift in Sources */,
+				4B2732162333F36C00426AF2 /* QRShowVC.swift in Sources */,
+				4B188AD9232EC89600F0AE25 /* HomeVC.swift in Sources */,
 				C5001AD4231BA8E000E511BD /* SignUpEndVC.swift in Sources */,
 				C5929F7A231CEFFC00B1C4F6 /* MyPageShareVC.swift in Sources */,
 				C53203932320224200EFDDB6 /* PostingCategoryCell.swift in Sources */,
 				C55BBDA0231C301A00C7AD9E /* UIFont+Extensions.swift in Sources */,
 				C5929F7C231CF04700B1C4F6 /* MyPageReceiveVC.swift in Sources */,
 				C5BF7B20231E570500790AE4 /* MessageMainVC.swift in Sources */,
+				4B2732102333EBE400426AF2 /* QRListCVC.swift in Sources */,
 				C5EC166E231E344600ECE7DB /* MessageListTVC.swift in Sources */,
+				4B1991E82336E7BD000081C9 /* CategoryCVC.swift in Sources */,
 				C5001ABE231A8DB200E511BD /* UIViewController+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,4 +11,5 @@ target 'BabyClosetIOS' do
   pod 'Kingfisher' ,'~> 4.10.1'
   pod 'ObjectMapper', '~> 3.4.2'
   pod 'SwiftyJSON'
+  pod 'SwiftIcons', '~> 2.3.2'
 end
