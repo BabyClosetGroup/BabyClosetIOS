@@ -119,7 +119,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="rating:" destination="gTV-IL-0wX" eventType="touchUpInside" id="n2a-wa-nYL"/>
+                                        <action selector="showDetail:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Xpg-YA-nBX"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tln-lc-JhJ">
@@ -130,7 +130,7 @@
                                         <constraint firstAttribute="width" constant="69" id="cmV-uZ-0Rt"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="SeoulNamsanB" family="SeoulNamsan" pointSize="13"/>
-                                    <state key="normal" title="별점주기">
+                                    <state key="normal" title="정보보기">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
@@ -139,7 +139,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="showDetail:" destination="gTV-IL-0wX" eventType="touchUpInside" id="U9C-bs-99U"/>
+                                        <action selector="rating:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Yf0-KG-NWS"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -181,6 +181,7 @@
                 <outlet property="date" destination="8ev-Pf-OmC" id="Pcb-QP-hFc"/>
                 <outlet property="imgView" destination="fI7-TB-ISm" id="Wtl-MX-MlF"/>
                 <outlet property="isRated" destination="5m4-QC-zmy" id="Qan-t2-qz9"/>
+                <outlet property="ratingButton" destination="tFa-Pw-kaC" id="awp-0x-u8p"/>
                 <outlet property="shareWho" destination="djs-9p-LTI" id="W3y-MO-1xN"/>
                 <outlet property="title" destination="1CC-zN-rob" id="bVj-7w-Ehg"/>
             </connections>

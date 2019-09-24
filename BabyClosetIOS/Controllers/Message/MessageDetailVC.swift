@@ -7,27 +7,32 @@
 //
 
 
-
 // 비행기모양 누르면 바로 전송되는 것. enter치면 전송되는 것 고려해보기
 // 말풍선.............ㅎr
 
 import UIKit
 
-class MessageDetailVC: UIViewController, UITextFieldDelegate {
-    var otherUser = "현아는 베베"
-    var messages: [MessageDetailModel] = [
-        MessageDetailModel( content: "축하합니다. 여아 투피스 나눔자로 선정 되셨어요!", created: "2019/05/10", title: "보낸 쪽지"),
-        MessageDetailModel( content: "우와! 감사합니다:) 지역이 중랑구 이시던데 저와 매우 가깝군요! 혹시 나눔날은 언제가 편하신가요? 저는 지금 육아휴직중이라 언제든지 괜찮아요. 편하신 요일과 시간 정해서 알려 주세요 !", created: "2019/05/11", title: "받은 쪽지"),
-        MessageDetailModel( content: "우와! 감사합니다:) 지역이 중랑구 이시던데 저와 매우 가깝군요! 혹시 나눔날은 언제가 편하신가요? 저는 지금 육아휴직중이라 언제든지 괜찮아요. 편하신 요일과 시간 정해서 알려 주세요 ", created: "2019/05/12", title: "보낸 쪽지"),
-        MessageDetailModel( content: "어머 저는 노원구 살아서 중랑구가 편하긴 한데 혹시 회기쪽이면 친정이 그 근처라서 가능 할 것 같아요.", created: "2019/05/12", title: "받은 쪽지"),
-    ]
+class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDelegate {
+    var otherUser = ""
+    var messages: [MessageDetailList] = []
+    @IBOutlet weak var naviBar: UINavigationBar!
+    @IBOutlet weak var backBarButton: UIBarButtonItem!
+    
+    //        = [
+    //        MessageDetailModel( content: "축하합니다. 여아 투피스 나눔자로 선정 되셨어요!", created: "2019/05/10", title: "보낸 쪽지"),
+    //        MessageDetailModel( content: "우와! 감사합니다:) 지역이 중랑구 이시던데 저와 매우 가깝군요! 혹시 나눔날은 언제가 편하신가요? 저는 지금 육아휴직중이라 언제든지 괜찮아요. 편하신 요일과 시간 정해서 알려 주세요 !", created: "2019/05/11", title: "받은 쪽지"),
+    //        MessageDetailModel( content: "우와! 감사합니다:) 지역이 중랑구 이시던데 저와 매우 가깝군요! 혹시 나눔날은 언제가 편하신가요? 저는 지금 육아휴직중이라 언제든지 괜찮아요. 편하신 요일과 시간 정해서 알려 주세요 ", created: "2019/05/12", title: "보낸 쪽지"),
+    //        MessageDetailModel( content: "어머 저는 노원구 살아서 중랑구가 편하긴 한데 혹시 회기쪽이면 친정이 그 근처라서 가능 할 것 같아요.", created: "2019/05/12", title: "받은 쪽지"),
+    //    ]
     
     @IBOutlet weak var messageTF: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sendContainer: UIView!
     
-    var keyboardShown:Bool = false // 키보드 상태 확인
-    var originY:CGFloat? // 오브젝트의 기본 위치
+    var keyboardShown: Bool = false // 키보드 상태 확인
+    var originY: CGFloat? // 오브젝트의 기본 위치
+    var otherUserIdx: Int?
+    let networkManager = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,18 +41,48 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate {
         tableView.invalidateIntrinsicContentSize()
         tableView.delegate = self
         tableView.dataSource = self
-        self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
-        self.navigationItem.title = "\(otherUser)"
-        
         messageTF.tintColor = .mainYellow
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
         tapGesture.cancelsTouchesInView = true
         tableView.addGestureRecognizer(tapGesture)
+        getMessageNetwork()
+        
+        naviBar.delegate = self
+        naviBar.barTintColor = .white
+        naviBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
+        backBarButton.image = UIImage(named: "btn-Back")
+        backBarButton.tintColor = .gray38
+        backBarButton.action = #selector(goBack(_:))
     }
     
-    @objc func hideKeyboard() {
+    @objc private func goBack(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageRootNavigation") as! UINavigationController
+        self.present(vc, animated: true, completion: nil)
+        
+    }
+    
+    func getMessageNetwork(){
+        networkManager.getDetailMessageList(userIdx: gino(otherUserIdx)){ [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success != nil && error == nil {
+                guard success?.success ?? false else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
+                }
+                self?.otherUser = success?.data?.receiver?.nickname ?? ""
+                self?.naviBar.topItem?.title = self?.otherUser
+                self?.messages = success?.data?.messages ?? []
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
+    @objc func hideKeyboard(_ sender: Any) {
         view.endEditing(true)
     }
     
@@ -102,7 +137,7 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate {
     
     func sendMessage(){
         if messageTF.text == "" {
-//            simpleAlert(title: "메시지를 입력해주세요!", message: "")
+            //            simpleAlert(title: "메시지를 입력해주세요!", message: "")
         } else {
             let components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
             var date = "\(components.year!)"
@@ -114,7 +149,7 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate {
                 date.append("/0\(components.day!)")
             }
             
-            let newMessage =  MessageDetailModel( content: messageTF.text!, created: date, title: "보낸 쪽지")
+            let newMessage =  MessageDetailList( content: messageTF.text!, created: date, title: "보낸 쪽지")
             messages.append(newMessage)
             tableView.reloadData()
             scrollToBottom()
@@ -135,24 +170,34 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate {
 
 extension MessageDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        if messages.count != 0 {
+            return messages.count
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageBubbleTVC", for: indexPath) as! MessageBubbleTVC
-        let title = messages[indexPath.row].title
-        cell.contentLabel.text = messages[indexPath.row].content
-        cell.dateLabel.text = messages[indexPath.row].created
-        cell.titleLabel.text = title
-        if title == "받은 쪽지" {
-            cell.titleLabel.textColor = .mainYellow
-            cell.bubble.borderColor = .mainYellow
+        if messages.count != 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MessageBubbleTVC", for: indexPath) as! MessageBubbleTVC
+            let data = messages[indexPath.row]
+            cell.contentLabel.text = data.noteContent
+            cell.dateLabel.text = data.createdTime
+            cell.titleLabel.text = data.noteType
+            if title == "받은 쪽지" {
+                cell.titleLabel.textColor = .mainYellow
+                cell.bubble.borderColor = .mainYellow
+            } else {
+                cell.titleLabel.textColor = .gray118
+                cell.bubble.borderColor = .gray112
+                //            cell.bubble.roundCorners(corners: [.allCorners], radius: 8)
+            }
+            return cell
         } else {
-            cell.titleLabel.textColor = .gray118
-            cell.bubble.borderColor = .gray112
-            //            cell.bubble.roundCorners(corners: [.allCorners], radius: 8)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyMessageCell") as! MessageEmptyTVC
+            cell.label.text = "\(otherUser)님께"
+            return cell
         }
-        return cell
     }
     
     //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -196,10 +241,6 @@ extension MessageDetailVC: UITableViewDelegate, UITableViewDataSource {
     //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     //        return UITableViewAutomaticDimension
     //    }
-    
-    
-    
-    
 }
 
 

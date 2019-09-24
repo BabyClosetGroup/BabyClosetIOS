@@ -16,6 +16,10 @@ class CompleteTVC: UITableViewCell {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var shareWho: UILabel!
     @IBOutlet weak var isRated: UILabel!
+    @IBOutlet weak var ratingButton: UIButton!
+    
+    var receiveIdx: Int?
+    var postIdx: Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,12 +33,16 @@ class CompleteTVC: UITableViewCell {
     @IBAction func showDetail(_ sender: Any) {
         let storyboard = UIStoryboard(name: "MyPage", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MyPageStarVC") as! MyPageStarVC
+        vc.userIdx = self.receiveIdx
+        vc.postIdx = self.postIdx
         self.window?.rootViewController?.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func rating(_ sender: Any) {
+        
         let storyboard = UIStoryboard(name: "MyPage", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MyPageSharingInfoVC") as! MyPageSharingInfoVC
+        vc.receiveIdx = self.receiveIdx
         vc.modalPresentationStyle = .overCurrentContext
         self.window?.rootViewController?.present(vc, animated: false, completion: nil)
     }

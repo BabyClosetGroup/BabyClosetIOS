@@ -25,6 +25,7 @@ class PageCell: UICollectionViewCell {
         tableView.allowsSelection = false
         tableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         tableView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        tableView.register(UINib(nibName: "EmptyApplyCell", bundle: nil), forCellReuseIdentifier: "EmptyApplyCell")
         tableView.register(UINib(nibName: "IncompleteTVC", bundle: nil), forCellReuseIdentifier: "IncompleteTVC")
         tableView.register(UINib(nibName: "CompleteTVC", bundle: nil), forCellReuseIdentifier: "CompleteTVC")
     }
@@ -33,79 +34,92 @@ class PageCell: UICollectionViewCell {
 extension PageCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if firstView {
-            return IncompleteData.count
+            if IncompleteData.count != 0 {
+                return IncompleteData.count
+            } else {
+                return 1
+            }
         }
         else {
-            return CompleteData.count
+            if CompleteData.count != 0 {
+                return CompleteData.count
+            } else {
+                return 1
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if firstView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "IncompleteTVC", for: indexPath) as! IncompleteTVC
-            let data = IncompleteData[indexPath.row]
-            cell.title.text = data.postTitle
-            
-            if let area = data.areaName, area.count > 1 {
-                let attributedString = NSMutableAttributedString()
-                    .normal(area[0], font: UIFont.M12)
-                    .normal("외 \(area.count - 1)구", font: UIFont.L12)
-                cell.area.attributedText = attributedString
-            } else if let area = data.areaName{
-                let attributedString = NSMutableAttributedString()
-                    .normal(area[0], font: UIFont.M12)
-                cell.area.attributedText = attributedString
-            }
-            cell.postIdx = data.postIdx
-            cell.register.text = data.registerNumber
-            if let img = data.mainImage?.urlToImage() {
-                setImg(img: img, view: cell.mainImage)
-                cell.addSubview(imageView)
-            }
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CompleteTVC", for: indexPath) as! CompleteTVC
-            let data = CompleteData[indexPath.row]
-            
-            cell.title.text = data.postName
-            
-            if let area = data.areaName, area.count > 1 {
-                let attributedString = NSMutableAttributedString()
-                    .normal(area[0], font: UIFont.M12)
-                    .normal("외 \(area.count - 1)구", font: UIFont.L12)
-                cell.area.attributedText = attributedString
-            } else if let area = data.areaName{
-                let attributedString = NSMutableAttributedString()
-                    .normal(area[0], font: UIFont.M12)
-                cell.area.attributedText = attributedString
-            }
-            
-            if data.receiverIsRated == 0 {
-                cell.isRated.text = "미부여"
+            if IncompleteData.count != 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "IncompleteTVC", for: indexPath) as! IncompleteTVC
+                let data = IncompleteData[indexPath.row]
+                cell.title.text = data.postTitle
+                
+                if let area = data.areaName, area.count > 1 {
+                    let attributedString = NSMutableAttributedString()
+                        .normal(area[0], font: UIFont.M12)
+                        .normal("외 \(area.count - 1)구", font: UIFont.L12)
+                    cell.area.attributedText = attributedString
+                } else if let area = data.areaName{
+                    let attributedString = NSMutableAttributedString()
+                        .normal(area[0], font: UIFont.M12)
+                    cell.area.attributedText = attributedString
+                }
+                cell.postIdx = data.postIdx
+                cell.register.text = data.registerNumber
+                if let img = data.mainImage?.urlToImage() {
+                    imageView = cell.mainImage.setImgView(img: img)
+                    cell.addSubview(imageView)
+                }
+                return cell
             } else {
-                cell.isRated.text = "부여"
+                let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyApplyCell") as! EmptyApplyCell
+                return cell
             }
-            if let img = data.mainImage?.urlToImage() {
-                setImg(img: img, view: cell.imgView)
-                cell.addSubview(imageView)
+        } else {
+            if CompleteData.count != 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "CompleteTVC", for: indexPath) as! CompleteTVC
+                let data = CompleteData[indexPath.row]
+                
+                cell.title.text = data.postName
+                
+                if let area = data.areaName, area.count > 1 {
+                    let attributedString = NSMutableAttributedString()
+                        .normal(area[0], font: UIFont.M12)
+                        .normal("외 \(area.count - 1)구", font: UIFont.L12)
+                    cell.area.attributedText = attributedString
+                } else if let area = data.areaName {
+                    let attributedString = NSMutableAttributedString()
+                        .normal(area[0], font: UIFont.M12)
+                    cell.area.attributedText = attributedString
+                }
+                
+                if data.receiverIsRated == 0 {
+                    cell.isRated.text = "미부여"
+                } else {
+                    if let rating = data.rating {
+                        cell.isRated.text = "\(rating)점"
+                        cell.ratingButton.isEnabled = false
+                        cell.ratingButton.backgroundColor = .gray118
+                    }
+                }
+                if let img = data.mainImage?.urlToImage() {
+                    imageView = cell.imgView.setImgView(img: img)
+                    cell.addSubview(imageView)
+                }
+                
+                if let nickname = data.receiverNickname {
+                    cell.shareWho.text = "\(nickname)님과의 나눔"
+                }
+                cell.date.text = data.sharedDate
+                cell.receiveIdx = data.receiverIdx
+                cell.postIdx = data.postIdx
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyApplyCell") as! EmptyApplyCell
+                return cell
             }
-            if let nickname = data.receiverNickname {
-                cell.shareWho.text = "\(nickname)님과의 나눔"
-            }
-            
-            cell.date.text = data.sharedDate
-            
-            return cell
         }
     }
-    
-    func setImg( img: UIImage, view: UIView) {
-        imageView = UIImageView(frame: view.frame)
-        imageView.image = img
-        imageView.center = view.center
-        imageView.roundCorners(corners: [.allCorners], radius: 8)
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-    }
-    
 }

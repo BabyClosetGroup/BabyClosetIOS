@@ -37,37 +37,37 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
     
     
     func getUncompletedNetwork(){
-        networkManager.getUncompleteShare { [weak self] (success, fail, error) in
-            if success == nil && fail == nil && error != nil {
+        networkManager.getUncompleteShare { [weak self] (success, error) in
+            if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
             }
-            else if success == nil && fail != nil && error == nil {
-                if let msg = fail?.message {
-                    self?.simpleAlert(title: "", message: msg)
+            else if success != nil && error == nil {
+                guard let stat = success?.status, stat < 300 else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
                 }
-            } else if success != nil && fail == nil && error == nil {
                 self?.uncompleteShareList = success?.data?.allPost ?? []
                 print(self?.uncompleteShareList)
-            } else {
-                print("엥")
             }
         }
     }
     
     func getCompletedNetwork(){
-        networkManager.getCompleteShare { [weak self] (success, fail, error) in
-            if success == nil && fail == nil && error != nil {
+        networkManager.getCompleteShare { [weak self] (success, error) in
+            if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
             }
-            else if success == nil && fail != nil && error == nil {
-                if let msg = fail?.message {
-                    self?.simpleAlert(title: "", message: msg)
+            else if success != nil && error == nil {
+                guard let stut = success?.status, stut < 300 else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
                 }
-            } else if success != nil && fail == nil && error == nil {
                 self?.completeShareList = success?.data?.allPost ?? []
                 self?.pageCollectionView.reloadData()
-            } else {
-                print("엥")
             }
         }
     }

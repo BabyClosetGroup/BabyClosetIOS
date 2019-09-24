@@ -33,17 +33,18 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 103.0
+        tableView.allowsSelection = true
+        tableView.register(UINib(nibName: "EmptyApplyCell", bundle: nil), forCellReuseIdentifier: "EmptyApplyCell")
         inactiveButton()
-        setGesture()
     }
     
     func setGesture() {
-        let tapGesture = UITapGestureRecognizer(target: tableView.backgroundView, action: Selector("hideKeyboard"))
+        let tapGesture = UITapGestureRecognizer(target: tableView.backgroundView, action: #selector(hideKeyboard(_:)))
         tapGesture.cancelsTouchesInView = true
         tableView.addGestureRecognizer(tapGesture)
     }
     
-    @objc func hideKeyboard() {
+    @objc func hideKeyboard(_ sender: Any) {
         if let idx = selectIdx {
             tableView.deselectRow(at: idx, animated: true)
             inactiveButton()
@@ -74,16 +75,17 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
     
     func getNetwork(){
         if let idx = postIdx {
-            networkManager.getRequestShareList(postIdx: idx) { [weak self] (success, fail, error) in
-                print("success  : ", success)
-                if success == nil && fail == nil && error != nil {
+            networkManager.getRequestShareList(postIdx: idx) { [weak self] (success, error) in
+                if success == nil && error != nil {
                     self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
                 }
-                else if success == nil && fail != nil && error == nil {
-                    if let msg = fail?.message {
-                        self?.simpleAlert(title: "", message: msg)
+                else if success != nil && error == nil {
+                    guard let stat = success?.status, stat < 300 else {
+                        if let msg = success?.message {
+                            self?.simpleAlert(title: "", message: msg)
+                        }
+                        return
                     }
-                } else if success != nil && fail == nil && error == nil {
                     let postInfo = success?.data?.post
                     self?.productName.text = postInfo?.postTitle
                     
@@ -103,7 +105,7 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
                     }
                     self?.requestList = success?.data?.applicants ?? []
                     self?.tableView.reloadData()
-                } else {
+                    
                 }
             }
         }
@@ -115,15 +117,18 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
     
     @IBAction func selectAndNoteAction(_ sender: Any) {
         tableView.allowsSelection = true
-        // 대충 쪽지뷰로 넘어간다는 내용
+        let storyboard = UIStoryboard(name: "Message", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MessageDetailVC") as! MessageDetailVC
+        vc.otherUserIdx = gino(requestList[gino(selectIdx?.row)].applicantIdx)
+        self.present(vc, animated: true, completion: nil)
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if let idx = selectIdx {
-//        tableView.deselectRow(at: idx, animated: true)
-//        inactiveButton()
-//        }
-//    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let idx = selectIdx {
+            tableView.deselectRow(at: idx, animated: true)
+            inactiveButton()
+        }
+    }
 }
 
 extension MyPageShareDetailVC: UITableViewDataSource, UITableViewDelegate {
@@ -137,6 +142,7 @@ extension MyPageShareDetailVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if !requestList.isEmpty {
+            tableView.allowsSelection = true
             let cell = tableView.dequeueReusableCell(withIdentifier: "applyListCell", for: indexPath) as! ApplyListTVC
             let data = requestList[indexPath.row]
             if let img = data.profileImage?.urlToImage(){
@@ -157,6 +163,13 @@ extension MyPageShareDetailVC: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if !requestList.isEmpty {
+            return 103
+        } else{
+            return 424
+        }
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         activeButton()
         selectIdx = indexPath

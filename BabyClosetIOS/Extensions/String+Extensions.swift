@@ -17,8 +17,16 @@ extension String {
         return nil
     }
     
-    func isValid(_ regex: String) -> Bool{
-        let strTest = NSPredicate(format: "SELF MATCHES %@", regex)
-        return strTest.evaluate(with: self)
+    func hasCharacter(regex: String) -> Bool {
+        do {
+            let regex = try NSRegularExpression(pattern: regex, options: .caseInsensitive)
+            if let _ = regex.firstMatch(in: self, options: NSRegularExpression.MatchingOptions.reportCompletion, range: NSMakeRange(0, self.count)) {
+                return true
+            }
+        }  catch {
+            print( error.localizedDescription)
+            return false
+        }
+        return false
     }
 }

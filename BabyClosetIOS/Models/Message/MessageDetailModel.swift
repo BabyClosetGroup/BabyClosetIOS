@@ -9,29 +9,61 @@
 import Foundation
 
 struct MessageDetailModel : Codable {
-    var idx : Int?
-    var content : String?
-    var created : String?
-    var title: String?
+    var receiver : MessageReceiver?
+    var messages: [MessageDetailList]?
     
     enum CodingKeys: String, CodingKey {
-        case idx = "noteIdx"
-        case content = "noteContent"
-        case created = "createdTime"
-        case title = "noteType"
+        case receiver = "receiver"
+        case messages = "messages"
     }
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        idx = try values.decodeIfPresent(Int.self, forKey: .idx)
-        content = try values.decodeIfPresent(String.self, forKey: .content)
-        created = try values.decodeIfPresent(String.self, forKey: .created)
-        title = try values.decodeIfPresent(String.self, forKey: .title)
+        receiver = try values.decodeIfPresent(MessageReceiver.self, forKey: .receiver)
+        messages = try values.decodeIfPresent([MessageDetailList].self, forKey: .messages)
+    }
+}
+    
+struct MessageReceiver : Codable {
+    var userIdx : Int?
+    var nickname: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case userIdx = "userIdx"
+        case nickname = "nickname"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        userIdx = try values.decodeIfPresent(Int.self, forKey: .userIdx)
+        nickname = try values.decodeIfPresent(String.self, forKey: .nickname)
+    }
+}
+
+struct MessageDetailList : Codable {
+    var noteIdx : Int?
+    var noteContent : String?
+    var createdTime : String?
+    var noteType: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case noteIdx = "noteIdx"
+        case noteContent = "noteContent"
+        case createdTime = "createdTime"
+        case noteType = "noteType"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        noteIdx = try values.decodeIfPresent(Int.self, forKey: .noteIdx)
+        noteContent = try values.decodeIfPresent(String.self, forKey: .noteContent)
+        createdTime = try values.decodeIfPresent(String.self, forKey: .createdTime)
+        noteType = try values.decodeIfPresent(String.self, forKey: .noteType)
     }
     
     init(content: String, created: String, title: String){
-        self.content = content
-        self.created = created
-        self.title = title
+        self.noteContent = content
+        self.createdTime = created
+        self.noteType = title
     }
 }

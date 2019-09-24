@@ -43,7 +43,6 @@ struct RequestPost: Codable {
         applicantNumber = try values.decodeIfPresent(String.self, forKey: .applicantNumber)
         areaName = try values.decodeIfPresent([String].self, forKey: .areaName)
     }
-    
 }
 
 struct RequestShare: Codable {

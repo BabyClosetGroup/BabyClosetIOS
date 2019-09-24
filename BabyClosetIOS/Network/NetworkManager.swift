@@ -13,9 +13,7 @@ import SwiftyJSON
 class NetworkManager {
     let jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoyLCJuaWNrbmFtZSI6Iuq5gO2YleyyoOq1rO2VmCIsImlhdCI6MTU2ODIxOTA5OSwiZXhwIjoxNTc5MDE5MDk5LCJpc3MiOiJiYWJ5Q2xvc2V0In0.tmEh04olM1zm8oJId_QKdbw1_6cYvFDwfx0KV332PTk"
     //    let jwt = UserDefaults.standard.string(forKey: "token")
-    
-    func signup(userId:String, name:String, nickname:String, password:String, completion: @escaping (ErrorModel?,Error?) -> Void) {
-        
+    func signup(userId: String, name: String, nickname: String, password: String, completion: @escaping (ErrorModel?,Error?) -> Void) {
         let parameters = [
             "userId": userId,
             "name": name,
@@ -51,67 +49,102 @@ class NetworkManager {
         }
     }
     
+    func saveRating(userIdx: Int, rating: Int, postIdx: Int, completion: @escaping ( ErrorModel?, Error?) -> Void) {
+        let header : HTTPHeaders = [
+            "token": jwt
+        ]
+        let parameters = [
+            "userIdx": userIdx,
+            "rating": rating,
+            "postIdx": postIdx
+        ]
+        
+        let router = APIRouter(url:"/rating", method: .post, parameters: parameters, headers: header)
+        NetworkRequester(with: router).signUpRequest { (result: ErrorModel?, error)  in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            completion(result, error)
+        }
+    }
     
-    func getUserInfo( completion: @escaping ( ResponseBody<UserInfo>?, ErrorModel?, Error?) -> Void) {
+    
+    func getUserInfo( completion: @escaping ( ResponseBody<UserInfo>?, Error?) -> Void) {
         let header : HTTPHeaders = [
             "token": jwt
         ]
         let router = APIRouter(url: "/user", method: .get, parameters: nil, headers: header)
-        NetworkRequester(with: router).signInRequest { (userModel: ResponseBody<UserInfo>?, errorModel: ErrorModel? , error)  in
+        NetworkRequester(with: router).signUpRequest { ( result: ResponseBody<UserInfo>?, error) in
             guard error == nil else {
-                completion(nil, nil,error)
+                completion(nil,error)
                 return
             }
-            completion(userModel, errorModel, error)
+            completion(result,error)
         }
     }
     
-    func getUncompleteShare( completion: @escaping ( ResponseBody<UncompleteShareList>?, ErrorModel?, Error?) -> Void) {
+    func getReceivedShare( completion: @escaping ( ResponseBody<ReceiveShareList>?, Error?) -> Void) {
+        let header : HTTPHeaders = [
+            "token": jwt
+        ]
+        
+        let router = APIRouter(url: "/share/received", method: .get, parameters: nil, headers: header)
+        NetworkRequester(with: router).signUpRequest { ( result: ResponseBody<ReceiveShareList>?, error) in
+            guard error == nil else {
+                completion(nil,error)
+                return
+            }
+            completion(result,error)
+        }
+    }
+    
+    func getUncompleteShare( completion: @escaping ( ResponseBody<UncompleteShareList>?, Error?) -> Void) {
         let header : HTTPHeaders = [
             "token": jwt
         ]
         
         let router = APIRouter(url: "/share/uncompleted", method: .get, parameters: nil, headers: header)
-        NetworkRequester(with: router).signInRequest { (res: ResponseBody<UncompleteShareList>?, errorModel: ErrorModel? , error)  in
+        NetworkRequester(with: router).signUpRequest { ( result: ResponseBody<UncompleteShareList>?, error) in
             guard error == nil else {
-                completion(nil, nil,error)
+                completion(nil,error)
                 return
             }
-            completion(res, errorModel, error)
+            completion(result,error)
         }
     }
     
     
-    func getCompleteShare( completion: @escaping ( ResponseBody<CompleteShareList>?, ErrorModel?, Error?) -> Void) {
+    func getCompleteShare( completion: @escaping ( ResponseBody<CompleteShareList>?, Error?) -> Void) {
         let header : HTTPHeaders = [
             "token": jwt
         ]
         
         let router = APIRouter(url: "/share/completed", method: .get, parameters: nil, headers: header)
-        NetworkRequester(with: router).signInRequest { (res: ResponseBody<CompleteShareList>?, errorModel: ErrorModel? , error)  in
+        NetworkRequester(with: router).signUpRequest { ( result: ResponseBody<CompleteShareList>?, error) in
             guard error == nil else {
-                completion(nil, nil,error)
+                completion(nil,error)
                 return
             }
-            completion(res, errorModel, error)
+            completion(result,error)
         }
     }
     
-    func getRequestShareList(postIdx: Int, completion: @escaping ( ResponseBody<RequestShareList>?, ErrorModel?, Error?) -> Void) {
+    func getRequestShareList(postIdx: Int, completion: @escaping ( ResponseBody<RequestShareList>?, Error?) -> Void) {
         let header:HTTPHeaders = [
             "token": jwt
         ]
         let router = APIRouter(url: "/share/\(postIdx)", method: .get, parameters: nil, headers: header)
-        NetworkRequester(with: router).signInRequest { (list: ResponseBody<RequestShareList>?, errorModel: ErrorModel? , error)  in
+        NetworkRequester(with: router).signUpRequest { ( result: ResponseBody<RequestShareList>?, error) in
             guard error == nil else {
-                completion(nil, nil,error)
+                completion(nil,error)
                 return
             }
-            completion(list, errorModel, error)
+            completion(result,error)
         }
     }
     
-    func setUserInfo(nickname: String, password: String, image: Data, completion: @escaping ( ResponseBody<UserInfo>?, ErrorModel?, Error?) -> Void) {
+    func setUserInfo(nickname: String, password: String, image: Data, completion: @escaping ( ResponseBody<UserInfo>?, Error?) -> Void) {
         let header:HTTPHeaders = [
             "token": jwt
         ]
@@ -119,14 +152,81 @@ class NetworkManager {
             "nickname": nickname,
             "password": password
         ]
-
         let router = APIRouter(url: "/user", method: .put, parameters: parameters, headers: header, data: image)
-        NetworkRequester(with: router).requestMultipartFormData{ (Img: ResponseBody<UserInfo>?, errorModel :ErrorModel? , error) in
+        NetworkRequester(with: router).requestMultipartFormData{ (Img: ResponseBody<UserInfo>?, error) in
             guard error == nil else {
-                completion(nil,errorModel,error)
+                completion(nil,error)
                 return
             }
-            completion(Img,errorModel,error)
+            completion(Img, error)
+        }
+    }
+    
+    func getMessageList(completion: @escaping ( ResponseBody<MessageList>?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        
+        let router = APIRouter(url: "/note", method: .get, parameters: nil, headers: header)
+        NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<MessageList>?, error) in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            completion(result,error)
+        }
+    }
+    
+    func getOtherUserInfo(userIdx: Int, completion: @escaping ( ResponseBody<OtherDetailInfo>?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        let router = APIRouter(url: "/rating/\(userIdx)", method: .get, parameters: nil, headers: header)
+        NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<OtherDetailInfo>?, error) in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            completion(result,error)
+        }
+    }
+    
+    func getDetailMessageList(userIdx: Int, completion: @escaping ( ResponseBody<MessageDetailModel>?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        
+        let router = APIRouter(url: "/note/\(userIdx)", method: .get, parameters: nil, headers: header)
+        NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<MessageDetailModel>?, error) in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            completion(result,error)
+        }
+    }
+    
+    func posting( title: String, content: String, deadline: String, areaCategory: String, ageCategory: String, clothCategory: String, images: [Data], completion: @escaping ( ErrorModel?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        let parameters: [String:Any] = [
+            "title": title,
+            "content": content,
+            "deadline": deadline,
+            "areaCategory": areaCategory,
+            "ageCategory": ageCategory,
+            "clothCategory": clothCategory,
+            "postImages": images,
+        ]
+        
+        let router = APIRouter(url: "/post", method: .post, parameters: parameters, headers: header)
+        NetworkRequester(with: router).requestMultipartFormDataList { (Img: ErrorModel?, error) in
+            guard error == nil else {
+                completion(nil,error)
+                return
+            }
+            completion(Img, error)
         }
     }
 }

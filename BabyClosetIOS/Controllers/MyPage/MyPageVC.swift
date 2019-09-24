@@ -12,6 +12,7 @@ class MyPageVC: UIViewController {
     
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var infoLabel: UILabel!
+    let networkManager = NetworkManager()
     var nickname = "nickname"
     let star = 4
     
@@ -19,21 +20,40 @@ class MyPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nickname = gsno(UserDefaults.standard.string(forKey: "nickname"))
-        fillStar()
+        getUserDetailNetwork()
         self.navigationController?.navigationBar.tintColor = UIColor.gray38
         navigationController?.navigationBar.barTintColor = UIColor.white
         
         let height = profileImg.frame.height / 2
         profileImg.roundCorners(corners: [.allCorners], radius: height)
-        
-        let attributedString = NSMutableAttributedString()
-            .normal(nickname, font: UIFont.B16)
-            .normal("님의 별점 ", font: UIFont.L16)
-            .normal("\(star)점", font: UIFont.B16)
-        infoLabel.attributedText = attributedString
     }
     
+    func getUserDetailNetwork(){
+        networkManager.getOtherUserInfo (userIdx: 3){ [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success != nil && error == nil {
+                guard success?.success ?? false else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
+                }
+                if let nickname = success?.data?.nickname,
+                    let star = success?.data?.rating,
+                    let img = success?.data?.profileImage?.urlToImage() {
+                    let attributedString = NSMutableAttributedString()
+                        .normal("\(nickname)님", font: UIFont.B16)
+                        .normal("의 별점 ", font: UIFont.L16)
+                        .normal("\(star)점", font: UIFont.B16)
+                    self?.infoLabel.attributedText = attributedString
+                    self?.profileImg.image = img
+                    self?.fillStar(Int(star))
+                }
+            }
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,13 +62,12 @@ class MyPageVC: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
     }
     
-    func fillStar() {
+    func fillStar(_ star: Int) {
         for i in 0 ... stars.count - 1 {
-            stars[i].image = UIImage(named: "emptyStar")
+            stars[i].image = UIImage(named: "emptyStar64")
         }
-        
         for i in 0 ... star - 1 {
-            stars[i].image = UIImage(named: "star")
+            stars[i].image = UIImage(named: "star64")
         }
     }
 }
