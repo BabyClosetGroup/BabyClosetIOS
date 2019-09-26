@@ -60,4 +60,10 @@ struct MessageDetailList : Codable {
         createdTime = try values.decodeIfPresent(String.self, forKey: .createdTime)
         noteType = try values.decodeIfPresent(Int.self, forKey: .noteType)
     }
+    
+    init(content: String, created: String, title: Int){
+        self.noteContent = content
+        self.createdTime = created
+        self.noteType = title
+    }
 }

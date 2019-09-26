@@ -187,9 +187,10 @@
                         <viewLayoutGuide key="safeArea" id="Gpx-RT-735"/>
                     </view>
                     <navigationItem key="navigationItem" id="DbR-bQ-IYp">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="cvj-AI-8B6">
+                        <barButtonItem key="rightBarButtonItem" image="btn-Setting" id="cvj-AI-8B6">
+                            <color key="tintColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="lJ7-lC-4Pv" kind="push" id="eTv-wL-coU"/>
+                                <segue destination="lJ7-lC-4Pv" kind="push" id="QHW-mO-HZq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -489,7 +490,7 @@
         <!--My Page User InfoVC-->
         <scene sceneID="75k-wG-pTA">
             <objects>
-                <viewController id="lJ7-lC-4Pv" customClass="MyPageUserInfoVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyPageUserInfoVC" id="lJ7-lC-4Pv" customClass="MyPageUserInfoVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="whB-26-gwT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1002,6 +1003,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="btn-Setting" width="28" height="28"/>
         <image name="btn-checkSetting" width="28" height="28"/>
         <image name="btn-close" width="28" height="28"/>
         <image name="btn-emptyStar" width="48.333332061767578" height="45.666667938232422"/>
