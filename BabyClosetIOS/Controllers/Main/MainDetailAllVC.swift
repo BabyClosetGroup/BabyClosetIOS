@@ -8,15 +8,26 @@
 
 import UIKit
 
-class MainDetailAllVC: UIViewController {
+class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, SaveDataDelegate {
     var titles: [String] = ["[여아] 투피스 나눔", "3-6 개월 줄무늬 점프수트", "[여아] 투피스 나눔", "3-6 개월 줄무늬 점프수트", "[여아] 투피스 나눔", "3-6 개월 줄무늬 점프수트"]
     var locations: [String] = ["중랑구","중랑구","중랑구","중랑구","중랑구","중랑구"]
-    var categorys: [String] = ["서울 전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구"]
-    var category2: [String] = []
+//    var categorys: [String] = ["서울 전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구"]
+//    var category2: [String] = []
     
     @IBOutlet var categoryCollection: UICollectionView!
     @IBOutlet var newAllListCollection: UICollectionView!
     @IBOutlet var categoryHeight: NSLayoutConstraint!
+    
+    var localList: [String] = []
+    var ageList: [String] = []
+    var categoryList: [String] = []
+    var selectedList: [String:[String]] = [:]
+    var isMsg: Int = 0
+    var allPosts: [allPostList] = []
+    var postId: Int = 0
+
+    let networkManager = NetworkManager()
+
     
     override func viewDidLoad() {
         newAllListCollection.delegate = self
@@ -27,6 +38,8 @@ class MainDetailAllVC: UIViewController {
         
         super.viewDidLoad()
         setNavigationBar()
+        getPostListNetwork()
+        setMsg()
         self.tabBarController?.tabBar.isHidden = true
         
         let nibNameLast = UINib(nibName: "NewCVC", bundle: nil)
@@ -34,17 +47,29 @@ class MainDetailAllVC: UIViewController {
         let nibNameCategory = UINib(nibName: "CategoryCVC", bundle: nil)
         categoryCollection.register(nibNameCategory, forCellWithReuseIdentifier: "CategoryCVC")
         
-        if categorys.count == 0 {
-            categoryHeight.constant = 0
-        } else {
-            categoryHeight.constant = 58
-        }
         
         self.navigationController?.navigationBar.topItem?.title = ""
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        //createFloatingButton()
+        print(categoryList)
+        if categoryList.count == 0 {
+            categoryHeight.constant = 0
+        } else {
+            self.navigationItem.title = "필터적용"
+            categoryHeight.constant = 58
+        }
+        categoryCollection.reloadData()
+        self.view.layoutIfNeeded()
+    }
+    
+    func setMsg() {
+        if isMsg == 0 {
+//            msgBtn.arimage = UIImage(named: "btnLetter")
+        } else {
+//            msgBtn.image = UIImage(named: "btnLetterAlarm")
+        }
     }
     
     func setNavigationBar() {
@@ -58,60 +83,117 @@ class MainDetailAllVC: UIViewController {
         let filterImg    = UIImage(named: "btnFilter")!
         let msgImg  = UIImage(named: "btnLetter")!
         
-        let filterBtn = UIBarButtonItem(image: filterImg,  style: .plain, target: self, action:  #selector(buttonPressed(_:)))
-        filterBtn.tag = 1
-        let msgBtn   = UIBarButtonItem(image: msgImg,  style: .plain, target: self, action:  #selector(buttonPressed(_:)))
-        msgBtn.tag = 2
-        filterBtn.imageInsets = UIEdgeInsets(top: 0.0, left:30, bottom: 0, right: 0);
+        let filterBtn = UIBarButtonItem(image: filterImg,  style: .plain, target: self, action:  #selector(goFilterView))
+        let msgBtn   = UIBarButtonItem(image: msgImg,  style: .plain, target: self, action:  #selector(goMessageView))
+        filterBtn.imageInsets = UIEdgeInsets(top: 0.0, left:40, bottom: 0, right: 0);
 
         self.navigationItem.rightBarButtonItems = [msgBtn, filterBtn]
         
     }
-    @objc private func buttonPressed(_ sender: Any) {
-        if let button = sender as? UIBarButtonItem {
-            switch button.tag {
-            case 1:
-                // Change the background color to blue.
-                self.view.backgroundColor = .blue
-            case 2:
-                // Change the background color to red.
-                self.view.backgroundColor = .red
-            default: print("error")
+    @objc func goMessageView(){
+        let storyboard = UIStoryboard(name: "Message", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "Msg")
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    @objc func goFilterView(){
+        let storyboard = UIStoryboard(name: "Posting", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "PostingCategoryVC")
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! PostingCategoryVC
+        destination.delegate = self
+        destination.selectedList["localList"] = localList
+        destination.selectedList["ageList"] = ageList
+        destination.selectedList["categoryList"] = categoryList
+    }
+    func saveData(data saveData:[String: [String]]) {
+        localList = saveData["localList"]!
+        ageList = saveData["ageList"]!
+        categoryList = saveData["categoryList"]!
+        selectedList["localList"] = localList
+        selectedList["ageList"] = ageList
+        selectedList["categoryList"] = categoryList
+        categoryCollection.reloadData()
+    }
+    
+    func getPostListNetwork(){
+        networkManager.getAllList(){ [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success != nil && error == nil {
+                guard success?.success ?? false else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
+                }
+                self?.isMsg = success?.data?.isNewMessage ?? 0
+                self?.allPosts = success?.data?.allPost ?? []
+                self?.newAllListCollection.reloadData()
+                print("이건 메시지 알림-->", self?.isMsg)
             }
         }
     }
 
 }
 
-extension MainDetailAllVC : UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainDetailAllVC {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.newAllListCollection {
-            return titles.count
+            return allPosts.count
         } else {
-            return categorys.count
+            return localList.count + ageList.count + categoryList.count
         }
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.newAllListCollection {
+            let dvc = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
+            let data = allPosts[indexPath.row]
+            dvc.postid = data.postIdx ?? 0
+            navigationController?.pushViewController(dvc, animated: true)
+        }
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.newAllListCollection {
-            let cell = newAllListCollection.dequeueReusableCell(withReuseIdentifier: "NewCVC", for: indexPath) as! NewCVC
-            
-            cell.title.text = titles[indexPath.row]
-            cell.location.text = locations[indexPath.row]
-            cell.titleImg.image = UIImage(named: "2433Bd4A56987Ea437")
-            cell.title.sizeToFit()
-            cell.location.sizeToFit()
-            
-            return cell
+            if allPosts.count != 0 {
+                let cell = newAllListCollection.dequeueReusableCell(withReuseIdentifier: "NewCVC", for: indexPath) as! NewCVC
+                
+                let data = allPosts[indexPath.row]
+                print("new ---> ", data, indexPath.row)
+                
+                cell.title.text = data.postTitle
+                let cnt_ = data.areaName ?? []
+                let cnt = cnt_.count
+                cell.location.text = (data.areaName?[0])! + " 외 \(cnt)곳"
+                cell.titleImg.image = data.mainImage?.urlToImage()
+                cell.title.sizeToFit()
+                cell.location.sizeToFit()
+                
+                return cell
+            } else {
+                let cell = newAllListCollection.dequeueReusableCell(withReuseIdentifier: "NewCVC", for: indexPath) as! NewCVC
+                return cell
+            }
         } else {
             let cell = categoryCollection.dequeueReusableCell(withReuseIdentifier: "CategoryCVC", for: indexPath) as! CategoryCVC
-            cell.category.setTitle(categorys[indexPath.row], for: .normal)
-//            cell.category.sizeToFit()
-            
+            if localList.count > indexPath.row {
+                cell.category.setTitle(localList[indexPath.row], for: .normal)
+            } else if (localList.count + ageList.count ) > indexPath.row {
+                cell.category.setTitle(ageList[indexPath.row - localList.count], for: .normal)
+            } else {
+                let row = indexPath.row - ( localList.count + ageList.count )
+                cell.category.setTitle(categoryList[row], for: .normal)
+            }
+            cell.isSelected = true
             return cell
         }
     }

@@ -32,6 +32,7 @@
                     <tabBarItem key="tabBarItem" title="" image="tabHomeOff" selectedImage="tabHomeOn" id="2VO-0q-yhc">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
                         <inset key="largeContentSizeImageInsets" minX="1" minY="1" maxX="0.0" maxY="0.0"/>
+                        <color key="badgeColor" red="0.96182245020000001" green="0.76669603590000002" blue="0.26649612189999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -59,7 +60,7 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="OHX-r3-jNq" customClass="CustomizedTabBarController" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vt9-7g-qiG" customClass="CustomizedTabBar" customModule="BabyClosetIOS" customModuleProvider="target">
+                    <tabBar key="tabBar" contentMode="bottom" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="vt9-7g-qiG" customClass="CustomizedTabBar" customModule="BabyClosetIOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

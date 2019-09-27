@@ -21,9 +21,19 @@ class QRListVC: UIViewController {
         
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
-        
+        setNavigationBar()
+
         let nibName = UINib(nibName: "QRListCVC", bundle: nil)
         qrListCollection.register(nibName, forCellWithReuseIdentifier: "QRListCVC")
+    }
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = UIColor.gray38
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.shouldRemoveShadow(true)
+        
+        self.navigationItem.title = "QR인증하기"
+        
     }
     
 
@@ -38,6 +48,11 @@ extension QRListVC : UICollectionViewDelegate, UICollectionViewDataSource {
         return 1
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dvc = storyboard?.instantiateViewController(withIdentifier: "QRShowVC") as! QRShowVC
+        
+        navigationController?.pushViewController(dvc, animated: true)
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = qrListCollection.dequeueReusableCell(withReuseIdentifier: "QRListCVC", for: indexPath) as! QRListCVC

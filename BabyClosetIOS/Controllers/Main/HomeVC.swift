@@ -8,20 +8,28 @@
 import UIKit
 
 class HomeVC: UIViewController {
-    var titles: [String] = ["[여아] 투피스 나눔", "3-6 개월 줄무늬 점프수트", "[여아] 투피스 나눔", "3-6 개월 줄무늬 점프수트", "[여아] 투피스 나눔", "3-6 개월 줄무늬 점프수트"]
-    var locations: [String] = ["중랑구","중랑구","중랑구","중랑구","중랑구","중랑구"]
-    
+    var isMsg: Int = 0
+    var deadlinePosts: [deadlinePostList] = []
+    var newPosts: [recentPostList] = []
+    var postId: Int = 0
+
     @IBOutlet var justLine: UIView!
     @IBOutlet var lastListCollection: UICollectionView!
     @IBOutlet var newListCollection: UICollectionView!
+    @IBOutlet var msgBtn: UIBarButtonItem!
+    
+    let networkManager = NetworkManager()
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
         lastListCollection.delegate = self
         lastListCollection.dataSource = self
         newListCollection.delegate = self
         newListCollection.dataSource = self
         
-        super.viewDidLoad()
         setNavigationBar()
+        getPostListNetwork()
+        setMsg()
         
         let nibNameLast = UINib(nibName: "LastCVC", bundle: nil)
         lastListCollection.register(nibNameLast, forCellWithReuseIdentifier: "LastCVC")
@@ -32,7 +40,7 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = "아가옷장"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
         self.tabBarController?.tabBar.isHidden = false
         
     }
@@ -43,15 +51,45 @@ class HomeVC: UIViewController {
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
     }
     
+    func setMsg() {
+        if isMsg == 0 {
+            msgBtn.image = UIImage(named: "btnLetter")
+        } else {
+            msgBtn.image = UIImage(named: "btnLetterAlarm")
+        }
+    }
+    
+    func getPostListNetwork(){
+        networkManager.getHomeList(){ [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success != nil && error == nil {
+                guard success?.success ?? false else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
+                }
+                self?.isMsg = success?.data?.isNewMessage ?? 0
+                self?.deadlinePosts = success?.data?.deadlinePost ?? []
+                self?.newPosts = success?.data?.recentPost ?? []
+                self?.lastListCollection.reloadData()
+                self?.newListCollection.reloadData()
+                print("이건 메시지 알림-->", self?.isMsg)
+            }
+        }
+    }
+    
 }
 
 
 extension HomeVC : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.lastListCollection {
-           return titles.count
+           return deadlinePosts.count
         } else {
-            return 4
+            return newPosts.count
         }
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -65,31 +103,61 @@ extension HomeVC : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.lastListCollection {
-            let cell = lastListCollection.dequeueReusableCell(withReuseIdentifier: "LastCVC", for: indexPath) as! LastCVC
-            
-            cell.title.text = titles[indexPath.row]
-            cell.location.text = locations[indexPath.row]
-            cell.titleImg.image = UIImage(named: "5")
-            cell.title.sizeToFit()
-            cell.location.sizeToFit()
-            
-            return cell
+            if  deadlinePosts.count != 0 {
+                let cell = lastListCollection.dequeueReusableCell(withReuseIdentifier: "LastCVC", for: indexPath) as! LastCVC
+                print("indexpath", indexPath.row)
+                let data = deadlinePosts[indexPath.row]
+                print("daedline ---> ", data, indexPath.row)
+                
+                cell.title.text = data.postTitle
+                let cnt_ = data.areaName ?? []
+                let cnt = cnt_.count
+                cell.location.text = (data.areaName?[0])!+" 외 \(cnt)곳"
+                cell.titleImg.image = data.mainImage?.urlToImage()
+                cell.dday.text = data.deadline
+                cell.title.sizeToFit()
+                cell.location.sizeToFit()
+                self.postId = data.postIdx ?? 0
+
+                return cell
+            } else  {
+                let cell = lastListCollection.dequeueReusableCell(withReuseIdentifier: "LastCVC", for: indexPath) as! LastCVC
+                cell.title.text = "새로운게 없음.."
+                return cell
+            }
         } else {
-            let cell = newListCollection.dequeueReusableCell(withReuseIdentifier: "NewCVC", for: indexPath) as! NewCVC
-            
-            cell.title.text = titles[indexPath.row]
-            cell.location.text = locations[indexPath.row]
-            cell.titleImg.image = UIImage(named: "2433Bd4A56987Ea437")
-            cell.title.sizeToFit()
-            cell.location.sizeToFit()
-            
-            return cell
+            if newPosts.count != 0 {
+                let cell = newListCollection.dequeueReusableCell(withReuseIdentifier: "NewCVC", for: indexPath) as! NewCVC
+                let data = newPosts[indexPath.row]
+                print("new ---> ", data, indexPath.row)
+                
+                cell.title.text = data.postTitle
+                let cnt_ = data.areaName ?? []
+                let cnt = cnt_.count
+                cell.location.text = (data.areaName?[0])! + " 외 \(cnt)곳"
+                cell.titleImg.image = data.mainImage?.urlToImage()
+                cell.title.sizeToFit()
+                cell.location.sizeToFit()
+                self.postId = data.postIdx ?? 0
+
+                return cell
+            } else  {
+                let cell = newListCollection.dequeueReusableCell(withReuseIdentifier: "NewCVC", for: indexPath) as! NewCVC
+                cell.title.text = "새로운게 없음.."
+                return cell
+            }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let dvc = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
-        
+        if collectionView == self.lastListCollection {
+            let data = deadlinePosts[indexPath.row]
+            dvc.postid = data.postIdx ?? 0
+        } else {
+            let data = newPosts[indexPath.row]
+            dvc.postid = data.postIdx ?? 0
+        }
         navigationController?.pushViewController(dvc, animated: true)
     }
     

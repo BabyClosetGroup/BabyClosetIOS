@@ -29,6 +29,13 @@
 		4B2732142333F33900426AF2 /* QRListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2732132333F33900426AF2 /* QRListVC.swift */; };
 		4B2732162333F36C00426AF2 /* QRShowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2732152333F36C00426AF2 /* QRShowVC.swift */; };
 		4B2732182333F38500426AF2 /* QRScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2732172333F38500426AF2 /* QRScanVC.swift */; };
+		4B8474E2233D449700311C3F /* HomeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474E1233D449700311C3F /* HomeList.swift */; };
+		4B8474E4233D488C00311C3F /* AllPostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474E3233D488C00311C3F /* AllPostList.swift */; };
+		4B8474E6233D489F00311C3F /* DeadlinePostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474E5233D489F00311C3F /* DeadlinePostList.swift */; };
+		4B8474E8233D4B7100311C3F /* PostDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474E7233D4B7100311C3F /* PostDetail.swift */; };
+		4B8474EA233D4ECD00311C3F /* QRCodeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474E9233D4ECD00311C3F /* QRCodeList.swift */; };
+		4B8474EC233D4FFC00311C3F /* QRCodeAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474EB233D4FFC00311C3F /* QRCodeAuth.swift */; };
+		4B8474EE233D502E00311C3F /* QRCodeInquiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474ED233D502E00311C3F /* QRCodeInquiry.swift */; };
 		965030E50FF8214EC5366895 /* Pods_BabyClosetIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFFB1F5E45F9693A85A98F7 /* Pods_BabyClosetIOS.framework */; };
 		C5001A9F231A7EDD00E511BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001A9E231A7EDD00E511BD /* AppDelegate.swift */; };
 		C5001AA4231A7EDD00E511BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001AA2231A7EDD00E511BD /* Main.storyboard */; };
@@ -130,6 +137,13 @@
 		4B2732132333F33900426AF2 /* QRListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRListVC.swift; sourceTree = "<group>"; };
 		4B2732152333F36C00426AF2 /* QRShowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRShowVC.swift; sourceTree = "<group>"; };
 		4B2732172333F38500426AF2 /* QRScanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanVC.swift; sourceTree = "<group>"; };
+		4B8474E1233D449700311C3F /* HomeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeList.swift; sourceTree = "<group>"; };
+		4B8474E3233D488C00311C3F /* AllPostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostList.swift; sourceTree = "<group>"; };
+		4B8474E5233D489F00311C3F /* DeadlinePostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlinePostList.swift; sourceTree = "<group>"; };
+		4B8474E7233D4B7100311C3F /* PostDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetail.swift; sourceTree = "<group>"; };
+		4B8474E9233D4ECD00311C3F /* QRCodeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeList.swift; sourceTree = "<group>"; };
+		4B8474EB233D4FFC00311C3F /* QRCodeAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeAuth.swift; sourceTree = "<group>"; };
+		4B8474ED233D502E00311C3F /* QRCodeInquiry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInquiry.swift; sourceTree = "<group>"; };
 		C5001A9B231A7EDD00E511BD /* BabyClosetIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyClosetIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5001A9E231A7EDD00E511BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5001AA3231A7EDD00E511BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -286,6 +300,27 @@
 			path = QRCode;
 			sourceTree = "<group>";
 		};
+		4B298C7E233A7760009A5C5B /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				4B8474E9233D4ECD00311C3F /* QRCodeList.swift */,
+				4B8474EB233D4FFC00311C3F /* QRCodeAuth.swift */,
+				4B8474ED233D502E00311C3F /* QRCodeInquiry.swift */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
+		4B298C7F233A777E009A5C5B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4B8474E1233D449700311C3F /* HomeList.swift */,
+				4B8474E5233D489F00311C3F /* DeadlinePostList.swift */,
+				4B8474E3233D488C00311C3F /* AllPostList.swift */,
+				4B8474E7233D4B7100311C3F /* PostDetail.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		C5001A92231A7EDD00E511BD = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +384,8 @@
 		C5001AB2231A859800E511BD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4B298C7F233A777E009A5C5B /* Home */,
+				4B298C7E233A7760009A5C5B /* QRCode */,
 				C521CD642331FF9E000D2F6D /* MyPage */,
 				C5E2EFC6232CF9F400B57BA1 /* Login */,
 				C5BF7B24231E6F4600790AE4 /* Message */,
@@ -689,6 +726,7 @@
 				C55B7AB9231D744B00CCE4BD /* MyPageSharingInfoVC.swift in Sources */,
 				4B188ACE232E9A3300F0AE25 /* CustomizedTabBar.swift in Sources */,
 				C5001AD0231BA62700E511BD /* SignUpVC.swift in Sources */,
+				4B8474EC233D4FFC00311C3F /* QRCodeAuth.swift in Sources */,
 				C5203ACA23376FC100D378AF /* MessageList.swift in Sources */,
 				C55BBD9A231C159700C7AD9E /* MyPageVC.swift in Sources */,
 				C5001AC0231A8E0E00E511BD /* NSMutableAttributedString+Extensions.swift in Sources */,
@@ -701,6 +739,7 @@
 				4B2732182333F38500426AF2 /* QRScanVC.swift in Sources */,
 				C55B7AB6231D488300CCE4BD /* MyPageStarVC.swift in Sources */,
 				C5743AB42332880B00F4CE85 /* UncompleteShareList.swift in Sources */,
+				4B8474E2233D449700311C3F /* HomeList.swift in Sources */,
 				C532038E23201F3200EFDDB6 /* PostingMainTVC.swift in Sources */,
 				C5001AD2231BA84700E511BD /* SignUpTermsVC.swift in Sources */,
 				C5852F352334C1AD0036F10D /* RequestShareList.swift in Sources */,
@@ -708,10 +747,12 @@
 				C5071FEB233140BD0099F895 /* CheckBoxButton.swift in Sources */,
 				C55BBD9C231C1C3000C7AD9E /* MyPageUserInfoVC.swift in Sources */,
 				C5203ACC2337988700D378AF /* OtherDetailInfo.swift in Sources */,
+				4B8474EA233D4ECD00311C3F /* QRCodeList.swift in Sources */,
 				C54CFC012337E443000AF98F /* MessageEmptyTVC.swift in Sources */,
 				C5E2EFC8232CFA0D00B57BA1 /* ErrorModel.swift in Sources */,
 				4B188ADB232ED87700F0AE25 /* MainDetailAllVC.swift in Sources */,
 				C5001ACE231BA28800E511BD /* LoginVC.swift in Sources */,
+				4B8474E4233D488C00311C3F /* AllPostList.swift in Sources */,
 				C55BBD9E231C242300C7AD9E /* UITextField+Extensions.swift in Sources */,
 				4B1991E42336E364000081C9 /* LastAllCVC.swift in Sources */,
 				4B188ADD232ED88900F0AE25 /* MainDetailDDayVC.swift in Sources */,
@@ -736,6 +777,7 @@
 				C5001AD6231BADBD00E511BD /* UIColor+Extensions.swift in Sources */,
 				C5743AB02332415800F4CE85 /* ImageModel.swift in Sources */,
 				4B1991EB2337E944000081C9 /* DetailVC.swift in Sources */,
+				4B8474E6233D489F00311C3F /* DeadlinePostList.swift in Sources */,
 				4B2732162333F36C00426AF2 /* QRShowVC.swift in Sources */,
 				4B188AD9232EC89600F0AE25 /* HomeVC.swift in Sources */,
 				C5001AD4231BA8E000E511BD /* SignUpEndVC.swift in Sources */,
@@ -749,8 +791,10 @@
 				C5E2EFCC232D02AB00B57BA1 /* NetworkRequester.swift in Sources */,
 				C5EC166E231E344600ECE7DB /* MessageListTVC.swift in Sources */,
 				C521CD662331FFF3000D2F6D /* UserInfo.swift in Sources */,
+				4B8474EE233D502E00311C3F /* QRCodeInquiry.swift in Sources */,
 				4B2732102333EBE400426AF2 /* QRListCVC.swift in Sources */,
 				C5EC166E231E344600ECE7DB /* MessageListTVC.swift in Sources */,
+				4B8474E8233D4B7100311C3F /* PostDetail.swift in Sources */,
 				4B1991E82336E7BD000081C9 /* CategoryCVC.swift in Sources */,
 				C5001ABE231A8DB200E511BD /* UIViewController+Extensions.swift in Sources */,
 				C5CDBC602338A71700AE66CD /* ReceiveShareList.swift in Sources */,
