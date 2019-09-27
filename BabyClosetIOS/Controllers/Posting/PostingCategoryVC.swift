@@ -12,13 +12,13 @@ protocol SaveDataDelegate:class{
     func saveData(data saveData:[String: [String]])
 }
 
-class PostingCategoryVC: UIViewController,UIViewControllerTransitioningDelegate {
+class PostingCategoryVC: UIViewController, UIViewControllerTransitioningDelegate {
     
     let localList: [String] = ["서울 전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구"]
     let ageList: [String] = ["나이 전체", "3개월", "12개월", "24개월", "24~30개월"]
     let categoryList: [String] = ["카테고리 전체", "베스트", "배내옷", "바디슈트", "내의", "슬리핑가운", "원피스", "상의", "하의", "상하복"]
     
-    weak var delegate:SaveDataDelegate?
+    weak var delegate: SaveDataDelegate?
     var selectedList: [String:[String]] = ["localList":[], "ageList":[], "categoryList": []]
     
     @IBOutlet weak var localCollectionView: UICollectionView!
@@ -70,12 +70,15 @@ class PostingCategoryVC: UIViewController,UIViewControllerTransitioningDelegate 
     func checkEmptyList(){
         if selectedList["localList"]!.isEmpty {
             selectedList["localList"]?.append("서울 전체")
+            localCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .top)
         }
         if selectedList["ageList"]!.isEmpty {
             selectedList["ageList"]?.append("나이 전체")
+            ageCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .top)
         }
         if selectedList["categoryList"]!.isEmpty {
             selectedList["categoryList"]?.append("카테고리 전체")
+            categoryCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .top)
         }
     }
 }

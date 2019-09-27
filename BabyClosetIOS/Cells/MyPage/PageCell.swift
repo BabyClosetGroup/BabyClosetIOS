@@ -13,6 +13,7 @@ class PageCell: UICollectionViewCell {
     var numberOfRows = 0
     var IncompleteData: [UncompleteShare] = []
     var CompleteData: [CompleteShare] = []
+    var isLoading: Bool = true
     
     @IBOutlet weak var tableView: UITableView!
     var imageView : UIImageView = UIImageView()
@@ -34,24 +35,16 @@ class PageCell: UICollectionViewCell {
 extension PageCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if firstView {
-            if IncompleteData.count != 0 {
-                return IncompleteData.count
-            } else {
-                return 1
-            }
+            return IncompleteData.count + 1
         }
         else {
-            if CompleteData.count != 0 {
-                return CompleteData.count
-            } else {
-                return 1
-            }
+            return CompleteData.count + 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if firstView {
-            if IncompleteData.count != 0 {
+            if IncompleteData.count != 0 && IncompleteData.count > indexPath.row {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "IncompleteTVC", for: indexPath) as! IncompleteTVC
                 let data = IncompleteData[indexPath.row]
                 cell.title.text = data.postTitle
@@ -73,12 +66,21 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
                     cell.addSubview(imageView)
                 }
                 return cell
-            } else {
+            } else if IncompleteData.count == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyApplyCell") as! EmptyApplyCell
+                if !isLoading {
+                    cell.aboveLabel.text = "아가옷장에서"
+                    cell.underLabel.text = "따뜻한 나눔을 진행해보세요!"
+                } else {
+                    cell.aboveLabel.text = "로딩중입니다."
+                    cell.underLabel.text = "잠시만 기다려주세요!"
+                }
                 return cell
+            } else {
+                return UITableViewCell()
             }
         } else {
-            if CompleteData.count != 0 {
+            if CompleteData.count != 0 && CompleteData.count > indexPath.row {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CompleteTVC", for: indexPath) as! CompleteTVC
                 let data = CompleteData[indexPath.row]
                 
@@ -116,9 +118,39 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
                 cell.receiveIdx = data.receiverIdx
                 cell.postIdx = data.postIdx
                 return cell
-            } else {
+            } else if CompleteData.count == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyApplyCell") as! EmptyApplyCell
+                if !isLoading {
+                    cell.aboveLabel.text = "아가옷장에서"
+                    cell.underLabel.text = "따뜻한 나눔을 진행해보세요!"
+                } else {
+                    cell.aboveLabel.text = "로딩중입니다."
+                    cell.underLabel.text = "잠시만 기다려주세요!"
+                }
                 return cell
+            } else {
+                return UITableViewCell()
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if firstView {
+            if IncompleteData.count != 0 && IncompleteData.count > indexPath.row{
+                return 215
+            } else if IncompleteData.count == 0 {
+                return 695
+            } else {
+                return 100
+            }
+        }
+        else {
+            if CompleteData.count != 0 {
+                return 215
+            } else if CompleteData.count == 0 {
+                return 695
+            } else {
+                return 100
             }
         }
     }

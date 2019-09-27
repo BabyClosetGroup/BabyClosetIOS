@@ -21,11 +21,15 @@ class MyPageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUserDetailNetwork()
+        
         self.navigationController?.navigationBar.tintColor = UIColor.gray38
         navigationController?.navigationBar.barTintColor = UIColor.white
-        
-        let height = profileImg.frame.height / 2
-        profileImg.roundCorners(corners: [.allCorners], radius: height)
+        let attributedString = NSMutableAttributedString()
+            .normal("정보를 가지고 오는 중입니다.", font: UIFont.M16)
+        self.infoLabel.attributedText = attributedString
+//        let height = profileImg.frame.height / 2
+        profileImg.roundCorners(corners: [.allCorners], radius: 31)
+        profileImg.contentMode = .scaleToFill
     }
     
     func getUserDetailNetwork(){
@@ -48,7 +52,7 @@ class MyPageVC: UIViewController {
                         .normal("의 별점 ", font: UIFont.L16)
                         .normal("\(star)점", font: UIFont.B16)
                     self?.infoLabel.attributedText = attributedString
-                    self?.profileImg.image = img
+//                    self?.profileImg.image = img
                     self?.fillStar(Int(star))
                 }
             }

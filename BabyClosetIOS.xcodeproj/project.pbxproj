@@ -110,6 +110,7 @@
 		C5EC1664231E1FE900ECE7DB /* ApplyListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EC1663231E1FE900ECE7DB /* ApplyListTVC.swift */; };
 		C5EC1666231E2F2A00ECE7DB /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EC1665231E2F2A00ECE7DB /* Message.storyboard */; };
 		C5EC166E231E344600ECE7DB /* MessageListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EC166D231E344600ECE7DB /* MessageListTVC.swift */; };
+		C5F07966233C75F1008B0D56 /* MessageBubbleTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5F07965233C75F1008B0D56 /* MessageBubbleTVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -218,6 +219,7 @@
 		C5EC1663231E1FE900ECE7DB /* ApplyListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyListTVC.swift; sourceTree = "<group>"; };
 		C5EC1665231E2F2A00ECE7DB /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		C5EC166D231E344600ECE7DB /* MessageListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListTVC.swift; sourceTree = "<group>"; };
+		C5F07965233C75F1008B0D56 /* MessageBubbleTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageBubbleTVC.xib; sourceTree = "<group>"; };
 		C60F0A93007A0F1379A0344A /* Pods-BabyClosetIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyClosetIOS.debug.xcconfig"; path = "Target Support Files/Pods-BabyClosetIOS/Pods-BabyClosetIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E3E8143B349FE936CF6BD9B8 /* Pods-BabyClosetIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyClosetIOS.release.xcconfig"; path = "Target Support Files/Pods-BabyClosetIOS/Pods-BabyClosetIOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -574,6 +576,7 @@
 			children = (
 				C5EC166D231E344600ECE7DB /* MessageListTVC.swift */,
 				C5BF7B22231E5A5000790AE4 /* MessageBubbleTVC.swift */,
+				C5F07965233C75F1008B0D56 /* MessageBubbleTVC.xib */,
 				C54CFC002337E443000AF98F /* MessageEmptyTVC.swift */,
 			);
 			path = Message;
@@ -639,6 +642,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5F07966233C75F1008B0D56 /* MessageBubbleTVC.xib in Resources */,
 				C5001AB8231A8BCB00E511BD /* Login.storyboard in Resources */,
 				C55BBD97231C142E00C7AD9E /* MyPage.storyboard in Resources */,
 				C5CDBC642338D5BA00AE66CD /* EmptyApplyCell.xib in Resources */,

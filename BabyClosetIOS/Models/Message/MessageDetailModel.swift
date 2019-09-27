@@ -44,7 +44,7 @@ struct MessageDetailList : Codable {
     var noteIdx : Int?
     var noteContent : String?
     var createdTime : String?
-    var noteType: String?
+    var noteType: Int?
     
     enum CodingKeys: String, CodingKey {
         case noteIdx = "noteIdx"
@@ -58,10 +58,10 @@ struct MessageDetailList : Codable {
         noteIdx = try values.decodeIfPresent(Int.self, forKey: .noteIdx)
         noteContent = try values.decodeIfPresent(String.self, forKey: .noteContent)
         createdTime = try values.decodeIfPresent(String.self, forKey: .createdTime)
-        noteType = try values.decodeIfPresent(String.self, forKey: .noteType)
+        noteType = try values.decodeIfPresent(Int.self, forKey: .noteType)
     }
     
-    init(content: String, created: String, title: String){
+    init(content: String, created: String, title: Int){
         self.noteContent = content
         self.createdTime = created
         self.noteType = title
