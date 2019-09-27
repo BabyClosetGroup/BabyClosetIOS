@@ -40,10 +40,10 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정미님의 별점 4점" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bul-9h-vhy">
-                                        <rect key="frame" x="103" y="26" width="166" height="21"/>
+                                        <rect key="frame" x="103" y="26" width="216" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="cld-da-3EY"/>
-                                            <constraint firstAttribute="width" constant="166" id="paO-gc-eew"/>
+                                            <constraint firstAttribute="width" constant="216" id="paO-gc-eew"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="16"/>
                                         <nil key="textColor"/>
@@ -79,7 +79,7 @@
                                     <constraint firstAttribute="bottom" secondItem="sJt-dQ-YPg" secondAttribute="bottom" constant="26.333333333333343" id="6Xo-7I-Wwl"/>
                                     <constraint firstItem="iA3-V1-pen" firstAttribute="leading" secondItem="QBp-7B-elP" secondAttribute="leading" constant="16" id="FgH-KD-pOg"/>
                                     <constraint firstItem="iA3-V1-pen" firstAttribute="top" secondItem="QBp-7B-elP" secondAttribute="top" constant="27" id="GVA-59-nFY"/>
-                                    <constraint firstAttribute="trailing" secondItem="bul-9h-vhy" secondAttribute="trailing" constant="106" id="IcV-Tr-kZf"/>
+                                    <constraint firstAttribute="trailing" secondItem="bul-9h-vhy" secondAttribute="trailing" constant="56" id="IcV-Tr-kZf"/>
                                     <constraint firstItem="sJt-dQ-YPg" firstAttribute="leading" secondItem="iA3-V1-pen" secondAttribute="trailing" constant="24.000000000000014" id="O1V-d3-Hcj"/>
                                     <constraint firstAttribute="bottom" secondItem="iA3-V1-pen" secondAttribute="bottom" constant="26" id="Rot-Ve-RKY"/>
                                     <constraint firstItem="bul-9h-vhy" firstAttribute="leading" secondItem="iA3-V1-pen" secondAttribute="trailing" constant="24" id="hox-pp-bto"/>
@@ -511,7 +511,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q7c-pZ-q5f">
                                         <rect key="frame" x="16" y="126" width="343" height="42"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="정미님가나다라마" placeholder="한글로 8글자 이내로 써주세요." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9SV-fc-XrN">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="한글로 8글자 이내로 써주세요." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9SV-fc-XrN">
                                                 <rect key="frame" x="27" y="11" width="288" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="288" id="gaS-RE-GjU"/>
