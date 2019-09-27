@@ -229,4 +229,23 @@ class NetworkManager {
             completion(Img, error)
         }
     }
+    
+    func sendMessage( receiverIdx: Int, noteContent: String, completion: @escaping ( ErrorModel?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        let parameters: [String:Any] = [
+            "receiverIdx": receiverIdx,
+            "noteContent": noteContent,
+        ]
+        
+        let router = APIRouter(url: "/note", method: .post, parameters: parameters, headers: header)
+        NetworkRequester(with: router).signUpRequest { (Img: ErrorModel?, error) in
+            guard error == nil else {
+                completion(nil,error)
+                return
+            }
+            completion(Img, error)
+        }
+    }
 }
