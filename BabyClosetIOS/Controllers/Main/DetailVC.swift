@@ -23,8 +23,19 @@ class DetailVC: UIViewController {
     @IBOutlet var star4: UIImageView!
     @IBOutlet var star5: UIImageView!
     @IBOutlet var apply: UIButton!
-    var categorys: [String] = ["서울 전체", "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구"]
     
+    var postid: Int = 0
+//    var post: detailPostContent
+    var issender: Int = 0
+    var star: Int = 0
+    
+    var area:[String] = []
+    var age:[String] = []
+    var cloth:[String] = []
+    var category:[String] = []
+    var isMsg: Int = 0
+    
+    let networkManager = NetworkManager()
     
     @IBAction func applyAction(_ sender: Any) {
     }
@@ -118,16 +129,75 @@ class DetailVC: UIViewController {
         categoryCollection.dataSource = self
         
         super.viewDidLoad()
+        setNavigationBar()
+        getPostDetailNetwork()
+        setMsg()
         self.tabBarController?.tabBar.isHidden = true
         
         let nibName = UINib(nibName: "CategoryCVC", bundle: nil)
         categoryCollection.register(nibName, forCellWithReuseIdentifier: "CategoryCVC")
-
-        setStar(num: 4)
-        apply.layer.zPosition = 100
+        setStar(num: 3)
+//        titleImg.image = UIImage(named: self.imgTitle)
+//        detailTitle.text = self.titleDetail
+//        dday.text = "D-\(self.dayd)"
+//        userName.text = "\(self.nameUser)님의 나눔 별점"
+//        userImg.image = UIImage(named: self.imgUser)
+//        content.text = self.Usercontent
+//        categorys = self.category
+        
+    }
+    func setMsg() {
+        if isMsg == 0 {
+//            msgBtn.image = UIImage(named: "btnLetter")
+        } else {
+//            msgBtn.image = UIImage(named: "btnLetterAlarm")
+        }
     }
     
-    func setStar(num: Int64) {
+    
+    func getPostDetailNetwork(){
+        networkManager.getPostDetail (postIdx: postid){ [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success != nil && error == nil {
+                guard success?.success ?? false else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
+                }
+                self?.isMsg = success?.data?.isNewMessage ?? 0
+//                self?.post = success?.data?.detailPost ?? ""
+                
+                self?.detailTitle.text = success?.data?.detailPost?.postTitle
+                self?.dday.text = success?.data?.detailPost?.deadline
+                let name = success?.data?.detailPost?.nickname ?? ""
+                self?.userName.text = "\(name)님의 나눔 별점"
+                self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
+                if self?.userImg.image == nil {
+                    self?.userImg.image = UIImage(named: "user")
+                    //????????????
+                }
+                self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
+                self?.content.text = success?.data?.detailPost?.postContent
+                
+                self?.area = success?.data?.detailPost?.areaName ?? []
+                self?.age = success?.data?.detailPost?.ageName ?? []
+                self?.cloth = success?.data?.detailPost?.clothName ?? []
+                self?.issender = success?.data?.detailPost?.isSender ?? 0
+                self?.star = success?.data?.detailPost?.rating ?? 5
+                self?.setStar(num: self?.star ?? 0)
+
+                self?.category.append(contentsOf: self?.area ?? [])
+                self?.category.append(contentsOf: self?.age ?? [])
+                self?.category.append(contentsOf: self?.cloth ?? [])
+                self?.categoryCollection.reloadData()
+            }
+        }
+    }
+    
+    func setStar(num: Int) {
         var stars: [UIImageView] = [star1, star2, star3, star4, star5]
         for i in 0..<stars.count {
             if (num > i) {
@@ -137,12 +207,48 @@ class DetailVC: UIViewController {
             }
         }
     }
+    
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = UIColor.gray38
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.shouldRemoveShadow(true)
+        
+        self.navigationItem.title = "상품정보"
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
+        
+        let settingImg    = UIImage(named: "btnSetting")!
+        let msgImg  = UIImage(named: "btnLetter")!
+        
+        let settingBtn = UIBarButtonItem(image: settingImg,  style: .plain, target: self, action:  #selector(buttonPressed(_:)))
+        settingBtn.tag = 1
+        let msgBtn   = UIBarButtonItem(image: msgImg,  style: .plain, target: self, action:  #selector(buttonPressed(_:)))
+        msgBtn.tag = 2
+        msgBtn.imageInsets = UIEdgeInsets(top: 0.0, left:45, bottom: 0, right: 0);
+
+        self.navigationItem.rightBarButtonItems = [settingBtn, msgBtn]
+        
+        
+    }
+    @objc private func buttonPressed(_ sender: Any) {
+        if let button = sender as? UIBarButtonItem {
+            switch button.tag {
+            case 1:
+                self.view.backgroundColor = .blue
+            case 2:
+                // Change the background color to red.
+                self.view.backgroundColor = .red
+            default: print("error")
+            }
+        }
+    }
+
 
 }
 
 extension DetailVC : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categorys.count
+        return category.count
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -151,7 +257,7 @@ extension DetailVC : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = categoryCollection.dequeueReusableCell(withReuseIdentifier: "CategoryCVC", for: indexPath) as! CategoryCVC
-        cell.category.setTitle(categorys[indexPath.row], for: .normal)
+        cell.category.setTitle(category[indexPath.row], for: .normal)
         return cell
     }
     

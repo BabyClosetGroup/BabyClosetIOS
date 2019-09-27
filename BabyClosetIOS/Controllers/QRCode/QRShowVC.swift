@@ -13,7 +13,16 @@ class QRShowVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
-        // Do any additional setup after loading the view.
+        setNavigationBar()
+    }
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = UIColor.gray38
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.shouldRemoveShadow(true)
+        
+        self.navigationItem.title = "QR인증하기"
+        
     }
     
 
