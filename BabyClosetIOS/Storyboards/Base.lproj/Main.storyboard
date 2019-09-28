@@ -58,7 +58,7 @@
         <!--Customized Tab Bar Controller-->
         <scene sceneID="Nlp-xn-2QV">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="OHX-r3-jNq" customClass="CustomizedTabBarController" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="CustomizedTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="OHX-r3-jNq" customClass="CustomizedTabBarController" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="bottom" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="vt9-7g-qiG" customClass="CustomizedTabBar" customModule="BabyClosetIOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
