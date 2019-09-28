@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SeoulNamsanB.otf">
-            <string>SeoulNamsanB</string>
-        </array>
         <array key="SeoulNamsanL.otf">
             <string>SeoulNamsanL</string>
         </array>
@@ -372,7 +369,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H6C-D4-FsD">
-                                        <rect key="frame" x="16" y="569" width="343" height="35"/>
+                                        <rect key="frame" x="16" y="569" width="343" height="243"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="343" id="fQK-JP-amX"/>
@@ -533,28 +530,16 @@
                                     <constraint firstItem="FiS-JM-1Ff" firstAttribute="top" secondItem="lfa-W4-DKU" secondAttribute="bottom" constant="48" id="TaS-Y8-fXX"/>
                                     <constraint firstItem="H6C-D4-FsD" firstAttribute="top" secondItem="FiS-JM-1Ff" secondAttribute="bottom" id="Z2Q-Bx-CNr"/>
                                     <constraint firstItem="BUd-RX-C4G" firstAttribute="top" secondItem="mnO-PG-hpo" secondAttribute="top" constant="342" id="Z4S-fi-IKr"/>
+                                    <constraint firstAttribute="bottom" secondItem="2Qi-pH-gma" secondAttribute="bottom" constant="436" id="bFM-uF-JDz"/>
                                     <constraint firstItem="2Qi-pH-gma" firstAttribute="leading" secondItem="mnO-PG-hpo" secondAttribute="leading" id="bOQ-yv-Y5O"/>
                                     <constraint firstItem="BUd-RX-C4G" firstAttribute="centerX" secondItem="mnO-PG-hpo" secondAttribute="centerX" id="deR-Kx-D5K"/>
                                     <constraint firstAttribute="trailing" secondItem="FiS-JM-1Ff" secondAttribute="trailing" id="gU5-GU-kdY"/>
                                     <constraint firstItem="2Qi-pH-gma" firstAttribute="top" secondItem="mnO-PG-hpo" secondAttribute="top" id="jaa-Wt-al3"/>
+                                    <constraint firstItem="lfa-W4-DKU" firstAttribute="top" secondItem="mnO-PG-hpo" secondAttribute="top" constant="393" id="oVw-7u-RBB"/>
                                     <constraint firstAttribute="trailing" secondItem="MJq-x2-RhQ" secondAttribute="trailing" id="riO-z7-cen"/>
-                                    <constraint firstItem="lfa-W4-DKU" firstAttribute="top" secondItem="2Qi-pH-gma" secondAttribute="bottom" constant="17" id="vQ0-Of-efl"/>
                                     <constraint firstAttribute="trailing" secondItem="lfa-W4-DKU" secondAttribute="trailing" constant="16" id="waz-lN-P8G"/>
                                 </constraints>
                             </scrollView>
-                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkG-Jc-yBE">
-                                <rect key="frame" x="0.0" y="733" width="375" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="SeoulNamsanB" family="SeoulNamsan" pointSize="20"/>
-                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
-                                <state key="normal" title="신청하기">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="applyAction:" destination="fPH-tr-B7l" eventType="touchUpInside" id="Wci-p9-EtM"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="tintColor" red="0.96182245020000001" green="0.76669603590000002" blue="0.26649612189999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -567,7 +552,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="OWx-ac-bnh"/>
                     <connections>
-                        <outlet property="apply" destination="FkG-Jc-yBE" id="9VN-5I-JhR"/>
                         <outlet property="categoryCollection" destination="MJq-x2-RhQ" id="mja-wU-feW"/>
                         <outlet property="content" destination="H6C-D4-FsD" id="fiy-Ho-asW"/>
                         <outlet property="dday" destination="esj-WS-qUW" id="hgB-O9-NSB"/>
