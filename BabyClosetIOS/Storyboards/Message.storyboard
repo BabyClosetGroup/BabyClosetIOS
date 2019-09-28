@@ -127,10 +127,10 @@
                                 <rect key="frame" x="0.0" y="89" width="375" height="723"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oJh-Kj-9T8">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="634"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="624"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="634" id="do5-zT-j0J"/>
+                                            <constraint firstAttribute="height" constant="624" id="do5-zT-j0J"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BhT-Cz-9Yl">
                                             <size key="itemSize" width="375" height="178"/>
@@ -189,8 +189,8 @@
                                     <constraint firstAttribute="bottom" secondItem="7ga-B1-fph" secondAttribute="bottom" constant="41" id="RR7-EV-jA8"/>
                                     <constraint firstAttribute="trailing" secondItem="7ga-B1-fph" secondAttribute="trailing" constant="16" id="aeC-6a-Xtr"/>
                                     <constraint firstItem="oJh-Kj-9T8" firstAttribute="leading" secondItem="jtA-FB-yxb" secondAttribute="leading" id="b14-H9-gjh"/>
-                                    <constraint firstAttribute="bottom" secondItem="oJh-Kj-9T8" secondAttribute="bottom" constant="89" id="cjD-z4-u5Y"/>
                                     <constraint firstAttribute="height" constant="723" id="qum-V5-LxZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="oJh-Kj-9T8" secondAttribute="bottom" constant="99" id="v8i-k9-IET"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujz-98-7ee">

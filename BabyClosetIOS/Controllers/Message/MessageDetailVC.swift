@@ -128,7 +128,7 @@ class MessageDetailVC: UIViewController, UITextViewDelegate, UINavigationBarDele
     @objc func keyboardWillShow(notification: Notification) {
         if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
             if self.containerView.frame.origin.y == originY {
-                self.containerView.frame.origin.y -= (keyboardHeight-14)
+                self.containerView.frame.origin.y -= (keyboardHeight-20)
             }
         }
     }
