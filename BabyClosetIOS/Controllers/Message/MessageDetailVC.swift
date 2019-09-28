@@ -12,54 +12,67 @@
 
 import UIKit
 
-class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDelegate {
+class MessageDetailVC: UIViewController, UITextViewDelegate, UINavigationBarDelegate {
     var otherUser = ""
     var messages: [MessageDetailList] = []
+    let networkManager = NetworkManager()
+
+    private let cellId = "cellId"
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var naviBar: UINavigationBar!
     @IBOutlet weak var backBarButton: UIBarButtonItem!
-    
-    //        = [
-    //        MessageDetailModel( content: "축하합니다. 여아 투피스 나눔자로 선정 되셨어요!", created: "2019/05/10", title: "보낸 쪽지"),
-    //        MessageDetailModel( content: "우와! 감사합니다:) 지역이 중랑구 이시던데 저와 매우 가깝군요! 혹시 나눔날은 언제가 편하신가요? 저는 지금 육아휴직중이라 언제든지 괜찮아요. 편하신 요일과 시간 정해서 알려 주세요 !", created: "2019/05/11", title: "받은 쪽지"),
-    //        MessageDetailModel( content: "우와! 감사합니다:) 지역이 중랑구 이시던데 저와 매우 가깝군요! 혹시 나눔날은 언제가 편하신가요? 저는 지금 육아휴직중이라 언제든지 괜찮아요. 편하신 요일과 시간 정해서 알려 주세요 ", created: "2019/05/12", title: "보낸 쪽지"),
-    //        MessageDetailModel( content: "어머 저는 노원구 살아서 중랑구가 편하긴 한데 혹시 회기쪽이면 친정이 그 근처라서 가능 할 것 같아요.", created: "2019/05/12", title: "받은 쪽지"),
-    //    ]
-    
-    @IBOutlet weak var messageTF: UITextField!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var messageTV: UITextView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var sendContainer: UIView!
     
     var keyboardShown: Bool = false // 키보드 상태 확인
-    var originY: CGFloat? // 오브젝트의 기본 위치
+    var originY: CGFloat = 0.0 // 오브젝트의 기본 위치
     var otherUserIdx: Int?
-    let networkManager = NetworkManager()
-    
+    var bottomC: CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        messageTF.delegate = self
-        tableView.estimatedRowHeight = 122
-        tableView.invalidateIntrinsicContentSize()
-        tableView.delegate = self
-        tableView.dataSource = self
-        messageTF.tintColor = .mainYellow
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
+        messageTV.delegate = self
+        collectionView.invalidateIntrinsicContentSize()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        messageTV.tintColor = .mainYellow
+        collectionView.register(ChatCell.self, forCellWithReuseIdentifier: cellId)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGesture.cancelsTouchesInView = true
-        tableView.addGestureRecognizer(tapGesture)
+        collectionView.addGestureRecognizer(tapGesture)
         getMessageNetwork()
-        
+        originY = self.containerView.frame.origin.y
         naviBar.delegate = self
         naviBar.barTintColor = .white
         naviBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
         backBarButton.image = UIImage(named: "btn-Back")
         backBarButton.tintColor = .gray38
-        backBarButton.action = #selector(goBack(_:))
+        backBarButton.action = #selector(goBack)
+        
     }
     
-    @objc private func goBack(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageRootNavigation") as! UINavigationController
-        self.present(vc, animated: true, completion: nil)
-        
+    @objc private func goBack() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    func setDataNetwork(){
+        networkManager.sendMessage(receiverIdx: gino(otherUserIdx), noteContent: gsno(messageTV.text)) { [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            } else if success != nil && error == nil {
+                if success?.success != true {
+                    self?.simpleAlert(title: "", message: self?.gsno(success?.message) ?? "")
+                }
+            }
+        }
+    }
+    
+    @IBAction func sendMessageAction(_ sender: Any) {
+        setDataNetwork()
+        getMessageNetwork()
     }
     
     func getMessageNetwork(){
@@ -77,12 +90,12 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDel
                 self?.otherUser = success?.data?.receiver?.nickname ?? ""
                 self?.naviBar.topItem?.title = self?.otherUser
                 self?.messages = success?.data?.messages ?? []
-                self?.tableView.reloadData()
+                self?.collectionView.reloadData()
             }
         }
     }
     
-    @objc func hideKeyboard(_ sender: Any) {
+    @objc func hideKeyboard() {
         view.endEditing(true)
     }
     
@@ -102,25 +115,13 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDel
     
     @objc func keyboardWillShow(notification: Notification) {
         if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
-            tableView.contentInset.bottom = keyboardHeight
-            tableView.scrollIndicatorInsets.bottom = keyboardHeight
-            tableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
-            tableView.setBottomInset(to: keyboardHeight)
-            
-            sendContainer.frame.origin.y -= (keyboardHeight - 31)
+            self.containerView.frame.origin.y -= (keyboardHeight-14)
         }
     }
     
     @objc func keyboardWillHide(notification: Notification) {
-        if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
-            sendContainer.frame.origin.y += (keyboardHeight - 31)
-        }
-        tableView.setBottomInset(to: 0.0)
+        self.containerView.frame.origin.y = originY
     }
-    
-    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //        self.view.endEditing(true)
-    //    }
     
     func registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -136,7 +137,7 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDel
     }
     
     func sendMessage(){
-        if messageTF.text == "" {
+        if messageTV.text == "" {
             //            simpleAlert(title: "메시지를 입력해주세요!", message: "")
         } else {
             let components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
@@ -148,99 +149,151 @@ class MessageDetailVC: UIViewController, UITextFieldDelegate, UINavigationBarDel
             if components.day! < 10 {
                 date.append("/0\(components.day!)")
             }
-            
-            let newMessage =  MessageDetailList( content: messageTF.text!, created: date, title: "보낸 쪽지")
+//
+            let newMessage =  MessageDetailList(content: messageTV.text!, created: date, title: 0)
             messages.append(newMessage)
-            tableView.reloadData()
+            collectionView.reloadData()
             scrollToBottom()
-            //        let indexPath = IndexPath(row: messages.count - 1, section: 0 )
-            //        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-            messageTF.text = ""
+            messageTV.text = ""
         }
     }
     
     func scrollToBottom(){
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
         }
-        
     }
 }
 
-extension MessageDetailVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if messages.count != 0 {
-            return messages.count
+extension MessageDetailVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatCell
+        let data = messages[indexPath.row]
+        if data.noteType == 1 {
+            cell.typeLabel.text = "받은 쪽지"
+            cell.bubble.image = UIImage(named: "yellowBubble")!
+            cell.typeLabel.textColor = .mainYellow
         } else {
-            return 1
+            cell.typeLabel.text = "보낸 쪽지"
         }
+        cell.messageView.text = data.noteContent
+        cell.timeLabel.text = data.createdTime
+        return cell
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if messages.count != 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MessageBubbleTVC", for: indexPath) as! MessageBubbleTVC
-            let data = messages[indexPath.row]
-            cell.contentLabel.text = data.noteContent
-            cell.dateLabel.text = data.createdTime
-            cell.titleLabel.text = data.noteType
-            if title == "받은 쪽지" {
-                cell.titleLabel.textColor = .mainYellow
-                cell.bubble.borderColor = .mainYellow
-            } else {
-                cell.titleLabel.textColor = .gray118
-                cell.bubble.borderColor = .gray112
-                //            cell.bubble.roundCorners(corners: [.allCorners], radius: 8)
-            }
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyMessageCell") as! MessageEmptyTVC
-            cell.label.text = "\(otherUser)님께"
-            return cell
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if let messageText = messages[indexPath.row].noteContent {
+            let size = CGSize(width: view.frame.width, height: 1000)
+            let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+            let estimatedFrame = NSString(string: messageText).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.M12], context: nil)
+            
+            return CGSize(width: view.frame.width, height: estimatedFrame.height + 60)
         }
+        return CGSize(width: view.frame.width, height: 100)
     }
-    
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        self.view.endEditing(true)
-    //    }
-    
-    func changeImage(_ imageView: UIImageView, _ name: String) {
-        guard let image = UIImage(named: name) else { return }
-        imageView.image = image
-            .resizableImage(withCapInsets:
-                UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10),
-                            resizingMode: .stretch)
-        //            .withRenderingMode(.alwaysTemplate)
-        
-    }
-    
-    
-    //    func makeBubbleView(bubble: UIView){
-    //        let cardView = UIView()
-    //        bubble.addSubview(cardView)
-    ////        cardView.translatesAutoresizingMaskIntoConstraints = false
-    //        print("bubble.frame.width - 32   ", bubble.frame.width - 32)
-    //        print("bubble.frame.height - 200   ", bubble.frame.height - 200)
-    //        print("bubble.frame.width - 32   ", bubble.frame.width - 32)
-    //        print("bubble.frame.width - 32   ", bubble.frame.width - 32)
-    //        cardView.widthAnchor.constraint(equalToConstant: bubble.frame.width - 32).isActive = true
-    //        cardView.heightAnchor.constraint(equalToConstant: bubble.frame.height - 200).isActive = true
-    //        cardView.centerXAnchor.constraint(equalTo: bubble.centerXAnchor).isActive = true
-    //        cardView.centerYAnchor.constraint(equalTo: bubble.centerYAnchor).isActive = true
-    //        //        cardView.topAnchor.constraint(equalTo: 0).isActive = true
-    //
-    //        cardView.backgroundColor = UIColor.gray219
-    //        cardView.borderColor = UIColor.mainYellow
-    //        cardView.borderWidth = 2
-    //
-    //        //        cardView.roundCorners(corners: [.allCorners], radius: 8)
-    //
-    //    }
-    
-    
-    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        return UITableViewAutomaticDimension
-    //    }
 }
 
+class ChatCell: BaseCell {
+    let dividerLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+        return view
+    }()
+    
+    let typeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "받은 쪽지"
+        label.textColor = UIColor.gray112
+        label.font = UIFont.M12
+        return label
+    }()
+    
+    let messageView: UITextView = {
+        let textView = UITextView()
+        textView.isScrollEnabled = false
+        textView.isEditable = false
+        textView.backgroundColor = UIColor.clear
+        textView.text = "Your friend's message and something else..."
+        textView.textColor = UIColor.gray38
+        textView.font = UIFont.M15
+        return textView
+    }()
+    
+    let timeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "19/09/18 12:05"
+        label.font = UIFont.M12
+        label.textColor = UIColor.gray219
+        label.textAlignment = .right
+        return label
+    }()
+    
+    var bubble: UIImageView = {
+        let imgView = UIImageView()
+        imgView.image = UIImage(named: "grayBubble")!.resizableImage(withCapInsets: UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24), resizingMode: .stretch).withRenderingMode(.alwaysOriginal)
+        return imgView
+    }()
+    
+    override func setupViews() {
+        setupContainerView()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupViews()
+    }
+    
+    private func setupContainerView() {
+        let containerView = UIView()
+        addSubview(containerView)
+        addSubview(bubble)
+        addConstraintsWithFormat(format: "H:|-16-[v0]|", views: containerView)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: containerView)
+        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: bubble)
+        addConstraintsWithFormat(format: "V:|[v0]-6-|", views: bubble)
+        bubble.addSubview(typeLabel)
+        bubble.addSubview(messageView)
+        bubble.addSubview(timeLabel)
+        
+        bubble.addConstraintsWithFormat(format: "H:|-10-[v0][v1(120)]-10-|", views: typeLabel, timeLabel)
+        bubble.addConstraintsWithFormat(format: "H:|-10-[v0]-22-|", views: messageView)
+        bubble.addConstraintsWithFormat(format: "V:|-10-[v0(15)]-5-[v1]|", views: typeLabel, messageView)
+        bubble.addConstraintsWithFormat(format: "V:|-10-[v0(15)]", views: timeLabel)
+    }
+    
+}
 
+class BaseCell: UICollectionViewCell {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupViews() {
+        backgroundColor = UIColor.blue
+    }
+}
+
+extension UIView {
+    
+    func addConstraintsWithFormat(format: String, views: UIView...) {
+        
+        var viewsDictionary = [String: UIView]()
+        for (index, view) in views.enumerated() {
+            let key = "v\(index)"
+            viewsDictionary[key] = view
+            view.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
+    }
+}

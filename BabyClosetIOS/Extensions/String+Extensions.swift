@@ -11,7 +11,9 @@ import UIKit
 extension String {
     func urlToImage() -> UIImage? {
         if let imageUrl = URL(string: self) {
-            let imageData = try! Data(contentsOf: imageUrl)
+            guard let imageData = try? Data(contentsOf: imageUrl) else {
+                return UIImage(named: "myPageDefault")
+            }
             return UIImage(data: imageData)
         } 
         return nil

@@ -26,6 +26,7 @@ class MessageMainVC: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
     }
     
+    
     func getMessageNetwork(){
         networkManager.getMessageList { [weak self] (success, error) in
             print("getMessageList  : ", success)
@@ -66,5 +67,6 @@ extension MessageMainVC: UITableViewDataSource, UITableViewDelegate {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageDetailVC") as! MessageDetailVC
         vc.otherUserIdx = messages[indexPath.row].userIdx ?? 0
         self.present(vc, animated: true, completion: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
