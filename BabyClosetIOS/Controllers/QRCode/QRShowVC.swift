@@ -9,11 +9,17 @@
 import UIKit
 
 class QRShowVC: UIViewController {
+    var postid: Int = 0
+    let networkManager = NetworkManager()
 
+    @IBOutlet var postitle: UILabel!
+    @IBOutlet var qrcode: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
         setNavigationBar()
+        getQRNetwork()
+
     }
     func setNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
@@ -24,16 +30,25 @@ class QRShowVC: UIViewController {
         self.navigationItem.title = "QR인증하기"
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func getQRNetwork() {
+        networkManager.getQRCode(postIdx: postid){ [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success != nil && error == nil {
+                guard success?.success ?? false else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
+                }
+                self?.postitle.text = success?.data?.postTitle ?? ""
+                self?.qrcode.image = success?.data?.qrcode?.urlToImage()
+                self?.postitle.sizeToFit()
+            }
+        }
     }
-    */
+
+    
 
 }

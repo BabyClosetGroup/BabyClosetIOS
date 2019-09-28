@@ -13,7 +13,7 @@ extension String {
         if let imageUrl = URL(string: self) {
             let imageData = try! Data(contentsOf: imageUrl)
             return UIImage(data: imageData)
-        }
+        } 
         return nil
     }
     

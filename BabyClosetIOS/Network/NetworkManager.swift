@@ -249,7 +249,7 @@ class NetworkManager {
         let header:HTTPHeaders = [
             "token": jwt
         ]
-        let router = APIRouter(url: "/post/all/1", method: .get, parameters: nil, headers: header)
+        let router = APIRouter(url: "/post/all/4", method: .get, parameters: nil, headers: header)
         NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<AllPostList>?, error) in
             guard error == nil else {
                 completion(nil, error)
@@ -263,7 +263,7 @@ class NetworkManager {
         let header:HTTPHeaders = [
             "token": jwt
         ]
-        let router = APIRouter(url: "/post/deadline/1", method: .get, parameters: nil, headers: header)
+        let router = APIRouter(url: "/post/deadline/2", method: .get, parameters: nil, headers: header)
         NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<DeadlinePostList>?, error) in
             guard error == nil else {
                 completion(nil, error)
@@ -289,26 +289,97 @@ class NetworkManager {
     }
     
     
-    
-//    func getQRCodeList(completion: @escaping ( ResponseBody<QRCodeList>?, Error?) -> Void) {
-//        let header:HTTPHeaders = [
-//            "token": jwt
-//        ]
-//
-//        let router = APIRouter(url: "/post/qrcode", method: .get, parameters: nil, headers: header)
-//        NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<QRCodeList>?, error) in
-//            guard error == nil else {
-//                completion(nil, error)
-//                return
-//            }
-//            completion(result,error)
-//        }
-//    }
-//    func getQRCode(userIdx: Int, completion: @escaping ( ResponseBody<QRCodeInquiry>?, Error?) -> Void) {
-//    }
+    // QRCode
+    func getQRCodeList(completion: @escaping ( ResponseBody<QRCodeList>?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+
+        let router = APIRouter(url: "/post/qrcode", method: .get, parameters: nil, headers: header)
+        NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<QRCodeList>?, error) in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            completion(result,error)
+        }
+    }
+    func getQRCode(postIdx: Int, completion: @escaping ( ResponseBody<QRCodeInquiry>?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        
+        let router = APIRouter(url: "/qrcode/\(postIdx)", method: .get, parameters: nil, headers: header)
+        NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<QRCodeInquiry>?, error) in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            completion(result,error)
+        }
+    }
 //    func authQRCode(query: String, completion: @escaping ( ResponseBody<MessageDetailModel>?, Error?) -> Void) {
 //    }
     
+    //Detail
+    func postModify( postIdx: Int, title: String, content: String, deadline: String, areaCategory: String, ageCategory: String, clothCategory: String, images: [Data], completion: @escaping ( ErrorModel?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        let parameters: [String:Any] = [
+            "title": title,
+            "content": content,
+            "deadline": deadline,
+            "areaCategory": areaCategory,
+            "ageCategory": ageCategory,
+            "clothCategory": clothCategory,
+            "postImages": images,
+        ]
+        
+        let router = APIRouter(url: "/post/\(postIdx)", method: .put, parameters: parameters, headers: header)
+        NetworkRequester(with: router).requestMultipartFormDataList { (Img: ErrorModel?, error) in
+            guard error == nil else {
+                completion(nil,error)
+                return
+            }
+            completion(Img, error)
+        }
+    }
+    
+    //alert
+    func deletePost(postIdx: Int, completion: @escaping ( ErrorModel?, Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        
+        let router = APIRouter(url: "/post/\(postIdx)", method: .delete, parameters: nil, headers: header)
+        NetworkRequester(with: router).signUpRequest{ (result: ErrorModel?, error) in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            completion(result,error)
+        }
+    }
+    func report(postIdx: Int, complainReason: String, completion: @escaping (ErrorModel?,Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        
+        let parameters: [String:Any]  = [
+            "postIdx": postIdx,
+            "complainReason": complainReason,
+        ]
+        
+        let router = APIRouter(url:"/complain", method: .post, parameters: parameters, headers: header)
+        NetworkRequester(with: router).signUpRequest { ( result: ErrorModel?, error) in
+            guard error == nil else {
+                completion(nil,error)
+                return
+            }
+            completion(result,error)
+        }
+    }
     
     
     

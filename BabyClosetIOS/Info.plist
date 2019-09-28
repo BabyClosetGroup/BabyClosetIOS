@@ -21,7 +21,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>test</string>
+	<string>we need to use your camera to scan qr code</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>test</string>
 	<key>UIAppFonts</key>

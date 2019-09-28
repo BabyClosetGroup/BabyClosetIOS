@@ -10,7 +10,6 @@ import UIKit
 
 class DetailVC: UIViewController {
 
-    @IBOutlet var titleImg: UIImageView!
     @IBOutlet var detailTitle: UILabel!
     @IBOutlet var dday: UILabel!
     @IBOutlet var categoryCollection: UICollectionView!
@@ -23,12 +22,15 @@ class DetailVC: UIViewController {
     @IBOutlet var star4: UIImageView!
     @IBOutlet var star5: UIImageView!
     @IBOutlet var apply: UIButton!
+    @IBOutlet var imageslide: UIScrollView!
+    @IBOutlet var page: UIPageControl!
     
     var postid: Int = 0
+    var complaintext: String = ""
 //    var post: detailPostContent
     var issender: Int = 0
     var star: Int = 0
-    
+    var images: [String] = []
     var area:[String] = []
     var age:[String] = []
     var cloth:[String] = []
@@ -39,113 +41,46 @@ class DetailVC: UIViewController {
     
     @IBAction func applyAction(_ sender: Any) {
     }
+
     
-    @IBAction func actionSheet(_ sender: Any) {
-
-//        alert의 폰트를 바꾸려면??
-//        let alert = UIAlertController(title: "",
-//                                      message: "",
-//                                      preferredStyle: .alert)
-//        Here's how we'll set up the font and size of the title and message fields:
-//        // Change font of the title and message
-//        let titleFont:[String : AnyObject] = [ NSFontAttributeName : UIFont(name: "AmericanTypewriter", size: 18)! ]
-//        let messageFont:[String : AnyObject] = [ NSFontAttributeName : UIFont(name: "HelveticaNeue-Thin", size: 14)! ]
-//        let attributedTitle = NSMutableAttributedString(string: "Multiple buttons", attributes: titleFont)
-//        let attributedMessage = NSMutableAttributedString(string: "Select an Action", attributes: messageFont)
-//        alert.setValue(attributedTitle, forKey: "attributedTitle")
-//        alert.setValue(attributedMessage, forKey: "attributedMessage")
-//
-        let userAlert = UIAlertController(title: "정말로 삭제하시겠습니까?", message: nil, preferredStyle: .alert)
-        let yes = UIAlertAction(title: "확인", style: .default) { (action) in
-            
-        }
-        let no = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        userAlert.addAction(no)
-        userAlert.addAction(yes)
-
-        present(userAlert, animated: false) {
-            
-        }
-        
-        let etcReportAlert = UIAlertController(title: "기타(직접 입력)", message: "신고 사유를 적어주세요", preferredStyle: .alert)
-        let etcYes = UIAlertAction(title: "확인", style: .default) { (action) in
-            
-        }
-        etcReportAlert.addTextField { (text) in
-            text.textColor = UIColor.cyan
-            text.placeholder = "??아무거나 쓰지마;"
-//            self.myLabel.text = alert.textFields?[0].text
-            
-        }
-        etcReportAlert.addAction(no)
-        etcReportAlert.addAction(etcYes)
-        
-        present(etcReportAlert, animated: false) {
-            
-        }
-        
-        let reportAlert = UIAlertController(title: "정말로 삭제하시겠습니까?", message: nil, preferredStyle: .alert)
-        let reportYes = UIAlertAction(title: "확인", style: .default, handler: nil)
-        reportAlert.addAction(reportYes)
-        present(reportAlert, animated: false) {
-            
-        }
-        
-        let userActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let modify = UIAlertAction(title: "수정하기", style: .default, handler: nil)
-        let delete = UIAlertAction(title: "삭제하기", style: .default, handler: nil)
-        let cancle = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)
-        userActionSheet.addAction(modify)
-        userActionSheet.addAction(delete)
-        userActionSheet.addAction(cancle)
-        present(userActionSheet, animated: true) {
-            
-        }
-        
-        let buyerActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let note = UIAlertAction(title: "쪽지보내기", style: .default, handler: nil)
-        let report = UIAlertAction(title: "신고하기", style: .default, handler: nil)
-        buyerActionSheet.addAction(note)
-        buyerActionSheet.addAction(report)
-        buyerActionSheet.addAction(cancle)
-        present(buyerActionSheet, animated: true) {
-            
-        }
-        
-        let reportActionSheet = UIAlertController(title: "신고사유를 선택해주세요", message: nil, preferredStyle: .actionSheet)
-        let op1 = UIAlertAction(title: "잠수", style: .default, handler: nil)
-        let op2 = UIAlertAction(title: "불량물건", style: .default, handler: nil)
-        let op3 = UIAlertAction(title: "기타(직접 입력)", style: .default, handler: nil)
-        reportActionSheet.addAction(op1)
-        reportActionSheet.addAction(op2)
-        reportActionSheet.addAction(op3)
-        reportActionSheet.addAction(cancle)
-        present(reportActionSheet, animated: true) {
-            
-        }
-    }
     override func viewDidLoad() {
         categoryCollection.delegate = self
         categoryCollection.dataSource = self
+        imageslide.delegate = self
         
         super.viewDidLoad()
         setNavigationBar()
         getPostDetailNetwork()
         setMsg()
+        setScroll()
         self.tabBarController?.tabBar.isHidden = true
         
         let nibName = UINib(nibName: "CategoryCVC", bundle: nil)
         categoryCollection.register(nibName, forCellWithReuseIdentifier: "CategoryCVC")
-        setStar(num: 3)
-//        titleImg.image = UIImage(named: self.imgTitle)
-//        detailTitle.text = self.titleDetail
-//        dday.text = "D-\(self.dayd)"
-//        userName.text = "\(self.nameUser)님의 나눔 별점"
-//        userImg.image = UIImage(named: self.imgUser)
-//        content.text = self.Usercontent
-//        categorys = self.category
         
     }
+    func setScroll() {
+        page.numberOfPages = images.count
+        print("길이?", images.count)
+        for i in 0..<images.count{
+            let imageView = UIImageView()
+            imageView.image = images[i].urlToImage()
+            imageView.contentMode = .scaleAspectFit //  사진의 비율을 맞춤.
+            let xPosition = self.view.frame.width * CGFloat(i)
+            
+            imageView.frame = CGRect(x: xPosition, y: 0,
+                                     width: self.view.frame.width,
+                                     height: 376) // 즉 이미지 뷰가 화면 전체를 덮게 됨.
+            
+        imageslide.contentSize.width =
+            self.view.frame.width * CGFloat(1+i)
+        
+        imageslide.addSubview(imageView)
+        imageslide.isPagingEnabled = true
+        imageslide.alwaysBounceVertical = false // 수직 스크롤 바운스 안되게 설정
+        }
+    }
+    
     func setMsg() {
         if isMsg == 0 {
 //            msgBtn.image = UIImage(named: "btnLetter")
@@ -174,21 +109,29 @@ class DetailVC: UIViewController {
                 self?.dday.text = success?.data?.detailPost?.deadline
                 let name = success?.data?.detailPost?.nickname ?? ""
                 self?.userName.text = "\(name)님의 나눔 별점"
-                self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
-                if self?.userImg.image == nil {
-                    self?.userImg.image = UIImage(named: "user")
-                    //????????????
-                }
+//                self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
+//                if self?.userImg.image == nil {
+//                    self?.userImg.image = UIImage(named: "user")
+//                    //????????????
+//                }
                 self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
                 self?.content.text = success?.data?.detailPost?.postContent
                 
                 self?.area = success?.data?.detailPost?.areaName ?? []
                 self?.age = success?.data?.detailPost?.ageName ?? []
                 self?.cloth = success?.data?.detailPost?.clothName ?? []
+                self?.images = success?.data?.detailPost?.postImages ?? []
+//                print(self?.images)
+                self?.setScroll()
+                
                 self?.issender = success?.data?.detailPost?.isSender ?? 0
+                if self?.issender == 1 {
+                    self?.apply.isHidden = true
+                }
+                
                 self?.star = success?.data?.detailPost?.rating ?? 5
                 self?.setStar(num: self?.star ?? 0)
-
+                
                 self?.category.append(contentsOf: self?.area ?? [])
                 self?.category.append(contentsOf: self?.age ?? [])
                 self?.category.append(contentsOf: self?.cloth ?? [])
@@ -220,26 +163,152 @@ class DetailVC: UIViewController {
         let settingImg    = UIImage(named: "btnSetting")!
         let msgImg  = UIImage(named: "btnLetter")!
         
-        let settingBtn = UIBarButtonItem(image: settingImg,  style: .plain, target: self, action:  #selector(buttonPressed(_:)))
-        settingBtn.tag = 1
-        let msgBtn   = UIBarButtonItem(image: msgImg,  style: .plain, target: self, action:  #selector(buttonPressed(_:)))
-        msgBtn.tag = 2
+        let settingBtn = UIBarButtonItem(image: settingImg,  style: .plain, target: self, action:  #selector(settingAlert))
+        let msgBtn   = UIBarButtonItem(image: msgImg,  style: .plain, target: self, action:  #selector(goMessageView))
         msgBtn.imageInsets = UIEdgeInsets(top: 0.0, left:45, bottom: 0, right: 0);
 
         self.navigationItem.rightBarButtonItems = [settingBtn, msgBtn]
-        
+
+    }
+
+    @objc func goMessageView(){
+        let storyboard = UIStoryboard(name: "Message", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "Msg")
+        navigationController?.pushViewController(vc, animated: true)
         
     }
-    @objc private func buttonPressed(_ sender: Any) {
-        if let button = sender as? UIBarButtonItem {
-            switch button.tag {
-            case 1:
-                self.view.backgroundColor = .blue
-            case 2:
-                // Change the background color to red.
-                self.view.backgroundColor = .red
-            default: print("error")
+    @objc func settingAlert(){
+        func confirm () {
+            let userAlert = UIAlertController(title: "신고가 완료되었습니다.", message: nil, preferredStyle: .alert)
+            let yes = UIAlertAction(title: "확인", style: .default, handler: nil)
+            userAlert.addAction(yes)
+            self.present(userAlert, animated: false, completion: nil)
+        }
+        func reportNetwork(tag: Int) {
+            if tag == 1 {
+                // 잠수 네트워크
+                self.complaintext = "잠수"
+                self.networkManager.report(postIdx: self.postid, complainReason: self.complaintext) { [weak self] (success, error) in
+                    if success == nil && error != nil {
+                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+                    } else if success != nil && error == nil {
+                        if success?.success == true {
+                            print("신고 보내기 성공!")
+//                          self?.simpleAlert(title: "", message: "수정")
+                        }
+                    }
+                }
+                print("신고 : 잠수")
+            } else {
+                // 불량물건 네트워크
+                self.complaintext = "불량물건"
+                self.networkManager.report(postIdx: self.postid, complainReason: self.complaintext) { [weak self] (success, error) in
+                    if success == nil && error != nil {
+                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+                    } else if success != nil && error == nil {
+                        if success?.success == true {
+                            print("신고 보내기 성공!")
+//                          self?.simpleAlert(title: "", message: "수정")
+                        }
+                    }
+                }
+                print("신고 : 불량물건")
             }
+            confirm()
+        }
+        func writeReason() {
+            let etcReportAlert = UIAlertController(title: "기타(직접 입력)", message: "신고 사유를 적어주세요", preferredStyle: .alert)
+            let no = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let yes = UIAlertAction(title: "확인", style: .default, handler: {
+                action in
+                confirm()
+                if let label = etcReportAlert.textFields?[0].text {
+                    self.complaintext = label
+                    // 여기에 신고 보내기 네트워크
+                    self.networkManager.report(postIdx: self.postid, complainReason: self.complaintext) { [weak self] (success, error) in
+                        if success == nil && error != nil {
+                            self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+                        } else if success != nil && error == nil {
+                            if success?.success == true {
+                                print("신고 보내기 성공!")
+    //                            self?.simpleAlert(title: "", message: "삭제")
+                            }
+                        }
+                    }
+                    print("신고 : 기타 --> \(label)")
+                }
+            })
+            etcReportAlert.addTextField { (text) in
+                text.placeholder = "신고사유"
+            }
+            etcReportAlert.addAction(no)
+            etcReportAlert.addAction(yes)
+            self.present(etcReportAlert, animated: false, completion: nil)
+        }
+        func msgAction() {
+            // 메시지함 바로가기
+            
+        }
+        
+        func reportAlert () {
+            let reportActionSheet = UIAlertController(title: "신고사유를 선택해주세요", message: nil, preferredStyle: .actionSheet)
+            let op1 = UIAlertAction(title: "잠수", style: .default, handler: { action in reportNetwork(tag: 1) })
+            let op2 = UIAlertAction(title: "불량물건", style: .default, handler: { action in reportNetwork(tag: 2) })
+            let op3 = UIAlertAction(title: "기타(직접 입력)", style: .default, handler: { (action) in writeReason() })
+            let cancle = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)
+            
+            reportActionSheet.addAction(op1)
+            reportActionSheet.addAction(op2)
+            reportActionSheet.addAction(op3)
+            reportActionSheet.addAction(cancle)
+            self.present(reportActionSheet, animated: true) {
+
+            }
+        }
+        func modifyAction () { print("수정하기") }
+        func deletAlert () {
+            let userAlert = UIAlertController(title: "정말로 삭제하시겠습니까?", message: nil, preferredStyle: .alert)
+            let yes = UIAlertAction(title: "확인", style: .default) { (action) in
+//                self.networkManager.deletePost(postIdx: self.postid) { [weak self] (success, error) in
+//                    if success == nil && error != nil {
+//                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+//                    } else if success != nil && error == nil {
+//                        if success?.success == true {
+//                            self?.simpleAlert(title: "", message: "삭제되었습니다.")
+//                        }
+//                    }
+//                }
+                print("삭제 확인")
+                // 삭제 엑션 후 어디로 가지? --> 메인
+                 self.navigationController?.popViewController(animated: true)
+                print("동작 안함?")
+            }
+            let no = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            userAlert.addAction(no)
+            userAlert.addAction(yes)
+            self.present(userAlert, animated: false, completion: nil)
+        }
+        
+        if issender == 0 {
+            let buyerActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let note = UIAlertAction(title: "쪽지보내기", style: .default, handler: { (action) in msgAction() })
+            let report = UIAlertAction(title: "신고하기", style: .default, handler: { (action) in reportAlert() })
+            let cancle = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)
+            
+            buyerActionSheet.addAction(note)
+            buyerActionSheet.addAction(report)
+            buyerActionSheet.addAction(cancle)
+            present(buyerActionSheet, animated: true, completion: nil)
+            
+        } else {
+            let userActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let modify = UIAlertAction(title: "수정하기", style: .default, handler: { (action) in modifyAction() })
+            let delete = UIAlertAction(title: "삭제하기", style: .default, handler: { (action) in deletAlert() })
+            let cancle = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)
+            userActionSheet.addAction(modify)
+            userActionSheet.addAction(delete)
+            userActionSheet.addAction(cancle)
+            present(userActionSheet, animated: true, completion: nil)
         }
     }
 
@@ -269,5 +338,12 @@ extension DetailVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 82, height: 28)
+    }
+}
+
+extension DetailVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
+        page.currentPage = Int(pageIndex)
     }
 }
