@@ -210,11 +210,10 @@
                                     <constraint firstAttribute="width" constant="180" id="wsw-8p-kTJ"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[여아] 투피스 나눔" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDC-xi-cVf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[여아] 투피스 나눔" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDC-xi-cVf">
                                 <rect key="frame" x="134" y="249" width="107" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="OCs-hs-mfi"/>
-                                    <constraint firstAttribute="width" constant="107" id="PaS-AV-SsO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="14"/>
                                 <nil key="highlightedColor"/>
@@ -240,16 +239,19 @@
                             <constraint firstItem="FD0-St-rAl" firstAttribute="leading" secondItem="CeO-wS-mJt" secondAttribute="leading" constant="97" id="Ean-Ob-VRd"/>
                             <constraint firstItem="FD0-St-rAl" firstAttribute="top" secondItem="cDC-xi-cVf" secondAttribute="bottom" constant="38" id="FPo-Ly-vfV"/>
                             <constraint firstItem="zG5-U5-YR2" firstAttribute="leading" secondItem="CeO-wS-mJt" secondAttribute="leading" constant="16" id="ULj-WE-OQp"/>
-                            <constraint firstItem="cDC-xi-cVf" firstAttribute="leading" secondItem="CeO-wS-mJt" secondAttribute="leading" constant="134" id="WgC-kz-7eh"/>
-                            <constraint firstItem="CeO-wS-mJt" firstAttribute="trailing" secondItem="cDC-xi-cVf" secondAttribute="trailing" constant="134" id="XbE-DA-fr5"/>
                             <constraint firstItem="zG5-U5-YR2" firstAttribute="top" secondItem="YBx-5A-B3i" secondAttribute="bottom" constant="47" id="bBK-ao-zxc"/>
                             <constraint firstItem="cDC-xi-cVf" firstAttribute="top" secondItem="YBx-5A-B3i" secondAttribute="bottom" constant="73" id="cGk-2V-UsW"/>
                             <constraint firstItem="y5q-0P-VJp" firstAttribute="leading" secondItem="CeO-wS-mJt" secondAttribute="leading" constant="27" id="fQ4-1K-2IG"/>
                             <constraint firstItem="y5q-0P-VJp" firstAttribute="top" secondItem="CeO-wS-mJt" secondAttribute="top" constant="54" id="oQa-kp-0Ap"/>
+                            <constraint firstItem="cDC-xi-cVf" firstAttribute="centerX" secondItem="CeO-wS-mJt" secondAttribute="centerX" id="tbD-yN-zhB"/>
                             <constraint firstItem="CeO-wS-mJt" firstAttribute="trailing" secondItem="FD0-St-rAl" secondAttribute="trailing" constant="98" id="uTF-AR-SX4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CeO-wS-mJt"/>
                     </view>
+                    <connections>
+                        <outlet property="postitle" destination="cDC-xi-cVf" id="BfV-Px-HRf"/>
+                        <outlet property="qrcode" destination="FD0-St-rAl" id="rlq-xg-9TP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DbC-iP-Tg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -259,7 +261,7 @@
         <scene sceneID="Xop-dF-Fzg">
             <objects>
                 <viewController id="qxF-OW-oRS" customClass="QRScanVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="w74-zz-YCl">
+                    <view key="view" alpha="0.45000000000000001" contentMode="scaleToFill" id="w74-zz-YCl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -272,7 +274,7 @@
                                 <string key="text">인식이 잘 안된다면 코드가 있는 휴대폰의
 화면 밝기를 높혀 주세요.</string>
                                 <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="12"/>
-                                <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="focusPoint" translatesAutoresizingMaskIntoConstraints="NO" id="VVl-2o-iFx">
@@ -282,21 +284,33 @@
                                     <constraint firstAttribute="height" constant="46" id="kYu-hz-stA"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLc-hd-UEY">
+                                <rect key="frame" x="87.666666666666686" y="312" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="e98-Ks-c7N"/>
+                                    <constraint firstAttribute="width" constant="200" id="lTY-PR-FsR"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="VVl-2o-iFx" firstAttribute="top" secondItem="80y-um-C0l" secondAttribute="top" constant="345" id="0H7-7i-rC9"/>
+                            <constraint firstItem="BLc-hd-UEY" firstAttribute="centerX" secondItem="80y-um-C0l" secondAttribute="centerX" id="EWy-Fs-buX"/>
                             <constraint firstItem="abz-Pe-wbW" firstAttribute="centerX" secondItem="80y-um-C0l" secondAttribute="centerX" id="IY6-3J-14r"/>
                             <constraint firstItem="abz-Pe-wbW" firstAttribute="firstBaseline" secondItem="VVl-2o-iFx" secondAttribute="baseline" constant="262" id="UmU-Ty-Tos"/>
                             <constraint firstItem="VVl-2o-iFx" firstAttribute="centerX" secondItem="80y-um-C0l" secondAttribute="centerX" id="V2g-fS-l2Q"/>
+                            <constraint firstItem="BLc-hd-UEY" firstAttribute="top" secondItem="80y-um-C0l" secondAttribute="top" constant="268" id="Wf9-Ff-dnJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="80y-um-C0l"/>
                     </view>
                     <navigationItem key="navigationItem" id="U5H-BO-yBJ"/>
+                    <connections>
+                        <outlet property="videoPreview" destination="BLc-hd-UEY" id="zJ2-sL-tB9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Okn-u8-gw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905" y="418"/>
+            <point key="canvasLocation" x="904.79999999999995" y="417.48768472906403"/>
         </scene>
     </scenes>
     <resources>

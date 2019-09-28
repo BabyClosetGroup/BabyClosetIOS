@@ -87,6 +87,7 @@ class MessageDetailVC: UIViewController, UITextViewDelegate, UINavigationBarDele
     }
     
     func getMessageNetwork(){
+        print("여긴 메시지함이야!", otherUserIdx)
         networkManager.getDetailMessageList(userIdx: gino(otherUserIdx)){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")

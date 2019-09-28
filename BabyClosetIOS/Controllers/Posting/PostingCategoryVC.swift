@@ -30,6 +30,8 @@ class PostingCategoryVC: UIViewController, UIViewControllerTransitioningDelegate
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = UIColor.gray38
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
+        self.tabBarController?.tabBar.isHidden = true
+
         setCollectionView(localCollectionView)
         setCollectionView(ageCollectionView)
         setCollectionView(categoryCollectionView)

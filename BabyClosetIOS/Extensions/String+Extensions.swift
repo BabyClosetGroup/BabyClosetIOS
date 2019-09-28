@@ -15,7 +15,7 @@ extension String {
                 return UIImage(named: "myPageDefault")
             }
             return UIImage(data: imageData)
-        }
+        } 
         return nil
     }
     
