@@ -24,7 +24,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="163" height="213"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2433Bd4A56987Ea437" translatesAutoresizingMaskIntoConstraints="NO" id="fVN-h6-MXm">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fVN-h6-MXm">
                         <rect key="frame" x="0.0" y="-0.5" width="164" height="164"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="164" id="bPC-dK-T2Y"/>
@@ -39,7 +39,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="동대문구 외 2곳" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfa-Nh-TkG">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfa-Nh-TkG">
                         <rect key="frame" x="0.0" y="198" width="164" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="164" id="F7L-6a-Kph"/>
@@ -49,7 +49,7 @@
                         <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="귀여운 모자 세트 점프…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cz-pX-W6Q">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cz-pX-W6Q">
                         <rect key="frame" x="0.0" y="173.5" width="164" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="164" id="szY-dj-aYh"/>
@@ -85,7 +85,4 @@
             </connections>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="2433Bd4A56987Ea437" width="164" height="164"/>
-    </resources>
 </document>

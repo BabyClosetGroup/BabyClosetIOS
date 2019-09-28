@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SeoulNamsanM.otf">
+            <string>SeoulNamsanM</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pageCVC" id="gTV-IL-0wX" customClass="pageCVC" customModule="BabyClosetIOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="343" height="42"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="343" height="42"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohb-Ha-QD3">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="42"/>
+                        <color key="backgroundColor" red="0.96182245020000001" green="0.76669603590000002" blue="0.26649612189999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="5Hq-7m-bhq"/>
+                            <constraint firstAttribute="width" constant="343" id="Y2q-Zy-nFe"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="17"/>
+                        <state key="normal" title="상품 더보기">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="ohb-Ha-QD3" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="Ft5-Kl-V7C"/>
+                <constraint firstAttribute="top" secondItem="ohb-Ha-QD3" secondAttribute="top" id="qbW-uY-Tv5"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="ohb-Ha-QD3" secondAttribute="trailing" id="scI-Se-Ra0"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="pageBtn" destination="ohb-Ha-QD3" id="mmj-dN-Qa8"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

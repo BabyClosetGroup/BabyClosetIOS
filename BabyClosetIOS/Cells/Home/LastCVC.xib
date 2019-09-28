@@ -24,7 +24,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="109" height="183"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5" translatesAutoresizingMaskIntoConstraints="NO" id="JpG-Dg-04m">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JpG-Dg-04m">
                         <rect key="frame" x="0.0" y="10" width="109" height="108"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="109" id="RLQ-3m-HS2"/>
@@ -36,7 +36,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D-1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6r-cV-HQe">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6r-cV-HQe">
                         <rect key="frame" x="71" y="14" width="34" height="34"/>
                         <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -55,8 +55,8 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="동대문구 외 2곳" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YS-Wm-bGh">
-                        <rect key="frame" x="0.0" y="150" width="109" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YS-Wm-bGh">
+                        <rect key="frame" x="0.0" y="149.5" width="109" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="E85-Jl-EGn"/>
                             <constraint firstAttribute="width" constant="109" id="fnW-SB-9V4"/>
@@ -65,7 +65,7 @@
                         <color key="textColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="핑크색 잠옷 슈.." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tai-f0-ZyX">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tai-f0-ZyX">
                         <rect key="frame" x="0.0" y="129" width="109" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20.5" id="XEW-6v-xQn"/>
@@ -87,7 +87,7 @@
                 <constraint firstAttribute="top" secondItem="JpG-Dg-04m" secondAttribute="top" constant="-10" id="cwj-Qx-S5B"/>
                 <constraint firstItem="3YS-Wm-bGh" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="dB4-Qp-O8y"/>
                 <constraint firstItem="JpG-Dg-04m" firstAttribute="top" secondItem="h6r-cV-HQe" secondAttribute="bottom" constant="-38" id="eIZ-Si-pOh"/>
-                <constraint firstItem="3YS-Wm-bGh" firstAttribute="firstBaseline" secondItem="tai-f0-ZyX" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="gcy-bD-BJl"/>
+                <constraint firstItem="3YS-Wm-bGh" firstAttribute="firstBaseline" secondItem="tai-f0-ZyX" secondAttribute="baseline" constant="16" symbolType="layoutAnchor" id="gcy-bD-BJl"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="JpG-Dg-04m" secondAttribute="trailing" id="lcZ-SF-O84"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -100,7 +100,4 @@
             <point key="canvasLocation" x="81.884057971014499" y="39.84375"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="5" width="109" height="109"/>
-    </resources>
 </document>

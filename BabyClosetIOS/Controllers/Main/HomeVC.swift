@@ -42,7 +42,7 @@ class HomeVC: UIViewController {
         self.navigationItem.title = "아가옷장"
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
         self.tabBarController?.tabBar.isHidden = false
-        
+        getPostListNetwork()        
     }
     
     func setNavigationBar() {

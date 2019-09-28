@@ -22,10 +22,17 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     @IBOutlet weak var imgButton3: UIButton!
     @IBOutlet weak var imgButton4: UIButton!
     
+    var isModify = false
     let picker = UIImagePickerController()
     let getImage = UIImage()
     var selectedButton:UIButton = UIButton()
     let networkManager = NetworkManager()
+    
+    var postidx: Int = 0
+    var dtitle: String = ""
+    var content: String = ""
+    var dday: String = ""
+    var photos: [String] = []
     
     var localList: [String] = []
     var ageList: [String] = []
@@ -36,6 +43,17 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
+        if isModify {
+            print(Int(dday)!)
+            addDeadLine(Int(dday)!)
+            titleTextField.text = dtitle
+            contentTextView.text = content
+            let imgbtn = [imgButton1, imgButton2, imgButton3, imgButton4]
+            for i in 0..<photos.count {
+                imgbtn[i]?.setImage(photos[i].urlToImage(), for: .normal)
+            }
+        }
         setNavigationBar()
         setGesture()
         picker.delegate = self
@@ -44,12 +62,17 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         titleTextField.delegate = self
         contentTextView.delegate = self
         
-        deadLineHeightC.constant = 0
+        if !isModify {
+            deadLineHeightC.constant = 0
+        }
+        
         tagCollectionHeightC.constant = 0
         contentTextView.isScrollEnabled = false
         tagCollectionView.allowsSelection = false
-        contentTextView.text = "내용을 입력해주세요."
-        contentTextView.textColor = .gray219
+        if !isModify {
+            contentTextView.text = "내용을 입력해주세요."
+            contentTextView.textColor = .gray219
+        }
         deadLineLabel.roundCorners(corners: [.allCorners], radius: 8)
         contentTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         tagCollectionView.register(UINib(nibName: "PostingCategoryCell", bundle: nil), forCellWithReuseIdentifier: "HashTagCell")
@@ -64,7 +87,13 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.title = "나눔하기"
+        self.navigationItem.backBarButtonItem?.title = ""
+
+        if isModify {
+            self.navigationItem.title = "수정하기"
+        } else {
+            self.navigationItem.title = "나눔하기"
+        }
         createFloatingButton()
         if categoryList.count == 0 {
             tagCollectionHeightC.constant = 0
@@ -114,7 +143,11 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         floatingButton = UIButton(type: .custom)
         floatingButton?.translatesAutoresizingMaskIntoConstraints = false
         floatingButton?.backgroundColor = .mainYellow
-        floatingButton?.setTitle("나눔 등록하기", for: .normal)
+        if isModify {
+            floatingButton?.setTitle("수정 완료하기", for: .normal)
+        } else {
+            floatingButton?.setTitle("나눔 등록하기", for: .normal)
+        }
         floatingButton?.titleLabel?.font = UIFont(name: "SeoulNamsanB", size: 20)
         floatingButton?.addTarget(self, action: #selector(completeAction), for: .touchUpInside)
         constrainFloatingButtonToWindow()
@@ -187,19 +220,39 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         } else if contentTextView.text == "내용을 입력해주세요." {
             self.simpleAlert(title: "내용을 입력해주세요!", message: "내용을 입력하셔야\n글을 작성할 수 있습니다.")
         } else {
-            networkManager.posting(title: gsno(titleTextField.text), content: gsno(contentTextView.text), deadline: gsno(deadLineLabel.text), areaCategory: localString, ageCategory: ageString, clothCategory: categoryString, images: postImgs) { [weak self] (success, error) in
-                if success == nil && error != nil {
-                    self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
-                } else if success != nil && error == nil {
-                    if success?.success == true {
-                        self?.simpleAlert(title: "", message: "변경되었습니다.")
-                    } else {
-                        if success?.message == nil {
-                            self?.simpleAlert(title: "", message: "이미지 파일이 너무 큽니다.")
+            if !isModify {
+                networkManager.posting(title: gsno(titleTextField.text), content: gsno(contentTextView.text), deadline: gsno(deadLineLabel.text), areaCategory: localString, ageCategory: ageString, clothCategory: categoryString, images: postImgs) { [weak self] (success, error) in
+                    if success == nil && error != nil {
+                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+                    } else if success != nil && error == nil {
+                        if success?.success == true {
+                            self?.simpleAlert(title: "", message: "변경되었습니다.")
+                        } else {
+                            if success?.message == nil {
+                                self?.simpleAlert(title: "", message: "이미지 파일이 너무 큽니다.")
+                            }
                         }
                     }
                 }
+            } else {
+                networkManager.postModify(postIdx: postidx, title: gsno(titleTextField.text), content: gsno(contentTextView.text), deadline: gsno(deadLineLabel.text), areaCategory: localString, ageCategory: ageString, clothCategory: categoryString, images: postImgs) { [weak self] (success, error) in
+                    if success == nil && error != nil {
+                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+                    } else if success != nil && error == nil {
+                        if success?.success == true {
+                            self?.simpleAlert(title: "", message: "변경되었습니다.")
+                        } else {
+                            if success?.message == nil {
+                                self?.simpleAlert(title: "", message: "이미지 파일이 너무 큽니다.")
+                            }
+                        }
+                    }
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // Change `2.0` to the desired number of seconds.
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
+            
         }
     }
     

@@ -15,8 +15,8 @@ class QRListCVC: UICollectionViewCell {
     @IBOutlet var qrListTitle: UILabel!
     @IBOutlet var qrListLocation: UILabel!
     @IBOutlet var qrListBtn: UIButton!
-    @IBAction func qrListBtnAction(_ sender: Any) {
-    }
+//    @IBAction func qrListBtnAction(_ sender: Any) {
+//    }
     
     
     
