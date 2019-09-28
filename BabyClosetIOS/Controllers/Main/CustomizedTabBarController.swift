@@ -46,6 +46,10 @@ class CustomizedTabBarController: UITabBarController, UITabBarControllerDelegate
     // Menu Button Touch Action
     @objc func menuButtonAction(sender: UIButton) {
         self.selectedIndex = 2   //to select the middle tab. use "1" if you have only 3 tabs.
+        let sb = UIStoryboard(name: "Posting", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "PostingNavigation") as! UINavigationController
+        
+        self.present(vc, animated: true, completion: nil)
     }
 }
 
