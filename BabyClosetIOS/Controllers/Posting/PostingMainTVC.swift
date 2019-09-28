@@ -83,6 +83,13 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
         tagCollectionView.register(UINib(nibName: "PostingCategoryCell", bundle: nil), forCellWithReuseIdentifier: "HashTagCell")
     }
     
+    @IBAction func goMainAction(_ sender: Any) {
+//        let sb = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = sb.instantiateViewController(withIdentifier: "CustomizedTabBarController") as! UITabBarController
+//        self.push
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @objc func goMessageView(){
         let storyboard = UIStoryboard(name: "Message", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MessageRootNavigation")
