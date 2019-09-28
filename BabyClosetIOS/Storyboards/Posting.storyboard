@@ -467,6 +467,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="나눔하기" id="1xz-eY-nCl">
+                        <barButtonItem key="backBarButtonItem" title=" " id="AQk-d4-6lD"/>
                         <barButtonItem key="rightBarButtonItem" id="tWI-Sv-mlc"/>
                     </navigationItem>
                     <connections>

@@ -25,17 +25,18 @@ class DetailVC: UIViewController {
     @IBOutlet var imageslide: UIScrollView!
     @IBOutlet var page: UIPageControl!
     
+    var isMsg: Int = 0
     var postid: Int = 0
-    var complaintext: String = ""
-//    var post: detailPostContent
-    var issender: Int = 0
-    var star: Int = 0
-    var images: [String] = []
+    var userIdx: Int = 0
     var area:[String] = []
     var age:[String] = []
     var cloth:[String] = []
+    var selected: [String: [String]] = [:]
     var category:[String] = []
-    var isMsg: Int = 0
+    var issender: Int = 0
+    var star: Int = 0
+    var images: [String] = []
+    var complaintext: String = ""
     
     let networkManager = NetworkManager()
     
@@ -49,15 +50,25 @@ class DetailVC: UIViewController {
         imageslide.delegate = self
         
         super.viewDidLoad()
-        setNavigationBar()
-        getPostDetailNetwork()
-        setMsg()
-        setScroll()
+//        setNavigationBar()
+//        getPostDetailNetwork()
+        apply.backgroundColor = UIColor.mainYellow
+//        setMsg()
+//        setScroll()
         self.tabBarController?.tabBar.isHidden = true
         
         let nibName = UINib(nibName: "CategoryCVC", bundle: nil)
         categoryCollection.register(nibName, forCellWithReuseIdentifier: "CategoryCVC")
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getPostDetailNetwork()
+        setNavigationBar()
+        setMsg()
+        setScroll()
+        self.tabBarController?.tabBar.isHidden = true
+
     }
     func setScroll() {
         page.numberOfPages = images.count
@@ -103,38 +114,44 @@ class DetailVC: UIViewController {
                     return
                 }
                 self?.isMsg = success?.data?.isNewMessage ?? 0
-//                self?.post = success?.data?.detailPost ?? ""
-                
                 self?.detailTitle.text = success?.data?.detailPost?.postTitle
-                self?.dday.text = success?.data?.detailPost?.deadline
-                let name = success?.data?.detailPost?.nickname ?? ""
-                self?.userName.text = "\(name)님의 나눔 별점"
-//                self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
-//                if self?.userImg.image == nil {
-//                    self?.userImg.image = UIImage(named: "user")
-//                    //????????????
-//                }
-                self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
                 self?.content.text = success?.data?.detailPost?.postContent
-                
+                self?.dday.text = success?.data?.detailPost?.deadline
                 self?.area = success?.data?.detailPost?.areaName ?? []
                 self?.age = success?.data?.detailPost?.ageName ?? []
                 self?.cloth = success?.data?.detailPost?.clothName ?? []
-                self?.images = success?.data?.detailPost?.postImages ?? []
-//                print(self?.images)
-                self?.setScroll()
+                
+                let name = success?.data?.detailPost?.nickname ?? ""
+                self?.userName.text = "\(name)님의 나눔 별점"
+                self?.userIdx = success?.data?.detailPost?.userIdx ?? 0
+                
+                self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
+                //                self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
+                //                if self?.userImg.image == nil {
+                //                    self?.userImg.image = UIImage(named: "user")
+                //                    //????????????
+                //                }
+                
+                self?.star = success?.data?.detailPost?.rating ?? 5
+                self?.setStar(num: self?.star ?? 0)
                 
                 self?.issender = success?.data?.detailPost?.isSender ?? 0
                 if self?.issender == 1 {
                     self?.apply.isHidden = true
                 }
                 
-                self?.star = success?.data?.detailPost?.rating ?? 5
-                self?.setStar(num: self?.star ?? 0)
+                self?.images = success?.data?.detailPost?.postImages ?? []
+                self?.setScroll()
                 
+                self?.category = []
                 self?.category.append(contentsOf: self?.area ?? [])
                 self?.category.append(contentsOf: self?.age ?? [])
                 self?.category.append(contentsOf: self?.cloth ?? [])
+                
+                self?.selected["localList"] = self?.area
+                self?.selected["ageList"] = self?.age
+                self?.selected["categoryList"] = self?.cloth
+                
                 self?.categoryCollection.reloadData()
             }
         }
@@ -247,7 +264,12 @@ class DetailVC: UIViewController {
         }
         func msgAction() {
             // 메시지함 바로가기
-            
+            let storyboard = UIStoryboard(name: "Message", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "MessageDetailVC") as! MessageDetailVC
+            vc.otherUserIdx = userIdx
+            print("유저 정보 --->", userIdx)
+            self.present(vc, animated: true, completion: nil)
+//            self.window?.rootViewController?.present(vc, animated: true)
         }
         
         func reportAlert () {
@@ -265,7 +287,31 @@ class DetailVC: UIViewController {
 
             }
         }
-        func modifyAction () { print("수정하기") }
+        func modifyAction () {
+            print("수정하기")
+            let storyboard = UIStoryboard(name: "Posting", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "PostingMainTVC") as! PostingMainTVC
+            vc.isModify = true
+            vc.postidx = postid
+            vc.localList = area
+            vc.ageList = age
+            vc.categoryList = cloth
+            vc.selectedList = selected
+            var day: String = ""
+            if let deadline = dday.text {
+                let idx = deadline.index(deadline.startIndex, offsetBy: 2)
+                day = String(deadline[idx...])
+            }
+            vc.dday = day
+            vc.dtitle = detailTitle.text ?? ""
+            if let context = content.text {
+                vc.content = context
+            }
+            
+            vc.photos = images
+            self.navigationController?.pushViewController(vc, animated: true)
+//            self.present(vc, animated: true, completion: nil)
+        }
         func deletAlert () {
             let userAlert = UIAlertController(title: "정말로 삭제하시겠습니까?", message: nil, preferredStyle: .alert)
             let yes = UIAlertAction(title: "확인", style: .default) { (action) in
@@ -279,8 +325,8 @@ class DetailVC: UIViewController {
 //                    }
 //                }
                 print("삭제 확인")
-                // 삭제 엑션 후 어디로 가지? --> 메인
-                 self.navigationController?.popViewController(animated: true)
+                // 삭제 엑션 후 어디로 가지? --> 메인 or 뒤로가기
+                self.navigationController?.popViewController(animated: true)
             }
             let no = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             userAlert.addAction(no)
@@ -325,6 +371,7 @@ extension DetailVC : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = categoryCollection.dequeueReusableCell(withReuseIdentifier: "CategoryCVC", for: indexPath) as! CategoryCVC
+        cell.isUserInteractionEnabled = false
         cell.category.setTitle(category[indexPath.row], for: .normal)
         return cell
     }

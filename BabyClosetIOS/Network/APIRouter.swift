@@ -10,7 +10,7 @@ import Alamofire
 
 struct APIConfiguration {
     // 나중에 baseURL 꼭꼭 바꾸기
-    static let baseURL = "https://goldenticket.ga"
+    static let baseURL = "http://15.164.112.80"
 
 }
 

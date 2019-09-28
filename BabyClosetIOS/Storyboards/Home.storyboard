@@ -24,7 +24,7 @@
         <!--HomeVC-->
         <scene sceneID="oyd-sU-Hgu">
             <objects>
-                <viewController id="xeb-1V-ecr" customClass="HomeVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVC" id="xeb-1V-ecr" customClass="HomeVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2aI-YE-mY1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,7 +121,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSa-FU-HUJ">
-                                <rect key="frame" x="348" y="336" width="11" height="22"/>
+                                <rect key="frame" x="348" y="331" width="11" height="22"/>
                                 <state key="normal" image="arrow"/>
                                 <connections>
                                     <segue destination="rpe-h0-yeu" kind="push" id="VQG-9g-TtR"/>
@@ -173,7 +173,7 @@
                             <constraint firstItem="gP0-5p-efh" firstAttribute="top" secondItem="Z8E-s1-yFw" secondAttribute="bottom" constant="12" id="Soh-Bf-GuJ"/>
                             <constraint firstItem="aSa-FU-HUJ" firstAttribute="leading" secondItem="Z8E-s1-yFw" secondAttribute="trailing" constant="2" id="UzJ-ib-gEw"/>
                             <constraint firstItem="vWr-vL-S9h" firstAttribute="top" secondItem="FoB-w8-03d" secondAttribute="bottom" id="boa-Qv-3QA"/>
-                            <constraint firstItem="aSa-FU-HUJ" firstAttribute="top" secondItem="vWr-vL-S9h" secondAttribute="bottom" constant="17" id="cQe-Fs-Vao"/>
+                            <constraint firstItem="aSa-FU-HUJ" firstAttribute="top" secondItem="vWr-vL-S9h" secondAttribute="bottom" constant="12" id="cQe-Fs-Vao"/>
                             <constraint firstItem="9gm-U1-dVY" firstAttribute="trailing" secondItem="vWr-vL-S9h" secondAttribute="trailing" id="f8r-TD-92Y"/>
                             <constraint firstItem="FoB-w8-03d" firstAttribute="leading" secondItem="9gm-U1-dVY" secondAttribute="leading" id="gh7-f3-0MQ"/>
                             <constraint firstItem="2Gf-kO-hPC" firstAttribute="leading" secondItem="9gm-U1-dVY" secondAttribute="leading" constant="16" id="hzI-4f-r0j"/>
@@ -480,7 +480,7 @@
                                         <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MJq-x2-RhQ">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MJq-x2-RhQ">
                                         <rect key="frame" x="52" y="419" width="323" height="48"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -494,7 +494,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hQK-C0-I6p">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" id="hQK-C0-I6p">
                                                 <rect key="frame" x="0.0" y="4" width="49" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -545,7 +545,7 @@
                             <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkG-Jc-yBE">
                                 <rect key="frame" x="0.0" y="733" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.96182245020000001" green="0.76669603590000002" blue="0.26649612189999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="SeoulNamsanB" family="SeoulNamsan" pointSize="20"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
                                 <state key="normal" title="신청하기">

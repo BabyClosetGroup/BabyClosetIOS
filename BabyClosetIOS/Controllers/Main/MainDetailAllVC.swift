@@ -14,11 +14,16 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
     @IBOutlet var newAllListCollection: UICollectionView!
     @IBOutlet var categoryHeight: NSLayoutConstraint!
     
+    var isFilter = false
     var isMsg: Int = 0
     var allPosts: [allPostList] = []
     var a: [allPostList] = []
     var postId: Int = 0
     var pageidx: Int = 1
+    
+    var areaStr: String = ""
+    var ageStr: String = ""
+    var clothStr: String = ""
     
     var localList: [String] = []
     var ageList: [String] = []
@@ -30,31 +35,25 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
 
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         newAllListCollection.delegate = self
         newAllListCollection.dataSource = self
-        
         categoryCollection.delegate = self
         categoryCollection.dataSource = self
-        
-        super.viewDidLoad()
-        setNavigationBar()
-        getPostListNetwork()
-        setMsg()
-        self.tabBarController?.tabBar.isHidden = true
         
         let nibNameLast = UINib(nibName: "NewCVC", bundle: nil)
         newAllListCollection.register(nibNameLast, forCellWithReuseIdentifier: "NewCVC")
         let nibNamePage = UINib(nibName: "pageCVC", bundle: nil)
         newAllListCollection.register(nibNamePage, forCellWithReuseIdentifier: "pageCVC")
+        let nibNameFilter = UINib(nibName: "filterCVC", bundle: nil)
+        newAllListCollection.register(nibNameFilter, forCellWithReuseIdentifier: "filterCVC")
         let nibNameCategory = UINib(nibName: "CategoryCVC", bundle: nil)
         categoryCollection.register(nibNameCategory, forCellWithReuseIdentifier: "CategoryCVC")
-        
-        
-        self.navigationController?.navigationBar.topItem?.title = ""
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //createFloatingButton()
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.navigationBar.topItem?.title = ""
         print(categoryList)
         if categoryList.count == 0 {
             categoryHeight.constant = 0
@@ -62,6 +61,13 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
             self.navigationItem.title = "필터적용"
             categoryHeight.constant = 58
         }
+        if isFilter {
+            getFilteredPostListNetwork()
+        } else {
+            getPostListNetwork()
+        }
+        setNavigationBar()
+        setMsg()
         categoryCollection.reloadData()
         self.view.layoutIfNeeded()
     }
@@ -119,7 +125,35 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
         selectedList["categoryList"] = categoryList
         categoryCollection.reloadData()
     }
-    
+    func makeList2String(list: [String]) -> String {
+        var str: String = ""
+        for item in list {
+            str = item+", "+str
+        }
+        return str
+    }
+    func getFilteredPostListNetwork() {
+        areaStr = ""; ageStr = ""; clothStr = ""
+        areaStr = makeList2String(list: localList)
+        ageStr = makeList2String(list: ageList)
+        clothStr = makeList2String(list: categoryList)
+        networkManager.getFilteredAllList(page: pageidx, area: areaStr, age: ageStr, cloth: clothStr){ [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success != nil && error == nil {
+                guard success?.success ?? false else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
+                }
+                self?.isMsg = success?.data?.isNewMessage ?? 0
+                self?.allPosts += success?.data?.filteredAllPost ?? []
+                self?.newAllListCollection.reloadData()
+            }
+        }
+    }
     func getPostListNetwork(){
         networkManager.getAllList(page: pageidx){ [weak self] (success, error) in
             if success == nil && error != nil {
@@ -135,7 +169,6 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
                 self?.isMsg = success?.data?.isNewMessage ?? 0
                 self?.allPosts += success?.data?.allPost ?? []
                 self?.newAllListCollection.reloadData()
-                print("이건 메시지 알림-->", self?.isMsg)
             }
         }
     }
