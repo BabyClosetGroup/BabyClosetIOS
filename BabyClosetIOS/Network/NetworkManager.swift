@@ -264,11 +264,11 @@ class NetworkManager {
         }
     }
     
-    func getAllList(completion: @escaping ( ResponseBody<AllPostList>?, Error?) -> Void) {
+    func getAllList(page: Int, completion: @escaping ( ResponseBody<AllPostList>?, Error?) -> Void) {
         let header:HTTPHeaders = [
             "token": jwt
         ]
-        let router = APIRouter(url: "/post/all/4", method: .get, parameters: nil, headers: header)
+        let router = APIRouter(url: "/post/all/\(page)", method: .get, parameters: nil, headers: header)
         NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<AllPostList>?, error) in
             guard error == nil else {
                 completion(nil, error)
@@ -278,11 +278,11 @@ class NetworkManager {
         }
     }
     
-    func getDeadLineList(completion: @escaping ( ResponseBody<DeadlinePostList>?, Error?) -> Void) {
+    func getDeadLineList(page: Int, completion: @escaping ( ResponseBody<DeadlinePostList>?, Error?) -> Void) {
         let header:HTTPHeaders = [
             "token": jwt
         ]
-        let router = APIRouter(url: "/post/deadline/2", method: .get, parameters: nil, headers: header)
+        let router = APIRouter(url: "/post/deadline/\(page)", method: .get, parameters: nil, headers: header)
         NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<DeadlinePostList>?, error) in
             guard error == nil else {
                 completion(nil, error)
@@ -337,8 +337,25 @@ class NetworkManager {
             completion(result,error)
         }
     }
-//    func authQRCode(query: String, completion: @escaping ( ResponseBody<MessageDetailModel>?, Error?) -> Void) {
-//    }
+    func authQRCode (decode: String, completion: @escaping (ErrorModel?,Error?) -> Void) {
+        let header:HTTPHeaders = [
+            "token": jwt
+        ]
+        
+        let parameters = [
+            "decode": decode,
+        ]
+        
+        let router = APIRouter(url:"/qrcode", method: .post, parameters: parameters, headers: header)
+        NetworkRequester(with: router).signUpRequest { ( result: ErrorModel?, error) in
+            guard error == nil else {
+                completion(nil,error)
+                return
+            }
+            completion(result,error)
+        }
+    }
+
     
     //Detail
     func postModify( postIdx: Int, title: String, content: String, deadline: String, areaCategory: String, ageCategory: String, clothCategory: String, images: [Data], completion: @escaping ( ErrorModel?, Error?) -> Void) {

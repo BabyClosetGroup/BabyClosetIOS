@@ -281,7 +281,6 @@ class DetailVC: UIViewController {
                 print("삭제 확인")
                 // 삭제 엑션 후 어디로 가지? --> 메인
                  self.navigationController?.popViewController(animated: true)
-                print("동작 안함?")
             }
             let no = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             userAlert.addAction(no)

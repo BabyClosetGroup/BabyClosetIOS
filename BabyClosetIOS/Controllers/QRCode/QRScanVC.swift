@@ -10,9 +10,12 @@ import UIKit
 import AVFoundation
 
 class QRScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+    
     @IBOutlet var videoPreview: UIView!
-
+    
+    var networkManager = NetworkManager()
     var stringURL: String = ""
+    
     enum error: Error {
         case noCameraAvailable
         case videoInputInitFail
@@ -67,13 +70,24 @@ class QRScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 if let qrValue = machineReadableCode.stringValue {
                     self.handleQRRead(value: qrValue)
                 }
-                performSegue(withIdentifier: "openLink", sender: self)
             }
         }
     }
     func handleQRRead(value: String) {
         print(value)
-        showToast()
+        self.networkManager.authQRCode(decode: value) { [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            } else if success != nil && error == nil {
+                if success?.success == true {
+//                    self?.simpleAlert(title: "", message: "인증되었습니다.")
+                    self?.showToast()
+                }
+            }
+        }
+        print("qr 확인")
+        // 인증하고 어디로갈까? --> 우선은 뒤로...
+        self.navigationController?.popViewController(animated: true)
     }
     func  scanQRCode() throws {
         let avCaptureSession = AVCaptureSession()

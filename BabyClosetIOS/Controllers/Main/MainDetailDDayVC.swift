@@ -17,12 +17,14 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
     var isMsg: Int = 0
     var daedlinePosts: [deadlinePostLists] = []
     var postId: Int = 0
-    
-    let networkManager = NetworkManager()
+    var pageidx: Int = 1
+
     var localList: [String] = []
     var ageList: [String] = []
     var categoryList: [String] = []
     var selectedList: [String:[String]] = [:]
+    
+    let networkManager = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +42,8 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
         
         let nibNameLast = UINib(nibName: "LastAllCVC", bundle: nil)
         lastAllListCollection.register(nibNameLast, forCellWithReuseIdentifier: "LastAllCVC")
+        let nibNamePage = UINib(nibName: "pageCVC", bundle: nil)
+        lastAllListCollection.register(nibNamePage, forCellWithReuseIdentifier: "pageCVC")
         let nibNameCategory = UINib(nibName: "CategoryCVC", bundle: nil)
         categoryCollection.register(nibNameCategory, forCellWithReuseIdentifier: "CategoryCVC")
         
@@ -112,7 +116,7 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
     }
     
     func getPostListNetwork(){
-        networkManager.getDeadLineList(){ [weak self] (success, error) in
+        networkManager.getDeadLineList(page: pageidx){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
             }
@@ -124,7 +128,7 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
                     return
                 }
                 self?.isMsg = success?.data?.isNewMessage ?? 0
-                self?.daedlinePosts = success?.data?.deadlinePost ?? []
+                self?.daedlinePosts += success?.data?.deadlinePost ?? []
                 self?.lastAllListCollection.reloadData()
                 print("이건 메시지 알림-->", self?.isMsg)
             }
@@ -135,7 +139,7 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
 extension MainDetailDDayVC : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.lastAllListCollection {
-            return daedlinePosts.count
+            return daedlinePosts.count + 1
         } else {
             return localList.count + ageList.count + categoryList.count
         }
@@ -157,6 +161,13 @@ extension MainDetailDDayVC : UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.lastAllListCollection {
             if daedlinePosts.count != 0 {
+                if indexPath.row == daedlinePosts.count {
+                    let cell = lastAllListCollection.dequeueReusableCell(withReuseIdentifier: "pageCVC", for: indexPath) as! pageCVC
+                    
+                    cell.pageBtn.addTarget(self, action: #selector(addPage(_:)), for: .touchUpInside)
+
+                    return cell
+                }
                 let cell = lastAllListCollection.dequeueReusableCell(withReuseIdentifier: "LastAllCVC", for: indexPath) as! LastAllCVC
                 let data = daedlinePosts[indexPath.row]
                 print("deadline ---> ", data, indexPath.row)
@@ -192,7 +203,10 @@ extension MainDetailDDayVC : UICollectionViewDelegate, UICollectionViewDataSourc
             return cell
         }
     }
-    
+    @objc func addPage(_ sender: Any) {
+        pageidx += 1
+        getPostListNetwork()
+    }
 }
     
 extension MainDetailDDayVC: UICollectionViewDelegateFlowLayout {
@@ -206,6 +220,9 @@ extension MainDetailDDayVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.lastAllListCollection {
+            if indexPath.row == daedlinePosts.count {
+                return CGSize(width: 343, height: 42)
+            }
             return CGSize(width: 164, height: 213)
         } else {
             return CGSize(width: 82, height: 28)

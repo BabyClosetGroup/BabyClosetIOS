@@ -36,6 +36,8 @@
 		4B8474EA233D4ECD00311C3F /* QRCodeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474E9233D4ECD00311C3F /* QRCodeList.swift */; };
 		4B8474EC233D4FFC00311C3F /* QRCodeAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474EB233D4FFC00311C3F /* QRCodeAuth.swift */; };
 		4B8474EE233D502E00311C3F /* QRCodeInquiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474ED233D502E00311C3F /* QRCodeInquiry.swift */; };
+		4B8474F5233EED3D00311C3F /* pageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474F3233EED3D00311C3F /* pageCVC.swift */; };
+		4B8474F6233EED3D00311C3F /* pageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8474F4233EED3D00311C3F /* pageCVC.xib */; };
 		965030E50FF8214EC5366895 /* Pods_BabyClosetIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFFB1F5E45F9693A85A98F7 /* Pods_BabyClosetIOS.framework */; };
 		C5001A9F231A7EDD00E511BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001A9E231A7EDD00E511BD /* AppDelegate.swift */; };
 		C5001AA4231A7EDD00E511BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001AA2231A7EDD00E511BD /* Main.storyboard */; };
@@ -144,6 +146,8 @@
 		4B8474E9233D4ECD00311C3F /* QRCodeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeList.swift; sourceTree = "<group>"; };
 		4B8474EB233D4FFC00311C3F /* QRCodeAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeAuth.swift; sourceTree = "<group>"; };
 		4B8474ED233D502E00311C3F /* QRCodeInquiry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInquiry.swift; sourceTree = "<group>"; };
+		4B8474F3233EED3D00311C3F /* pageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pageCVC.swift; sourceTree = "<group>"; };
+		4B8474F4233EED3D00311C3F /* pageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = pageCVC.xib; sourceTree = "<group>"; };
 		C5001A9B231A7EDD00E511BD /* BabyClosetIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyClosetIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5001A9E231A7EDD00E511BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5001AA3231A7EDD00E511BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -287,6 +291,8 @@
 				4B1991E32336E364000081C9 /* LastAllCVC.xib */,
 				4B1991E62336E7BD000081C9 /* CategoryCVC.swift */,
 				4B1991E72336E7BD000081C9 /* CategoryCVC.xib */,
+				4B8474F3233EED3D00311C3F /* pageCVC.swift */,
+				4B8474F4233EED3D00311C3F /* pageCVC.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -653,6 +659,7 @@
 				C5001AA9231A7EDE00E511BD /* LaunchScreen.storyboard in Resources */,
 				C5EC1666231E2F2A00ECE7DB /* Message.storyboard in Resources */,
 				C5001AC9231AD30200E511BD /* SeoulNamsanM.otf in Resources */,
+				4B8474F6233EED3D00311C3F /* pageCVC.xib in Resources */,
 				C55B7AA5231D0EB000CCE4BD /* PageItemCell.xib in Resources */,
 				4B1991E52336E364000081C9 /* LastAllCVC.xib in Resources */,
 				4B1991E12336CF82000081C9 /* LastCVC.xib in Resources */,
@@ -736,6 +743,7 @@
 				C5BF7B23231E5A5000790AE4 /* MessageBubbleTVC.swift in Sources */,
 				C5BF7B21231E570500790AE4 /* MessageDetailVC.swift in Sources */,
 				C5929F84231CFCC000B1C4F6 /* PageItemCell.swift in Sources */,
+				4B8474F5233EED3D00311C3F /* pageCVC.swift in Sources */,
 				4B2732182333F38500426AF2 /* QRScanVC.swift in Sources */,
 				C55B7AB6231D488300CCE4BD /* MyPageStarVC.swift in Sources */,
 				C5743AB42332880B00F4CE85 /* UncompleteShareList.swift in Sources */,
