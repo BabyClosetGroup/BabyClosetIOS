@@ -141,12 +141,6 @@ class DetailVC: UIViewController {
                 self?.userIdx = success?.data?.detailPost?.userIdx ?? 0
                 
                 self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
-                //                self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
-                //                if self?.userImg.image == nil {
-                //                    self?.userImg.image = UIImage(named: "user")
-                //                    //????????????
-                //                }
-                
                 self?.star = success?.data?.detailPost?.rating ?? 5
                 self?.setStar(num: self?.star ?? 0)
                 
@@ -244,6 +238,7 @@ class DetailVC: UIViewController {
         
     }
     @objc func settingAlert(){
+        removeFloatingButton()
         print("셋팅 클릭함")
         if issender == 0 {
             let buyerActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -268,7 +263,7 @@ class DetailVC: UIViewController {
         }
         func confirm () {
             let userAlert = UIAlertController(title: "신고가 완료되었습니다.", message: nil, preferredStyle: .alert)
-            let yes = UIAlertAction(title: "확인", style: .default, handler: nil)
+            let yes = UIAlertAction(title: "확인", style: .default, handler:{(action) in self.createFloatingButton()})
             userAlert.addAction(yes)
             self.present(userAlert, animated: false, completion: nil)
         }
@@ -325,6 +320,7 @@ class DetailVC: UIViewController {
                     }
                     print("신고 : 기타 --> \(label)")
                 }
+                confirm()
             })
             etcReportAlert.addTextField { (text) in
                 text.placeholder = "신고사유"
@@ -386,18 +382,20 @@ class DetailVC: UIViewController {
         func deletAlert () {
             let userAlert = UIAlertController(title: "정말로 삭제하시겠습니까?", message: nil, preferredStyle: .alert)
             let yes = UIAlertAction(title: "확인", style: .default) { (action) in
-//                self.networkManager.deletePost(postIdx: self.postid) { [weak self] (success, error) in
-//                    if success == nil && error != nil {
-//                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
-//                    } else if success != nil && error == nil {
-//                        if success?.success == true {
-//                            self?.simpleAlert(title: "", message: "삭제되었습니다.")
-//                        }
-//                    }
-//                }
+                self.networkManager.deletePost(postIdx: self.postid) { [weak self] (success, error) in
+                    if success == nil && error != nil {
+                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+                    } else if success != nil && error == nil {
+                        if success?.success == true {
+                            self?.simpleAlert(title: "", message: "삭제되었습니다.")
+                        }
+                    }
+                }
                 print("삭제 확인")
                 // 삭제 엑션 후 어디로 가지? --> 메인 or 뒤로가기
-                self.navigationController?.popViewController(animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { // Change `2.0` to the desired number of seconds.
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
             let no = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             userAlert.addAction(no)
