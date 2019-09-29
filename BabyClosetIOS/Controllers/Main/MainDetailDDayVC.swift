@@ -31,6 +31,9 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
     
     let networkManager = NetworkManager()
     
+    private var filterBtn: UIBarButtonItem?
+    private var msgBtn: UIBarButtonItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         lastAllListCollection.delegate = self
@@ -98,16 +101,17 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
         let filterImg    = UIImage(named: "btnFilter")!
         let msgImg  = UIImage(named: "btnLetter")!
         
-        let filterBtn = UIBarButtonItem(image: filterImg,  style: .plain, target: self, action:  #selector(goFilterView))
-        let msgBtn   = UIBarButtonItem(image: msgImg,  style: .plain, target: self, action:  #selector(goMessageView))
-        filterBtn.imageInsets = UIEdgeInsets(top: 0.0, left:40, bottom: 0, right: 0);
-        self.navigationItem.rightBarButtonItems = [msgBtn, filterBtn]
+        filterBtn = UIBarButtonItem(image: filterImg,  style: .plain, target: self, action:  #selector(goFilterView))
+        msgBtn   = UIBarButtonItem(image: msgImg,  style: .plain, target: self, action:  #selector(goMessageView))
+        filterBtn?.imageInsets = UIEdgeInsets(top: 0.0, left:40, bottom: 0, right: 0);
+        
+        self.navigationItem.rightBarButtonItems = ([msgBtn, filterBtn] as! [UIBarButtonItem])
     }
     func setMsg() {
         if isMsg == 0 {
-            //            msgBtn.arimage = UIImage(named: "btnLetter")
+            msgBtn?.image = UIImage(named: "btnLetter")
         } else {
-            //            msgBtn.image = UIImage(named: "btnLetterAlarm")
+            msgBtn?.image = UIImage(named: "btnLetterAlarm")
         }
     }
     

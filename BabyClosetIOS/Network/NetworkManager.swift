@@ -11,7 +11,8 @@ import Alamofire
 import SwiftyJSON
 
 class NetworkManager {
-    let jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoyLCJuaWNrbmFtZSI6Iuq5gO2YleyyoOq1rO2VmCIsImlhdCI6MTU2ODIxOTA5OSwiZXhwIjoxNTc5MDE5MDk5LCJpc3MiOiJiYWJ5Q2xvc2V0In0.tmEh04olM1zm8oJId_QKdbw1_6cYvFDwfx0KV332PTk"
+    let jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJuaWNrbmFtZSI6IuuwlOuCmOuCmO2CpSIsImlhdCI6MTU2ODIxNzE4MiwiZXhwIjoxNTc5MDE3MTgyLCJpc3MiOiJiYWJ5Q2xvc2V0In0.7TL84zswMGWBmPFOVMUddb30FW3CVvir6cyvDPiBX60"
+//    let jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoyLCJuaWNrbmFtZSI6Iuq5gO2YleyyoOq1rO2VmCIsImlhdCI6MTU2ODIxOTA5OSwiZXhwIjoxNTc5MDE5MDk5LCJpc3MiOiJiYWJ5Q2xvc2V0In0.tmEh04olM1zm8oJId_QKdbw1_6cYvFDwfx0KV332PTk"
     //    let jwt = UserDefaults.standard.string(forKey: "token")
     func signup(userId: String, name: String, nickname: String, password: String, completion: @escaping (ErrorModel?,Error?) -> Void) {
         let parameters = [

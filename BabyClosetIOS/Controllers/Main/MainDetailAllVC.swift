@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, SaveDataDelegate {
+class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, FSaveDataDelegate {
     
     @IBOutlet var categoryCollection: UICollectionView!
     @IBOutlet var newAllListCollection: UICollectionView!
@@ -30,9 +30,10 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
     var categoryList: [String] = []
     var selectedList: [String:[String]] = [:]
     
-
     let networkManager = NetworkManager()
-
+    
+    private var filterBtn: UIBarButtonItem?
+    private var msgBtn: UIBarButtonItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,11 +55,13 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.topItem?.title = ""
-        print(categoryList)
-        if categoryList.count == 0 {
+        print("필터니??", isFilter)
+        print(selectedList)
+        if selectedList.count == 0 {
             categoryHeight.constant = 0
         } else {
             self.navigationItem.title = "필터적용"
+            isFilter = true
             categoryHeight.constant = 58
         }
         if isFilter {
@@ -74,9 +77,9 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
     
     func setMsg() {
         if isMsg == 0 {
-//            msgBtn.arimage = UIImage(named: "btnLetter")
+            msgBtn?.image = UIImage(named: "btnLetter")
         } else {
-//            msgBtn.image = UIImage(named: "btnLetterAlarm")
+            msgBtn?.image = UIImage(named: "btnLetterAlarm")
         }
     }
     
@@ -91,13 +94,15 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
         let filterImg    = UIImage(named: "btnFilter")!
         let msgImg  = UIImage(named: "btnLetter")!
         
-        let filterBtn = UIBarButtonItem(image: filterImg,  style: .plain, target: self, action:  #selector(goFilterView))
-        let msgBtn   = UIBarButtonItem(image: msgImg,  style: .plain, target: self, action:  #selector(goMessageView))
-        filterBtn.imageInsets = UIEdgeInsets(top: 0.0, left:40, bottom: 0, right: 0);
+        filterBtn = UIBarButtonItem(image: filterImg,  style: .plain, target: self, action:  #selector(goFilterView))
+        msgBtn   = UIBarButtonItem(image: msgImg,  style: .plain, target: self, action:  #selector(goMessageView))
+        filterBtn?.imageInsets = UIEdgeInsets(top: 0.0, left:40, bottom: 0, right: 0);
 
-        self.navigationItem.rightBarButtonItems = [msgBtn, filterBtn]
+        self.navigationItem.rightBarButtonItems = ([msgBtn, filterBtn] as! [UIBarButtonItem])
         
     }
+    
+
     @objc func goMessageView(){
         let storyboard = UIStoryboard(name: "Message", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "Msg")
@@ -107,16 +112,19 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
     @objc func goFilterView(){
         let storyboard = UIStoryboard(name: "Posting", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "PostingCategoryVC")
+        let dvc = vc as! PostingCategoryVC
+        dvc.isFiltered = true
         navigationController?.pushViewController(vc, animated: true)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! PostingCategoryVC
-        destination.delegate = self
+//        destination.delegate = self
         destination.selectedList["localList"] = localList
         destination.selectedList["ageList"] = ageList
         destination.selectedList["categoryList"] = categoryList
     }
-    func saveData(data saveData:[String: [String]]) {
+    func saveFData(data saveData:[String: [String]]) {
+        print("saveData입니다 ㅠㅠ 제발 들어와 --> ",saveData)
         localList = saveData["localList"]!
         ageList = saveData["ageList"]!
         categoryList = saveData["categoryList"]!

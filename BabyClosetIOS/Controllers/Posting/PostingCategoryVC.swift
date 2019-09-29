@@ -11,6 +11,9 @@ import UIKit
 protocol SaveDataDelegate:class{
     func saveData(data saveData:[String: [String]])
 }
+protocol FSaveDataDelegate:class{
+    func saveFData(data saveData:[String: [String]])
+}
 
 class PostingCategoryVC: UIViewController, UIViewControllerTransitioningDelegate {
     
@@ -19,8 +22,9 @@ class PostingCategoryVC: UIViewController, UIViewControllerTransitioningDelegate
     let categoryList: [String] = ["카테고리 전체", "베스트", "배내옷", "바디슈트", "내의", "슬리핑가운", "원피스", "상의", "하의", "상하복"]
     
     weak var delegate: SaveDataDelegate?
+    weak var delegateF: FSaveDataDelegate?
     var selectedList: [String:[String]] = ["localList":[], "ageList":[], "categoryList": []]
-    
+    var isFiltered = false
     @IBOutlet weak var localCollectionView: UICollectionView!
     @IBOutlet weak var ageCollectionView: UICollectionView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
@@ -54,7 +58,12 @@ class PostingCategoryVC: UIViewController, UIViewControllerTransitioningDelegate
         floatingButton?.translatesAutoresizingMaskIntoConstraints = false
         floatingButton?.backgroundColor = .mainYellow
         floatingButton?.titleLabel?.font = UIFont(name: "SeoulNamsanB", size: 20)
-        floatingButton?.setTitle("신청하기", for: .normal)
+        if isFiltered {
+            floatingButton?.setTitle("필터 적용하기", for: .normal)
+
+        } else {
+            floatingButton?.setTitle("신청하기", for: .normal)
+        }
         floatingButton?.addTarget(self, action: #selector(completeAction), for: .touchUpInside)
         constrainFloatingButtonToWindow()
     }
@@ -105,7 +114,14 @@ class PostingCategoryVC: UIViewController, UIViewControllerTransitioningDelegate
     
     @objc func completeAction() {
         checkEmptyList()
-        delegate?.saveData(data: selectedList)
+//        delegate?.saveData(data: selectedList)
+        print("isFiltered??-->", isFiltered)
+        if isFiltered {
+            delegateF?.saveFData(data: selectedList)
+        } else {
+            delegate?.saveData(data: selectedList)
+        }
+        
         self.navigationController?.popViewController(animated: true)
     }
     

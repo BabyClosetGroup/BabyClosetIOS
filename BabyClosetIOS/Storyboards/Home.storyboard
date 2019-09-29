@@ -206,7 +206,7 @@
         <!--Main DetailD DayVC-->
         <scene sceneID="x1k-hh-Fhh">
             <objects>
-                <viewController id="D48-ka-Zw0" customClass="MainDetailDDayVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainDetailDDayVC" id="D48-ka-Zw0" customClass="MainDetailDDayVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CDj-sM-lqg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -284,7 +284,7 @@
         <!--Main Detail AllVC-->
         <scene sceneID="4YL-i9-9PH">
             <objects>
-                <viewController id="rpe-h0-yeu" customClass="MainDetailAllVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainDetailAllVC" id="rpe-h0-yeu" customClass="MainDetailAllVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fP1-ZC-BGI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

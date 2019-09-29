@@ -986,7 +986,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.babycloset.BabyClosetIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1005,7 +1004,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.babycloset.BabyClosetIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
