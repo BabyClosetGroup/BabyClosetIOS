@@ -8,22 +8,34 @@
 
 import UIKit
 
-class PageCell: UICollectionViewCell {
+protocol TableViewDelegate: class {
+    func buttonDidClicked(postIdx: Int)
+}
+
+class PageCell: UICollectionViewCell, TableViewCellDelegate {
+    let delegate: TableViewDelegate? = nil
     var firstView: Bool = true
     var numberOfRows = 0
     var IncompleteData: [UncompleteShare] = []
     var CompleteData: [CompleteShare] = []
     var isLoading: Bool = true
+    var postIdx: Int?
     
     @IBOutlet weak var tableView: UITableView!
     var imageView : UIImageView = UIImageView()
+    
+    func buttonDidClicked(postIdx: Int) {
+        if self.postIdx != nil {
+            delegate?.buttonDidClicked(postIdx: postIdx ?? -1)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.allowsSelection = false
+//        tableView.allowsSelection = false
         tableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         tableView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         tableView.register(UINib(nibName: "EmptyApplyCell", bundle: nil), forCellReuseIdentifier: "EmptyApplyCell")
@@ -48,7 +60,6 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "IncompleteTVC", for: indexPath) as! IncompleteTVC
                 let data = IncompleteData[indexPath.row]
                 cell.title.text = data.postTitle
-                
                 if let area = data.areaName, area.count > 1 {
                     let attributedString = NSMutableAttributedString()
                         .normal(area[0], font: UIFont.M12)
@@ -132,6 +143,10 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

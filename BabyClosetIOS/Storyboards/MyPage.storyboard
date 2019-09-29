@@ -102,7 +102,7 @@
                                     <constraint firstAttribute="height" constant="66" id="dnD-6Z-YF0"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="MXD-6g-usR" kind="push" id="YSd-wa-cPS"/>
+                                    <action selector="shareGoods:" destination="JWt-M2-RmO" eventType="touchUpInside" id="MLK-Ad-HtL"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내가 나눈 상품" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCp-W4-dCl">
@@ -202,6 +202,7 @@
                         <outletCollection property="stars" destination="bD5-G6-gmk" collectionClass="NSMutableArray" id="L5k-AM-2Kq"/>
                         <outletCollection property="stars" destination="7um-Xv-PNv" collectionClass="NSMutableArray" id="3Nf-kh-Xk8"/>
                         <outletCollection property="stars" destination="4d0-vY-Tpw" collectionClass="NSMutableArray" id="eNi-Di-bPF"/>
+                        <segue destination="MXD-6g-usR" kind="push" id="PpP-jP-LMq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xut-f5-Xwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -219,6 +220,9 @@
                         <viewLayoutGuide key="safeArea" id="8UK-E1-jGC"/>
                     </view>
                     <navigationItem key="navigationItem" id="JEK-OM-Bij"/>
+                    <connections>
+                        <segue destination="ggt-g8-xYQ" kind="push" identifier="goDetail" id="DJQ-jw-S5i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjn-9V-VW8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -767,7 +771,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나눔요청 인원 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GM6-Pj-zMN">
-                                <rect key="frame" x="145" y="197.33333333333334" width="97" height="16.666666666666657"/>
+                                <rect key="frame" x="145" y="201" width="97" height="13"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16.666666666666657" id="Fia-E4-mfN"/>
                                     <constraint firstAttribute="width" constant="97" id="djY-CA-s3g"/>
@@ -777,13 +781,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="신청한 사람 ( 3 )" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkj-Cl-RMT">
-                                <rect key="frame" x="16" y="263" width="148" height="19"/>
+                                <rect key="frame" x="16" y="307" width="148" height="19"/>
                                 <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="16"/>
                                 <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상품 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1G-61-aJf">
-                                <rect key="frame" x="145" y="118" width="207" height="19"/>
+                                <rect key="frame" x="145" y="162" width="207" height="0.0"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="0Zq-49-nIM"/>
                                     <constraint firstAttribute="width" constant="207" id="6zf-0H-8Os"/>
@@ -793,7 +797,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xv5-Tu-nvf">
-                                <rect key="frame" x="242" y="197.33333333333334" width="97" height="16.666666666666657"/>
+                                <rect key="frame" x="242" y="201" width="97" height="13"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="d4j-T3-3f0"/>
                                 </constraints>
@@ -802,13 +806,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="동대문구" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fl-sc-FwQ">
-                                <rect key="frame" x="145" y="141" width="207" height="21.333333333333343"/>
+                                <rect key="frame" x="145" y="166" width="207" height="0.0"/>
                                 <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="12"/>
                                 <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="examplePicture" translatesAutoresizingMaskIntoConstraints="NO" id="U5f-tB-ylg">
-                                <rect key="frame" x="16" y="110" width="109" height="109"/>
+                                <rect key="frame" x="16" y="154" width="109" height="109"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="109" id="8iA-Zf-Vwy"/>
                                     <constraint firstAttribute="height" constant="109" id="tC7-hv-6XH"/>
@@ -820,7 +824,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQS-Zl-2vB">
-                                <rect key="frame" x="0.0" y="241" width="375" height="6"/>
+                                <rect key="frame" x="0.0" y="285" width="375" height="6"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="60y-Jz-3Eh">
@@ -832,7 +836,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GMB-qQ-xQH">
-                                <rect key="frame" x="0.0" y="282" width="375" height="450"/>
+                                <rect key="frame" x="0.0" y="326" width="375" height="406"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>

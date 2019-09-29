@@ -16,6 +16,7 @@ class SignUpEndVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nickname = UserDefaults.standard.string(forKey: "nickname") ?? "유저"
         label.text = "\(nickname)님, 환영 합니다!"
     }
     

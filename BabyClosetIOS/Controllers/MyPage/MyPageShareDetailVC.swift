@@ -72,6 +72,7 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
         navItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "btn-back"), style: .plain, target: self, action: #selector(goBackAction))
         navBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
     }
+
     
     func getNetwork(){
         if let idx = postIdx {

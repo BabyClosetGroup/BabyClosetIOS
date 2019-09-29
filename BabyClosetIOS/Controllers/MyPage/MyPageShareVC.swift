@@ -8,8 +8,7 @@
 
 import UIKit
 
-class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
-    
+class MyPageShareVC: UIViewController, MyPageMenuBarDelegate, TableViewDelegate {
     var myPageMenuBar = MyPageMenuBar()
     let networkManager = NetworkManager()
     var uncompleteShareList: [UncompleteShare] = []
@@ -22,6 +21,8 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
         return collectionView
     }()
     
+    var postIdx: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
@@ -29,7 +30,7 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
         self.navigationItem.title = "나눈 상품"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
-        pageCollectionView.allowsSelection = false
+        
         setupMyPageMenuBar()
         setupPageCollectionView()
         getUncompletedNetwork()
@@ -53,6 +54,11 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
                 print(self?.uncompleteShareList)
             }
         }
+    }
+    
+    func buttonDidClicked(postIdx: Int) {
+        print("dsdfasdfasdfa시바 왜 안돼s")
+        self.postIdx = postIdx
     }
     
     func getCompletedNetwork(){
@@ -126,6 +132,14 @@ extension MyPageShareVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print( "postIdx  : ", postIdx)
+        if self.postIdx != nil && postIdx != -1 {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyPageShareDetailVC") as! MyPageShareDetailVC
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
