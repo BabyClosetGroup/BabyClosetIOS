@@ -977,6 +977,7 @@
                         <outlet property="requestNum" destination="Xv5-Tu-nvf" id="HhN-ly-SDs"/>
                         <outlet property="sendMessage" destination="ZZU-Hn-dWl" id="7Hb-i2-tWZ"/>
                         <outlet property="tableView" destination="GMB-qQ-xQH" id="r93-tf-fpz"/>
+                        <segue destination="MXD-6g-usR" kind="push" identifier="goShareView" id="fcN-Un-6qw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7G-8R-mat" userLabel="First Responder" sceneMemberID="firstResponder"/>
