@@ -11,8 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class NetworkManager {
-    let jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoyLCJuaWNrbmFtZSI6Iuq5gO2YleyyoOq1rO2VmCIsImlhdCI6MTU2ODIxOTA5OSwiZXhwIjoxNTc5MDE5MDk5LCJpc3MiOiJiYWJ5Q2xvc2V0In0.tmEh04olM1zm8oJId_QKdbw1_6cYvFDwfx0KV332PTk"
-    //    let jwt = UserDefaults.standard.string(forKey: "token")
+    let jwt = UserDefaults.standard.string(forKey: "token")!
     func signup(userId: String, name: String, nickname: String, password: String, completion: @escaping (ErrorModel?,Error?) -> Void) {
         let parameters = [
             "userId": userId,
@@ -32,7 +31,7 @@ class NetworkManager {
         }
     }
     
-    func signin(userId: String, password: String, completion: @escaping ( ResponseBody<SignInModel>?, ErrorModel?, Error?) -> Void) {
+    func signin(userId: String, password: String, completion: @escaping ( ResponseBody<SignInModel>?, Error?) -> Void) {
         
         let parameters = [
             "userId": userId,
@@ -40,12 +39,12 @@ class NetworkManager {
         ]
         
         let router = APIRouter(url:"/user/signin", method: .post, parameters: parameters)
-        NetworkRequester(with: router).signInRequest { (login: ResponseBody<SignInModel>?, errorModel: ErrorModel? , error)  in
+        NetworkRequester(with: router).signUpRequest { (login: ResponseBody<SignInModel>?, error)  in
             guard error == nil else {
-                completion(nil, nil,error)
+                completion(nil,error)
                 return
             }
-            completion(login, errorModel, error)
+            completion(login, error)
         }
     }
     
@@ -181,7 +180,9 @@ class NetworkManager {
         let header:HTTPHeaders = [
             "token": jwt
         ]
-        let router = APIRouter(url: "/rating/\(userIdx)", method: .get, parameters: nil, headers: header)
+        
+        print("userIdx   : ", userIdx)
+        let router = APIRouter(url: "/rating/IOS/\(userIdx)", method: .get, parameters: nil, headers: header)
         NetworkRequester(with: router).signUpRequest{ (result: ResponseBody<OtherDetailInfo>?, error) in
             guard error == nil else {
                 completion(nil, error)
