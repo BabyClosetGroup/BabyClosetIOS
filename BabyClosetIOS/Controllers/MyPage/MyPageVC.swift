@@ -20,13 +20,13 @@ class MyPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.navigationController?.navigationBar.tintColor = UIColor.gray38
         navigationController?.navigationBar.barTintColor = UIColor.white
         let attributedString = NSMutableAttributedString()
             .normal("정보를 가지고 오는 중입니다.", font: UIFont.M16)
         self.infoLabel.attributedText = attributedString
-//        let height = profileImg.frame.height / 2
+        //        let height = profileImg.frame.height / 2
         profileImg.roundCorners(corners: [.allCorners], radius: 31)
         profileImg.contentMode = .scaleToFill
         
@@ -38,23 +38,27 @@ class MyPageVC: UIViewController {
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
             }
-            else if success != nil && error == nil {
-                guard success?.success ?? false else {
+            else {
+                guard (success?.success)! else {
                     if let msg = success?.message {
                         self?.simpleAlert(title: "", message: msg)
                     }
                     return
                 }
                 if let nickname = success?.data?.nickname,
-                    let star = success?.data?.rating,
-                    let img = success?.data?.profileImage?.urlToImage() {
+                    let star = success?.data?.rating {
                     let attributedString = NSMutableAttributedString()
                         .normal("\(nickname)님", font: UIFont.B16)
                         .normal("의 별점 ", font: UIFont.L16)
                         .normal("\(star)점", font: UIFont.B16)
                     self?.infoLabel.attributedText = attributedString
-//                    self?.profileImg.image = img
+                    
                     self?.fillStar(Int(star))
+                    if let img = success?.data?.profileImage?.urlToImage() {
+                        self?.profileImg.image = img
+                    } else {
+                        self?.profileImg.image = UIImage(named: "myPageDefault")
+                    }
                     print(nickname)
                 }
             }
@@ -78,8 +82,10 @@ class MyPageVC: UIViewController {
         for i in 0 ... stars.count - 1 {
             stars[i].image = UIImage(named: "emptyStar64")
         }
-        for i in 0 ... star - 1 {
-            stars[i].image = UIImage(named: "star64")
+        if star != 0 {
+            for i in 0 ... star - 1 {
+                stars[i].image = UIImage(named: "star64")
+            }
         }
     }
 }
