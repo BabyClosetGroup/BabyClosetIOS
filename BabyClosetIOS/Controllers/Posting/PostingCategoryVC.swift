@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SaveDataDelegate:class{
+protocol SaveDataDelegate: class {
     func saveData(data saveData:[String: [String]])
 }
 
@@ -127,7 +127,6 @@ extension PostingCategoryVC: UICollectionViewDelegate, UICollectionViewDataSourc
         }
         return size
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == localCollectionView {

@@ -22,7 +22,7 @@ class SplashVC: UIViewController {
     }
     
     func goMain(){
-        UserDefaults.standard.set(false, forKey: "autoLogin")
+        
         if let autoLogin: Bool = UserDefaults.standard.bool(forKey: "autoLogin"), autoLogin {
             print("auto login is true")
             let sb = UIStoryboard(name: "Main", bundle: nil)

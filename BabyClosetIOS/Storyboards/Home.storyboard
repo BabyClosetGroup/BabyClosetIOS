@@ -278,6 +278,7 @@
                         <outlet property="categoryCollection" destination="iaP-wD-Z62" id="r93-ht-B2U"/>
                         <outlet property="categoryHeight" destination="hdp-5c-YlI" id="fID-xf-8oc"/>
                         <outlet property="lastAllListCollection" destination="KVv-sW-O5h" id="fHN-3J-tMm"/>
+                        <segue destination="YZv-EY-Mn8" kind="push" identifier="goPosting" id="wGB-7l-XhD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VxG-ic-Bfx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -359,6 +360,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xw8-Xm-Dx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3016.8000000000002" y="114.53201970443351"/>
+        </scene>
+        <!--PostingCategoryVC-->
+        <scene sceneID="LCC-7N-ise">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Posting" referencedIdentifier="PostingCategoryVC" id="YZv-EY-Mn8" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="BYj-SL-P6j"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r4u-5s-Hz9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3862" y="-655"/>
         </scene>
         <!--DetailVC-->
         <scene sceneID="T04-cm-J69">
