@@ -85,10 +85,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DPw-0b-koH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPw-0b-koH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WLa-QS-q1U">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WLa-QS-q1U">
                                         <rect key="frame" x="0.0" y="134" width="375" height="646"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -151,11 +151,12 @@
                                     <constraint firstAttribute="trailing" secondItem="WLa-QS-q1U" secondAttribute="trailing" id="Ia6-Lh-gND"/>
                                     <constraint firstAttribute="width" constant="375" id="Q84-6F-Eef"/>
                                     <constraint firstItem="O2m-IO-jr8" firstAttribute="top" secondItem="DPw-0b-koH" secondAttribute="top" constant="66" id="UND-B0-egV"/>
+                                    <constraint firstAttribute="bottom" secondItem="WLa-QS-q1U" secondAttribute="bottom" id="as5-IW-yOJ"/>
                                     <constraint firstItem="O2m-IO-jr8" firstAttribute="leading" secondItem="DPw-0b-koH" secondAttribute="leading" constant="27" id="ld3-nY-Ufb"/>
                                     <constraint firstItem="WLa-QS-q1U" firstAttribute="leading" secondItem="DPw-0b-koH" secondAttribute="leading" id="oiu-GH-F6k"/>
                                     <constraint firstItem="WLa-QS-q1U" firstAttribute="top" secondItem="O2m-IO-jr8" secondAttribute="bottom" constant="8" id="owp-uf-CYt"/>
                                     <constraint firstAttribute="trailing" secondItem="O2m-IO-jr8" secondAttribute="trailing" constant="126" id="pmb-Fl-IgC"/>
-                                    <constraint firstAttribute="height" constant="812" id="r2x-yp-dh5"/>
+                                    <constraint firstAttribute="height" constant="778" id="r2x-yp-dh5"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -163,6 +164,7 @@
                         <constraints>
                             <constraint firstItem="zs4-h4-q8a" firstAttribute="trailing" secondItem="DPw-0b-koH" secondAttribute="trailing" id="F5r-3s-lfX"/>
                             <constraint firstAttribute="top" secondItem="DPw-0b-koH" secondAttribute="top" id="IYt-zN-bO4"/>
+                            <constraint firstItem="zs4-h4-q8a" firstAttribute="top" secondItem="DPw-0b-koH" secondAttribute="top" constant="44" id="Ugo-OS-DlO"/>
                             <constraint firstItem="DPw-0b-koH" firstAttribute="leading" secondItem="zs4-h4-q8a" secondAttribute="leading" id="leV-H2-Uka"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zs4-h4-q8a"/>

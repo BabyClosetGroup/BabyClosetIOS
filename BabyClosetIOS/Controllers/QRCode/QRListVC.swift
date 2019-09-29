@@ -19,12 +19,17 @@ class QRListVC: UIViewController {
         qrListCollection.dataSource = self
         
         super.viewDidLoad()
-        self.tabBarController?.tabBar.isHidden = true
-        setNavigationBar()
-        getQRListNetwork()
+        
 
         let nibName = UINib(nibName: "QRListCVC", bundle: nil)
         qrListCollection.register(nibName, forCellWithReuseIdentifier: "QRListCVC")
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+        setNavigationBar()
+        getQRListNetwork()
+        self.view.layoutIfNeeded()
     }
     func setNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
@@ -49,6 +54,7 @@ class QRListVC: UIViewController {
                 }
                 self?.allList = success?.data?.allPost ?? []
                 self?.qrListCollection.reloadData()
+                
             }
         }
     }
