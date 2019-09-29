@@ -35,7 +35,9 @@ class CompleteTVC: UITableViewCell {
         let vc = storyboard.instantiateViewController(withIdentifier: "MyPageStarVC") as! MyPageStarVC
         vc.userIdx = self.receiveIdx
         vc.postIdx = self.postIdx
-        self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+//        self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
     }
     
     @IBAction func rating(_ sender: Any) {
