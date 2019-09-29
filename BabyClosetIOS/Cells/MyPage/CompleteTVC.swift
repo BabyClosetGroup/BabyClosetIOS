@@ -17,6 +17,7 @@ class CompleteTVC: UITableViewCell {
     @IBOutlet weak var shareWho: UILabel!
     @IBOutlet weak var isRated: UILabel!
     @IBOutlet weak var ratingButton: UIButton!
+    @IBOutlet var showDetailBtn: UIButton!
     
     var receiveIdx: Int?
     var postIdx: Int?

@@ -23,8 +23,8 @@ class MyPageSharingInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUserDetailNetwork()
-        view.backgroundColor = UIColor(white: 0.2, alpha: 0.4)
-        view.isOpaque = false
+//        view.backgroundColor = UIColor(white: 0.2, alpha: 0.4)
+//        view.isOpaque = false
         let height = profileImg.frame.height / 2
         profileImg.roundCorners(corners: [.allCorners], radius: height)
     }
@@ -42,27 +42,22 @@ class MyPageSharingInfoVC: UIViewController {
                     return
                 }
                 if let nickname = success?.data?.nickname,
-                    let star = success?.data?.rating,
-                    let img = success?.data?.profileImage?.urlToImage() {
+                    let star = success?.data?.rating {
                     let attributedString = NSMutableAttributedString()
                         .normal("\(nickname)님", font: UIFont.B16)
                         .normal("의 별점 ", font: UIFont.L16)
                         .normal("\(star)점", font: UIFont.B16)
                     self?.label.attributedText = attributedString
-                    self?.profileImg = UIImageView(image: img)
                     self?.fillStar(Int(star))
+                }
+                if let img = success?.data?.profileImage?.urlToImage() {
+                    self?.profileImg.image = img
+                } else {
+                    self?.profileImg.image = UIImage(named: "myPageDefault")
                 }
             }
         }
     }
-    
-    @IBAction func allowAction(_ sender: Any) {
-        let nv = self.storyboard?.instantiateViewController(withIdentifier: "MyPage")
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyPageShareVC") as! MyPageShareVC
-        self.present(nv!, animated: false, completion: nil)
-        
-    }
-    
     func fillStar(_ star: Int) {
         for i in 0 ... stars.count - 1 {
             stars[i].image = UIImage(named: "emptyStar64")
@@ -71,5 +66,18 @@ class MyPageSharingInfoVC: UIViewController {
             stars[i].image = UIImage(named: "star64")
         }
     }
+//    @IBAction func allowAction(_ sender: Any) {
+//        dismiss(animated: true, completion: nil)
+//
+//    }
+    @IBAction func allowAction(_ sender: Any) {
+        let nv = self.storyboard?.instantiateViewController(withIdentifier: "MyPage")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyPageShareVC") as! MyPageShareVC
+        self.present(nv!, animated: false, completion: nil)
+
+    }
+    
+    
+    
     
 }

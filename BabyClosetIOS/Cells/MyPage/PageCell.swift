@@ -48,6 +48,7 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
             let row = button.tag
             let storyboard = UIStoryboard(name: "MyPage", bundle: nil)
             let dvc = storyboard.instantiateViewController(withIdentifier: "MyPageShareDetailVC") as! MyPageShareDetailVC
+            
 //            let data = allList[row]
 //            dvc.postid = data.postIdx ?? 0
 //            performSegue(withIdentifier: "goPosting", sender: nil)

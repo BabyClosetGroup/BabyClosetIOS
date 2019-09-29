@@ -39,6 +39,8 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
 //        setNavigationBar()
     }
+    
+    
     func getUncompletedNetwork(){
         networkManager.getUncompleteShare { [weak self] (success, error) in
             if success == nil && error != nil {

@@ -58,10 +58,11 @@ class MyPageStarVC: UIViewController {
     }
     
     @IBAction func ratingAction(_ sender: Any) {
+        getNetwork()
         let nv = self.storyboard?.instantiateViewController(withIdentifier: "MyPage")
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyPageShareVC") as! MyPageShareVC
         self.present(nv!, animated: false, completion: nil)
-         getNetwork()
+        
     }
     
     @IBAction func closeAction(_ sender: Any) {
