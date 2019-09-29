@@ -82,7 +82,7 @@ class MyPageVC: UIViewController {
         for i in 0 ... stars.count - 1 {
             stars[i].image = UIImage(named: "emptyStar64")
         }
-        if star != 0 {
+        if star > 0 {
             for i in 0 ... star - 1 {
                 stars[i].image = UIImage(named: "star64")
             }
