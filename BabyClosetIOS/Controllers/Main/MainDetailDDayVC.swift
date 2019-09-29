@@ -16,7 +16,7 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
     
     var isFilter = false
     var isMsg: Int = 0
-    var daedlinePosts: [deadlinePostLists] = []
+    var deadlinePosts: [deadlinePostLists] = []
     var postId: Int = 0
     var pageidx: Int = 1
 
@@ -59,6 +59,7 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
             categoryHeight.constant = 0
         } else {
             self.navigationItem.title = "필터적용"
+            isFilter = true
             categoryHeight.constant = 58
         }
         if isFilter {
@@ -123,6 +124,10 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
 
     }
     @objc func goFilterView(){
+        let storyboard = UIStoryboard(name: "Posting", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "PostingCategoryVC")
+        let dvc = vc as! PostingCategoryVC
+        dvc.isFiltered = true
         performSegue(withIdentifier: "goPosting", sender: nil)
     }
     func makeList2String(list: [String]) -> String {
@@ -149,7 +154,29 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
                     return
                 }
                 self?.isMsg = success?.data?.isNewMessage ?? 0
-                self?.daedlinePosts += success?.data?.filteredDeadlinePost ?? []
+                self?.deadlinePosts = success?.data?.filteredDeadlinePost ?? []
+                self?.lastAllListCollection.reloadData()
+            }
+        }
+    }
+    func getFilteredPostListNetworkAdd() {
+        areaStr = ""; ageStr = ""; clothStr = ""
+        areaStr = makeList2String(list: localList)
+        ageStr = makeList2String(list: ageList)
+        clothStr = makeList2String(list: categoryList)
+        networkManager.getFilteredDeadLineList(page: pageidx, area: areaStr, age: ageStr, cloth: clothStr){ [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success != nil && error == nil {
+                guard success?.success ?? false else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
+                }
+                self?.isMsg = success?.data?.isNewMessage ?? 0
+                self?.deadlinePosts += success?.data?.filteredDeadlinePost ?? []
                 self?.lastAllListCollection.reloadData()
             }
         }
@@ -167,7 +194,25 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
                     return
                 }
                 self?.isMsg = success?.data?.isNewMessage ?? 0
-                self?.daedlinePosts += success?.data?.deadlinePost ?? []
+                self?.deadlinePosts = success?.data?.deadlinePost ?? []
+                self?.lastAllListCollection.reloadData()
+            }
+        }
+    }
+    func getPostListNetworkAdd(){
+        networkManager.getDeadLineList(page: pageidx){ [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success != nil && error == nil {
+                guard success?.success ?? false else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
+                }
+                self?.isMsg = success?.data?.isNewMessage ?? 0
+                self?.deadlinePosts += success?.data?.deadlinePost ?? []
                 self?.lastAllListCollection.reloadData()
             }
         }
@@ -177,7 +222,9 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
 extension MainDetailDDayVC : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.lastAllListCollection {
-            return daedlinePosts.count + 1
+            if deadlinePosts.count != 0 {
+                return deadlinePosts.count + 1
+            } else  { return 1 }
         } else {
             return localList.count + ageList.count + categoryList.count
         }
@@ -187,9 +234,9 @@ extension MainDetailDDayVC : UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == self.lastAllListCollection {
+        if collectionView == self.lastAllListCollection, deadlinePosts.count != 0 {
             let dvc = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
-            let data = daedlinePosts[indexPath.row]
+            let data = deadlinePosts[indexPath.row]
             dvc.postid = data.postIdx ?? 0
             navigationController?.pushViewController(dvc, animated: true)
         }
@@ -198,8 +245,8 @@ extension MainDetailDDayVC : UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.lastAllListCollection {
-            if daedlinePosts.count != 0 {
-                if indexPath.row == daedlinePosts.count {
+            if deadlinePosts.count != 0 {
+                if indexPath.row == deadlinePosts.count {
                     let cell = lastAllListCollection.dequeueReusableCell(withReuseIdentifier: "pageCVC", for: indexPath) as! pageCVC
                     
                     cell.pageBtn.addTarget(self, action: #selector(addPage(_:)), for: .touchUpInside)
@@ -207,7 +254,7 @@ extension MainDetailDDayVC : UICollectionViewDelegate, UICollectionViewDataSourc
                     return cell
                 }
                 let cell = lastAllListCollection.dequeueReusableCell(withReuseIdentifier: "LastAllCVC", for: indexPath) as! LastAllCVC
-                let data = daedlinePosts[indexPath.row]
+                let data = deadlinePosts[indexPath.row]
                 print("deadline ---> ", data, indexPath.row)
                 
                 cell.title.text = data.postTitle
@@ -243,7 +290,11 @@ extension MainDetailDDayVC : UICollectionViewDelegate, UICollectionViewDataSourc
     }
     @objc func addPage(_ sender: Any) {
         pageidx += 1
-        getPostListNetwork()
+        if isFilter {
+            getFilteredPostListNetworkAdd()
+        } else {
+            getPostListNetworkAdd()
+        }
     }
 }
     
@@ -258,7 +309,10 @@ extension MainDetailDDayVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.lastAllListCollection {
-            if indexPath.row == daedlinePosts.count {
+            if deadlinePosts.count == 0 {
+                return CGSize(width: 343, height: 667)
+            }
+            if indexPath.row == deadlinePosts.count {
                 return CGSize(width: 343, height: 42)
             }
             return CGSize(width: 164, height: 213)
