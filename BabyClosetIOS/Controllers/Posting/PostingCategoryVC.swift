@@ -62,7 +62,7 @@ class PostingCategoryVC: UIViewController, UIViewControllerTransitioningDelegate
             floatingButton?.setTitle("필터 적용하기", for: .normal)
 
         } else {
-            floatingButton?.setTitle("신청하기", for: .normal)
+            floatingButton?.setTitle("완료", for: .normal)
         }
         floatingButton?.addTarget(self, action: #selector(completeAction), for: .touchUpInside)
         constrainFloatingButtonToWindow()

@@ -11,7 +11,8 @@ import Alamofire
 import SwiftyJSON
 
 class NetworkManager {
-    let jwt = UserDefaults.standard.string(forKey: "token")!
+    let jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJuaWNrbmFtZSI6IuuwlOuCmOuCmO2CpSIsImlhdCI6MTU2ODIxNzE4MiwiZXhwIjoxNTc5MDE3MTgyLCJpc3MiOiJiYWJ5Q2xvc2V0In0.7TL84zswMGWBmPFOVMUddb30FW3CVvir6cyvDPiBX60"
+//    let jwt = UserDefaults.standard.string(forKey: "token")!
     func signup(userId: String, name: String, nickname: String, password: String, completion: @escaping (ErrorModel?,Error?) -> Void) {
         let parameters = [
             "userId": userId,

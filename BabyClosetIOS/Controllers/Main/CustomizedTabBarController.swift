@@ -48,7 +48,6 @@ class CustomizedTabBarController: UITabBarController, UITabBarControllerDelegate
         self.selectedIndex = 2   //to select the middle tab. use "1" if you have only 3 tabs.
         let sb = UIStoryboard(name: "Posting", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "PostingNavigation") as! UINavigationController
-        
         self.present(vc, animated: true, completion: nil)
     }
 }

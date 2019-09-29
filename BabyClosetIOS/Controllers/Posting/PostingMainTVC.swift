@@ -226,32 +226,10 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
                         self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
                     } else if success != nil && error == nil {
                         if success?.success == true {
-//                            let alert = UIAlertController(title: "", message: "변경되었습니다.", preferredStyle: .alert)
-//                            self?.present(alert, animated: true, completion: nil)
-//                            let when = DispatchTime.now() + 1
-//                            DispatchQueue.main.asyncAfter(deadline: when){
-//                                alert.dismiss(animated: true, completion: nil)
-//                            }
                             let sb = UIStoryboard(name: "Main", bundle: nil)
                             let vc = sb.instantiateViewController(withIdentifier: "CustomizedTabBarController") as! CustomizedTabBarController
                             self?.present(vc, animated: true, completion: nil)
                             let alert = vc.simpleAlert(title: "", message: "글 작성을 완료하였습니다!")
-//                            vc.present(alert, animated: true, completion: nil)
-                            
-                        } else {
-                            if success?.message == nil {
-                                self?.simpleAlert(title: "", message: "이미지 파일이 너무 큽니다.")
-                            }
-                        }
-                    }
-                }
-            } else {
-                networkManager.postModify(postIdx: postidx, title: gsno(titleTextField.text), content: gsno(contentTextView.text), deadline: gsno(deadLineLabel.text), areaCategory: localString, ageCategory: ageString, clothCategory: categoryString, images: postImgs) { [weak self] (success, error) in
-                    if success == nil && error != nil {
-                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
-                    } else if success != nil && error == nil {
-                        if success?.success == true {
-                            self?.simpleAlert(title: "", message: "변경되었습니다.")
                         } else {
                             if success?.message == nil {
                                 self?.simpleAlert(title: "", message: "이미지 파일이 너무 큽니다.")
@@ -260,9 +238,27 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
                     }
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { // Change `2.0` to the desired number of seconds.
+                    self.presentingViewController?.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                networkManager.postModify(postIdx: postidx, title: gsno(titleTextField.text), content: gsno(contentTextView.text), deadline: gsno(deadLineLabel.text), areaCategory: localString, ageCategory: ageString, clothCategory: categoryString, images: postImgs) { [weak self] (success, error) in
+                    if success == nil && error != nil {
+                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+                    } else if success != nil && error == nil {
+                        if success?.success == true {
+                            self?.simpleAlert(title: "", message: "수정되었습니다.")
+                        } else {
+                            if success?.message == nil {
+                                self?.simpleAlert(title: "", message: "이미지 파일이 너무 큽니다.")
+                            }
+                        }
+                    }
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.navigationController?.popViewController(animated: true)
                 }
             }
+            
             
         }
     }

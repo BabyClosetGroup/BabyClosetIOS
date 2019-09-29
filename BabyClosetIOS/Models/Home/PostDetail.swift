@@ -36,7 +36,7 @@ struct detailPostContent: Codable {
     let nickname: String?
     let userIdx: Int?
     let profileImage: String?
-    let rating: Int?
+    let rating: Float?
     let isSender: Int?
     let postImages: [String]?
 
@@ -68,7 +68,7 @@ struct detailPostContent: Codable {
         nickname = try values.decodeIfPresent(String.self, forKey: .nickname)
         userIdx = try values.decodeIfPresent(Int.self, forKey: .userIdx)
         profileImage = try values.decodeIfPresent(String.self, forKey: .profileImage)
-        rating = try values.decodeIfPresent(Int.self, forKey: .rating)
+        rating = try values.decodeIfPresent(Float.self, forKey: .rating)
         isSender = try values.decodeIfPresent(Int.self, forKey: .isSender)
         postImages = try values.decodeIfPresent([String].self, forKey: .postImages)
     }
