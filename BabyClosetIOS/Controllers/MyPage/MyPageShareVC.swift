@@ -36,8 +36,9 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
         getUncompletedNetwork()
         getCompletedNetwork()
     }
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+//        setNavigationBar()
+    }
     func getUncompletedNetwork(){
         networkManager.getUncompleteShare { [weak self] (success, error) in
             if success == nil && error != nil {
@@ -54,6 +55,22 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
                 print(self?.uncompleteShareList)
             }
         }
+    }
+    func setNavigationBar() {
+        let screenSize: CGRect = UIScreen.main.bounds
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 43, width: screenSize.width, height: 44))
+        let navItem = UINavigationItem(title: "나눈 상품")
+        let doneItem = UIBarButtonItem(barButtonSystemItem:  .add, target: self, action: #selector(goback(_:)))
+        doneItem.setBackgroundImage(UIImage(named: "btn-back"), for: .normal, barMetrics: .default)
+        navItem.leftBarButtonItem = doneItem
+        navBar.setItems([navItem], animated: false)
+        navBar.tintColor = UIColor.gray38
+        navBar.barTintColor = UIColor.white
+        navBar.shouldRemoveShadow(true)
+        self.view.addSubview(navBar)
+    }
+    @objc func goback(_: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func getCompletedNetwork(){
