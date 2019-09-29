@@ -113,7 +113,8 @@ class MyPageShareDetailVC: UIViewController, UINavigationBarDelegate {
     }
     
     @objc func goBackAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyPageShareVC") as! MyPageShareVC
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func selectAndNoteAction(_ sender: Any) {

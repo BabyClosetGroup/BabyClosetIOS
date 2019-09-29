@@ -27,7 +27,6 @@ class MyPageSharingInfoVC: UIViewController {
         view.isOpaque = false
         let height = profileImg.frame.height / 2
         profileImg.roundCorners(corners: [.allCorners], radius: height)
-        
     }
     
     func getUserDetailNetwork(){
@@ -58,7 +57,11 @@ class MyPageSharingInfoVC: UIViewController {
     }
     
     @IBAction func allowAction(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
+        let nv = self.storyboard?.instantiateViewController(withIdentifier: "MyPage")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyPageShareVC") as! MyPageShareVC
+//        let vc  = nv?.children[1]
+        self.present(vc, animated: true, completion: nil)
+        
     }
     
     func fillStar(_ star: Int) {

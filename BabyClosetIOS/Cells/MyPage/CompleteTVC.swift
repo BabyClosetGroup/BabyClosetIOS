@@ -44,6 +44,8 @@ class CompleteTVC: UITableViewCell {
         let vc = storyboard.instantiateViewController(withIdentifier: "MyPageSharingInfoVC") as! MyPageSharingInfoVC
         vc.receiveIdx = self.receiveIdx
         vc.modalPresentationStyle = .overCurrentContext
-        self.window?.rootViewController?.present(vc, animated: false, completion: nil)
+//        self.window?.rootViewController?.present(vc, animated: false, completion: nil)
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
     }
 }
