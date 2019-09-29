@@ -112,7 +112,10 @@ extension HomeVC : UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.title.text = data.postTitle
                 let cnt_ = data.areaName ?? []
                 let cnt = cnt_.count
-                cell.location.text = (data.areaName?[0])!+" 외 \(cnt)곳"
+                if let dataarea = data.areaName {
+                    cell.location.text = dataarea[0] + " 외 \(cnt)곳"
+                }
+//                cell.location.text = (data.areaName?[0])!+" 외 \(cnt)곳"
                 cell.titleImg.image = data.mainImage?.urlToImage()
                 cell.dday.text = data.deadline
                 cell.title.sizeToFit()
@@ -134,7 +137,10 @@ extension HomeVC : UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.title.text = data.postTitle
                 let cnt_ = data.areaName ?? []
                 let cnt = cnt_.count
-                cell.location.text = (data.areaName?[0])! + " 외 \(cnt)곳"
+                if let dataarea = data.areaName {
+                    cell.location.text = dataarea[0] + " 외 \(cnt)곳"
+                }
+//                cell.location.text = (data.areaName?[0])! + " 외 \(cnt)곳"
                 cell.titleImg.image = data.mainImage?.urlToImage()
                 cell.title.sizeToFit()
                 cell.location.sizeToFit()

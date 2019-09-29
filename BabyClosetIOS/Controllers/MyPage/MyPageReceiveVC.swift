@@ -16,6 +16,7 @@ class MyPageReceiveVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "받은 상품"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]

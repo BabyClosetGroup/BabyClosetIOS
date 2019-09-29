@@ -19,7 +19,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var autoLoginBtn: CheckBoxButton!
     
     let networkManager = NetworkManager()
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         idTextField.delegate = self

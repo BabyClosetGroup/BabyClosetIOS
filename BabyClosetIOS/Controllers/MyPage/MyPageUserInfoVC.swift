@@ -36,6 +36,7 @@ class MyPageUserInfoVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "마이페이지"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
