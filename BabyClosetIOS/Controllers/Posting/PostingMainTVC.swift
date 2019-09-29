@@ -248,7 +248,7 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
                         }
                     }
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // Change `2.0` to the desired number of seconds.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { // Change `2.0` to the desired number of seconds.
                     self.navigationController?.popViewController(animated: true)
                 }
             }

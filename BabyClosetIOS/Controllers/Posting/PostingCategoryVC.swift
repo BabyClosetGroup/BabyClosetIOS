@@ -11,6 +11,9 @@ import UIKit
 protocol SaveDataDelegate:class{
     func saveData(data saveData:[String: [String]])
 }
+protocol FSaveDataDelegate:class{
+    func saveFData(data saveData:[String: [String]])
+}
 
 class PostingCategoryVC: UIViewController, UIViewControllerTransitioningDelegate {
     
@@ -19,8 +22,9 @@ class PostingCategoryVC: UIViewController, UIViewControllerTransitioningDelegate
     let categoryList: [String] = ["카테고리 전체", "베스트", "배내옷", "바디슈트", "내의", "슬리핑가운", "원피스", "상의", "하의", "상하복"]
     
     weak var delegate: SaveDataDelegate?
+    weak var delegateF: FSaveDataDelegate?
     var selectedList: [String:[String]] = ["localList":[], "ageList":[], "categoryList": []]
-    
+    var isFiltered = false
     @IBOutlet weak var localCollectionView: UICollectionView!
     @IBOutlet weak var ageCollectionView: UICollectionView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
@@ -31,7 +35,8 @@ class PostingCategoryVC: UIViewController, UIViewControllerTransitioningDelegate
         self.navigationController?.navigationBar.tintColor = UIColor.gray38
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
         self.tabBarController?.tabBar.isHidden = true
-
+        
+        createFloatingButton()
         setCollectionView(localCollectionView)
         setCollectionView(ageCollectionView)
         setCollectionView(categoryCollectionView)
@@ -43,7 +48,45 @@ class PostingCategoryVC: UIViewController, UIViewControllerTransitioningDelegate
         selectCollectionView(ageCollectionView, ageList, selectedList["ageList"]!)
         selectCollectionView(categoryCollectionView, categoryList, selectedList["categoryList"]!)
     }
-    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeFloatingButton()
+    }
+    private var floatingButton: UIButton?
+    private func createFloatingButton() {
+        floatingButton = UIButton(type: .custom)
+        floatingButton?.translatesAutoresizingMaskIntoConstraints = false
+        floatingButton?.backgroundColor = .mainYellow
+        floatingButton?.titleLabel?.font = UIFont(name: "SeoulNamsanB", size: 20)
+        if isFiltered {
+            floatingButton?.setTitle("필터 적용하기", for: .normal)
+
+        } else {
+            floatingButton?.setTitle("신청하기", for: .normal)
+        }
+        floatingButton?.addTarget(self, action: #selector(completeAction), for: .touchUpInside)
+        constrainFloatingButtonToWindow()
+    }
+    private func constrainFloatingButtonToWindow() {
+        DispatchQueue.main.async {
+            guard let keyWindow = UIApplication.shared.keyWindow,
+                let floatingButton = self.floatingButton else { return }
+            keyWindow.addSubview(floatingButton)
+            keyWindow.trailingAnchor.constraint(equalTo: floatingButton.trailingAnchor,
+                                                constant: 0).isActive = true
+            keyWindow.bottomAnchor.constraint(equalTo: floatingButton.bottomAnchor,
+                                              constant: 0).isActive = true
+            floatingButton.widthAnchor.constraint(equalToConstant: 375).isActive = true
+            floatingButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        }
+    }
+    private func removeFloatingButton(){
+        guard floatingButton?.superview != nil else {  return }
+        DispatchQueue.main.async {
+            self.floatingButton?.removeFromSuperview()
+            self.floatingButton = nil
+        }
+    }
     func selectCollectionView(_ collectionView: UICollectionView,_ resourceList: [String], _ list: [String]){
         if list.isEmpty {
             collectionView.selectItem(at: IndexPath(row: 0, section: 0) , animated: false, scrollPosition: .centeredHorizontally)
@@ -63,9 +106,22 @@ class PostingCategoryVC: UIViewController, UIViewControllerTransitioningDelegate
         collectionView.register(UINib(nibName: "PostingCategoryCell", bundle: nil), forCellWithReuseIdentifier: "HashTagCell")
     }
     
-    @IBAction func completeAction(_ sender: Any) {
+//    @IBAction func completeAction(_ sender: Any) {
+//        checkEmptyList()
+//        delegate?.saveData(data: selectedList)
+//        self.navigationController?.popViewController(animated: true)
+//    }
+    
+    @objc func completeAction() {
         checkEmptyList()
-        delegate?.saveData(data: selectedList)
+//        delegate?.saveData(data: selectedList)
+        print("isFiltered??-->", isFiltered)
+        if isFiltered {
+            delegateF?.saveFData(data: selectedList)
+        } else {
+            delegate?.saveData(data: selectedList)
+        }
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -125,6 +181,7 @@ extension PostingCategoryVC: UICollectionViewDelegate, UICollectionViewDataSourc
         if collectionView == categoryCollectionView && indexPath.row == 0 {
             size = CGSize(width: (width * 2 + 5), height: 28)
         }
+        
         return size
     }
     

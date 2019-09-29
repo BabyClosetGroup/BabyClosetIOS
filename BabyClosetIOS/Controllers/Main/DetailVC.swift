@@ -21,7 +21,6 @@ class DetailVC: UIViewController {
     @IBOutlet var star3: UIImageView!
     @IBOutlet var star4: UIImageView!
     @IBOutlet var star5: UIImageView!
-    @IBOutlet var apply: UIButton!
     @IBOutlet var imageslide: UIScrollView!
     @IBOutlet var page: UIPageControl!
     
@@ -40,7 +39,17 @@ class DetailVC: UIViewController {
     
     let networkManager = NetworkManager()
     
-    @IBAction func applyAction(_ sender: Any) {
+    @objc func applyAction() {
+        self.networkManager.share(postIdx: self.postid) { [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            } else if success != nil && error == nil {
+                if success?.success == true {
+                    print("나눔 신청하기")
+                    self?.simpleAlert(title: "", message: "신청되셨습니다!")
+                }
+            }
+        }
     }
 
     
@@ -52,7 +61,6 @@ class DetailVC: UIViewController {
         super.viewDidLoad()
 //        setNavigationBar()
 //        getPostDetailNetwork()
-        apply.backgroundColor = UIColor.mainYellow
 //        setMsg()
 //        setScroll()
         self.tabBarController?.tabBar.isHidden = true
@@ -67,9 +75,16 @@ class DetailVC: UIViewController {
         setNavigationBar()
         setMsg()
         setScroll()
+//        createFloatingButton()
+
         self.tabBarController?.tabBar.isHidden = true
 
     }
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeFloatingButton()
+    }
+    
     func setScroll() {
         page.numberOfPages = images.count
         print("길이?", images.count)
@@ -126,18 +141,14 @@ class DetailVC: UIViewController {
                 self?.userIdx = success?.data?.detailPost?.userIdx ?? 0
                 
                 self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
-                //                self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
-                //                if self?.userImg.image == nil {
-                //                    self?.userImg.image = UIImage(named: "user")
-                //                    //????????????
-                //                }
-                
                 self?.star = success?.data?.detailPost?.rating ?? 5
                 self?.setStar(num: self?.star ?? 0)
                 
                 self?.issender = success?.data?.detailPost?.isSender ?? 0
                 if self?.issender == 1 {
-                    self?.apply.isHidden = true
+                    self?.removeFloatingButton()
+                } else {
+                    self?.createFloatingButton()
                 }
                 
                 self?.images = success?.data?.detailPost?.postImages ?? []
@@ -154,6 +165,37 @@ class DetailVC: UIViewController {
                 
                 self?.categoryCollection.reloadData()
             }
+        }
+    }
+    
+    private var floatingButton: UIButton?
+    private func createFloatingButton() {
+        floatingButton = UIButton(type: .custom)
+        floatingButton?.translatesAutoresizingMaskIntoConstraints = false
+        floatingButton?.backgroundColor = .mainYellow
+        floatingButton?.titleLabel?.font = UIFont(name: "SeoulNamsanB", size: 20)
+        floatingButton?.setTitle("신청하기", for: .normal)
+        floatingButton?.addTarget(self, action: #selector(applyAction), for: .touchUpInside)
+        constrainFloatingButtonToWindow()
+    }
+    private func constrainFloatingButtonToWindow() {
+        DispatchQueue.main.async {
+            guard let keyWindow = UIApplication.shared.keyWindow,
+                let floatingButton = self.floatingButton else { return }
+            keyWindow.addSubview(floatingButton)
+            keyWindow.trailingAnchor.constraint(equalTo: floatingButton.trailingAnchor,
+                                                constant: 0).isActive = true
+            keyWindow.bottomAnchor.constraint(equalTo: floatingButton.bottomAnchor,
+                                              constant: 0).isActive = true
+            floatingButton.widthAnchor.constraint(equalToConstant: 375).isActive = true
+            floatingButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        }
+    }
+    private func removeFloatingButton(){
+        guard floatingButton?.superview != nil else {  return }
+        DispatchQueue.main.async {
+            self.floatingButton?.removeFromSuperview()
+            self.floatingButton = nil
         }
     }
     
@@ -189,15 +231,39 @@ class DetailVC: UIViewController {
     }
 
     @objc func goMessageView(){
+        print("메시지 클릭함")
         let storyboard = UIStoryboard(name: "Message", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "Msg")
         navigationController?.pushViewController(vc, animated: true)
         
     }
     @objc func settingAlert(){
+        removeFloatingButton()
+        print("셋팅 클릭함")
+        if issender == 0 {
+            let buyerActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let note = UIAlertAction(title: "쪽지보내기", style: .default, handler: { (action) in msgAction() })
+            let report = UIAlertAction(title: "신고하기", style: .default, handler: { (action) in reportAlert() })
+            let cancle = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)
+            
+            buyerActionSheet.addAction(note)
+            buyerActionSheet.addAction(report)
+            buyerActionSheet.addAction(cancle)
+            present(buyerActionSheet, animated: true, completion: nil)
+            
+        } else {
+            let userActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let modify = UIAlertAction(title: "수정하기", style: .default, handler: { (action) in modifyAction() })
+            let delete = UIAlertAction(title: "삭제하기", style: .default, handler: { (action) in deletAlert() })
+            let cancle = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)
+            userActionSheet.addAction(modify)
+            userActionSheet.addAction(delete)
+            userActionSheet.addAction(cancle)
+            present(userActionSheet, animated: true, completion: nil)
+        }
         func confirm () {
             let userAlert = UIAlertController(title: "신고가 완료되었습니다.", message: nil, preferredStyle: .alert)
-            let yes = UIAlertAction(title: "확인", style: .default, handler: nil)
+            let yes = UIAlertAction(title: "확인", style: .default, handler:{(action) in self.createFloatingButton()})
             userAlert.addAction(yes)
             self.present(userAlert, animated: false, completion: nil)
         }
@@ -254,6 +320,7 @@ class DetailVC: UIViewController {
                     }
                     print("신고 : 기타 --> \(label)")
                 }
+                confirm()
             })
             etcReportAlert.addTextField { (text) in
                 text.placeholder = "신고사유"
@@ -315,45 +382,25 @@ class DetailVC: UIViewController {
         func deletAlert () {
             let userAlert = UIAlertController(title: "정말로 삭제하시겠습니까?", message: nil, preferredStyle: .alert)
             let yes = UIAlertAction(title: "확인", style: .default) { (action) in
-//                self.networkManager.deletePost(postIdx: self.postid) { [weak self] (success, error) in
-//                    if success == nil && error != nil {
-//                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
-//                    } else if success != nil && error == nil {
-//                        if success?.success == true {
-//                            self?.simpleAlert(title: "", message: "삭제되었습니다.")
-//                        }
-//                    }
-//                }
+                self.networkManager.deletePost(postIdx: self.postid) { [weak self] (success, error) in
+                    if success == nil && error != nil {
+                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+                    } else if success != nil && error == nil {
+                        if success?.success == true {
+                            self?.simpleAlert(title: "", message: "삭제되었습니다.")
+                        }
+                    }
+                }
                 print("삭제 확인")
                 // 삭제 엑션 후 어디로 가지? --> 메인 or 뒤로가기
-                self.navigationController?.popViewController(animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { // Change `2.0` to the desired number of seconds.
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
             let no = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             userAlert.addAction(no)
             userAlert.addAction(yes)
             self.present(userAlert, animated: false, completion: nil)
-        }
-        
-        if issender == 0 {
-            let buyerActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let note = UIAlertAction(title: "쪽지보내기", style: .default, handler: { (action) in msgAction() })
-            let report = UIAlertAction(title: "신고하기", style: .default, handler: { (action) in reportAlert() })
-            let cancle = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)
-            
-            buyerActionSheet.addAction(note)
-            buyerActionSheet.addAction(report)
-            buyerActionSheet.addAction(cancle)
-            present(buyerActionSheet, animated: true, completion: nil)
-            
-        } else {
-            let userActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let modify = UIAlertAction(title: "수정하기", style: .default, handler: { (action) in modifyAction() })
-            let delete = UIAlertAction(title: "삭제하기", style: .default, handler: { (action) in deletAlert() })
-            let cancle = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)
-            userActionSheet.addAction(modify)
-            userActionSheet.addAction(delete)
-            userActionSheet.addAction(cancle)
-            present(userActionSheet, animated: true, completion: nil)
         }
     }
 

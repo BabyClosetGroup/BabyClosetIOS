@@ -21,7 +21,8 @@ class MyPageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUserDetailNetwork()
-        
+        self.tabBarController?.tabBar.isHidden = false
+
         self.navigationController?.navigationBar.tintColor = UIColor.gray38
         navigationController?.navigationBar.barTintColor = UIColor.white
         let attributedString = NSMutableAttributedString()
