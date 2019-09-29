@@ -82,6 +82,7 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
         selectedList["categoryList"] = categoryList
         categoryCollection.reloadData()
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! PostingCategoryVC
         destination.delegate = self
@@ -122,9 +123,7 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
 
     }
     @objc func goFilterView(){
-        let storyboard = UIStoryboard(name: "Posting", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "PostingCategoryVC")
-        navigationController?.pushViewController(vc, animated: true)
+        performSegue(withIdentifier: "goPosting", sender: nil)
     }
     func makeList2String(list: [String]) -> String {
         var str: String = ""

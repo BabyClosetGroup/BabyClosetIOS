@@ -33,8 +33,7 @@ class MyPageVC: UIViewController {
     }
     
     func getUserDetailNetwork(){
-        let userIdx = UserDefaults.standard.integer(forKey: "userId")
-        print(userIdx)
+        let userIdx = UserDefaults.standard.integer(forKey: "userIdx")
         networkManager.getOtherUserInfo (userIdx: userIdx){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
@@ -60,6 +59,10 @@ class MyPageVC: UIViewController {
                 }
             }
         }
+    }
+    @IBAction func shareGoods(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyPageShareVC") as! MyPageShareVC
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

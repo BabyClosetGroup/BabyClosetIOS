@@ -22,15 +22,12 @@ class SplashVC: UIViewController {
     }
     
     func goMain(){
-        UserDefaults.standard.set(false, forKey: "autoLogin")
         if let autoLogin: Bool = UserDefaults.standard.bool(forKey: "autoLogin"), autoLogin {
-            print("auto login is true")
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "CustomizedTabBarController") as! CustomizedTabBarController
             self.present(vc, animated: true, completion: nil)
             
         } else {
-            print("auto login is false")
             performSegue(withIdentifier: "goMain", sender: nil)
         }
     }
