@@ -10,6 +10,17 @@ import UIKit
 
 // UIView Extension
 extension UIView {
+    func addConstraintsWithFormat(format: String, views: UIView...) {
+        
+        var viewsDictionary = [String: UIView]()
+        for (index, view) in views.enumerated() {
+            let key = "v\(index)"
+            viewsDictionary[key] = view
+            view.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
+    }
     
     func roundCorners(corners: UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
@@ -53,4 +64,55 @@ extension UIView {
             self.layer.borderWidth = 1.0
         }
     }
+    
+    func setUnderLine( border: CALayer, color: CGColor){
+        border.borderColor = color
+        border.borderWidth = 1.0
+        border.frame = CGRect(x: 0, y: self.frame.height - 1, width:  self.frame.width, height: self.frame.height)
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+    }
+    
+    func setImgView( img: UIImage) -> UIImageView{
+        let imageView = UIImageView(frame: self.frame)
+        imageView.image = img
+        imageView.center = self.center
+        imageView.roundCorners(corners: [.allCorners], radius: 8)
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }
+}
+
+@IBDesignable extension UIView {
+    
+    @IBInspectable var borderWidth: CGFloat {
+        set {
+            layer.borderWidth = newValue
+        }
+        get {
+            return layer.borderWidth
+        }
+    }
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        set {
+            
+            layer.cornerRadius = newValue
+        }
+        get {
+            return layer.cornerRadius
+        }
+    }
+    @IBInspectable var borderColor: UIColor? {
+        set {
+            guard let uiColor = newValue else { return }
+            layer.borderColor = uiColor.cgColor
+        }
+        get {
+            guard let color = layer.borderColor else { return nil }
+            return UIColor(cgColor: color)
+        }
+    }
+    
 }

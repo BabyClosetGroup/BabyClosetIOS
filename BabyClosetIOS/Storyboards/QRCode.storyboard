@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SeoulNamsanB.otf">
+            <string>SeoulNamsanB</string>
+        </array>
+        <array key="SeoulNamsanM.otf">
+            <string>SeoulNamsanM</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--CodeVC-->
+        <scene sceneID="r91-BG-Q6y">
+            <objects>
+                <viewController storyboardIdentifier="QRCode" id="BgM-NA-M8V" customClass="QRCodeVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8lp-zR-9AS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="labelImg" translatesAutoresizingMaskIntoConstraints="NO" id="gKT-Vb-w1h">
+                                <rect key="frame" x="27" y="98" width="257" height="60"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scanBtn" translatesAutoresizingMaskIntoConstraints="NO" id="zz0-52-KeT">
+                                <rect key="frame" x="44" y="493" width="298" height="170"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrBtn" translatesAutoresizingMaskIntoConstraints="NO" id="dfX-CI-S05">
+                                <rect key="frame" x="64" y="215" width="244" height="171"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D41-aa-bBR">
+                                <rect key="frame" x="16" y="386" width="343" height="42"/>
+                                <fontDescription key="fontDescription" name="SeoulNamsanB" family="SeoulNamsan" pointSize="17"/>
+                                <state key="normal" title="나눔주기-QR 생성하기" backgroundImage="qrScanBtn"/>
+                                <connections>
+                                    <segue destination="6iD-3o-1zl" kind="push" id="irI-yk-hXD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9M3-z6-lV2">
+                                <rect key="frame" x="16" y="663" width="343" height="42"/>
+                                <fontDescription key="fontDescription" name="SeoulNamsanB" family="SeoulNamsan" pointSize="17"/>
+                                <state key="normal" title="나눔받기-코드 스캔하기" backgroundImage="qrScanBtn"/>
+                                <connections>
+                                    <segue destination="qxF-OW-oRS" kind="push" id="kZt-Rf-FJJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dfX-CI-S05" firstAttribute="leading" secondItem="4Tx-wg-OgP" secondAttribute="leading" constant="64" id="0s5-Bq-D21"/>
+                            <constraint firstItem="D41-aa-bBR" firstAttribute="leading" secondItem="4Tx-wg-OgP" secondAttribute="leading" constant="16" id="122-c6-9Lc"/>
+                            <constraint firstItem="gKT-Vb-w1h" firstAttribute="top" secondItem="4Tx-wg-OgP" secondAttribute="top" constant="54" id="8co-dE-q8f"/>
+                            <constraint firstItem="D41-aa-bBR" firstAttribute="top" secondItem="dfX-CI-S05" secondAttribute="bottom" id="9QO-RE-TEb"/>
+                            <constraint firstItem="4Tx-wg-OgP" firstAttribute="trailing" secondItem="zz0-52-KeT" secondAttribute="trailing" constant="33" id="E98-hC-zU7"/>
+                            <constraint firstItem="dfX-CI-S05" firstAttribute="top" secondItem="gKT-Vb-w1h" secondAttribute="bottom" constant="57" id="EXr-WX-rw5"/>
+                            <constraint firstItem="9M3-z6-lV2" firstAttribute="leading" secondItem="4Tx-wg-OgP" secondAttribute="leading" constant="16" id="GmP-OS-k0S"/>
+                            <constraint firstItem="gKT-Vb-w1h" firstAttribute="leading" secondItem="4Tx-wg-OgP" secondAttribute="leading" constant="27" id="PMz-4O-93T"/>
+                            <constraint firstItem="4Tx-wg-OgP" firstAttribute="trailing" secondItem="9M3-z6-lV2" secondAttribute="trailing" constant="16" id="TZF-Ug-MzV"/>
+                            <constraint firstItem="4Tx-wg-OgP" firstAttribute="trailing" secondItem="dfX-CI-S05" secondAttribute="trailing" constant="67" id="Wjz-sZ-x7S"/>
+                            <constraint firstItem="4Tx-wg-OgP" firstAttribute="trailing" secondItem="gKT-Vb-w1h" secondAttribute="trailing" constant="91" id="WkK-19-Ibv"/>
+                            <constraint firstItem="9M3-z6-lV2" firstAttribute="top" secondItem="zz0-52-KeT" secondAttribute="bottom" id="fJh-d7-kZv"/>
+                            <constraint firstItem="zz0-52-KeT" firstAttribute="top" secondItem="D41-aa-bBR" secondAttribute="bottom" constant="65" id="obY-DS-zE2"/>
+                            <constraint firstItem="zz0-52-KeT" firstAttribute="leading" secondItem="4Tx-wg-OgP" secondAttribute="leading" constant="44" id="tln-rC-ZW2"/>
+                            <constraint firstItem="4Tx-wg-OgP" firstAttribute="trailing" secondItem="D41-aa-bBR" secondAttribute="trailing" constant="16" id="uiL-JL-Tye"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4Tx-wg-OgP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KVS-zM-q39" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-110" y="69"/>
+        </scene>
+        <!--ListVC-->
+        <scene sceneID="QnA-up-d45">
+            <objects>
+                <viewController id="6iD-3o-1zl" customClass="QRListVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GOl-tJ-feh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPw-0b-koH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WLa-QS-q1U">
+                                        <rect key="frame" x="0.0" y="134" width="375" height="646"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="375" id="S2x-X9-kSJ"/>
+                                            <constraint firstAttribute="height" constant="646" id="ZmK-EE-t9b"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QYS-h7-vGP">
+                                            <size key="itemSize" width="375" height="135"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Vcn-jd-vbA">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                                <size key="customSize" width="375" height="149"/>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2m-IO-jr8">
+                                        <rect key="frame" x="27" y="66" width="222" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="222" id="9P3-0Y-9cT"/>
+                                            <constraint firstAttribute="height" constant="60" id="L07-sj-dAi"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="지금 ">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="22" name="SeoulNamsanM"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="어떤 옷">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="22" name="SeoulNamsanEB"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">을
+나누기 위해 만나셨나요?</string>
+                                                <attributes>
+                                                    <color key="NSColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="22" name="SeoulNamsanM"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="WLa-QS-q1U" secondAttribute="trailing" id="Ia6-Lh-gND"/>
+                                    <constraint firstAttribute="width" constant="375" id="Q84-6F-Eef"/>
+                                    <constraint firstItem="O2m-IO-jr8" firstAttribute="top" secondItem="DPw-0b-koH" secondAttribute="top" constant="66" id="UND-B0-egV"/>
+                                    <constraint firstAttribute="bottom" secondItem="WLa-QS-q1U" secondAttribute="bottom" id="as5-IW-yOJ"/>
+                                    <constraint firstItem="O2m-IO-jr8" firstAttribute="leading" secondItem="DPw-0b-koH" secondAttribute="leading" constant="27" id="ld3-nY-Ufb"/>
+                                    <constraint firstItem="WLa-QS-q1U" firstAttribute="leading" secondItem="DPw-0b-koH" secondAttribute="leading" id="oiu-GH-F6k"/>
+                                    <constraint firstItem="WLa-QS-q1U" firstAttribute="top" secondItem="O2m-IO-jr8" secondAttribute="bottom" constant="8" id="owp-uf-CYt"/>
+                                    <constraint firstAttribute="trailing" secondItem="O2m-IO-jr8" secondAttribute="trailing" constant="126" id="pmb-Fl-IgC"/>
+                                    <constraint firstAttribute="height" constant="778" id="r2x-yp-dh5"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zs4-h4-q8a" firstAttribute="trailing" secondItem="DPw-0b-koH" secondAttribute="trailing" id="F5r-3s-lfX"/>
+                            <constraint firstAttribute="top" secondItem="DPw-0b-koH" secondAttribute="top" id="IYt-zN-bO4"/>
+                            <constraint firstItem="zs4-h4-q8a" firstAttribute="top" secondItem="DPw-0b-koH" secondAttribute="top" constant="44" id="Ugo-OS-DlO"/>
+                            <constraint firstItem="DPw-0b-koH" firstAttribute="leading" secondItem="zs4-h4-q8a" secondAttribute="leading" id="leV-H2-Uka"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zs4-h4-q8a"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Y6c-uF-fVL"/>
+                    <connections>
+                        <outlet property="qrListCollection" destination="WLa-QS-q1U" id="7Cc-Ft-7fs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6bw-uJ-MS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="904.79999999999995" y="-265.27093596059115"/>
+        </scene>
+        <!--ShowVC-->
+        <scene sceneID="24N-nQ-gc0">
+            <objects>
+                <viewController storyboardIdentifier="QRShowVC" id="3Nr-gU-Ne3" customClass="QRShowVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cWh-yd-bet">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrBackImg" translatesAutoresizingMaskIntoConstraints="NO" id="zG5-U5-YR2">
+                                <rect key="frame" x="16" y="223" width="343" height="343"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="343" id="Zax-gd-d6W"/>
+                                    <constraint firstAttribute="width" constant="343" id="u8N-oS-gpZ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5q-0P-VJp">
+                                <rect key="frame" x="27" y="98" width="201" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Qig-07-4fj"/>
+                                    <constraint firstAttribute="width" constant="201" id="ybV-v6-StA"/>
+                                </constraints>
+                                <string key="text">어떤 옷을 나눌건지
+정확히 확인 하셨나요?</string>
+                                <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="22"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrCodeScan" translatesAutoresizingMaskIntoConstraints="NO" id="FD0-St-rAl">
+                                <rect key="frame" x="97" y="303" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="2kk-1A-q7D"/>
+                                    <constraint firstAttribute="width" constant="180" id="wsw-8p-kTJ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[여아] 투피스 나눔" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDC-xi-cVf">
+                                <rect key="frame" x="134" y="249" width="107" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="OCs-hs-mfi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="화면을 밝혀야 QR코드 인식이 잘 돼요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBx-5A-B3i">
+                                <rect key="frame" x="31" y="161" width="188" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="188" id="6hn-m0-7E6"/>
+                                    <constraint firstAttribute="height" constant="15" id="QYy-u3-4Uw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="12"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CeO-wS-mJt" firstAttribute="trailing" secondItem="y5q-0P-VJp" secondAttribute="trailing" constant="147" id="0N1-Ae-mfo"/>
+                            <constraint firstItem="YBx-5A-B3i" firstAttribute="leading" secondItem="CeO-wS-mJt" secondAttribute="leading" constant="31" id="4Xx-kX-VIr"/>
+                            <constraint firstItem="CeO-wS-mJt" firstAttribute="trailing" secondItem="YBx-5A-B3i" secondAttribute="trailing" constant="156" id="67t-ma-UGE"/>
+                            <constraint firstItem="YBx-5A-B3i" firstAttribute="top" secondItem="y5q-0P-VJp" secondAttribute="bottom" constant="3" id="8R1-uA-H0Y"/>
+                            <constraint firstItem="CeO-wS-mJt" firstAttribute="trailing" secondItem="zG5-U5-YR2" secondAttribute="trailing" constant="16" id="D3Z-Gf-PkB"/>
+                            <constraint firstItem="FD0-St-rAl" firstAttribute="leading" secondItem="CeO-wS-mJt" secondAttribute="leading" constant="97" id="Ean-Ob-VRd"/>
+                            <constraint firstItem="FD0-St-rAl" firstAttribute="top" secondItem="cDC-xi-cVf" secondAttribute="bottom" constant="38" id="FPo-Ly-vfV"/>
+                            <constraint firstItem="zG5-U5-YR2" firstAttribute="leading" secondItem="CeO-wS-mJt" secondAttribute="leading" constant="16" id="ULj-WE-OQp"/>
+                            <constraint firstItem="zG5-U5-YR2" firstAttribute="top" secondItem="YBx-5A-B3i" secondAttribute="bottom" constant="47" id="bBK-ao-zxc"/>
+                            <constraint firstItem="cDC-xi-cVf" firstAttribute="top" secondItem="YBx-5A-B3i" secondAttribute="bottom" constant="73" id="cGk-2V-UsW"/>
+                            <constraint firstItem="y5q-0P-VJp" firstAttribute="leading" secondItem="CeO-wS-mJt" secondAttribute="leading" constant="27" id="fQ4-1K-2IG"/>
+                            <constraint firstItem="y5q-0P-VJp" firstAttribute="top" secondItem="CeO-wS-mJt" secondAttribute="top" constant="54" id="oQa-kp-0Ap"/>
+                            <constraint firstItem="cDC-xi-cVf" firstAttribute="centerX" secondItem="CeO-wS-mJt" secondAttribute="centerX" id="tbD-yN-zhB"/>
+                            <constraint firstItem="CeO-wS-mJt" firstAttribute="trailing" secondItem="FD0-St-rAl" secondAttribute="trailing" constant="98" id="uTF-AR-SX4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CeO-wS-mJt"/>
+                    </view>
+                    <connections>
+                        <outlet property="postitle" destination="cDC-xi-cVf" id="BfV-Px-HRf"/>
+                        <outlet property="qrcode" destination="FD0-St-rAl" id="rlq-xg-9TP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DbC-iP-Tg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1722" y="-265"/>
+        </scene>
+        <!--ScanVC-->
+        <scene sceneID="Xop-dF-Fzg">
+            <objects>
+                <viewController id="qxF-OW-oRS" customClass="QRScanVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" alpha="0.45000000000000001" contentMode="scaleToFill" id="w74-zz-YCl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abz-Pe-wbW">
+                                <rect key="frame" x="87" y="686.66666666666663" width="201" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="gkM-A2-iOz"/>
+                                    <constraint firstAttribute="width" constant="201" id="kLI-V1-Lmd"/>
+                                </constraints>
+                                <string key="text">인식이 잘 안된다면 코드가 있는 휴대폰의
+화면 밝기를 높혀 주세요.</string>
+                                <fontDescription key="fontDescription" name="SeoulNamsanM" family="SeoulNamsan" pointSize="12"/>
+                                <color key="textColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="focusPoint" translatesAutoresizingMaskIntoConstraints="NO" id="VVl-2o-iFx">
+                                <rect key="frame" x="164.66666666666666" y="389" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="eyp-wb-P6m"/>
+                                    <constraint firstAttribute="height" constant="46" id="kYu-hz-stA"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLc-hd-UEY">
+                                <rect key="frame" x="87.666666666666686" y="312" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="e98-Ks-c7N"/>
+                                    <constraint firstAttribute="width" constant="200" id="lTY-PR-FsR"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="VVl-2o-iFx" firstAttribute="top" secondItem="80y-um-C0l" secondAttribute="top" constant="345" id="0H7-7i-rC9"/>
+                            <constraint firstItem="BLc-hd-UEY" firstAttribute="centerX" secondItem="80y-um-C0l" secondAttribute="centerX" id="EWy-Fs-buX"/>
+                            <constraint firstItem="abz-Pe-wbW" firstAttribute="centerX" secondItem="80y-um-C0l" secondAttribute="centerX" id="IY6-3J-14r"/>
+                            <constraint firstItem="abz-Pe-wbW" firstAttribute="firstBaseline" secondItem="VVl-2o-iFx" secondAttribute="baseline" constant="262" id="UmU-Ty-Tos"/>
+                            <constraint firstItem="VVl-2o-iFx" firstAttribute="centerX" secondItem="80y-um-C0l" secondAttribute="centerX" id="V2g-fS-l2Q"/>
+                            <constraint firstItem="BLc-hd-UEY" firstAttribute="top" secondItem="80y-um-C0l" secondAttribute="top" constant="268" id="Wf9-Ff-dnJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="80y-um-C0l"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="U5H-BO-yBJ"/>
+                    <connections>
+                        <outlet property="videoPreview" destination="BLc-hd-UEY" id="zJ2-sL-tB9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Okn-u8-gw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="904.79999999999995" y="417.48768472906403"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="focusPoint" width="48.333332061767578" height="48.333332061767578"/>
+        <image name="labelImg" width="257" height="60"/>
+        <image name="qrBackImg" width="343" height="343"/>
+        <image name="qrBtn" width="244" height="171"/>
+        <image name="qrCodeScan" width="180.66667175292969" height="180.66667175292969"/>
+        <image name="qrScanBtn" width="343" height="42"/>
+        <image name="scanBtn" width="298" height="170"/>
+    </resources>
+</document>
