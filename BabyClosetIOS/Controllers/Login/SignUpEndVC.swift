@@ -18,8 +18,8 @@ class SignUpEndVC: UIViewController {
     }
     
     @IBAction func goMainAction(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let dvc = storyboard.instantiateViewController(withIdentifier: "MainView")
-        self.present(dvc, animated: true, completion: nil)
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "CustomizedTabBarController") as! CustomizedTabBarController
+        self.present(vc, animated: true, completion: nil)
     }
 }

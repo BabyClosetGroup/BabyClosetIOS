@@ -33,7 +33,8 @@ class MyPageVC: UIViewController {
     }
     
     func getUserDetailNetwork(){
-        networkManager.getOtherUserInfo (userIdx: 3){ [weak self] (success, error) in
+        let userIdx = UserDefaults.standard.integer(forKey: "userId")
+        networkManager.getOtherUserInfo (userIdx: userIdx){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
             }
