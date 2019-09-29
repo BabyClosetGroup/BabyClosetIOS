@@ -58,12 +58,20 @@ class MyPageStarVC: UIViewController {
     }
     
     @IBAction func ratingAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        let nv = self.storyboard?.instantiateViewController(withIdentifier: "MyPage")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyPageShareVC") as! MyPageShareVC
+        self.present(nv!, animated: false, completion: nil)
          getNetwork()
     }
     
     @IBAction func closeAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        let nv = self.storyboard?.instantiateViewController(withIdentifier: "MyPage")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyPageShareVC") as! MyPageShareVC
+        self.present(nv!, animated: false, completion: nil)
+//        let sb = UIStoryboard(name: "Main", bundle: nil)
+//        let nv = self.storyboard?.instantiateViewController(withIdentifier: "Main")
+//        let vc = sb.instantiateViewController(withIdentifier: "CustomizedTabBarController") as! CustomizedTabBarController
+        
     }
     
     func getNetwork(){
