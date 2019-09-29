@@ -14,6 +14,7 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
     @IBOutlet var newAllListCollection: UICollectionView!
     @IBOutlet var categoryHeight: NSLayoutConstraint!
     
+    var isLast = false
     var isFilter = false
     var isMsg: Int = 0
     var allPosts: [allPostList] = []
@@ -124,7 +125,6 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
         destination.selectedList["categoryList"] = categoryList
     }
     func saveData(data saveData:[String: [String]]) {
-        print("saveData입니다 ㅠㅠ 제발 들어와 --> ",saveData)
         localList = saveData["localList"]!
         ageList = saveData["ageList"]!
         categoryList = saveData["categoryList"]!
@@ -141,6 +141,7 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
         return str
     }
     func getFilteredPostListNetwork() {
+        self.isLast = false
         areaStr = ""; ageStr = ""; clothStr = ""
         areaStr = makeList2String(list: localList)
         ageStr = makeList2String(list: ageList)
@@ -164,6 +165,7 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
         }
     }
     func getFilteredPostListNetworkAdd() {
+        self.isLast = false
         areaStr = ""; ageStr = ""; clothStr = ""
         areaStr = makeList2String(list: localList)
         ageStr = makeList2String(list: ageList)
@@ -182,11 +184,15 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
                 self?.isMsg = success?.data?.isNewMessage ?? 0
                 self?.allPosts += success?.data?.filteredAllPost ?? []
                 print("카테고리 포스트~~", self?.allPosts)
+                if success?.data?.filteredAllPost?.count == 0 {
+                    self?.isLast = true
+                }
                 self?.newAllListCollection.reloadData()
             }
         }
     }
     func getPostListNetwork(){
+        self.isLast = false
         networkManager.getAllList(page: pageidx){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
@@ -205,6 +211,7 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
         }
     }
     func getPostListNetworkAdd(){
+        self.isLast = false
         networkManager.getAllList(page: pageidx){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
@@ -218,6 +225,9 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
                 }
                 self?.isMsg = success?.data?.isNewMessage ?? 0
                 self?.allPosts += success?.data?.allPost ?? []
+                if success?.data?.allPost?.count == 0 {
+                    self?.isLast = true
+                }
                 self?.newAllListCollection.reloadData()
             }
         }
@@ -229,6 +239,9 @@ extension MainDetailAllVC {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.newAllListCollection {
             if allPosts.count != 0 {
+                if isLast {
+                    return allPosts.count
+                }
                 return allPosts.count+1
             } else { return 1 }
         } else {
@@ -261,7 +274,6 @@ extension MainDetailAllVC {
                 let cell = newAllListCollection.dequeueReusableCell(withReuseIdentifier: "NewCVC", for: indexPath) as! NewCVC
                 
                 let data = allPosts[indexPath.row]
-                print("new ---> ", data, indexPath.row)
                 
                 cell.title.text = data.postTitle
                 let cnt_ = data.areaName ?? []

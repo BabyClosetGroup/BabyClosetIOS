@@ -124,6 +124,7 @@
                 <outlet property="area" destination="ZCq-tf-PiQ" id="adj-bR-pwz"/>
                 <outlet property="mainImage" destination="Qdl-AR-qTe" id="RiJ-y9-4Hu"/>
                 <outlet property="register" destination="RIo-D0-OLZ" id="hmg-Fs-iyj"/>
+                <outlet property="shareBtn" destination="H0T-iO-aAG" id="w4h-Nr-W5q"/>
                 <outlet property="title" destination="vnQ-Cv-bdO" id="jVb-I1-uh9"/>
             </connections>
             <point key="canvasLocation" x="136.95652173913044" y="290.95982142857139"/>

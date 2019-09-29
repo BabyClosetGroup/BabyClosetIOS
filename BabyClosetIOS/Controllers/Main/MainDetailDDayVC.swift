@@ -14,6 +14,7 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
     @IBOutlet var categoryCollection: UICollectionView!
     @IBOutlet var categoryHeight: NSLayoutConstraint!
     
+    var isLast = false
     var isFilter = false
     var isMsg: Int = 0
     var deadlinePosts: [deadlinePostLists] = []
@@ -138,6 +139,7 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
         return str
     }
     func getFilteredPostListNetwork() {
+        self.isLast = false
         areaStr = ""; ageStr = ""; clothStr = ""
         areaStr = makeList2String(list: localList)
         ageStr = makeList2String(list: ageList)
@@ -160,6 +162,7 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
         }
     }
     func getFilteredPostListNetworkAdd() {
+        self.isLast = false
         areaStr = ""; ageStr = ""; clothStr = ""
         areaStr = makeList2String(list: localList)
         ageStr = makeList2String(list: ageList)
@@ -177,11 +180,16 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
                 }
                 self?.isMsg = success?.data?.isNewMessage ?? 0
                 self?.deadlinePosts += success?.data?.filteredDeadlinePost ?? []
+                if success?.data?.filteredDeadlinePost?.count == 0 {
+                    self?.isLast = true
+                    print("isLast", self?.isLast)
+                }
                 self?.lastAllListCollection.reloadData()
             }
         }
     }
     func getPostListNetwork(){
+        self.isLast = false
         networkManager.getDeadLineList(page: pageidx){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
@@ -200,6 +208,7 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
         }
     }
     func getPostListNetworkAdd(){
+        self.isLast = false
         networkManager.getDeadLineList(page: pageidx){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
@@ -213,6 +222,10 @@ class MainDetailDDayVC: UIViewController, SaveDataDelegate {
                 }
                 self?.isMsg = success?.data?.isNewMessage ?? 0
                 self?.deadlinePosts += success?.data?.deadlinePost ?? []
+                if success?.data?.deadlinePost?.count == 0 {
+                    self?.isLast = true
+                    print("isLast", self?.isLast)
+                }
                 self?.lastAllListCollection.reloadData()
             }
         }
@@ -223,6 +236,9 @@ extension MainDetailDDayVC : UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.lastAllListCollection {
             if deadlinePosts.count != 0 {
+                if isLast {
+                    return deadlinePosts.count
+                }
                 return deadlinePosts.count + 1
             } else  { return 1 }
         } else {
@@ -255,7 +271,6 @@ extension MainDetailDDayVC : UICollectionViewDelegate, UICollectionViewDataSourc
                 }
                 let cell = lastAllListCollection.dequeueReusableCell(withReuseIdentifier: "LastAllCVC", for: indexPath) as! LastAllCVC
                 let data = deadlinePosts[indexPath.row]
-                print("deadline ---> ", data, indexPath.row)
                 
                 cell.title.text = data.postTitle
                 let cnt_ = data.areaName ?? []
@@ -270,8 +285,7 @@ extension MainDetailDDayVC : UICollectionViewDelegate, UICollectionViewDataSourc
                 
                 return cell
             } else {
-                let cell = lastAllListCollection.dequeueReusableCell(withReuseIdentifier: "LastAllCVC", for: indexPath) as! LastAllCVC
-                
+                let cell = lastAllListCollection.dequeueReusableCell(withReuseIdentifier: "filterCVC", for: indexPath) as! filterCVC
                 return cell
             }
         } else {

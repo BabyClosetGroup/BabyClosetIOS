@@ -54,6 +54,18 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    @objc func go2(_ sender: Any) {
+        if let button = sender as? UIButton {
+            let row = button.tag
+            let storyboard = UIStoryboard(name: "MyPage", bundle: nil)
+            let dvc = storyboard.instantiateViewController(withIdentifier: "MyPageShareDetailVC") as! MyPageShareDetailVC
+//            let data = allList[row]
+//            dvc.postid = data.postIdx ?? 0
+//            performSegue(withIdentifier: "goPosting", sender: nil)
+
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if firstView {
             if IncompleteData.count != 0 && IncompleteData.count > indexPath.row {
@@ -72,6 +84,7 @@ extension PageCell : UITableViewDelegate, UITableViewDataSource {
                 }
                 cell.postIdx = data.postIdx
                 cell.register.text = data.registerNumber
+                cell.shareBtn.addTarget(self, action: #selector(go2(_:)), for: .touchUpInside)
                 if let img = data.mainImage?.urlToImage() {
                     imageView = cell.mainImage.setImgView(img: img)
                     cell.addSubview(imageView)

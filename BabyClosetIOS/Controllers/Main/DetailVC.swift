@@ -37,7 +37,37 @@ class DetailVC: UIViewController {
     var images: [String] = []
     var complaintext: String = ""
     
+    private var settingBtn: UIBarButtonItem?
+    private var msgBtn: UIBarButtonItem?
+    
     let networkManager = NetworkManager()
+    
+    override func viewDidLoad() {
+        categoryCollection.delegate = self
+        categoryCollection.dataSource = self
+        imageslide.delegate = self
+        
+        super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
+        
+        let nibName = UINib(nibName: "CategoryCVC", bundle: nil)
+        categoryCollection.register(nibName, forCellWithReuseIdentifier: "CategoryCVC")
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getPostDetailNetwork()
+        setNavigationBar()
+        setMsg()
+        setScroll()
+
+        self.tabBarController?.tabBar.isHidden = true
+
+    }
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeFloatingButton()
+    }
     
     @objc func applyAction() {
         self.networkManager.share(postIdx: self.postid) { [weak self] (success, error) in
@@ -52,39 +82,6 @@ class DetailVC: UIViewController {
                 }
             }
         }
-    }
-
-    
-    override func viewDidLoad() {
-        categoryCollection.delegate = self
-        categoryCollection.dataSource = self
-        imageslide.delegate = self
-        
-        super.viewDidLoad()
-//        setNavigationBar()
-//        getPostDetailNetwork()
-//        setMsg()
-//        setScroll()
-        self.tabBarController?.tabBar.isHidden = true
-        
-        let nibName = UINib(nibName: "CategoryCVC", bundle: nil)
-        categoryCollection.register(nibName, forCellWithReuseIdentifier: "CategoryCVC")
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getPostDetailNetwork()
-        setNavigationBar()
-        setMsg()
-        setScroll()
-//        createFloatingButton()
-
-        self.tabBarController?.tabBar.isHidden = true
-
-    }
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        removeFloatingButton()
     }
     
     func setScroll() {
@@ -111,9 +108,9 @@ class DetailVC: UIViewController {
     
     func setMsg() {
         if isMsg == 0 {
-//            msgBtn.image = UIImage(named: "btnLetter")
+            msgBtn?.image = UIImage(named: "btnLetter")
         } else {
-//            msgBtn.image = UIImage(named: "btnLetterAlarm")
+            msgBtn?.image = UIImage(named: "btnLetterAlarm")
         }
     }
     
@@ -142,7 +139,11 @@ class DetailVC: UIViewController {
                 self?.userName.text = "\(name)님의 나눔 별점"
                 self?.userIdx = success?.data?.detailPost?.userIdx ?? 0
                 
-                self?.userImg.image = success?.data?.detailPost?.profileImage?.urlToImage()
+                if let img = success?.data?.detailPost?.profileImage?.urlToImage() {
+                    self?.userImg.image = img
+                } else {
+                    self?.userImg.image = UIImage(named: "user")
+                }
                 self?.star = Int(success?.data?.detailPost?.rating ?? 5)
                 self?.setStar(num: self?.star ?? 0)
                 
@@ -224,11 +225,11 @@ class DetailVC: UIViewController {
         let settingImg    = UIImage(named: "btnSetting")!
         let msgImg  = UIImage(named: "btnLetter")!
         
-        let settingBtn = UIBarButtonItem(image: settingImg,  style: .plain, target: self, action:  #selector(settingAlert))
-        let msgBtn   = UIBarButtonItem(image: msgImg,  style: .plain, target: self, action:  #selector(goMessageView))
-        msgBtn.imageInsets = UIEdgeInsets(top: 0.0, left:45, bottom: 0, right: 0);
+        settingBtn = UIBarButtonItem(image: settingImg,  style: .plain, target: self, action:  #selector(settingAlert))
+        msgBtn   = UIBarButtonItem(image: msgImg,  style: .plain, target: self, action:  #selector(goMessageView))
+        msgBtn?.imageInsets = UIEdgeInsets(top: 0.0, left:45, bottom: 0, right: 0);
 
-        self.navigationItem.rightBarButtonItems = [settingBtn, msgBtn]
+        self.navigationItem.rightBarButtonItems = [settingBtn, msgBtn] as! [UIBarButtonItem]
 
     }
 
