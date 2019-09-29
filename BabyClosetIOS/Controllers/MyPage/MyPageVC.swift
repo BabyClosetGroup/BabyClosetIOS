@@ -26,7 +26,6 @@ class MyPageVC: UIViewController {
         let attributedString = NSMutableAttributedString()
             .normal("정보를 가지고 오는 중입니다.", font: UIFont.M16)
         self.infoLabel.attributedText = attributedString
-        //        let height = profileImg.frame.height / 2
         profileImg.roundCorners(corners: [.allCorners], radius: 31)
         profileImg.contentMode = .scaleToFill
         

@@ -23,18 +23,11 @@ class IncompleteTVC: UITableViewCell {
     }
     @IBAction func sharingAction(_ sender: Any) {
         let storyboard = UIStoryboard(name: "MyPage", bundle: nil)
-        let base  = storyboard.instantiateViewController(withIdentifier: "MyPageShareVC") as! MyPageShareVC
         let vc = storyboard.instantiateViewController(withIdentifier: "MyPageShareDetailVC") as! MyPageShareDetailVC
         vc.postIdx = postIdx
-        base.present(vc, animated: true, completion: nil)
-        base.dismiss(animated: true, completion: nil)
-//        if let rvc = self.window?.rootViewController {
-//            print("이거 되냐..." , vc)
-//            print("이거 되냐..." , rvc)
-//            rvc.present(vc, animated: true)
-//        }
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
     }
-    
 }
 
 
