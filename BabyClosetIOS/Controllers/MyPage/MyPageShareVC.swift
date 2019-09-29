@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyPageShareVC: UIViewController, MyPageMenuBarDelegate, TableViewDelegate {
+class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
     var myPageMenuBar = MyPageMenuBar()
     let networkManager = NetworkManager()
     var uncompleteShareList: [UncompleteShare] = []
@@ -54,11 +54,6 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate, TableViewDelegate 
                 print(self?.uncompleteShareList)
             }
         }
-    }
-    
-    func buttonDidClicked(postIdx: Int) {
-        print("dsdfasdfasdfa시바 왜 안돼s")
-        self.postIdx = postIdx
     }
     
     func getCompletedNetwork(){

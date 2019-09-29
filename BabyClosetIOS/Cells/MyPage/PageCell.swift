@@ -8,12 +8,7 @@
 
 import UIKit
 
-protocol TableViewDelegate: class {
-    func buttonDidClicked(postIdx: Int)
-}
-
-class PageCell: UICollectionViewCell, TableViewCellDelegate {
-    let delegate: TableViewDelegate? = nil
+class PageCell: UICollectionViewCell {
     var firstView: Bool = true
     var numberOfRows = 0
     var IncompleteData: [UncompleteShare] = []
@@ -24,18 +19,12 @@ class PageCell: UICollectionViewCell, TableViewCellDelegate {
     @IBOutlet weak var tableView: UITableView!
     var imageView : UIImageView = UIImageView()
     
-    func buttonDidClicked(postIdx: Int) {
-        if self.postIdx != nil {
-            delegate?.buttonDidClicked(postIdx: postIdx ?? -1)
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
-//        tableView.allowsSelection = false
+        tableView.allowsSelection = false
         tableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         tableView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         tableView.register(UINib(nibName: "EmptyApplyCell", bundle: nil), forCellReuseIdentifier: "EmptyApplyCell")
