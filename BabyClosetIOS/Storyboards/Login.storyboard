@@ -27,7 +27,7 @@
         <!--LoginVC-->
         <scene sceneID="HgQ-sd-V7G">
             <objects>
-                <viewController id="zjl-E6-I10" customClass="LoginVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="zjl-E6-I10" customClass="LoginVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W6g-h3-Aki">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -936,7 +936,6 @@
         <!--SplashVC-->
         <scene sceneID="fQM-Bv-1Rq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Y8-gb-yvW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="GAc-aE-a07" customClass="SplashVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Raz-Uo-tp5" customClass="LottieView" customModule="Lottie">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -948,6 +947,7 @@
                         <segue destination="zjl-E6-I10" kind="show" identifier="goMain" id="2lf-xS-1WN"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Y8-gb-yvW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3106" y="-1140"/>
         </scene>

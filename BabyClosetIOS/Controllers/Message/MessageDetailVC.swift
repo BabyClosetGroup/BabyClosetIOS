@@ -45,6 +45,8 @@ class MessageDetailVC: UIViewController, UITextViewDelegate, UINavigationBarDele
         backBarButton.image = UIImage(named: "btn-Back")
         backBarButton.tintColor = .gray38
         backBarButton.action = #selector(goBack)
+        self.tabBarController?.tabBar.isHidden = true
+
         addShadowToBar()
 //        messageTV.isScrollEnabled = false
     }
