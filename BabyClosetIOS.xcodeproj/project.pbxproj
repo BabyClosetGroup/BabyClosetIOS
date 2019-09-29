@@ -42,6 +42,7 @@
 		4B8474FA233F418800311C3F /* filterCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8474F8233F418800311C3F /* filterCVC.xib */; };
 		4B8474FC233F70C000311C3F /* FilteredAllPostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474FB233F70C000311C3F /* FilteredAllPostList.swift */; };
 		4B8474FE233F70D300311C3F /* FilteredDeadlinePostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8474FD233F70D300311C3F /* FilteredDeadlinePostList.swift */; };
+		4BF3C9BF2340D7430013B63B /* DetailVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF3C9BE2340D7430013B63B /* DetailVC2.swift */; };
 		965030E50FF8214EC5366895 /* Pods_BabyClosetIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFFB1F5E45F9693A85A98F7 /* Pods_BabyClosetIOS.framework */; };
 		C5001A9F231A7EDD00E511BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5001A9E231A7EDD00E511BD /* AppDelegate.swift */; };
 		C5001AA4231A7EDD00E511BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5001AA2231A7EDD00E511BD /* Main.storyboard */; };
@@ -158,6 +159,7 @@
 		4B8474F8233F418800311C3F /* filterCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = filterCVC.xib; sourceTree = "<group>"; };
 		4B8474FB233F70C000311C3F /* FilteredAllPostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredAllPostList.swift; sourceTree = "<group>"; };
 		4B8474FD233F70D300311C3F /* FilteredDeadlinePostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredDeadlinePostList.swift; sourceTree = "<group>"; };
+		4BF3C9BE2340D7430013B63B /* DetailVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC2.swift; sourceTree = "<group>"; };
 		C5001A9B231A7EDD00E511BD /* BabyClosetIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyClosetIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5001A9E231A7EDD00E511BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5001AA3231A7EDD00E511BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				4B188AD0232EADFA00F0AE25 /* CustomizedTabBarController.swift */,
+				4BF3C9BE2340D7430013B63B /* DetailVC2.swift */,
 				4B188AD8232EC89600F0AE25 /* HomeVC.swift */,
 				4B188ADA232ED87700F0AE25 /* MainDetailAllVC.swift */,
 				4B188ADC232ED88900F0AE25 /* MainDetailDDayVC.swift */,
@@ -787,6 +790,7 @@
 				C5E2EFC8232CFA0D00B57BA1 /* ErrorModel.swift in Sources */,
 				4B188ADB232ED87700F0AE25 /* MainDetailAllVC.swift in Sources */,
 				C5001ACE231BA28800E511BD /* LoginVC.swift in Sources */,
+				4BF3C9BF2340D7430013B63B /* DetailVC2.swift in Sources */,
 				4B8474E4233D488C00311C3F /* AllPostList.swift in Sources */,
 				C55BBD9E231C242300C7AD9E /* UITextField+Extensions.swift in Sources */,
 				4B1991E42336E364000081C9 /* LastAllCVC.swift in Sources */,

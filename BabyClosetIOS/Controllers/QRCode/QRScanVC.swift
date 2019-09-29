@@ -68,7 +68,10 @@ class QRScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             if machineReadableCode.type == AVMetadataObject.ObjectType.qr {
                 print(machineReadableCode.stringValue!)
                 if let qrValue = machineReadableCode.stringValue {
-                    self.handleQRRead(value: qrValue)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.handleQRRead(value: qrValue)
+                    }
+                    
                 }
             }
         }
@@ -114,13 +117,6 @@ class QRScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         self.videoPreview.layer.addSublayer(avCaptureVideoPreviewLayer)
 
         avCaptureSession.startRunning()
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "openLink" {
-//            let destination = segue.destination as! WebViewController
-//            destination.url = URL(string: stringURL)
-//        }
     }
 }
 

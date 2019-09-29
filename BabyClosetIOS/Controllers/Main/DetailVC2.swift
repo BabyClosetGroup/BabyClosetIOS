@@ -1,15 +1,15 @@
 //
-//  DetailVC.swift
+//  DetailVC2.swift
 //  BabyClosetIOS
 //
-//  Created by 최리안 on 23/09/2019.
+//  Created by 최리안 on 29/09/2019.
 //  Copyright © 2019 박경선. All rights reserved.
 //
 
 import UIKit
 
-class DetailVC: UIViewController {
-
+class DetailVC2: UIViewController {
+    
     @IBOutlet var detailTitle: UILabel!
     @IBOutlet var dday: UILabel!
     @IBOutlet var categoryCollection: UICollectionView!
@@ -47,13 +47,11 @@ class DetailVC: UIViewController {
                 if success?.success == true {
                     print("나눔 신청하기")
                     self?.simpleAlert(title: "", message: "신청되셨습니다!")
-                } else {
-                    self?.simpleAlert(title: "", message: success?.message ?? "")
                 }
             }
         }
     }
-
+    
     
     override func viewDidLoad() {
         categoryCollection.delegate = self
@@ -61,10 +59,10 @@ class DetailVC: UIViewController {
         imageslide.delegate = self
         
         super.viewDidLoad()
-//        setNavigationBar()
-//        getPostDetailNetwork()
-//        setMsg()
-//        setScroll()
+        //        setNavigationBar()
+        //        getPostDetailNetwork()
+        //        setMsg()
+        //        setScroll()
         self.tabBarController?.tabBar.isHidden = true
         
         let nibName = UINib(nibName: "CategoryCVC", bundle: nil)
@@ -77,10 +75,10 @@ class DetailVC: UIViewController {
         setNavigationBar()
         setMsg()
         setScroll()
-//        createFloatingButton()
-
+        //        createFloatingButton()
+        
         self.tabBarController?.tabBar.isHidden = true
-
+        
     }
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -100,20 +98,20 @@ class DetailVC: UIViewController {
                                      width: self.view.frame.width,
                                      height: 376) // 즉 이미지 뷰가 화면 전체를 덮게 됨.
             
-        imageslide.contentSize.width =
-            self.view.frame.width * CGFloat(1+i)
-        
-        imageslide.addSubview(imageView)
-        imageslide.isPagingEnabled = true
-        imageslide.alwaysBounceVertical = false // 수직 스크롤 바운스 안되게 설정
+            imageslide.contentSize.width =
+                self.view.frame.width * CGFloat(1+i)
+            
+            imageslide.addSubview(imageView)
+            imageslide.isPagingEnabled = true
+            imageslide.alwaysBounceVertical = false // 수직 스크롤 바운스 안되게 설정
         }
     }
     
     func setMsg() {
         if isMsg == 0 {
-//            msgBtn.image = UIImage(named: "btnLetter")
+            //            msgBtn.image = UIImage(named: "btnLetter")
         } else {
-//            msgBtn.image = UIImage(named: "btnLetterAlarm")
+            //            msgBtn.image = UIImage(named: "btnLetterAlarm")
         }
     }
     
@@ -219,7 +217,7 @@ class DetailVC: UIViewController {
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
         
         self.navigationItem.title = "상품정보"
-//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
+        //        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
         
         let settingImg    = UIImage(named: "btnSetting")!
         let msgImg  = UIImage(named: "btnLetter")!
@@ -227,11 +225,11 @@ class DetailVC: UIViewController {
         let settingBtn = UIBarButtonItem(image: settingImg,  style: .plain, target: self, action:  #selector(settingAlert))
         let msgBtn   = UIBarButtonItem(image: msgImg,  style: .plain, target: self, action:  #selector(goMessageView))
         msgBtn.imageInsets = UIEdgeInsets(top: 0.0, left:45, bottom: 0, right: 0);
-
+        
         self.navigationItem.rightBarButtonItems = [settingBtn, msgBtn]
-
+        
     }
-
+    
     @objc func goMessageView(){
         print("메시지 클릭함")
         let storyboard = UIStoryboard(name: "Message", bundle: nil)
@@ -279,7 +277,7 @@ class DetailVC: UIViewController {
                     } else if success != nil && error == nil {
                         if success?.success == true {
                             print("신고 보내기 성공!")
-//                          self?.simpleAlert(title: "", message: "수정")
+                            //                          self?.simpleAlert(title: "", message: "수정")
                         }
                     }
                 }
@@ -293,7 +291,7 @@ class DetailVC: UIViewController {
                     } else if success != nil && error == nil {
                         if success?.success == true {
                             print("신고 보내기 성공!")
-//                          self?.simpleAlert(title: "", message: "수정")
+                            //                          self?.simpleAlert(title: "", message: "수정")
                         }
                     }
                 }
@@ -316,7 +314,7 @@ class DetailVC: UIViewController {
                         } else if success != nil && error == nil {
                             if success?.success == true {
                                 print("신고 보내기 성공!")
-    //                            self?.simpleAlert(title: "", message: "삭제")
+                                //                            self?.simpleAlert(title: "", message: "삭제")
                             }
                         }
                     }
@@ -338,7 +336,7 @@ class DetailVC: UIViewController {
             vc.otherUserIdx = userIdx
             print("유저 정보 --->", userIdx)
             self.present(vc, animated: true, completion: nil)
-//            self.window?.rootViewController?.present(vc, animated: true)
+            //            self.window?.rootViewController?.present(vc, animated: true)
         }
         
         func reportAlert () {
@@ -353,7 +351,7 @@ class DetailVC: UIViewController {
             reportActionSheet.addAction(op3)
             reportActionSheet.addAction(cancle)
             self.present(reportActionSheet, animated: true) {
-
+                
             }
         }
         func modifyAction () {
@@ -379,7 +377,7 @@ class DetailVC: UIViewController {
             
             vc.photos = images
             self.navigationController?.pushViewController(vc, animated: true)
-//            self.present(vc, animated: true, completion: nil)
+            //            self.present(vc, animated: true, completion: nil)
         }
         func deletAlert () {
             let userAlert = UIAlertController(title: "정말로 삭제하시겠습니까?", message: nil, preferredStyle: .alert)
@@ -405,11 +403,11 @@ class DetailVC: UIViewController {
             self.present(userAlert, animated: false, completion: nil)
         }
     }
-
-
+    
+    
 }
 
-extension DetailVC : UICollectionViewDelegate, UICollectionViewDataSource {
+extension DetailVC2 : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return category.count
     }
@@ -426,7 +424,7 @@ extension DetailVC : UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
 }
-extension DetailVC: UICollectionViewDelegateFlowLayout {
+extension DetailVC2: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
@@ -436,7 +434,7 @@ extension DetailVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension DetailVC: UIScrollViewDelegate {
+extension DetailVC2: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
         page.currentPage = Int(pageIndex)

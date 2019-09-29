@@ -226,21 +226,7 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
                         self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
                     } else if success != nil && error == nil {
                         if success?.success == true {
-                            self?.simpleAlert(title: "", message: "변경되었습니다.")
-                        } else {
-                            if success?.message == nil {
-                                self?.simpleAlert(title: "", message: "이미지 파일이 너무 큽니다.")
-                            }
-                        }
-                    }
-                }
-            } else {
-                networkManager.postModify(postIdx: postidx, title: gsno(titleTextField.text), content: gsno(contentTextView.text), deadline: gsno(deadLineLabel.text), areaCategory: localString, ageCategory: ageString, clothCategory: categoryString, images: postImgs) { [weak self] (success, error) in
-                    if success == nil && error != nil {
-                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
-                    } else if success != nil && error == nil {
-                        if success?.success == true {
-                            self?.simpleAlert(title: "", message: "변경되었습니다.")
+                            self?.simpleAlert(title: "", message: "새로운 글이 작성되었습니다.")
                         } else {
                             if success?.message == nil {
                                 self?.simpleAlert(title: "", message: "이미지 파일이 너무 큽니다.")
@@ -249,9 +235,27 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
                     }
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { // Change `2.0` to the desired number of seconds.
+                    self.presentingViewController?.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                networkManager.postModify(postIdx: postidx, title: gsno(titleTextField.text), content: gsno(contentTextView.text), deadline: gsno(deadLineLabel.text), areaCategory: localString, ageCategory: ageString, clothCategory: categoryString, images: postImgs) { [weak self] (success, error) in
+                    if success == nil && error != nil {
+                        self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+                    } else if success != nil && error == nil {
+                        if success?.success == true {
+                            self?.simpleAlert(title: "", message: "수정되었습니다.")
+                        } else {
+                            if success?.message == nil {
+                                self?.simpleAlert(title: "", message: "이미지 파일이 너무 큽니다.")
+                            }
+                        }
+                    }
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.navigationController?.popViewController(animated: true)
                 }
             }
+            
             
         }
     }

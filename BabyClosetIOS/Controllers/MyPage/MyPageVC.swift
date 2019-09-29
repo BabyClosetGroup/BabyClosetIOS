@@ -20,8 +20,6 @@ class MyPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUserDetailNetwork()
-        self.tabBarController?.tabBar.isHidden = false
 
         self.navigationController?.navigationBar.tintColor = UIColor.gray38
         navigationController?.navigationBar.barTintColor = UIColor.white
@@ -31,10 +29,12 @@ class MyPageVC: UIViewController {
 //        let height = profileImg.frame.height / 2
         profileImg.roundCorners(corners: [.allCorners], radius: 31)
         profileImg.contentMode = .scaleToFill
+        
     }
     
     func getUserDetailNetwork(){
         let userIdx = UserDefaults.standard.integer(forKey: "userId")
+        print(userIdx)
         networkManager.getOtherUserInfo (userIdx: userIdx){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
@@ -56,6 +56,7 @@ class MyPageVC: UIViewController {
                     self?.infoLabel.attributedText = attributedString
 //                    self?.profileImg.image = img
                     self?.fillStar(Int(star))
+                    print(nickname)
                 }
             }
         }
@@ -65,7 +66,9 @@ class MyPageVC: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.shouldRemoveShadow(false)
         self.navigationItem.title = "마이페이지"
+        self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.B17]
+        getUserDetailNetwork()
     }
     
     func fillStar(_ star: Int) {
