@@ -45,18 +45,25 @@ class MyPageVC: UIViewController {
                     }
                     return
                 }
-                if let nickname = success?.data?.nickname,
-                    let star = success?.data?.rating,
-                    let img = success?.data?.profileImage?.urlToImage() {
-                    let attributedString = NSMutableAttributedString()
-                        .normal("\(nickname)님", font: UIFont.B16)
-                        .normal("의 별점 ", font: UIFont.L16)
-                        .normal("\(star)점", font: UIFont.B16)
-                    self?.infoLabel.attributedText = attributedString
-//                    self?.profileImg.image = img
-                    self?.fillStar(Int(star))
-                    print(nickname)
-                }
+                let attributedString = NSMutableAttributedString()
+                    .normal("\(success?.data?.nickname ?? "")님", font: UIFont.B16)
+                    .normal("의 별점 ", font: UIFont.L16)
+                    .normal("\(success?.data?.rating ?? 0)점", font: UIFont.B16)
+                self?.infoLabel.attributedText = attributedString
+                //                    self?.profileImg.image = img
+                self?.fillStar(Int(success?.data?.rating ?? 0))
+//                if let nickname = success?.data?.nickname,
+//                    let star = success?.data?.rating,
+//                    let img = success?.data?.profileImage?.urlToImage() {
+//                    let attributedString = NSMutableAttributedString()
+//                        .normal("\(nickname)님", font: UIFont.B16)
+//                        .normal("의 별점 ", font: UIFont.L16)
+//                        .normal("\(star)점", font: UIFont.B16)
+//                    self?.infoLabel.attributedText = attributedString
+////                    self?.profileImg.image = img
+//                    self?.fillStar(Int(star))
+//                    print(nickname)
+//                }
             }
         }
     }
@@ -78,8 +85,10 @@ class MyPageVC: UIViewController {
         for i in 0 ... stars.count - 1 {
             stars[i].image = UIImage(named: "emptyStar64")
         }
-        for i in 0 ... star - 1 {
-            stars[i].image = UIImage(named: "star64")
+        if star > 0 {
+            for i in 0 ... star - 1 {
+                stars[i].image = UIImage(named: "star64")
+            }
         }
     }
 }

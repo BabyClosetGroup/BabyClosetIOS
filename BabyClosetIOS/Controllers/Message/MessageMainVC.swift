@@ -20,6 +20,7 @@ class MessageMainVC: UIViewController {
         getMessageNetwork()
         tableView.delegate = self
         tableView.dataSource = self
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationItem.title = "쪽지함"

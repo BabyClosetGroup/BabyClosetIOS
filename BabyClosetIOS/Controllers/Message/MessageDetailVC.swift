@@ -27,7 +27,8 @@ class MessageDetailVC: UIViewController, UITextViewDelegate, UINavigationBarDele
     var bottomC: CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tabBarController?.tabBar.isHidden = true
+
         messageTV.delegate = self
         collectionView.invalidateIntrinsicContentSize()
         collectionView.delegate = self
@@ -45,7 +46,6 @@ class MessageDetailVC: UIViewController, UITextViewDelegate, UINavigationBarDele
         backBarButton.image = UIImage(named: "btn-Back")
         backBarButton.tintColor = .gray38
         backBarButton.action = #selector(goBack)
-        self.tabBarController?.tabBar.isHidden = true
 
         addShadowToBar()
 //        messageTV.isScrollEnabled = false
