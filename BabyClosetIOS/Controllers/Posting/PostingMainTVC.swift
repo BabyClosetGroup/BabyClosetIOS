@@ -74,11 +74,6 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
             contentTextView.textColor = .gray219
         }
         deadLineLabel.roundCorners(corners: [.allCorners], radius: 8)
-        let messageButton : UIBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(goMessageView))
-        messageButton.setBackgroundImage(UIImage(named: "btn-Letter"), for: .normal, barMetrics: .default)
-        self.navigationItem.rightBarButtonItem = messageButton
-//        let leftButton : UIBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        self.navigationItem.leftBarButtonItem?.title = ""
         contentTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         tagCollectionView.register(UINib(nibName: "PostingCategoryCell", bundle: nil), forCellWithReuseIdentifier: "HashTagCell")
     }
@@ -88,12 +83,6 @@ class PostingMainTVC: UITableViewController, UITextFieldDelegate, UITextViewDele
 //        let vc = sb.instantiateViewController(withIdentifier: "CustomizedTabBarController") as! UITabBarController
 //        self.push
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func goMessageView(){
-        let storyboard = UIStoryboard(name: "Message", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "MessageRootNavigation")
-        self.present(vc, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

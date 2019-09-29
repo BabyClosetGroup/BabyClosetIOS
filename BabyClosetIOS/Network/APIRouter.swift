@@ -28,8 +28,8 @@ struct APIRouter {
         self.headers = headers
         self.data = data
     }
-    
 }
+
 extension APIRouter {
     var requestUrl: String {
         return APIConfiguration.baseURL + url

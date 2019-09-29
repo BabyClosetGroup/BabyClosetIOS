@@ -65,7 +65,7 @@ class ChatCell: BaseCell {
         addConstraintsWithFormat(format: "H:|-16-[v0]|", views: containerView)
         addConstraintsWithFormat(format: "V:|[v0]|", views: containerView)
         addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: bubble)
-        addConstraintsWithFormat(format: "V:|[v0]-6-|", views: bubble)
+        addConstraintsWithFormat(format: "V:|-6-[v0]|", views: bubble)
         bubble.addSubview(typeLabel)
         bubble.addSubview(messageView)
         bubble.addSubview(timeLabel)

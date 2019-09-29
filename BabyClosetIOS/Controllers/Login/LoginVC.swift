@@ -16,6 +16,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwdTextField: UITextField!
+    @IBOutlet weak var autoLoginBtn: CheckBoxButton!
     
     let networkManager = NetworkManager()
     
@@ -37,25 +38,32 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginAction(_ sender: Any) {
         // 대충 로그인 체크되는 기능
-        networkManager.signin(userId: gsno(idTextField.text), password: gsno(passwdTextField.text) ){ [weak self] (success, fail, error) in
-            if success == nil && fail == nil && error != nil {
+        networkManager.signin(userId: gsno(idTextField.text), password: gsno(passwdTextField.text) ){ [weak self] (success, error) in
+            if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
-            }
-            else if success == nil && fail != nil && error == nil {
-                if let msg = fail?.message {
-                    self?.simpleAlert(title: "", message: msg)
-                }
-            } else if success != nil && fail == nil && error == nil {
+            } else if success?.success == true {
                 UserDefaults.standard.set(success?.data?.userId, forKey: "userId")
                 UserDefaults.standard.set(success?.data?.name, forKey: "userName")
                 UserDefaults.standard.set(success?.data?.nickname, forKey: "nickname")
                 UserDefaults.standard.set(self?.jwt, forKey: "token")
+                if self?.autoLoginBtn.isChecked ?? false {
+                    UserDefaults.standard.set(true, forKey: "autoLogin")
+                } else {
+                    UserDefaults.standard.set(false, forKey: "autoLogin")
+                }
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let dvc = storyboard.instantiateViewController(withIdentifier: "MainView")
+                let dvc = storyboard.instantiateViewController(withIdentifier: "CustomizedTabBarController")
                 self?.present(dvc, animated: true, completion: nil)
             } else {
-                print("엥")
+                self?.simpleAlert(title: "", message: success?.message ?? "다시 입력해주세요.")
             }
         }
+    }
+    @IBAction func autoLogin(_ sender: UIButton) {
+        autoLoginBtn.isChecked = !autoLoginBtn.isChecked
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }

@@ -9,7 +9,7 @@
 struct OtherDetailInfo: Codable {
     let userIdx: Int?
     let nickname: String?
-    let rating: Float?
+    let rating: Int?
     let profileImage: String?
     
     enum CodingKeys: String, CodingKey {
@@ -23,7 +23,7 @@ struct OtherDetailInfo: Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         userIdx = try values.decodeIfPresent(Int.self, forKey: .userIdx)
         nickname = try values.decodeIfPresent(String.self, forKey: .nickname)
-        rating = try values.decodeIfPresent(Float.self, forKey: .rating)
+        rating = try values.decodeIfPresent(Int.self, forKey: .rating)
         profileImage = try values.decodeIfPresent(String.self, forKey: .profileImage)
     }
 }
