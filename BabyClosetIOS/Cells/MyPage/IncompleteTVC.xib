@@ -70,6 +70,7 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0T-iO-aAG">
                         <rect key="frame" x="16" y="150" width="343" height="42"/>
                         <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="width" constant="343" id="1TO-F0-myD"/>
                             <constraint firstAttribute="height" constant="42" id="VpB-Eb-waG"/>
