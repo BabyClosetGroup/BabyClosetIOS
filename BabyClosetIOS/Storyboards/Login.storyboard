@@ -27,7 +27,7 @@
         <!--LoginVC-->
         <scene sceneID="HgQ-sd-V7G">
             <objects>
-                <viewController id="zjl-E6-I10" customClass="LoginVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="zjl-E6-I10" customClass="LoginVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W6g-h3-Aki">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
