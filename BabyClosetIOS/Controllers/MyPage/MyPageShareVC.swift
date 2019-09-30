@@ -40,6 +40,9 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
 //        setNavigationBar()
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        pageCollectionView.reloadData()
+//    }
     
     func getUncompletedNetwork(){
         networkManager.getUncompleteShare { [weak self] (success, error) in
@@ -103,7 +106,7 @@ class MyPageShareVC: UIViewController, MyPageMenuBarDelegate {
         self.view.addSubview(pageCollectionView)
         pageCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         pageCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        pageCollectionView.heightAnchor.constraint(equalToConstant: self.view.frame.height - 40).isActive = true
+        pageCollectionView.heightAnchor.constraint(equalToConstant: self.view.frame.height - 88).isActive = true
         pageCollectionView.topAnchor.constraint(equalTo: self.myPageMenuBar.bottomAnchor).isActive = true
     }
     

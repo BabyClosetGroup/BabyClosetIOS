@@ -30,5 +30,3 @@ class IncompleteTVC: UITableViewCell {
         self.window?.makeKeyAndVisible()
     }
 }
-
-

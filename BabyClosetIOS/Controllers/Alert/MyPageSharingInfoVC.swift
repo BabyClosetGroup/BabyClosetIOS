@@ -58,6 +58,20 @@ class MyPageSharingInfoVC: UIViewController {
             }
         }
     }
+
+    @IBAction func allowAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CustomizedTabBarController") as! CustomizedTabBarController
+        let sb = UIStoryboard(name: "MyPage", bundle: nil)
+        let nvc = sb.instantiateViewController(withIdentifier: "MyPage") as! UINavigationController
+        let dvc = sb.instantiateViewController(withIdentifier: "MyPageShareVC") as! MyPageShareVC
+        self.view.window?.rootViewController = vc
+        vc.viewControllers?[1].present(nvc, animated: false) {
+            nvc.pushViewController(dvc, animated: false)
+        }
+        
+    }
+    
     func fillStar(_ star: Int) {
         for i in 0 ... stars.count - 1 {
             stars[i].image = UIImage(named: "emptyStar64")
