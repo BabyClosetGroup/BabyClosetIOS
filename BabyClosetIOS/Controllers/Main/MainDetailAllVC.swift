@@ -8,12 +8,13 @@
 
 import UIKit
 
-class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, FSaveDataDelegate {
+class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, SaveDataDelegate {
     
     @IBOutlet var categoryCollection: UICollectionView!
     @IBOutlet var newAllListCollection: UICollectionView!
     @IBOutlet var categoryHeight: NSLayoutConstraint!
     
+    var isLast = false
     var isFilter = false
     var isMsg: Int = 0
     var allPosts: [allPostList] = []
@@ -55,13 +56,13 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.topItem?.title = ""
-        print("필터니??", isFilter)
         print(selectedList)
         if selectedList.count == 0 {
             categoryHeight.constant = 0
         } else {
             self.navigationItem.title = "필터적용"
             isFilter = true
+            print("필터니??", isFilter)
             categoryHeight.constant = 58
         }
         if isFilter {
@@ -114,17 +115,16 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
         let vc = storyboard.instantiateViewController(withIdentifier: "PostingCategoryVC")
         let dvc = vc as! PostingCategoryVC
         dvc.isFiltered = true
-        navigationController?.pushViewController(vc, animated: true)
+        performSegue(withIdentifier: "goPosting", sender: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! PostingCategoryVC
-//        destination.delegate = self
+        destination.delegate = self
         destination.selectedList["localList"] = localList
         destination.selectedList["ageList"] = ageList
         destination.selectedList["categoryList"] = categoryList
     }
-    func saveFData(data saveData:[String: [String]]) {
-        print("saveData입니다 ㅠㅠ 제발 들어와 --> ",saveData)
+    func saveData(data saveData:[String: [String]]) {
         localList = saveData["localList"]!
         ageList = saveData["ageList"]!
         categoryList = saveData["categoryList"]!
@@ -141,6 +141,31 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
         return str
     }
     func getFilteredPostListNetwork() {
+        self.isLast = false
+        areaStr = ""; ageStr = ""; clothStr = ""
+        areaStr = makeList2String(list: localList)
+        ageStr = makeList2String(list: ageList)
+        clothStr = makeList2String(list: categoryList)
+        networkManager.getFilteredAllList(page: pageidx, area: areaStr, age: ageStr, cloth: clothStr){ [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success != nil && error == nil {
+                guard success?.success ?? false else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
+                }
+                self?.isMsg = success?.data?.isNewMessage ?? 0
+                self?.allPosts = success?.data?.filteredAllPost ?? []
+                print("카테고리 포스트~~", self?.allPosts)
+                self?.newAllListCollection.reloadData()
+            }
+        }
+    }
+    func getFilteredPostListNetworkAdd() {
+        self.isLast = false
         areaStr = ""; ageStr = ""; clothStr = ""
         areaStr = makeList2String(list: localList)
         ageStr = makeList2String(list: ageList)
@@ -158,11 +183,35 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
                 }
                 self?.isMsg = success?.data?.isNewMessage ?? 0
                 self?.allPosts += success?.data?.filteredAllPost ?? []
+                print("카테고리 포스트~~", self?.allPosts)
+                if success?.data?.filteredAllPost?.count == 0 {
+                    self?.isLast = true
+                }
                 self?.newAllListCollection.reloadData()
             }
         }
     }
     func getPostListNetwork(){
+        self.isLast = false
+        networkManager.getAllList(page: pageidx){ [weak self] (success, error) in
+            if success == nil && error != nil {
+                self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
+            }
+            else if success != nil && error == nil {
+                guard success?.success ?? false else {
+                    if let msg = success?.message {
+                        self?.simpleAlert(title: "", message: msg)
+                    }
+                    return
+                }
+                self?.isMsg = success?.data?.isNewMessage ?? 0
+                self?.allPosts = success?.data?.allPost ?? []
+                self?.newAllListCollection.reloadData()
+            }
+        }
+    }
+    func getPostListNetworkAdd(){
+        self.isLast = false
         networkManager.getAllList(page: pageidx){ [weak self] (success, error) in
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
@@ -176,6 +225,9 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
                 }
                 self?.isMsg = success?.data?.isNewMessage ?? 0
                 self?.allPosts += success?.data?.allPost ?? []
+                if success?.data?.allPost?.count == 0 {
+                    self?.isLast = true
+                }
                 self?.newAllListCollection.reloadData()
             }
         }
@@ -186,7 +238,12 @@ class MainDetailAllVC: UIViewController, UICollectionViewDelegate, UICollectionV
 extension MainDetailAllVC {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.newAllListCollection {
-            return allPosts.count+1
+            if allPosts.count != 0 {
+                if isLast {
+                    return allPosts.count
+                }
+                return allPosts.count+1
+            } else { return 1 }
         } else {
             return localList.count + ageList.count + categoryList.count
         }
@@ -196,7 +253,7 @@ extension MainDetailAllVC {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == self.newAllListCollection {
+        if collectionView == self.newAllListCollection, allPosts.count != 0 {
             let dvc = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
             let data = allPosts[indexPath.row]
             dvc.postid = data.postIdx ?? 0
@@ -217,7 +274,6 @@ extension MainDetailAllVC {
                 let cell = newAllListCollection.dequeueReusableCell(withReuseIdentifier: "NewCVC", for: indexPath) as! NewCVC
                 
                 let data = allPosts[indexPath.row]
-                print("new ---> ", data, indexPath.row)
                 
                 cell.title.text = data.postTitle
                 let cnt_ = data.areaName ?? []
@@ -229,7 +285,7 @@ extension MainDetailAllVC {
                 
                 return cell
             } else {
-                let cell = newAllListCollection.dequeueReusableCell(withReuseIdentifier: "NewCVC", for: indexPath) as! NewCVC
+                let cell = newAllListCollection.dequeueReusableCell(withReuseIdentifier: "filterCVC", for: indexPath) as! filterCVC
                 return cell
             }
         } else {
@@ -248,7 +304,11 @@ extension MainDetailAllVC {
     }
     @objc func addPage(_ sender: Any) {
         pageidx += 1
-        getPostListNetwork()
+        if isFilter {
+            getFilteredPostListNetworkAdd()
+        } else {
+            getPostListNetworkAdd()
+        }
     }
     
 }
@@ -263,9 +323,11 @@ extension MainDetailAllVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.newAllListCollection {
+            if allPosts.count == 0 {
+                return CGSize(width: 343, height: 667)
+            }
             if indexPath.row == allPosts.count {
                 return CGSize(width: 343, height: 42)
-
             }
             return CGSize(width: 164, height: 213)
         } else {

@@ -60,11 +60,39 @@ extension MyPageReceiveVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    @objc func goRating(_ sender: Any) {
+        if let button = sender as? UIButton {
+            let row = button.tag
+//            let storyboard = UIStoryboard(name: "MyPage", bundle: nil)
+            let dvc = storyboard?.instantiateViewController(withIdentifier: "MyPageStarVC") as! MyPageStarVC
+            let data = receiveList[row]
+            dvc.userIdx = data.senderIdx ?? 0
+            dvc.postIdx = data.postIdx ?? 0
+            present(dvc, animated: true, completion: nil)
+        }
+    }
+    @objc func showDetail(_ sender: Any) {
+        if let button = sender as? UIButton {
+            let row = button.tag
+            //            let storyboard = UIStoryboard(name: "MyPage", bundle: nil)
+            let dvc = storyboard?.instantiateViewController(withIdentifier: "MyPageSharingInfoVC") as! MyPageSharingInfoVC
+            let data = receiveList[row]
+            dvc.receiveIdx = data.senderIdx ?? 0
+            
+            present(dvc, animated: true, completion: nil)
+        }
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if receiveList.count != 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CompleteTVC", for: indexPath) as! CompleteTVC
             let data = receiveList[indexPath.row]
             cell.title.text = data.postName
+            
+//            cell.ratingButton.tag = indexPath.row
+//            cell.ratingButton.addTarget(self, action: #selector(goRating), for: .touchUpInside)
+//            cell.showDetailBtn.tag = indexPath.row
+//            cell.showDetailBtn.addTarget(self, action: #selector(showDetail), for: .touchUpInside)
+            
             if let img = data.mainImage?.urlToImage() {
                 let imageView = cell.imgView.setImgView(img: img)
                 cell.addSubview(imageView)

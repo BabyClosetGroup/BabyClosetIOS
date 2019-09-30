@@ -352,6 +352,7 @@
                         <outlet property="categoryCollection" destination="fIP-6S-JuY" id="xQH-oP-dHv"/>
                         <outlet property="categoryHeight" destination="iKS-9s-fgI" id="rpk-Wc-ASq"/>
                         <outlet property="newAllListCollection" destination="Yfy-0P-Y4Z" id="M1D-27-HgK"/>
+                        <segue destination="YZv-EY-Mn8" kind="push" identifier="goPosting" id="jWW-l9-TKU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xw8-Xm-Dx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -366,7 +367,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r4u-5s-Hz9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3862" y="-655"/>
+            <point key="canvasLocation" x="3911" y="-660"/>
         </scene>
         <!--DetailVC-->
         <scene sceneID="T04-cm-J69">
@@ -627,6 +628,7 @@
         <image name="btnQr" width="28" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="jWW-l9-TKU"/>
         <segue reference="VQG-9g-TtR"/>
         <segue reference="EcK-CT-Ajj"/>
     </inferredMetricsTieBreakers>

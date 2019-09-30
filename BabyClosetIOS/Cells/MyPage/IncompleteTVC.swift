@@ -12,6 +12,7 @@ class IncompleteTVC: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var area: UILabel!
     @IBOutlet weak var register: UILabel!
+    @IBOutlet var shareBtn: UIButton!
     var postIdx: Int?
     
     override func awakeFromNib() {

@@ -36,6 +36,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             if success == nil && error != nil {
                 self?.simpleAlert(title: "", message: "네트워크 오류입니다.")
             } else if success?.success == true {
+                
                 UserDefaults.standard.set(success?.data?.userId, forKey: "userId")
                 UserDefaults.standard.set(success?.data?.userIdx, forKey: "userIdx")
                 UserDefaults.standard.set(success?.data?.name, forKey: "userName")
