@@ -102,7 +102,7 @@
                                     <constraint firstAttribute="height" constant="66" id="dnD-6Z-YF0"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="shareGoods:" destination="JWt-M2-RmO" eventType="touchUpInside" id="MLK-Ad-HtL"/>
+                                    <action selector="shareGoods:" destination="JWt-M2-RmO" eventType="touchUpInside" id="S0U-QM-gIa"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내가 나눈 상품" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCp-W4-dCl">
@@ -211,16 +211,10 @@
         <!--My Page ShareVC-->
         <scene sceneID="bcl-X9-W5t">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kjn-9V-VW8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="MyPageShareVC" id="MXD-6g-usR" customClass="MyPageShareVC" customModule="BabyClosetIOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7Bz-Tk-jC1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="8UK-E1-jGC"/>
-                    </view>
                     <navigationItem key="navigationItem" id="JEK-OM-Bij"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kjn-9V-VW8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2049" y="143"/>
         </scene>
@@ -326,7 +320,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ratingViewImg" translatesAutoresizingMaskIntoConstraints="NO" id="B7x-b7-PWE">
-                                <rect key="frame" x="0.0" y="568" width="375" height="195"/>
+                                <rect key="frame" x="0.0" y="568" width="375" height="195.00000000000006"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="194.99999999999994" id="BBJ-wl-bcs"/>
                                     <constraint firstAttribute="width" constant="375" id="pqg-Pc-Sou"/>
@@ -982,7 +976,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7G-8R-mat" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3310" y="867"/>
+            <point key="canvasLocation" x="3310" y="815"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aqq-rJ-c3I">

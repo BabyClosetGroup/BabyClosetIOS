@@ -57,9 +57,15 @@ class MyPageSharingInfoVC: UIViewController {
     }
     
     @IBAction func allowAction(_ sender: Any) {
-        let nv = self.storyboard?.instantiateViewController(withIdentifier: "MyPage")
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyPageShareVC") as! MyPageShareVC
-        self.present(nv!, animated: false, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CustomizedTabBarController") as! CustomizedTabBarController
+        let sb = UIStoryboard(name: "MyPage", bundle: nil)
+        let nvc = sb.instantiateViewController(withIdentifier: "MyPage") as! UINavigationController
+        let dvc = sb.instantiateViewController(withIdentifier: "MyPageShareVC") as! MyPageShareVC
+        self.view.window?.rootViewController = vc
+        vc.viewControllers?[1].present(nvc, animated: false) {
+            nvc.pushViewController(dvc, animated: false)
+        }
         
     }
     
